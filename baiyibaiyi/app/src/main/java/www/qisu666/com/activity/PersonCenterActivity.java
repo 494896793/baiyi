@@ -1,0 +1,611 @@
+package www.qisu666.com.activity;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import www.qisu666.com.BuildConfig;
+import www.qisu666.com.R;
+import www.qisu666.com.adapter.PersonCenterAdapter;
+import www.qisu666.com.bean.PersonCenterItem;
+import www.qisu666.com.callback.SecData;
+import www.qisu666.com.callback.SystemConfigResp;
+import www.qisu666.com.callback.UserInfoResp;
+import www.qisu666.com.constant.Config;
+import www.qisu666.com.constant.RequestUrls;
+import www.qisu666.com.request.UserInfoRequest;
+import www.qisu666.com.request.VerifyInfoRequest;
+import www.qisu666.com.rx.RxBus;
+import www.qisu666.com.rx.RxBusEvent;
+import www.qisu666.com.rx.RxEventCodes;
+import www.qisu666.com.utils.CacheUtils;
+import www.qisu666.com.utils.CustomGridLayoutManager;
+import www.qisu666.com.utils.DataUtils;
+import www.qisu666.com.utils.FileSizeUtil;
+import www.qisu666.com.utils.Logger;
+import www.qisu666.com.utils.StringUtils;
+import www.qisu666.com.utils.ToastUtil;
+import www.qisu666.com.utils.UploadFile;
+import www.qisu666.com.utils.UserUtils;
+import www.qisu666.com.view.CircleImageView;
+import www.qisu666.com.view.CustomAlertDialog;
+import www.qisu666.com.view.CustomAlertDialogVerify;
+import www.qisu666.com.view.ViewShowUtil;
+import com.bumptech.glide.Glide;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import cn.sharesdk.framework.ShareSDK;
+import rx.functions.Action1;
+
+/**
+ * Created by wujiancheng on 2017/7/14.
+ * 个人中心
+ */
+
+public class PersonCenterActivity extends BaseActivity {
+    public static final int NONE = 0;
+    public static final int PHOTOHRAPH = 1;// 拍照
+    public static final int PHOTORESOULT = 3;// 结果
+
+    private static final int QUERY_USER_INFO = 1;
+
+    @BindView(R.id.iv_bg_pic)
+    ImageView ivBgPic;
+    @BindView(R.id.iv_myhead_logo)
+    CircleImageView ivMyheadLogo;
+    @BindView(R.id.tl_user_pic)
+    RelativeLayout tlUserPic;
+    @BindView(R.id.tvUsername)
+    TextView tvUserName;
+    @BindView(R.id.llytPersonBg)
+    LinearLayout llytPersonBg;
+    @BindView(R.id.rvMyItem)
+    RecyclerView rvMyItem;
+    @BindView(R.id.tvTitleName)
+    TextView tvTitleName;
+    @BindView(R.id.viewStatusBar)
+    View viewStatusBar;
+
+    private int verifyStatus = 3;//身份证和驾照 1：已认证，2：审核中，3：未认证
+    private int deposit;//已交押金
+    private int shouldDeposit;//应交押金
+    private File mPicFile;
+    private String picname;
+
+    private List<PersonCenterItem> personCenterItems = new ArrayList<>();
+    private PersonCenterAdapter personCenterAdapter;
+    private String violateNum = "";//违章数量
+    private String myCompanyName = "";//公司名称
+    private String myLeftAmount = "";//企业额度
+    private String kefuTel = "";
+    private boolean needVerify = true;//是否需要认证
+    private int driverNumberStatus;//驾照认证状态 1:驳回，2，3:过期
+
+    @Override
+    public void setView() {
+        setContentView(R.layout.activity_person_center);
+    }
+
+    @Override
+    public void initDatas() {
+        ShareSDK.initSDK(this);
+
+        setItemData();
+        init();
+
+        ViewGroup.LayoutParams layoutParams = viewStatusBar.getLayoutParams();
+        layoutParams.height = getStatusBarHeight();
+
+        observeEvent();
+    }
+
+    private void observeEvent() {
+        busSubscription = RxBus.getInstance()
+                .toObservable(RxBusEvent.class)
+                .subscribe(new Action1<RxBusEvent>() {
+                    @Override
+                    public void call(RxBusEvent rxBusEvent) {
+                        switch (rxBusEvent.getEventCode()) {
+                            case RxEventCodes.CODE_RECHARGE_PAY_SUCCESS:
+                            case RxEventCodes.CODE_PLEDGE_PAY_SUCCESS:
+                            case RxEventCodes.CODE_USE_CAR_PAY_SUCCESS:
+                            case RxEventCodes.CODE_ORDER_PAY_SUCCESS:
+                                //支付成功更新个人信息
+                                queryUserInfo();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+    }
+
+    private void setItemData() {
+        SystemConfigResp info = CacheUtils.getIn().getSystem_Info();
+        //客服电话
+        if (null != info) {
+            kefuTel = info.getKfphone();
+        }
+
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_wallet(), R.mipmap.my_wallet, "钱包", "", false));
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_order(), R.mipmap.my_order, "订单", "", false));
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_ids(), R.mipmap.my_ids, "资质认证", "", needVerify));
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_violate(), R.mipmap.my_violate, "违章记录", "", false));
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_recommend(), R.mipmap.my_recommend, "推荐有奖", "", false));
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_user_guide(), R.mipmap.my_user_guide, "使用指南", "", false));
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_kefu(), R.mipmap.my_kefu, "客服", kefuTel, false));
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_company(), R.mipmap.my_company, "企业认证", myCompanyName, false));
+        personCenterItems.add(new PersonCenterItem(PersonCenterItem.Companion.getMy_settings(), R.mipmap.my_settings, "设置", "", false));
+
+        personCenterAdapter = new PersonCenterAdapter(mContext, personCenterItems);
+        rvMyItem.setLayoutManager(new CustomGridLayoutManager(mContext, 3));
+        rvMyItem.setAdapter(personCenterAdapter);
+
+        personCenterAdapter.setOnPersonCenterItemClickListener(new PersonCenterAdapter.OnPersonCenterItemClickListener() {
+
+            @Override
+            public void onPersonCenterItemClick(int position) {
+                if (position >= 0 && position < personCenterItems.size()) {
+                    String itemKey = personCenterItems.get(position).getItemKey();
+                    if (PersonCenterItem.Companion.getMy_wallet().equals(itemKey)) {
+                        //钱包
+                        if (CacheUtils.getIn().isLogin()) {
+                            activityUtil.jumpTo(MyWalletActivity.class);
+                        } else {
+                            activityUtil.jumpTo(LoginActivity.class);
+                        }
+                    } else if (PersonCenterItem.Companion.getMy_order().equals(itemKey)) {
+                        //订单
+                        if (CacheUtils.getIn().isLogin()) {
+                            activityUtil.jumpTo(AllOrderActivity.class);
+                        } else {
+                            activityUtil.jumpTo(LoginActivity.class);
+                        }
+                    } else if (PersonCenterItem.Companion.getMy_ids().equals(itemKey)) {
+                        //上传身份证和驾照，交纳押金
+                        if (CacheUtils.getIn().isLogin()) {
+                            Intent intent = new Intent(mContext, IdVerifyStatusActivity.class);
+                            intent.putExtra("verifyStatus", verifyStatus);
+                            intent.putExtra("deposit", deposit);
+                            intent.putExtra("shouldDeposit", shouldDeposit);
+                            intent.putExtra("driverNumberStatus", driverNumberStatus);
+                            startActivity(intent);
+                        } else {
+                            activityUtil.jumpTo(LoginActivity.class);
+                        }
+                    } else if (PersonCenterItem.Companion.getMy_violate().equals(itemKey)) {
+                        //违章记录
+                        if (!CacheUtils.getIn().isLogin()) {
+                            activityUtil.jumpTo(LoginActivity.class);
+                        } else {
+                            Intent intent1 = new Intent(mContext, TrafficViolationActivity.class);
+                            startActivity(intent1);
+                        }
+                    } else if (PersonCenterItem.Companion.getMy_recommend().equals(itemKey)) {
+                        //邀请好友
+//                        if (!CacheUtils.getIn().isLogin()) {
+//                            activityUtil.jumpTo(LoginActivity.class);
+//                        } else {
+//                            SystemConfigResp systemConfigResp = CacheUtils.getIn().getSystem_Info();
+//                            Intent intent = new Intent(mContext, WebActivity.class);
+//                            intent.putExtra("title", "邀请奖励");
+//                            intent.putExtra("url", "http://192.168.2.34:8080/Currency/MaizuoDownApp");
+//                            intent.putExtra("type", WebActivity.TYPE_SHARE);
+//                            startActivity(intent);
+                        Intent intent = new Intent(mContext, InviteFriendsActivity.class);
+                        startActivity(intent);
+//                        }
+                    } else if (PersonCenterItem.Companion.getMy_user_guide().equals(itemKey)) {
+                        //使用指南
+                        SystemConfigResp systemConfigResp2 = CacheUtils.getIn().getSystem_Info();
+                        Intent intent2 = new Intent(mContext, WebActivity.class);
+                        intent2.putExtra("title", "使用指南");
+                        intent2.putExtra("url", systemConfigResp2.getUserGuideUrl());
+                        startActivity(intent2);
+                    } else if (PersonCenterItem.Companion.getMy_kefu().equals(itemKey)) {
+                        //拨打客服电话
+                        final CustomAlertDialog alertDialog = CustomAlertDialog.getAlertDialog(mContext, true, true);
+                        alertDialog.setMessage("确认拨打" + kefuTel)
+                                .setBtnCancelColor(R.color.main_background)
+                                .setBtnConfirmColor(R.color.new_primary)
+                                .setOnNegativeClickListener("取消", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        alertDialog.dismiss();
+                                    }
+                                })
+                                .setOnPositiveClickListener("呼叫", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Uri uri = Uri.parse("tel:" + kefuTel);
+                                        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+                                        startActivity(intent);
+                                        alertDialog.dismiss();
+                                    }
+                                }).show();
+                    } else if (PersonCenterItem.Companion.getMy_company().equals(itemKey)) {
+                        if (!CacheUtils.getIn().isLogin()) {
+                            activityUtil.jumpTo(LoginActivity.class);
+                        } else {
+                            //认证企业
+                            Intent intent = new Intent(mContext, MyCompanyActivity.class);
+                            intent.putExtra("myCompanyName", myCompanyName);
+                            intent.putExtra("myLeftAmount", myLeftAmount);
+                            startActivity(intent);
+                        }
+                    } else if (PersonCenterItem.Companion.getMy_settings().equals(itemKey)) {
+                        //设置
+                        activityUtil.jumpTo(SettingActivity.class);
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+        if (isSuccess(result)) {
+            if (type == QUERY_USER_INFO) {
+                UserInfoResp userInfoResp = getBean(result, UserInfoResp.class);
+                if (null != userInfoResp) {
+                    CacheUtils.getIn().save(userInfoResp);
+
+                    //违章数量
+                    violateNum = userInfoResp.getUnDoWzCount();
+                }
+
+                init();
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init();
+        if (CacheUtils.getIn().isLogin()) {
+            queryUserInfo();
+        }
+    }
+
+    @OnClick({R.id.ivTitleLeft, R.id.llytPersonBg, R.id.tl_user_pic})
+    public void onViewClick(View view) {
+        switch (view.getId()) {
+            case R.id.ivTitleLeft://返回
+                finish();
+                break;
+            case R.id.llytPersonBg://点击头像面板，没登录就去登录
+                if (!CacheUtils.getIn().isLogin()) {
+                    activityUtil.jumpTo(LoginActivity.class);
+                }
+                break;
+            case R.id.tl_user_pic://选择头像
+                if (!CacheUtils.getIn().isLogin()) {
+                    activityUtil.jumpTo(LoginActivity.class);
+                } else {
+                    chooseHeadPic();
+                }
+                break;
+        }
+    }
+
+    private void queryUserInfo() {
+        UserInfoRequest data = new UserInfoRequest();
+        UserInfoResp userInfoResp = CacheUtils.getIn().getUserInfo();
+        if (userInfoResp != null) {
+            data.setCustomerPhone(userInfoResp.getPhone());
+            data.setMethod(RequestUrls.QUERY_USER_INFO);
+            doGet(data, QUERY_USER_INFO, "", false);
+        }
+    }
+
+    /**
+     * 选择头像
+     */
+    private void chooseHeadPic() {
+        final CustomAlertDialogVerify dialogVerify = CustomAlertDialogVerify.getAlertDialog(mContext, true, true);
+        dialogVerify
+                .setOnAlbumClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        gralleryUpload();
+                        dialogVerify.dismiss();
+                    }
+                })
+                .setOnCameraClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cameraUpload();
+                        dialogVerify.dismiss();
+                    }
+                }).show();
+    }
+
+    // 照相机
+    protected void cameraUpload() {
+        if (!DataUtils.isCameraCanUse()) {
+            ToastUtil.show(mContext, Config.PERMISSION_CAMERA);
+            DataUtils.permissCamera(this);
+            return;
+        }
+        if (!DataUtils.permissCamera(this)) {
+            ToastUtil.show(mContext, Config.PERMISSION_CAMERA);
+            return;
+        }
+        if (!DataUtils.permissStorage(this)) {
+            ToastUtil.show(mContext, Config.PERMISSION_STORAGE);
+            return;
+        }
+
+        UUID uuid1 = UUID.randomUUID();
+        picname = uuid1.toString() + ".jpg";
+        mPicFile = new File(Environment.getExternalStorageDirectory(), picname);
+        Intent cIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        //判断是否是AndroidN以及更高的版本
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            cIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            Uri contentUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".fileProvider", mPicFile);
+            cIntent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+        } else {
+            cIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mPicFile));
+        }
+        startActivityForResult(cIntent, PHOTOHRAPH);
+    }
+
+    // 本地相册选择
+    protected void gralleryUpload() {
+        if (!DataUtils.permissStorage(this)) {
+            ToastUtil.show(mContext, Config.PERMISSION_STORAGE);
+            return;
+        }
+        UUID uuid = UUID.randomUUID();
+        picname = uuid.toString() + ".jpg";
+        mPicFile = new File(Environment.getExternalStorageDirectory(), picname);
+        Intent gIntent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(gIntent, PHOTORESOULT);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    private void init() {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            String userName = mUser.getName();
+            if (!StringUtils.isEmpty(userName)) {
+                tvUserName.setText(userName);
+            } else {
+                String phone = mUser.getPhone();
+                if (!StringUtils.isEmpty(phone) && phone.length() >= 11) {
+                    String tmp = phone.substring(3, 7);
+                    tvUserName.setText(phone.replace(tmp, "****"));
+                } else {
+                    tvUserName.setText(phone);
+                }
+            }
+
+            //用户状态判断verifyStatus 1：已认证，2：审核中，3：未认证
+            String status = mUser.getStatus();
+            //驾照认证状态 1:驳回，2,3:过期
+            driverNumberStatus = mUser.getDriverNumberUpdate();
+            if ("experience".equals(status)) {
+                if (UserUtils.isNeedUpdateDriverCard(driverNumberStatus)) {
+                    verifyStatus = 3;
+                } else if (TextUtils.isEmpty(mUser.getIdcardUrl()) || "null".equals(mUser.getIdcardUrl())
+                        || mUser.getIdcardUrl().equals("")) {
+                    verifyStatus = 3;
+                } else if (!"".equals(mUser.getDescription()) && !"null".equals(mUser.getDescription()) && null != mUser.getDescription()) {
+                    verifyStatus = 3;
+                } else if (mUser.getIdcardUrl().length() > 0) {
+                    verifyStatus = 2;
+                }
+
+            } else {
+                if (driverNumberStatus == 1) {
+                    verifyStatus = 3;
+                } else {
+                    verifyStatus = 1;
+                }
+            }
+
+            if (!TextUtils.isEmpty(mUser.getPortraitUrl())) {
+                Glide.with(this).load(mUser.getPortraitUrl()).into(ivMyheadLogo);
+            }
+
+            //已登录的不能点击头像
+            llytPersonBg.setEnabled(false);
+
+            //企业账号
+            UserInfoResp.Company company = mUser.getCompany();
+            if (null != company) {
+                myCompanyName = company.getCompanyName();
+            }
+            //剩余额度
+            myLeftAmount = mUser.getQuotaRemain();
+
+            //押金交纳状态
+            if (!StringUtils.isEmpty(mUser.getDeposit())) {
+                deposit = Integer.parseInt(mUser.getDeposit());
+            }
+            if (!StringUtils.isEmpty(mUser.getShouldDeposit())) {
+                shouldDeposit = Integer.parseInt(mUser.getShouldDeposit());
+            }
+
+            //资质认证状态:包括身份认证和押金交纳情况
+            if (verifyStatus == 1 && deposit != 0 && deposit >= shouldDeposit) {
+                //已认证
+                needVerify = false;
+            } else if (verifyStatus == 3 && deposit == 0) {
+                //未认证
+                needVerify = true;
+            } else {
+                //未完成
+                needVerify = true;
+            }
+
+        } else {//未登录
+            tvUserName.setText("点击登录");
+            //默认头像
+            ivMyheadLogo.setImageResource(R.mipmap.me_default);
+            //能点击，点击登录
+            llytPersonBg.setEnabled(true);
+
+            needVerify = false;
+            myCompanyName = "";
+            violateNum = "";
+        }
+
+        //有无违章记录
+        boolean hasViolate = false;
+        if (!StringUtils.isEmpty(violateNum) && !"0".equals(violateNum)) {
+            hasViolate = true;
+        }
+        for (PersonCenterItem item : personCenterItems) {
+            if (PersonCenterItem.Companion.getMy_ids().equals(item.getItemKey())) {
+                //是否要资质认证
+                item.setHasNewMessage(needVerify);
+            } else if (PersonCenterItem.Companion.getMy_violate().equals(item.getItemKey())) {
+                //是否有违章记录
+                item.setHasNewMessage(hasViolate);
+            } else if (PersonCenterItem.Companion.getMy_company().equals(item.getItemKey())) {
+                //公司名称
+                item.setItemDetail(myCompanyName);
+            }
+        }
+        personCenterAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == NONE) {
+            return;
+        }
+        Bitmap mBitmapPhotoData = null;
+        // 拍照
+        if (requestCode == PHOTOHRAPH) {
+            if (mPicFile != null && mPicFile.exists()) {
+                try {
+
+                    //判断是否是AndroidN以及更高的版本
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        Uri contentUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".fileProvider", mPicFile);
+                        mBitmapPhotoData = ViewShowUtil.getThumbnail(mContext, contentUri, 160);
+                    } else {
+                        mBitmapPhotoData = ViewShowUtil.getThumbnail(mContext, Uri.fromFile(mPicFile), 160);
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                return;
+            }
+        } else {
+            //相册
+            if (data == null) {
+                return;
+            }
+            Uri uri = data.getData();
+            if (uri == null) {
+                Bundle extras = data.getExtras();
+                if (extras != null) {
+                    mBitmapPhotoData = (Bitmap) extras.get("data");
+                }
+            } else {
+                try {
+                    mBitmapPhotoData = ViewShowUtil.getThumbnail(mContext, uri, 160);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        OutputStream out = null;
+        try {
+            out = new FileOutputStream(mPicFile);
+            mBitmapPhotoData.compress(Bitmap.CompressFormat.PNG, 60,
+                    out);// (0-100)压缩文件
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Logger.e("文件的路径：" + mPicFile.getAbsolutePath() + ";文件大小=" + FileSizeUtil.getFileOrFilesSize(mPicFile.getAbsolutePath(), FileSizeUtil.SIZETYPE_B));
+        final Bitmap finalMBitmapPhotoData = mBitmapPhotoData;
+        UploadFile uploadFile = new UploadFile(new UploadFile.UploadImgListener() {
+
+            @Override
+            public void before() {
+                doCheck("正在上传头像...", true);
+            }
+
+            @Override
+            public void after(SecData response) {
+                closeDialog();
+                if (response != null) {
+                    if (response.getCode().equals(Config.REQUEST_SUCCESS)) {
+                        queryUserInfo();
+
+                        ivMyheadLogo.setImageBitmap(finalMBitmapPhotoData);
+                        ToastUtil.show(mContext, "头像上传成功");
+                    } else {
+                        showTipDialog(response.getMsg());
+                    }
+                } else {
+                    showTipDialog("上传失败");
+                }
+            }
+        }, application);
+        Map<String, File> files = new HashMap<>();
+        files.put("headPortraitFile", mPicFile);
+        uploadFile.setFiles(files);
+        uploadFile.setMethod(RequestUrls.UPLOAD_HEAD_PHOTO);
+        uploadFile.upLoad(new VerifyInfoRequest());
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void showTipDialog(String msg) {
+        final CustomAlertDialog alertDialog = CustomAlertDialog.getAlertDialog(mContext, true, true);
+        alertDialog.setMessage(msg)
+                .setBtnConfirmColor(R.color.new_primary)
+                .setOnPositiveClickListener("确定", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                }).show();
+    }
+}

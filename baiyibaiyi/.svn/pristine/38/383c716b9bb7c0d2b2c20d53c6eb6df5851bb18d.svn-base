@@ -1,0 +1,117 @@
+package www.qisu666.com.adapter;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import www.qisu666.com.R;
+import www.qisu666.com.activity.CarListActivity;
+import www.qisu666.com.callback.ParksResp;
+import www.qisu666.com.map.cluster.Cluster;
+import www.qisu666.com.utils.Logger;
+import www.qisu666.com.utils.NavigationUtils;
+import www.qisu666.com.utils.StringUtils;
+
+/**
+ * Created by wujiancheng on 2017/7/29.
+ * 离我最近infoWindow
+ */
+
+public class InfoWindowNearestAdapter implements AMap.InfoWindowAdapter {
+    private static final String TAG = InfoWindowNearestAdapter.class.getSimpleName();
+    private Activity activity;
+    private TextView location_name;
+    private TextView distance_tx;
+    private TextView location_tx;
+    private TextView carnum_tx;
+    private RelativeLayout daohang_re;
+    private TextView near_tx;
+    private LinearLayout car_linear;
+
+    public InfoWindowNearestAdapter(Activity activity) {
+        this.activity = activity;
+    }
+
+    @Override
+    public View getInfoWindow(final Marker marker) {
+        View view = null;
+        Object object = marker.getObject();
+        Cluster cluster = null;
+        final ParksResp parksResp;
+        if (object instanceof Cluster) {
+            cluster = (Cluster) marker.getObject();
+        } else {
+            Logger.i(TAG, "InfoWindow为空");
+        }
+        if (null != cluster && cluster.getClusterItems().size() == 1) {
+            parksResp = cluster.getClusterItems().get(0);
+            if (null != parksResp) {
+                boolean isNearest = parksResp.isNearest();
+                LayoutInflater mInflater = LayoutInflater.from(activity);
+//                    view = mInflater.inflate(R.layout.layout_info_window_nearest, null);
+                view = mInflater.inflate(R.layout.map_infowindow, null);
+                view.setMinimumWidth(activity.getResources().getDimensionPixelOffset(R.dimen.dimen_290dp));
+                view.setMinimumHeight(activity.getResources().getDimensionPixelOffset(R.dimen.dimen_125dp));
+                near_tx=view.findViewById(R.id.near_tx);
+                car_linear=view.findViewById(R.id.car_linear);
+                location_name=view.findViewById(R.id.location_name);
+                distance_tx=view.findViewById(R.id.distance_tx);
+                location_tx=view.findViewById(R.id.location_tx);
+                carnum_tx=view.findViewById(R.id.carnum_tx);
+                daohang_re=view.findViewById(R.id.daohang_re);
+                location_name.setText(parksResp.getParkName());
+                carnum_tx.setText(parksResp.getParkFreeCarNum()+"");
+                location_tx.setText(parksResp.getParkAddress());
+                distance_tx.setText(parksResp.getDistance());
+                if(parksResp.getParkFreeCarNum()!=null&&!parksResp.getParkFreeCarNum().equals("")&&Integer.valueOf(parksResp.getParkFreeCarNum())>0){
+                    car_linear.setEnabled(true);
+                    car_linear.getBackground().setAlpha(255);
+                }else{
+                    car_linear.setEnabled(false);
+                    car_linear.getBackground().setAlpha(180);
+                }
+                if (isNearest) {
+                    near_tx.setVisibility(View.VISIBLE);
+                } else {
+                    near_tx.setVisibility(View.GONE);
+//                    view = new LinearLayout(activity);
+//                    //infowindow背景透明
+//                    view.setBackgroundColor(ContextCompat.getColor(activity, android.R.color.transparent));
+                }
+                car_linear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(activity, CarListActivity.class);
+                        intent.putExtra("parksResp",parksResp);
+                        activity.startActivity(intent);
+                    }
+                });
+                final String lat = parksResp.getLatitude();
+                final String lng = parksResp.getLongitude();
+                daohang_re.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (StringUtils.isIntOrFloat(lat) && StringUtils.isIntOrFloat(lng)) {
+                            LatLng latLng =new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+                            NavigationUtils.goNavigation(activity, latLng, 2);
+                        }
+                    }
+                });
+            }
+        }
+        return view;
+    }
+
+    @Override
+    public View getInfoContents(Marker marker) {
+        return null;
+    }
+}

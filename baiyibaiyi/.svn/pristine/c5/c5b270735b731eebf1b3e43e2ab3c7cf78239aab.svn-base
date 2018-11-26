@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="10dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvProblemType"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="11dp"
+        android:layout_marginRight="11dp"
+        android:background="@drawable/bg_white_corners_overstroke"
+        android:gravity="center"
+        android:text="@string/text_default"
+        android:textColor="@color/color_gray_bbbbbb"
+        android:textSize="14sp" />
+
+</LinearLayout>

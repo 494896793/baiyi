@@ -1,0 +1,126 @@
+package www.qisu666.com.adapter;
+
+import android.content.Context;
+import android.support.v4.view.PagerAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.callback.PreRechargeResp;
+import www.qisu666.com.utils.StringUtils;
+import www.qisu666.com.utils.TVUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 充值红包
+ */
+public class MyRedPacketRechargePagerAdapter extends PagerAdapter {
+
+    private OnDeleteClickListener onDeleteClickListener;
+    private List<PreRechargeResp.CustomerRechargeDetail> redPacketResps = new ArrayList<>();
+
+    public MyRedPacketRechargePagerAdapter(List<PreRechargeResp.CustomerRechargeDetail> redPacketResps) {
+        this.redPacketResps = redPacketResps;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        final Context context = container.getContext();
+        View itemView = LayoutInflater.from(context)
+                .inflate(R.layout.pager_send_red_packet_recharge, container, false);
+        final ViewHolder holder = new ViewHolder(itemView);
+        if (null != redPacketResps && redPacketResps.size() > position) {
+            PreRechargeResp.CustomerRechargeDetail detail = redPacketResps.get(position);
+            if (null != detail) {
+                String money = detail.getRedpackMoney();
+                if (!StringUtils.isEmpty(money)) {
+                    Integer moneyI = Integer.parseInt(money);
+                    holder.tvRedPacketMoney.setText(TVUtils.toString2(moneyI / 100.0 + ""));
+                    holder.tvTip.setText(TVUtils.toString2(moneyI / 100.0 + "") + "元余额红包");
+                }
+            }
+        }
+
+        holder.ivOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.ivRedPacket.setImageResource(R.mipmap.red_package_open_bg);
+                holder.llytRedPacketClose.setVisibility(View.GONE);
+                holder.llytRedPacketOpen.setVisibility(View.VISIBLE);
+            }
+        });
+        holder.ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != onDeleteClickListener) {
+                    onDeleteClickListener.onDeleteClick();
+                }
+            }
+        });
+
+        container.addView(itemView);
+
+        return itemView;
+    }
+
+
+    @Override
+    public int getCount() {
+        return redPacketResps.size();
+    }
+
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
+    static class ViewHolder {
+        ImageView ivRedPacket;//红包背景
+        ImageView ivDelete;
+
+        LinearLayout llytRedPacketClose;
+        ImageView ivOpen;
+
+        LinearLayout llytRedPacketOpen;
+        TextView tvRedPacketMoney;
+        TextView tvTip;
+
+        public ViewHolder(View view) {
+            ivRedPacket = view.findViewById(R.id.ivRedPacket);
+            ivDelete = view.findViewById(R.id.ivDelete);
+
+            llytRedPacketClose = view.findViewById(R.id.llytRedPacketClose);
+            ivOpen = view.findViewById(R.id.ivOpen);
+
+            llytRedPacketOpen = view.findViewById(R.id.llytRedPacketOpen);
+            tvRedPacketMoney = view.findViewById(R.id.tvRedPacketMoney);
+            tvTip = view.findViewById(R.id.tvTip);
+        }
+    }
+
+    public interface OnDeleteClickListener {
+        void onDeleteClick();
+    }
+
+    public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener) {
+        this.onDeleteClickListener = onDeleteClickListener;
+    }
+}

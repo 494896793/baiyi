@@ -1,0 +1,3 @@
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\debug\AndroidManifest.xml:63
+-keep class com.baogang.bycx.app.MyApplication { <init>(...); }
+

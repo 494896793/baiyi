@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.baogang.bycx"
+    android:versionCode="116"
+    android:versionName="VT4.0.1" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="24" />
+
+    <!-- 个推SDK权限配置开始 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 支持个推3.0 电子围栏功能 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- 友盟统计 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_CACHE_FILESYSTEM" />
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
+    <uses-permission android:name="android.permission.NFC" />
+
+    <uses-feature android:name="android.hardware.nfc.hce" />
+
+    <!-- ibeancon 需要蓝牙权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.hardware.sensor.accelerometer" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.autofocus" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 自定义权限 -->
+    <uses-permission android:name="getui.permission.GetuiService.com.baogang.bycx" />
+
+    <permission
+        android:name="getui.permission.GetuiService.com.baogang.bycx"
+        android:protectionLevel="normal" />
+
+    <application
+        android:name="com.baogang.bycx.app.MyApplication"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/MyAppTheme" >
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.baogang.bycx.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="6130f8d546c7f3b21ed48388d4785bb6" />
+        <meta-data
+            android:name="com.baogang.bycx.utils.glideUtil.MyGlideModule"
+            android:value="GlideModule" />
+
+        <activity
+            android:name="com.baogang.bycx.activity.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.baogang.bycx.activity.ControlerActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <!-- <activity -->
+        <!-- android:name="com.baogang.bycx.TestActivity" -->
+        <!-- android:label="@string/app_name" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@android:style/Theme.NoTitleBar.Fullscreen"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <action android:name="com.xzyd.app" /> -->
+
+
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+
+
+        <!-- 腾讯QQ第三方登陆 -->
+        <!-- <activity -->
+        <!-- android:name="com.tencent.tauth.AuthActivity" -->
+        <!-- android:launchMode="singleTask" -->
+        <!-- android:noHistory="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
+
+
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+
+
+        <!-- <data android:scheme="tencent1105572231" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+
+
+        <!-- <data android:scheme="tencent1105572231" /> -->
+
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 分享 -->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <data android:scheme="tencent1106238659" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!-- 微信分享回调 -->
+        <activity
+            android:name="com.baogang.bycx.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 微信支付 -->
+        <activity
+            android:name="com.baogang.bycx.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.baogang.bycx.activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.GuideActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.MoneyLogsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.OrderDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.OrderDetailCompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.RechargeBalanceActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.MessageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.MyWalletActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.CouponActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <!--
+             <activity
+             android:name="activity.common.FindPSWActivity"
+             android:launchMode="singleTask"
+             android:screenOrientation="portrait"
+             android:theme="@android:style/Theme.Light.NoTitleBar" />
+        -->
+
+        <activity
+            android:name="com.baogang.bycx.activity.VerifyIDCardActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.SettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.CommentsActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.PersonCenterActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.SearchParkActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.CityListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.CarListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.UseCarPreOrderingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.baogang.bycx.activity.UseCarOrderingActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.UseCarReturnActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.CarPositionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ParkListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ChooseReturnParkActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ReturnCarSuccessBillActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ReturnCarSuccessBillCompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.WebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.DepositRefundActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.AreaListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.TrafficViolationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.UseCarLongRentReturnActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ReturnCarSuccessBillLongRentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.OrderDetailLongRentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ParkingFeeReturnActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.baogang.bycx.activity.ParkingFeeReturnCommitActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ParkingFeeStatusActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.PledgeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.PledgeHistoryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.PledgeRefundStatusActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.PledgeRefundCommitActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.IdVerifyStatusActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ConnectReturnCarActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.CannotReturnSampleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.baogang.zxing.CaptureActivity"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
+            android:name="com.baogang.bycx.activity.CouponChoiceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.UseCarOrderingLongRentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.MyCompanyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.InviteFriendsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.RechargeSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.ProblemUploadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.activity.RecommendParkActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.baogang.bycx.activity.RecommendParkSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+        <activity
+            android:name="com.baogang.bycx.droid.Activity_SelectCity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.baogang.bycx.activity.ChargingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.baogang.bycx.activity.NaviActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.baogang.bycx.activity.FinishChargingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.baogang.bycx.activity.StationInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="com.baogang.bycx.service.MyLocationService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name="com.baogang.bycx.activity.CaptureActivity"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="com.baogang.bycx.service.IPushService"
+            android:enabled="true"
+            android:exported="true" />
+        <service android:name="com.baogang.bycx.map.geoFence.GeoFenceService" />
+
+        <activity
+            android:name="com.baogang.bycx.activity.AllOrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.baogang.bycx.activity.InputDeviceNoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.baogang.bycx.activity.DeviceDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.baogang.bycx.activity.ConnectionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar" />
+
+        <!-- 配置的第三方参数属性 个推_______________________________________________________ -->
+        <!-- <meta-data -->
+        <!-- android:name="PUSH_APPID" -->
+        <!-- android:value="6wAovQLX5T6jx8Iyzi7r17"/> -->
+        <!-- &lt;!&ndash;替换为第三方应用的APPID&ndash;&gt; -->
+        <!-- <meta-data -->
+        <!-- android:name="PUSH_APPKEY" -->
+        <!-- android:value="DjSlcR7XK691FV6fm8wUi8"/> -->
+        <!-- &lt;!&ndash;替换为第三方应用的APPKEY&ndash;&gt; -->
+        <!-- <meta-data -->
+        <!-- android:name="PUSH_APPSECRET" -->
+        <!-- android:value="rfFkKCjBkd8cjJiKfSd8s6"/> -->
+        <!-- &lt;!&ndash;替换为第三方应用的APPSECRET&ndash;&gt; -->
+        <!-- &lt;!&ndash; 配置SDK核心服务 &ndash;&gt; -->
+        <!-- <service -->
+        <!-- android:name="com.igexin.sdk.PushService" -->
+        <!-- android:exported="true" -->
+        <!-- android:label="NotificationCenter" -->
+        <!-- android:process=":pushservice"/> -->
+        <!-- <service -->
+        <!-- android:name="com.igexin.sdk.PushServiceUser" -->
+        <!-- android:exported="true" -->
+        <!-- android:label="NotificationCenterUser"/> -->
+
+
+        <!-- <receiver android:name="com.igexin.sdk.PushReceiver"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.BOOT_COMPLETED"/> -->
+        <!-- <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/> -->
+        <!-- <action android:name="android.intent.action.USER_PRESENT"/> -->
+        <!-- <action android:name="com.igexin.sdk.action.refreshls"/> -->
+        <!-- &lt;!&ndash; 以下三项为可选的action声明，可大大提高service存活率和消息到达速度 &ndash;&gt; -->
+        <!-- <action android:name="android.intent.action.MEDIA_MOUNTED"/> -->
+        <!-- <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/> -->
+        <!-- <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+
+
+        <!-- <receiver -->
+        <!-- android:name="com.igexin.sdk.PushManagerReceiver" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.igexin.sdk.action.pushmanager"/> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+
+
+        <!-- <activity -->
+        <!-- android:name="com.igexin.sdk.PushActivity" -->
+        <!-- android:excludeFromRecents="true" -->
+        <!-- android:exported="false" -->
+        <!-- android:process=":pushservice" -->
+        <!-- android:taskAffinity="com.igexin.sdk.PushActivityTask" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar"/> -->
+
+
+        <!-- <activity -->
+        <!-- android:name="com.igexin.sdk.GActivity" -->
+        <!-- android:excludeFromRecents="true" -->
+        <!-- android:exported="true" -->
+        <!-- android:process=":pushservice" -->
+        <!-- android:taskAffinity="com.igexin.sdk.PushActivityTask" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar"/> -->
+
+
+        <!-- &lt;!&ndash;<activity -->
+        <!-- android:name="com.igexin.getuiext.activity.GetuiExtActivity" -->
+        <!-- android:configChanges="orientation|keyboard|keyboardHidden" -->
+        <!-- android:excludeFromRecents="true" -->
+        <!-- android:exported="false" -->
+        <!-- android:process=":pushservice" -->
+        <!-- android:taskAffinity="android.task.myServicetask" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar"/>&ndash;&gt; -->
+
+
+        <!-- <receiver -->
+        <!-- android:name="com.igexin.getuiext.service.PayloadReceiver" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4"/> -->
+        <!-- <action android:name="com.igexin.sdk.action.6wAovQLX5T6jx8Iyzi7r17"/> -->
+        <!-- &lt;!&ndash;替换为第三方应用的APPID&ndash;&gt; -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+
+
+        <!-- <service -->
+        <!-- android:name="com.igexin.getuiext.service.GetuiExtService" -->
+        <!-- android:process=":pushservice"/> -->
+        <!-- 配置的第三方参数属性 个推_______________________________________________________ -->
+
+        <receiver
+            android:name="com.baogang.bycx.receiver.IPushReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.yK9baM45Lf90tVYvXFCSt2" />
+                <!-- 替换为第三方应用的APPID -->
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.amap.api.location.APSService" />
+        <service android:name="com.baogang.bycx.service.UpdateService" />
+        <service android:name="com.baogang.bycx.service.TimeCountService" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="59ae22237f2c7473d70012d5" />
+
+        <!-- <activity -->
+        <!-- android:name=".CaptureActivity" -->
+        <!-- android:clearTaskOnLaunch="true" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:stateNotNeeded="true" -->
+        <!-- android:theme="@style/CaptureTheme" -->
+        <!-- android:windowSoftInputMode="stateAlwaysHidden"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.zxing.client.android.SCAN" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- &lt;!&ndash; Allow web apps to launch Barcode Scanner by linking to http://zxing.appspot.com/scan. &ndash;&gt; -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+        <!-- <data -->
+        <!-- android:host="zxing.appspot.com" -->
+        <!-- android:path="/scan" -->
+        <!-- android:scheme="http" /> -->
+        <!-- </intent-filter> -->
+        <!-- &lt;!&ndash; We also support a Google Product Search URL. &ndash;&gt; -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+        <!-- <data -->
+        <!-- android:host="www.google.com" -->
+        <!-- android:path="/m/products/scan" -->
+        <!-- android:scheme="http" /> -->
+        <!-- </intent-filter> -->
+        <!-- &lt;!&ndash; And the UK version. &ndash;&gt; -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+        <!-- <data -->
+        <!-- android:host="www.google.co.uk" -->
+        <!-- android:path="/m/products/scan" -->
+        <!-- android:scheme="http" /> -->
+        <!-- </intent-filter> -->
+        <!-- &lt;!&ndash; Support zxing://scan/?... like iPhone app &ndash;&gt; -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
+        <!-- <data -->
+        <!-- android:host="scan" -->
+        <!-- android:path="/" -->
+        <!-- android:scheme="zxing" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <activity
+            android:name="com.baogang.zxing.PreferencesActivity"
+            android:label="@string/preferences_name"
+            android:stateNotNeeded="true" />
+        <activity
+            android:name="com.baogang.zxing.encode.EncodeActivity"
+            android:stateNotNeeded="true" >
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.ENCODE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <!-- This allows us to handle the Share button in Contacts. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/x-vcard" />
+            </intent-filter>
+            <!-- This allows us to handle sharing any plain text . -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.baogang.zxing.share.ShareActivity"
+            android:screenOrientation="user"
+            android:stateNotNeeded="true" >
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SHARE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.baogang.zxing.history.HistoryActivity"
+            android:label="@string/history_title"
+            android:stateNotNeeded="true" />
+        <activity
+            android:name="com.baogang.zxing.share.BookmarkPickerActivity"
+            android:label="@string/bookmark_picker_name"
+            android:stateNotNeeded="true" />
+        <activity
+            android:name="com.baogang.zxing.share.AppPickerActivity"
+            android:label="@string/app_picker_name"
+            android:stateNotNeeded="true" /> <!-- 个推SDK配置开始 -->
+        <!-- 配置的第三方参数属性 -->
+        <meta-data
+            android:name="PUSH_APPID"
+            android:value="yK9baM45Lf90tVYvXFCSt2" />
+        <meta-data
+            android:name="PUSH_APPKEY"
+            android:value="7Wm6oVS9voATA6V7QRthg2" />
+        <meta-data
+            android:name="PUSH_APPSECRET"
+            android:value="z9rQt2E8yX6vdlm516OId7" /> <!-- 配置SDK核心服务 -->
+        <service
+            android:name="com.igexin.sdk.PushService"
+            android:exported="true"
+            android:label="NotificationCenter"
+            android:process=":pushservice" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.service.message" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.igexin.sdk.PushServiceUser"
+            android:exported="true"
+            android:label="NotificationCenterUser" />
+
+        <receiver android:name="com.igexin.sdk.PushReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+                <!-- 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.igexin.sdk.PushManagerReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.pushmanager" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.igexin.sdk.PushActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.igexin.sdk.GActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:process=":pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <service
+            android:name="com.igexin.download.DownloadService"
+            android:process=":pushservice" />
+
+        <receiver android:name="com.igexin.download.DownloadReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver> <!-- android:authorities="downloads.第三方包名" -->
+        <provider
+            android:name="com.igexin.download.DownloadProvider"
+            android:authorities="downloads.com.baogang.bycx"
+            android:process=":pushservice" />
+    </application>
+
+</manifest>

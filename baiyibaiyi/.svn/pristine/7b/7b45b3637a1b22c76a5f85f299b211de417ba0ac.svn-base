@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_main_all"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/titleBack"
+        layout="@layout/title_back" />
+
+    <LinearLayout
+        android:id="@+id/llytChooseReturnParkView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <www.qisu666.com.view.ChooseReturnParkView
+            android:id="@+id/chooseReturnParkView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llytChooseReturnParkView"
+        android:layout_below="@+id/titleBack" />
+
+    <ImageView
+        android:id="@+id/ivLocateMyPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/llytChooseReturnParkView"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/sy_9" />
+
+    <ImageView
+        android:id="@+id/ivRefreshMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ivLocateMyPosition"
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/st_8" />
+
+</RelativeLayout>

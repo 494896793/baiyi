@@ -1,0 +1,90 @@
+package www.qisu666.com.adapter
+
+import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import www.qisu666.com.R
+import www.qisu666.com.callback.ParkingFeeAuditStatusResp
+import www.qisu666.com.utils.DateUtils
+import www.qisu666.com.utils.StringUtils
+
+/**
+ * Created by wujiancheng on 17-10-17.
+ * 查询停车费报销审核进度
+ */
+class ParkingFeeStatusAdapter(val context: Context, var data: List<ParkingFeeAuditStatusResp.ParkingFeeAuditList>) : RecyclerView.Adapter<ParkingFeeStatusAdapter.ParkingFeeStatusViewHolder>() {
+    override fun onBindViewHolder(holder: ParkingFeeStatusViewHolder?, position: Int) {
+        if (position in data.indices) {
+            val list = data[position]
+            val createTime = list.createTime
+            if (!StringUtils.isEmpty(createTime)) {
+                val month = DateUtils.timestampToString(createTime, "MM月dd")
+                val minute = DateUtils.timestampToString(createTime, "HH:mm")
+
+                holder?.tvTimeMonth?.text = month
+                holder?.tvTimeMinute?.text = minute
+                holder?.tvTimeMonth?.visibility = View.VISIBLE
+                holder?.tvTimeMinute?.visibility = View.VISIBLE
+
+            } else {
+                holder?.tvTimeMonth?.visibility = View.INVISIBLE
+                holder?.tvTimeMinute?.visibility = View.INVISIBLE
+            }
+
+            val isAudit = list.isAudit
+            if ("0" == isAudit) {//该步骤已完成
+                if ("4" == list.status || "6" == list.status || "8" == list.status) {//审核不通过
+                    holder?.ivStatus?.setImageResource(R.mipmap.receipt_no_pass)
+                    holder?.tvStatus?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+                    holder?.tvStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+
+                    holder?.tvTimeMonth?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+                    holder?.tvTimeMinute?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+                } else {
+                    holder?.ivStatus?.setImageResource(R.mipmap.receipt_has_blue)
+                    holder?.tvStatus?.setTextColor(ContextCompat.getColor(context, R.color.color_blue_02b2e4))
+                    holder?.tvStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.color_blue_02b2e4))
+
+                    holder?.tvTimeMonth?.setTextColor(ContextCompat.getColor(context, R.color.color_blue_02b2e4))
+                    holder?.tvTimeMinute?.setTextColor(ContextCompat.getColor(context, R.color.color_blue_02b2e4))
+                }
+            } else {
+                holder?.ivStatus?.setImageResource(R.mipmap.receipt_no_gray)
+                holder?.tvStatus?.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+                holder?.tvStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+            }
+
+            //状态和状态说明
+            holder?.tvStatus?.text = list.statusName ?: ""
+            holder?.tvStatusDesc?.text = list.remark ?: ""
+
+            if (position == data.size - 1) {
+                holder?.viewDivideLine?.visibility = View.GONE
+            } else {
+                holder?.viewDivideLine?.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ParkingFeeStatusViewHolder {
+        val inflater = LayoutInflater.from(context)
+        val view = inflater.inflate(R.layout.listitem_parking_fee_status, parent, false)
+        return ParkingFeeStatusViewHolder(view)
+    }
+
+    override fun getItemCount(): Int = data.size
+
+    class ParkingFeeStatusViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var tvTimeMonth = view.findViewById<TextView>(R.id.tvTimeMonth)
+        var tvTimeMinute = view.findViewById<TextView>(R.id.tvTimeMinute)
+        var ivStatus = view.findViewById<ImageView>(R.id.ivStatus)
+        var tvStatus = view.findViewById<TextView>(R.id.tvStatus)
+        var tvStatusDesc = view.findViewById<TextView>(R.id.tvStatusDesc)
+        var viewDivideLine: View = view.findViewById(R.id.viewDivideLine)
+    }
+}

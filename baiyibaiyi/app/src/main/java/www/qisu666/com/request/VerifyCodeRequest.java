@@ -1,0 +1,25 @@
+package www.qisu666.com.request;
+
+public class VerifyCodeRequest extends RequestBaseParams {
+    private String phone;
+    private String ip;
+
+    public VerifyCodeRequest() {
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+}

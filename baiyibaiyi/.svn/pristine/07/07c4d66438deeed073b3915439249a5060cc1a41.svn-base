@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="7dp">
+
+    <TextView
+        android:id="@+id/tvUnFinishOrderText"
+        style="@style/TrafficViolationTextLeft"
+        android:text="违章订单号 :" />
+
+    <TextView
+        android:id="@+id/tvViolationOrder"
+        style="@style/TrafficViolationTextRight"
+        android:layout_toRightOf="@id/tvUnFinishOrderText"
+        android:text="--" />
+
+    <TextView
+        style="@style/TrafficViolationTextLeft"
+        android:layout_below="@id/tvViolationOrder"
+        android:layout_toLeftOf="@id/tvViolationOrder"
+        android:text="违章时间 :" />
+
+    <TextView
+        android:id="@+id/tvViolationTime"
+        style="@style/TrafficViolationTextRight"
+        android:layout_below="@id/tvViolationOrder"
+        android:layout_toRightOf="@id/tvUnFinishOrderText"
+        android:text="--" />
+
+    <TextView
+        style="@style/TrafficViolationTextLeft"
+        android:layout_below="@id/tvViolationTime"
+        android:layout_toLeftOf="@id/tvViolationOrder"
+        android:text="违章地点 :" />
+
+    <TextView
+        android:id="@+id/tvViolationAddr"
+        style="@style/TrafficViolationTextRight"
+        android:layout_below="@id/tvViolationTime"
+        android:layout_toRightOf="@id/tvUnFinishOrderText"
+        android:text="--" />
+
+
+    <TextView
+        style="@style/TrafficViolationTextLeft"
+        android:layout_below="@id/tvViolationAddr"
+        android:layout_toLeftOf="@id/tvViolationOrder"
+        android:text="违章代码 :" />
+
+    <TextView
+        android:id="@+id/tvViolationNo"
+        style="@style/TrafficViolationTextRight"
+        android:layout_below="@id/tvViolationAddr"
+        android:layout_toRightOf="@id/tvUnFinishOrderText"
+        android:text="--" />
+
+
+    <TextView
+        style="@style/TrafficViolationTextLeft"
+        android:layout_below="@id/tvViolationNo"
+        android:layout_toLeftOf="@id/tvViolationOrder"
+        android:text="违章行为 :" />
+
+    <TextView
+        android:id="@+id/tvViolationType"
+        style="@style/TrafficViolationTextRight"
+        android:layout_below="@id/tvViolationNo"
+        android:layout_toRightOf="@id/tvUnFinishOrderText"
+        android:text="--" />
+
+    <TextView
+        style="@style/TrafficViolationTextLeft"
+        android:layout_below="@id/tvViolationType"
+        android:layout_toLeftOf="@id/tvViolationOrder"
+        android:text="违章状态 :" />
+
+    <TextView
+        android:id="@+id/tvViolationStatus"
+        style="@style/TrafficViolationTextRight"
+        android:layout_below="@id/tvViolationType"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/tvUnFinishOrderText"
+        android:text="--" />
+
+    <View
+        android:id="@+id/divideView"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@id/tvViolationStatus"
+        android:background="@color/color_gray_efeff4" />
+</RelativeLayout>

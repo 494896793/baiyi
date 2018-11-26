@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/content_bg"
+    android:orientation="vertical">
+
+    <View
+        android:layout_marginLeft="@dimen/dimen_13dp"
+        android:layout_marginRight="@dimen/dimen_13dp"
+        android:background="@color/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"/>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:padding="@dimen/dimen_13dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/img_type"
+            android:layout_width="@dimen/dimen_33dp"
+            android:layout_height="@dimen/dimen_33dp"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/yd_16" />
+
+        <View
+            android:visibility="gone"
+            android:layout_width="@dimen/dimen_1dp"
+            android:layout_height="match_parent"
+            android:background="@color/bg_primary" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="@dimen/icon_small_wnh"
+                    android:layout_height="@dimen/icon_small_wnh"
+                    android:src="@mipmap/ic_charging_no" />
+
+                <TextView
+                    android:textSize="@dimen/dimen_15sp"
+                    style="@style/TextView_Normal_Black"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/station_info_no" />
+
+                <TextView
+                    android:textSize="@dimen/dimen_15sp"
+                    android:id="@+id/tv_no"
+                    style="@style/TextView_Normal_Black"
+                    android:text="10000182" />
+
+                <LinearLayout
+                    android:id="@+id/layout_soc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/station_info_SOC"
+                        android:textColor="@color/tool_coupon_badge_bg"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:id="@+id/tv_soc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="78%)"
+                        android:textColor="@color/tool_coupon_badge_bg"
+                        android:textSize="@dimen/text_small" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="@dimen/icon_small_wnh"
+                    android:layout_height="@dimen/icon_small_wnh"
+                    android:src="@mipmap/ic_station_detail" />
+
+                <TextView
+                    android:textSize="@dimen/dimen_15sp"
+                    android:id="@+id/tv_info"
+                    style="@style/TextView_Normal_Black"
+                    android:layout_marginLeft="5dp"
+                    android:text="公共站 国标 交流单向 7.0kW" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="使用"
+                android:textSize="@dimen/text_subtitle" />
+
+            <!--<LinearLayout
+                android:id="@+id/layout_soc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/station_info_SOC"
+                    android:textColor="@color/text_light_green"
+                    android:textSize="@dimen/text_subtitle"/>
+
+                <TextView
+                    android:id="@+id/tv_soc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="78%"
+                    android:textColor="@color/text_light_green"
+                    android:textSize="@dimen/text_subtitle"/>
+
+            </LinearLayout>-->
+
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,43 @@
+package www.qisu666.com.callback;
+
+/**
+ * 评价标签
+ */
+public class EvaluateLabelResp {
+    private String id;
+    private String label;//标签名
+    private String starLevel;//星级
+    private String category;
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getStarLevel() {
+        return starLevel;
+    }
+
+    public void setStarLevel(String starLevel) {
+        this.starLevel = starLevel;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+}

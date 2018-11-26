@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/corners_bg_white">
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rlyt_dialog_prompt_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <ImageView
+            android:id="@+id/iv_dialog_prompt_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/dialog_failure_bg" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlyt_dialog_prompt_bg"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:textColor="@color/main_background"
+        android:textSize="17sp" />
+
+    <RelativeLayout
+        android:id="@+id/rlytDialogContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDialogTitle"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/tv_prompt_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="5dp"
+            android:paddingBottom="20dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rlyt_dialog_prompt_bg"
+        android:layout_alignRight="@id/rlyt_dialog_prompt_bg"
+        android:layout_below="@id/rlytDialogContent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp">
+
+        <TextView
+            android:id="@+id/tv_dialog_cancel"
+            android:layout_width="@dimen/dimen_110dp"
+            android:layout_height="@dimen/dimen_36dp"
+            android:background="@drawable/button_left_corner"
+            android:gravity="center"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/view_button_divide"
+            android:layout_width="24dp"
+            android:layout_height="0.01dp" />
+
+        <TextView
+            android:id="@+id/tv_dialog_confirm"
+            android:layout_width="@dimen/dimen_110dp"
+            android:layout_height="@dimen/dimen_36dp"
+            android:background="@drawable/button_right_corner"
+            android:gravity="center"
+            android:textColor="@color/new_primary"
+            android:textSize="15sp" />
+    </LinearLayout>
+</RelativeLayout>

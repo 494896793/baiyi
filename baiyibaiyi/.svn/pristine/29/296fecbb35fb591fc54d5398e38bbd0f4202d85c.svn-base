@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlytNoMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivNoMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/no_data" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvNoMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivNoMessage"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="5dp"
+            android:text="暂无消息~"
+            android:textColor="#c3c3c5" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lvMessage"
+        style="@style/ListViewStyle"
+        android:background="@color/main_background"
+         />
+</LinearLayout>

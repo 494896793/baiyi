@@ -1,0 +1,128 @@
+package www.qisu666.com.view
+
+import android.content.Context
+import android.content.Intent
+import android.support.v4.content.ContextCompat
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.FrameLayout
+import www.qisu666.com.R
+import www.qisu666.com.activity.WebActivity
+import www.qisu666.com.utils.CacheUtils
+import kotlinx.android.synthetic.main.view_car_info.view.*
+
+/**
+ * Created by wujiancheng on 2017/11/2.
+ * 汽车的信息
+ */
+class CarInfoView : FrameLayout {
+    constructor(context: Context?) : super(context) {
+        init()
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init()
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
+    }
+
+    fun init() {
+        LayoutInflater.from(context).inflate(R.layout.view_car_info, this)
+    }
+
+    /**
+     * @param carNumber 车牌
+     * @param carBrand 车型号
+     * @param carBatteryPercent 剩余电量百分比
+     * @param carEndurance 续航
+     * @param isRedPacketCar 是否是红包车
+     * @param isShowRegular 是否显示红包车规则
+     */
+    fun setData(carColor: String,carSetNum: String,carNumber: String, carBrand: String, carBatteryPercent: Int, carEndurance: String, isRedPacketCar: Int, isShowRegular: Boolean) {
+        tvCarBrand.text = carNumber
+        tvCarNumber.text = carBrand
+        car_set_num.text=carSetNum
+        car_color.text=carColor
+        if (carBatteryPercent > 80) {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_green_59d66f))
+            ivBattery.setImageResource(R.mipmap.yc_23)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_green_59d66f))
+        } else if (carBatteryPercent > 60) {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_orange_ff811b))
+            ivBattery.setImageResource(R.mipmap.yc_24)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_orange_ff811b))
+        } else if(carBatteryPercent > 40) {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_red_e71100))
+            ivBattery.setImageResource(R.mipmap.yc_25)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_red_e71100))
+        }else if(carBatteryPercent >= 20){
+            ivBattery.setImageResource(R.mipmap.yc_26)
+        }else if(carBatteryPercent >= 10){
+            ivBattery.setImageResource(R.mipmap.yc_27)
+        }else{
+            ivBattery.setImageResource(R.mipmap.yc_28)
+        }
+        tvBatteryPercent.text = "$carBatteryPercent%"
+        tvLeftEnduranceKM.text = "${carEndurance}KM"
+        //是否是红包车(1 是，0 不是)
+        if (isRedPacketCar == 1) {
+            tvFlagRedPacketCar.visibility = View.VISIBLE
+            if (isShowRegular) {//显示红包车规则
+                tvRedPacketCarRegular.visibility = View.VISIBLE
+                tvRedPacketCarRegular.setOnClickListener {
+                    val systemConfigResp = CacheUtils.getIn().system_Info
+                    val intent = Intent(context, WebActivity::class.java)
+                    intent.putExtra("url", systemConfigResp?.redpackageUseRule ?: "")
+                    context.startActivity(intent)
+                }
+            }
+        }
+    }
+
+    /**
+     * 更新电池续航
+     * @param carBatteryPercent 剩余电量百分比
+     * @param carEndurance 续航
+     */
+    fun updateBatteryData(carBatteryPercent: Int, carEndurance: String) {
+//        if (carBatteryPercent >= 80) {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_green_59d66f))
+//            ivBattery.setImageResource(R.mipmap.battery_green_high)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_green_59d66f))
+//        } else if (carBatteryPercent >= 40) {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_orange_ff811b))
+//            ivBattery.setImageResource(R.mipmap.battery_orange_middle)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_orange_ff811b))
+//        } else {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_red_e71100))
+//            ivBattery.setImageResource(R.mipmap.battery_red_low)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_red_e71100))
+//        }
+        
+        if (carBatteryPercent > 80) {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_green_59d66f))
+            ivBattery.setImageResource(R.mipmap.yc_23)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_green_59d66f))
+        } else if (carBatteryPercent > 60) {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_orange_ff811b))
+            ivBattery.setImageResource(R.mipmap.yc_24)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_orange_ff811b))
+        } else if(carBatteryPercent > 40) {
+//            tvBatteryPercent.setTextColor(ContextCompat.getColor(context, R.color.color_red_e71100))
+            ivBattery.setImageResource(R.mipmap.yc_25)
+//            tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(context, R.color.color_red_e71100))
+        }else if(carBatteryPercent >= 20){
+            ivBattery.setImageResource(R.mipmap.yc_26)
+        }else if(carBatteryPercent >= 10){
+            ivBattery.setImageResource(R.mipmap.yc_27)
+        }else{
+            ivBattery.setImageResource(R.mipmap.yc_28)
+        }
+
+        tvBatteryPercent.text = "$carBatteryPercent%"
+        tvLeftEnduranceKM.text = "${carEndurance}KM"
+    }
+}

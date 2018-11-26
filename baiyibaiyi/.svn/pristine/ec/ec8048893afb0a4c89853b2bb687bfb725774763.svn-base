@@ -1,0 +1,5 @@
+package com.baogang.bycx.request;
+
+public class CityListRequest extends RequestBaseParams {
+
+}

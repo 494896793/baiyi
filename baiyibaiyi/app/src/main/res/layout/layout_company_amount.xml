@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <LinearLayout
+        android:id="@+id/llytCompanyPayAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企业额度"
+            android:textColor="@color/color_gray_666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvCompanyLeftAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(剩余--元)"
+            android:textColor="@color/color_gray_999999"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="抵用"
+            android:textColor="@color/color_gray_666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvCompanyPayAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="--元"
+            android:textColor="@color/color_black_333333"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llytCompanyNeedAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仍需支付金额"
+            android:textColor="@color/color_gray_666666"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvCompanyNeedAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="--元"
+            android:textColor="@color/color_black_333333"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

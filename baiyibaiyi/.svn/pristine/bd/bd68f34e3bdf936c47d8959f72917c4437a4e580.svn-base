@@ -1,0 +1,43 @@
+package com.baogang.bycx.utils;
+
+import android.os.CountDownTimer;
+
+/**
+ * Created by admin on 2016/12/21.
+ */
+public class TimerUtils extends CountDownTimer {
+    public static TimeCountListener listener;
+    private static TimerUtils timerUtils;
+    private static boolean isFinish = true;
+
+    public void setListener(TimeCountListener listener) {
+        TimerUtils.listener = listener;
+    }
+
+    public TimerUtils(long millisInFuture, long countDownInterval) {
+        super(millisInFuture, countDownInterval);
+    }
+
+    @Override
+    public void onFinish() {
+        isFinish = true;
+        if (listener != null) {
+            listener.timeOver();
+        }
+    }
+
+    @Override
+    public void onTick(final long millisUntilFinished) {
+        isFinish = false;
+        if (listener != null) {
+            listener.timeGo((int) (millisUntilFinished / 1000));
+        }
+    }
+
+    public interface TimeCountListener {
+
+        void timeGo(int millisUntilFinished);
+
+        void timeOver();
+    }
+}

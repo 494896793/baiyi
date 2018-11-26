@@ -1,0 +1,49 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class ParkListActivity_ViewBinding<T extends ParkListActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131296610;
+
+  @UiThread
+  public ParkListActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'onViewClicked'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked();
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvTitleName = null;
+
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+
+    this.target = null;
+  }
+}

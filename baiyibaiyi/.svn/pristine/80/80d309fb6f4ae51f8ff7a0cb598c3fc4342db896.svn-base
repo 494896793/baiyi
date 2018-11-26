@@ -1,0 +1,14 @@
+package com.baogang.bycx.request;
+
+public class ParkPointListRequest extends RequestBaseParams {
+
+    private String cityCode;
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+}

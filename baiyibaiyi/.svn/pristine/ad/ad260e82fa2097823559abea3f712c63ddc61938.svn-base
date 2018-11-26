@@ -1,0 +1,22 @@
+package www.qisu666.com.request;
+
+public class CouponBindRequest extends RequestBaseParams {
+    private String customerId;
+    private String couponCode;
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCouponCode() {
+        return couponCode;
+    }
+
+    public void setCouponCode(String couponCode) {
+        this.couponCode = couponCode;
+    }
+}

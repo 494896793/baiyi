@@ -1,0 +1,49 @@
+package www.qisu666.com.activity;
+
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.event.Message;
+import www.qisu666.com.request.MyNetwork;
+import www.qisu666.com.request.utils.FlatFunction;
+import www.qisu666.com.request.utils.MyMessageUtils;
+import www.qisu666.com.request.utils.ResultSubscriber;
+import www.qisu666.com.request.utils.RxNetHelper;
+import www.qisu666.com.utils.CacheUtils;
+import www.qisu666.com.utils.ToastUtil;
+import www.qisu666.com.widget.StarBar;
+
+import java.util.HashMap;
+
+
+
+//评论页面
+public class CommentActivity extends BaseActivity {
+
+    @Override
+    public void setView() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

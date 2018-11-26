@@ -1,0 +1,66 @@
+package www.qisu666.com.anim;
+
+import android.animation.TypeEvaluator;
+
+/**
+ * Created by zsd on 2016/7/19.
+ */
+public class OpenEvarlutor implements TypeEvaluator<Integer> {
+    //总时长，也就是ValueAnimator的duration，单位为秒
+    private float duration = 1.0f;
+//
+//    public OpenEvarlutor(float duration){
+//        this.duration = duration / 1000;
+//    }
+
+    @Override
+    public Integer evaluate(float fraction, Integer startValue, Integer endValue) {
+//        \operatorname{abs}\left(\exp \left(-100x\right)\cdot \cos \left(\sqrt{500x}\right)\right) 0.40 0.38 0.18 0.10
+
+        //t1 + 2*t2 + 2*t3 + 2*t4 = duration
+        double t1 = duration / 2.28917;
+        int _h1 = Math.abs(endValue - startValue);
+        int _h2 = _h1/7;
+        int _h3 = _h1/35;
+        int _h4 = _h1/105;
+        double a1 = (2 * _h1) / (t1 * t1 * duration * duration);
+        double a2 = a1;
+        double a3 = a1;
+        double a4 = a1;
+        double t2 = Math.sqrt(2 * _h2 / a2);
+        double t3 = Math.sqrt(2 * _h3 / a3);
+        double t4 = Math.sqrt(2 * _h4 / a4);
+//        double t4 = (duration - t1 - 2*t2 - 2*t3)/2;
+        double vt1 = a1 * t1 * duration;
+        double vt2 = a2 * t2 * duration;
+        double vt3 = a3 * t3 * duration;
+        double vt4 = a4 * t4 * duration;
+//        double a2 = (2 * _h2) / (t2 * t2 * duration * duration);
+//        double a3 = (2 * _h3) / (t3 * t3 * duration * duration);
+//        double a4 = (2 * _h4) / (t4 * t4 * duration * duration);
+//        double v = t1 * fraction * a1;
+        double fraction2_1 = fraction - t1;
+        double fraction2_2 = fraction - t1 - t2;
+        double fraction3_1 = fraction - t1 - (2 * t2);
+        double fraction3_2 = fraction - t1 - (2 * t2) - t3;
+        double fraction4_1 = fraction - t1 - (2 * t2) - (2 * t3);
+        double fraction4_2 = fraction - t1 - (2 * t2) - (2 * t3) - t4;
+        int h = 0;
+        if(fraction <= t1) {
+            h = (int)(_h1 - duration * duration * a1 * 0.5 * fraction * fraction);
+        }else if(fraction > t1 / duration && fraction <= (t1 + t2) / duration){//2-1
+            h = (int)(vt2 * duration * fraction2_1 - duration * duration * a2 * 0.5 * fraction2_1 * fraction2_1);
+        }else if(fraction > (t1 + t2) / duration && fraction <= (t1 + (2 * t2)) / duration){//2-2
+            h = (int)(_h2 - duration * duration * a2 * 0.5 * fraction2_2 * fraction2_2);
+        }else if(fraction > (t1 + (2 * t2)) / duration && fraction <= (t1 + (2 * t2) + t3) / duration){//3-1
+            h = (int)(vt3 * duration * fraction3_1 - duration * duration * a3 * 0.5 * fraction3_1 * fraction3_1);
+        }else if(fraction > (t1 + (2 * t2) + t3) / duration && fraction <= (t1 + (2 * t2) + (2 * t3)) / duration){//3-2
+            h = (int)(_h3 - duration * duration * a3 * 0.5 * fraction3_2 * fraction3_2);
+        }else if(fraction > (t1 + (2 * t2) + (2 * t3)) / duration && fraction <= (t1 + (2 * t2) + (2 * t3) + t4) / duration){//4-1
+            h = (int)(vt4 * fraction4_1 * duration - duration * duration * a4 * 0.5 * fraction4_1 * fraction4_1);
+        }else{//4-2
+            h = (int)(_h4 - duration * duration * a4 * 0.5 * fraction4_2 * fraction4_2);
+        }
+        return h;
+    }
+}

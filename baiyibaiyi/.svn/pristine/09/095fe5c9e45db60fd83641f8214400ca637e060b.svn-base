@@ -1,0 +1,71 @@
+package www.qisu666.com.activity;
+
+import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.Bitmap;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
+import www.qisu666.com.R;
+import www.qisu666.com.controls.InactivityTimer;
+import www.qisu666.com.event.Message;
+import www.qisu666.com.request.MyNetwork;
+import www.qisu666.com.request.utils.FlatFunction;
+import www.qisu666.com.request.utils.MyMessageUtils;
+import www.qisu666.com.request.utils.ResultSubscriber;
+import www.qisu666.com.request.utils.RxNetHelper;
+import www.qisu666.com.utils.CacheUtils;
+import www.qisu666.com.utils.DialogHelper;
+import www.qisu666.com.utils.JsonUtils;
+import www.qisu666.com.utils.ToastUtil;
+import www.qisu666.com.widget.AlertDialog;
+import www.qisu666.com.zxing.camera.CameraManager;
+
+//import www.qisu666.com.zxing.decode.CaptureActivityHandler;
+import www.qisu666.com.zxing.view.ViewfinderView;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.Result;
+
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
+
+
+public class CaptureActivity extends BaseActivity{
+    @Override
+    public void setView() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

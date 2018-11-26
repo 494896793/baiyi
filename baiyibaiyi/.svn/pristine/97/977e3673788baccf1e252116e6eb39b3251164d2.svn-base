@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_170dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/ivBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/gr_22" />
+
+        <LinearLayout
+            android:paddingBottom="@dimen/dimen_24dp"
+            android:paddingTop="@dimen/dimen_13dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ivBg"
+            android:layout_alignTop="@id/ivBg"
+            android:orientation="vertical"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp">
+            
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:text="--"
+                    android:id="@+id/tvBalance"
+                    style="@style/TextNoIncludeFontPaddingStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/warn_notice_color"
+                    android:textSize="@dimen/dimen_36sp" />
+
+                <TextView
+                    android:layout_below="@id/tvBalance"
+                    android:textColor="@color/main_info_color"
+                    android:textSize="@dimen/dimen_13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:visibility="gone"
+                    style="@style/TextNoIncludeFontPaddingStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/tvBalance"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toRightOf="@id/tvBalance"
+                    android:text="元"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    android:background="@drawable/maincolor_bt"
+                    android:id="@+id/tvToRecharge"
+                    style="@style/TextNoIncludeFontPaddingStyle"
+                    android:layout_width="@dimen/dimen_95dp"
+                    android:layout_height="@dimen/dimen_36dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:text="去充值"
+                    android:textColor="@color/new_primary"
+                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/tvRechargeBalance"
+                        style="@style/TextNoIncludeFontPaddingStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="充值余额0"
+                        android:textColor="@color/main_background"
+                        android:textSize="@dimen/dimen_15sp" />
+                    <View
+                        android:layout_centerInParent="true"
+                        android:background="@color/notice_color"
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="@dimen/dimen_25dp"/>
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/tvGiftBalance"
+                        style="@style/TextNoIncludeFontPaddingStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="赠送余额0"
+                        android:textColor="@color/main_background"
+                        android:textSize="@dimen/dimen_15sp" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0.01dp"
+                android:layout_height="0dp"
+                android:layout_weight="167" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_24dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:background="@drawable/linear_shape"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/rlytDeposit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_70dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_12dp"
+            android:paddingRight="@dimen/dimen_12dp">
+
+            <TextView
+                android:id="@+id/tvDepositText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="用车保证金"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_17sp" />
+
+            <TextView
+                android:id="@+id/tvDepositStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/arrow_right"
+                android:textColor="@color/color_gray_7a7e83"
+                android:textSize="16sp" />
+        </RelativeLayout>
+        <View
+            android:layout_marginLeft="@dimen/dimen_12dp"
+            android:layout_marginRight="@dimen/dimen_12dp"
+            android:background="@color/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"/>
+
+        <RelativeLayout
+            android:id="@+id/rlytCoupon"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_70dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_12dp"
+            android:paddingRight="@dimen/dimen_12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="优惠券"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_17sp" />
+
+            <TextView
+                android:id="@+id/tvCouponNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawablePadding="7dp"
+                android:drawableRight="@mipmap/arrow_right"
+                android:textColor="@color/color_gray_7a7e83"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

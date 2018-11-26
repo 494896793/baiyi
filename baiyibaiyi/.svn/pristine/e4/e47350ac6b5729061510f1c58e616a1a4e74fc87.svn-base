@@ -1,0 +1,123 @@
+package www.qisu666.com.callback;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * Created by wujiancheng on 17-10-17.
+ * 查询停车费报销审核进度返回
+ */
+
+public class ParkingFeeAuditStatusResp implements Serializable {
+    private List<ParkingFeeAuditList> list;// true string 停车费审核记录数组
+    private String receiptStatus;//true string 收款方式(A 支付宝，WX 微信，B 余额)
+    private String customerName;// true string 支付宝姓名
+    private String money;//true string 退款金额
+    private String customerNumber;// true string 微信openId/支付宝账号
+    private String parkingFeeId;//true string 停车费记录ID
+    private String parkingFeeStatus;//审核状态
+
+    public List<ParkingFeeAuditList> getList() {
+        return list;
+    }
+
+    public void setList(List<ParkingFeeAuditList> list) {
+        this.list = list;
+    }
+
+    public String getReceiptStatus() {
+        return receiptStatus;
+    }
+
+    public void setReceiptStatus(String receiptStatus) {
+        this.receiptStatus = receiptStatus;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getMoney() {
+        return money;
+    }
+
+    public void setMoney(String money) {
+        this.money = money;
+    }
+
+    public String getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public void setCustomerNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
+    }
+
+    public String getParkingFeeId() {
+        return parkingFeeId;
+    }
+
+    public void setParkingFeeId(String parkingFeeId) {
+        this.parkingFeeId = parkingFeeId;
+    }
+
+    public String getParkingFeeStatus() {
+        return parkingFeeStatus;
+    }
+
+    public void setParkingFeeStatus(String parkingFeeStatus) {
+        this.parkingFeeStatus = parkingFeeStatus;
+    }
+
+    public static class ParkingFeeAuditList implements Serializable {
+        private String status;//true string 状态
+        private String createTime;//true string 创建时间
+        private String remark;//true string 备注
+        private String statusName;//true string 状态名
+        private String isAudit;//true string 是否审核(0已审核，1未审核)
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public String getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
+
+        public String getStatusName() {
+            return statusName;
+        }
+
+        public void setStatusName(String statusName) {
+            this.statusName = statusName;
+        }
+
+        public String getIsAudit() {
+            return isAudit;
+        }
+
+        public void setIsAudit(String isAudit) {
+            this.isAudit = isAudit;
+        }
+    }
+}

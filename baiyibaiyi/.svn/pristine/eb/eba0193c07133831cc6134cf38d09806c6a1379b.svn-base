@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dimen_100dp"
+            android:id="@+id/rlytVerifyId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/viewDivideLine">
+
+            <RelativeLayout
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:background="@drawable/linear_shape"
+                android:layout_marginLeft="@dimen/dimen_27dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_140dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_marginRight="@dimen/dimen_10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="身份认证"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_18sp" />
+                        <TextView
+                            android:id="@+id/idverify_statu_tx"
+                            android:paddingTop="@dimen/dimen_1dp"
+                            android:paddingBottom="@dimen/dimen_1dp"
+                            android:paddingLeft="@dimen/dimen_4dp"
+                            android:paddingRight="@dimen/dimen_4dp"
+                            android:background="@drawable/main_tx_radio"
+                            android:text="未认证"
+                            android:textSize="@dimen/dimen_12sp"
+                            android:textColor="@color/new_primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvVerifyIdDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_7dp"
+                        android:text="包含身份证、驾驶证"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivVerifyIdArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="50dp"
+                    android:src="@mipmap/arrow_right_big" />
+            </RelativeLayout>
+            <ImageView
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/gr_133" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dimen_50dp"
+            android:id="@+id/rlytVerifyPledge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlytVerifyId">
+
+            <RelativeLayout
+                android:background="@drawable/linear_shape"
+                android:layout_marginLeft="@dimen/dimen_27dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_140dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:paddingLeft="@dimen/dimen_10dp"
+                        android:gravity="bottom"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_marginRight="@dimen/dimen_10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="用车保证金"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_18sp" />
+                        <TextView
+                            android:id="@+id/money_statu_tx"
+                            android:paddingTop="@dimen/dimen_1dp"
+                            android:paddingBottom="@dimen/dimen_1dp"
+                            android:paddingLeft="@dimen/dimen_4dp"
+                            android:paddingRight="@dimen/dimen_4dp"
+                            android:background="@drawable/main_tx_radio"
+                            android:text="未交纳"
+                            android:textSize="@dimen/dimen_12sp"
+                            android:textColor="@color/new_primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:paddingRight="@dimen/dimen_80dp"
+                        android:id="@+id/tvVerifyPledgeDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_7dp"
+                        android:text="未交纳"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivVerifyPledgeArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="50dp"
+                    android:src="@mipmap/arrow_right_big" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ge_13" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

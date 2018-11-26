@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/linear_shape"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <View
+            android:visibility="gone"
+            android:id="@+id/top_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_35dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="12dp">
+
+            <RelativeLayout
+                android:gravity="center_vertical"
+                android:id="@+id/llytComboName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvComboName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="--"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_17sp" />
+
+                <TextView
+                    android:layout_toLeftOf="@id/tvComboPriceNew"
+                    android:id="@+id/tvComboPriceOld"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:paddingLeft="10dp"
+                    android:text="--"
+                    android:textColor="@color/main_info_color"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_marginRight="@dimen/dimen_60dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/tvComboPriceNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:paddingLeft="10dp"
+                    android:text="--"
+                    android:textColor="@color/warn_notice_color"
+                    android:textSize="@dimen/dimen_20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dimen_19dp"
+                android:gravity="center_vertical"
+                android:layout_below="@id/llytComboName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:text="时间"
+                    android:textColor="@color/main_info_color"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/tvComboTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:includeFontPadding="false"
+                    android:text="--"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/ivSelect"
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_30dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/yc_43" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llytComboDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_13dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/color_cyan_f6fcff"
+            android:orientation="vertical"
+            android:paddingBottom="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/viewBottomLine"
+        style="@style/DivideLineStyle"
+        android:layout_marginLeft="15dp" />
+
+</LinearLayout>

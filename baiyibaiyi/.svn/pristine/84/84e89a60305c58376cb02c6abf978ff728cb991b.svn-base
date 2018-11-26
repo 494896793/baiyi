@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvProblemDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_white_corners_overstroke"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etProblemDesc"
+            android:layout_width="match_parent"
+            android:layout_height="88dp"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="问题补充描述"
+            android:maxLength="100"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/main_info_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvTextLength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingBottom="7dp"
+            android:paddingRight="7dp"
+            android:text="0/100"
+            android:textColor="@color/main_info_color"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</LinearLayout>

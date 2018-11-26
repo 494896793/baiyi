@@ -1,0 +1,28 @@
+package www.qisu666.com.request;
+
+public class UpdatePWDRequest extends RequestBaseParams {
+    private String newPassword;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    private String phone;
+
+    public UpdatePWDRequest(String newPassword, String phone) {
+        this.newPassword = newPassword;
+        this.phone = phone;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+}

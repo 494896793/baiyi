@@ -1,0 +1,122 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class RechargeBalanceActivity_ViewBinding<T extends RechargeBalanceActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131297326;
+
+  private View view2131296610;
+
+  private View view2131296769;
+
+  private View view2131296797;
+
+  private View view2131296707;
+
+  @UiThread
+  public RechargeBalanceActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    target.scrollView = Utils.findRequiredViewAsType(source, R.id.scrollView, "field 'scrollView'", ScrollView.class);
+    target.rlytTip = Utils.findRequiredViewAsType(source, R.id.rlytTip, "field 'rlytTip'", RelativeLayout.class);
+    target.tvFirstRechargeTip = Utils.findRequiredViewAsType(source, R.id.tvFirstRechargeTip, "field 'tvFirstRechargeTip'", TextView.class);
+    target.tvFridayTip = Utils.findRequiredViewAsType(source, R.id.tvFridayTip, "field 'tvFridayTip'", TextView.class);
+    target.rvRecharge = Utils.findRequiredViewAsType(source, R.id.rvRecharge, "field 'rvRecharge'", RecyclerView.class);
+    target.llytPresentMoney = Utils.findRequiredViewAsType(source, R.id.llytPresentMoney, "field 'llytPresentMoney'", LinearLayout.class);
+    target.tvPresentMoney = Utils.findRequiredViewAsType(source, R.id.tvPresentMoney, "field 'tvPresentMoney'", TextView.class);
+    target.ivWxCheck = Utils.findRequiredViewAsType(source, R.id.ivWxCheck, "field 'ivWxCheck'", ImageView.class);
+    target.ivAliCheck = Utils.findRequiredViewAsType(source, R.id.ivAliCheck, "field 'ivAliCheck'", ImageView.class);
+    view = Utils.findRequiredView(source, R.id.tvToRecharge, "field 'tvToRecharge' and method 'onClickedView'");
+    target.tvToRecharge = Utils.castView(view, R.id.tvToRecharge, "field 'tvToRecharge'", TextView.class);
+    view2131297326 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onClickedView(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'onClickedView'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onClickedView(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytRechargeProtocol, "method 'onClickedView'");
+    view2131296769 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onClickedView(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytWxPay, "method 'onClickedView'");
+    view2131296797 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onClickedView(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytAliPay, "method 'onClickedView'");
+    view2131296707 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onClickedView(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvTitleName = null;
+    target.scrollView = null;
+    target.rlytTip = null;
+    target.tvFirstRechargeTip = null;
+    target.tvFridayTip = null;
+    target.rvRecharge = null;
+    target.llytPresentMoney = null;
+    target.tvPresentMoney = null;
+    target.ivWxCheck = null;
+    target.ivAliCheck = null;
+    target.tvToRecharge = null;
+
+    view2131297326.setOnClickListener(null);
+    view2131297326 = null;
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+    view2131296769.setOnClickListener(null);
+    view2131296769 = null;
+    view2131296797.setOnClickListener(null);
+    view2131296797 = null;
+    view2131296707.setOnClickListener(null);
+    view2131296707 = null;
+
+    this.target = null;
+  }
+}

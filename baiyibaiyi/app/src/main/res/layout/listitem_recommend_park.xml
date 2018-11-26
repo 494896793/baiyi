@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llytAddressContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/linear_shape"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/tvPositionIcon"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/yc_34" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="14dp"
+            android:paddingTop="14dp">
+
+            <TextView
+                android:id="@+id/tvAddress"
+                style="@style/Ellipsize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/text_default"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_17sp" />
+
+            <TextView
+                android:id="@+id/tvAddressDetail"
+                style="@style/Ellipsize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/text_default"
+                android:textColor="@color/main_info_color"
+                android:textSize="@dimen/dimen_15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

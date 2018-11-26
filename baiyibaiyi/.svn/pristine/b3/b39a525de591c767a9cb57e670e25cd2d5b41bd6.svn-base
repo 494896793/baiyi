@@ -1,0 +1,631 @@
+package www.qisu666.com.activity;
+
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.content.ContextCompat;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.amap.api.maps.model.LatLng;
+import www.qisu666.com.R;
+import www.qisu666.com.app.MyApplication;
+import www.qisu666.com.app.UserState;
+import www.qisu666.com.callback.CarParkResp;
+import www.qisu666.com.callback.CarResp;
+import www.qisu666.com.callback.OrderCarResp;
+import www.qisu666.com.callback.ParkResp;
+import www.qisu666.com.callback.ParksResp;
+import www.qisu666.com.callback.UserInfoResp;
+import www.qisu666.com.constant.Config;
+import www.qisu666.com.constant.RequestUrls;
+import www.qisu666.com.request.CancelOrderCarRequest;
+import www.qisu666.com.request.ControlCarRequest;
+import www.qisu666.com.rx.RxBus;
+import www.qisu666.com.rx.RxBusEvent;
+import www.qisu666.com.rx.RxEventCodes;
+import www.qisu666.com.utils.CacheUtils;
+import www.qisu666.com.utils.DateUtils;
+import www.qisu666.com.utils.InstanceUtils;
+import www.qisu666.com.utils.Logger;
+import www.qisu666.com.utils.NavigationUtils;
+import www.qisu666.com.utils.NetWorkUtils;
+import www.qisu666.com.utils.StringUtils;
+import www.qisu666.com.utils.TVUtils;
+import www.qisu666.com.utils.ToastUtil;
+import www.qisu666.com.view.CustomAlertDialog;
+import www.qisu666.com.view.CustomAlertDialog2;
+import com.bumptech.glide.Glide;
+
+import java.lang.ref.WeakReference;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import rx.functions.Action1;
+
+/**
+ * Created by wujiancheng on 2017/7/28.
+ * 正在预约车辆
+ */
+
+public class UseCarOrderingActivity extends BaseActivity {
+    private static final String TAG = UseCarOrderingActivity.class.getSimpleName();
+    private static final int CANCEL_ORDER = 1;
+    private static final int FIND_CAR_CODE = 2;
+    private static final int OPEN_DOOR_CODE = 3;
+    private static final int CLOSE_DOOR_CODE = 4;
+
+    private static final String FIND_CAR = "findCar";//-找车
+    private static final String OPEN_DOOR = "openDoor";//-打开车门
+    private static final String CLOSE_DOOR = "closeDoor";//-关闭车门
+
+    private static final int TIME_DOWN_COUNT = 1;
+
+    @BindView(R.id.tvTitleName)
+    TextView tvTitleName;
+    @BindView(R.id.tvTitleRight)
+    TextView tvTitleRight;
+    @BindView(R.id.tvParkName)
+    TextView tvParkName;
+    @BindView(R.id.tvParkNamedDetail)
+    TextView tvParkNamedDetail;
+    @BindView(R.id.tvDistance)
+    TextView tvDistance;
+    @BindView(R.id.ivCarPic)
+    ImageView ivCarPic;
+    @BindView(R.id.tvCarNumber)
+    TextView tvCarNumber;
+    @BindView(R.id.tvCarTypeName)
+    TextView tvCarTypeName;
+    @BindView(R.id.tvFlagRedPacketCar)
+    TextView tvFlagRedPacketCar;
+    @BindView(R.id.tvFeeValue)
+    TextView tvFeeValue;
+    @BindView(R.id.llyt_car_number)
+    LinearLayout llytCarNumber;
+    @BindView(R.id.ivBattery)
+    ImageView ivBattery;
+    @BindView(R.id.tvBatteryPercent)
+    TextView tvBatteryPercent;
+    @BindView(R.id.viewLeftEndurance)
+    View viewLeftEndurance;
+    @BindView(R.id.rlytEnduranceBg)
+    RelativeLayout rlytEnduranceBg;
+    @BindView(R.id.tvLeftEnduranceKM)
+    TextView tvLeftEnduranceKM;
+    @BindView(R.id.tvCancelUseCar)
+    TextView tvCancelUseCar;
+    @BindView(R.id.car_color_tx)
+    TextView car_color_tx;
+    @BindView(R.id.car_set_tx)
+    TextView car_set_tx;
+
+    private OrderCarResp orderCarResp;
+
+    //复活
+    private CarParkResp carParkRespRecover;
+    private CarResp carResp;
+    private ParkResp parkResp;
+    //是否处于复活状态
+    private boolean isRevival = false;
+
+    //服务器当前时间
+    private long systemTimeL;
+    //预约时间
+    private long orderTimeL;
+    //服务器当前时间和手机当前时间之间的差
+    private long timeDelta;
+
+    private int timeDownAll = Config.TIME_DOWN;
+    private int timeDown = Config.TIME_DOWN;
+    private MyHandler handler;
+
+    private ParksResp parksRespChooseReturn;//还车网点
+
+    private static class MyHandler extends Handler {
+        WeakReference<UseCarOrderingActivity> weakReference;
+
+        public MyHandler(UseCarOrderingActivity activity) {
+            weakReference = new WeakReference<UseCarOrderingActivity>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case TIME_DOWN_COUNT:
+                    if (null != weakReference) {
+                        UseCarOrderingActivity activity = weakReference.get();
+                        if (activity != null) {
+                            activity.timeDown = msg.arg1;
+                            Logger.i(TAG, "timeDown = " + activity.timeDown);
+                            if (activity.timeDown <= 0) {
+                                removeCallbacksAndMessages(null);
+                                //取消订单
+                                activity.cancelOrder();
+                                if (activity.tvCancelUseCar != null) {
+                                    activity.tvCancelUseCar.setText("取消预约00:00");
+                                }
+                            } else {
+                                if (activity.tvCancelUseCar != null) {
+                                    Logger.i(TAG, "预约时间赋值");
+                                    activity.tvCancelUseCar.setText("取消预约" + DateUtils.time2MinuteSecond(activity.timeDown));
+                                }
+                                activity.timeDown--;
+                                Message message = activity.handler.obtainMessage();
+                                message.what = TIME_DOWN_COUNT;
+                                message.arg1 = activity.timeDown;
+                                activity.handler.sendMessageDelayed(message, 1000);
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void setView() {
+        setContentView(R.layout.activity_use_car_ordering);
+    }
+
+    @Override
+    public void initDatas() {
+        tvTitleRight.setText("车辆位置");
+        carResp = (CarResp) getIntent().getSerializableExtra("carInfo");
+        parkResp = (ParkResp) getIntent().getSerializableExtra("parkInfo");
+        if (null != parkResp) {
+            parkResp.setDistance(getDistance(parkResp.getLongitude(), parkResp.getLatitude()));
+        }
+        orderCarResp = (OrderCarResp) getIntent().getSerializableExtra("orderCarResp");
+        //预约车时选择的还车网点
+        parksRespChooseReturn = (ParksResp) getIntent().getSerializableExtra("parksRespChooseReturn");
+
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (MyApplication.isLoginSuccess && UserState.isOrdering(mUser.getStatus())) {
+            getCarParkInfo();
+            //复活
+            String systemTime = carResp.getSystemTime();
+            String orderTime = carResp.getOrderTime();
+            Logger.i(TAG, "复活systemTime=" + systemTime + ";orderTime=" + orderTime);
+            systemTimeL = Long.valueOf(systemTime);
+            orderTimeL = Long.valueOf(orderTime);
+//            timeDown(systemTimeL, orderTimeL);
+        } else {
+            //正常流程
+            if (null != orderCarResp) {
+                String systemTime = orderCarResp.getSystemTime();
+                String orderTime = orderCarResp.getOrderTime();
+                Logger.i(TAG, "正常流程systemTime=" + systemTime + ";orderTime=" + orderTime);
+                systemTimeL = Long.valueOf(systemTime);
+                orderTimeL = Long.valueOf(orderTime);
+//                timeDown(systemTimeL, orderTimeL);
+            }
+        }
+        timeDelta = systemTimeL - System.currentTimeMillis();
+
+        if (null != parkResp) {
+            tvParkName.setText(parkResp.getParkName());
+            tvParkNamedDetail.setText(parkResp.getParkAddress());
+            tvDistance.setText(parkResp.getDistance());
+        }
+
+        if (null != carResp) {
+            tvTitleName.setText("取车");
+            Glide.with(mContext).load(carResp.getCarImgUri()).into(ivCarPic);
+            tvCarNumber.setText(carResp.getCarNumber());
+            car_set_tx.setText(carResp.getCarSetsNums() + "座");
+            car_color_tx.setText(carResp.getCarColor());
+            tvCarTypeName.setText(carResp.getCarBrand() + carResp.getModels());
+            if (carResp.getIsRedPkCar() == 1) {//是否是红包车(1 是，0 不是)
+                tvFlagRedPacketCar.setVisibility(View.VISIBLE);
+            }
+            //电池剩余量
+            String battery = carResp.getBatteryResidual() + "";
+//            double km = 0;
+            if (!"null".equals(battery) && !"".equals(battery)) {
+                double batteryD = Double.valueOf(battery);
+                if (batteryD > 100) {
+                    batteryD = 100;
+                } else if (batteryD < 0) {
+                    batteryD = 0;
+                }
+                int batteryPercent = (int) batteryD;
+                tvBatteryPercent.setText(batteryPercent + "%");
+                if (batteryPercent > 80) {
+                    tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.main_background));
+                    ivBattery.setImageResource(R.mipmap.yc_18);
+//                    viewLeftEndurance.setBackgroundResource(R.drawable.bg_battery_green);
+                    tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color));
+                }else if(batteryPercent > 60){
+                    tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.main_background));
+                    ivBattery.setImageResource(R.mipmap.yc_19);
+//                    viewLeftEndurance.setBackgroundResource(R.drawable.bg_battery_green);
+                    tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color));
+                } else if (batteryPercent > 40) {
+                    tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.main_background));
+                    ivBattery.setImageResource(R.mipmap.yc_20);
+//                    viewLeftEndurance.setBackgroundResource(R.drawable.bg_battery_orange);
+                    tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color));
+                }else if(batteryPercent > 20){
+                    tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.main_background));
+                    ivBattery.setImageResource(R.mipmap.yc_21);
+//                    viewLeftEndurance.setBackgroundResource(R.drawable.bg_battery_orange);
+                    tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color));
+                }else if(batteryPercent > 10){
+                    tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.warn_notice_color));
+                    ivBattery.setImageResource(R.mipmap.yc_16);
+//                    viewLeftEndurance.setBackgroundResource(R.drawable.bg_battery_orange);
+                    tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color));
+                } else {
+                    tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.warn_notice_color));
+                    ivBattery.setImageResource(R.mipmap.yc_17);
+//                    viewLeftEndurance.setBackgroundResource(R.drawable.bg_battery_red);
+                    tvLeftEnduranceKM.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color));
+                }
+
+                setLeftBatteryBg(batteryD);
+//                km = batteryD * 1.3;
+//                tvLeftEnduranceKM.setText(km + "KM");
+            }
+
+            tvLeftEnduranceKM.setText(carResp.getCanUseMileage() + "KM");
+
+            String milesMoneyUnit = carResp.getMilesMoney();
+            String timeMoneyUnit = carResp.getTimeMoney();
+            String electricityMoney = carResp.getElectricityMoney() + "";
+            boolean isNightTimeSection = DateUtils.isNightTimeSection(carResp.getNightBeginRateHour(), carResp.getNightEndRateHour());
+            if (isNightTimeSection) {
+                //当前时间属于夜间时间段
+                milesMoneyUnit = carResp.getNightMilesUnit() + "";
+                timeMoneyUnit = carResp.getNightTimeUnit() + "";
+            }
+
+            String feeValue = "";
+            if (null != milesMoneyUnit && !"".equals(milesMoneyUnit)) {
+                feeValue = TVUtils.toString(Integer.parseInt(milesMoneyUnit) / 100.00) + "元/公里+";
+            }
+            if (!"".equals(electricityMoney)) {
+                feeValue += TVUtils.toString(Integer.parseInt(electricityMoney) / 100.00) + "元+";
+            }
+            if (null != timeMoneyUnit && !"".equals(timeMoneyUnit)) {
+                feeValue += TVUtils.toString(Integer.parseInt(timeMoneyUnit) / 100.00) + "元/分钟";
+            }
+            tvFeeValue.setText(feeValue);
+        }
+
+        observeRxEventCode();
+
+        if (!isFinishing()) {
+            showUseCarTip();
+        }
+    }
+
+    private void observeRxEventCode() {
+        busSubscription = RxBus.getInstance()
+                .toObservable(RxBusEvent.class)
+                .subscribe(new Action1<RxBusEvent>() {
+                    @Override
+                    public void call(RxBusEvent rxBusEvent) {
+                        int eventCode = rxBusEvent.getEventCode();
+                        switch (eventCode) {
+                            case RxEventCodes.SERVER_PUSH_ORDER_CANCEL://取消订单
+                                Logger.i(TAG, "取消订单");
+                                ToastUtil.show(mContext, rxBusEvent.getContent().toString());
+                                cancelOrderAfter();
+                                break;
+                        }
+                    }
+                });
+    }
+
+    private void showUseCarTip() {
+        final CustomAlertDialog dialog = CustomAlertDialog.getAlertDialog(mContext, true, true);
+        dialog.setMessage(Config.USE_CAR_TIP)
+                .setBtnConfirmColor(R.color.new_primary)
+                .setOnPositiveClickListener("知道了", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+    /**
+     * 设置剩余电量的背景
+     */
+    private void setLeftBatteryBg(final double battery) {
+        ViewTreeObserver vto2 = rlytEnduranceBg.getViewTreeObserver();
+        vto2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                rlytEnduranceBg.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+                RelativeLayout.LayoutParams linearParams = (RelativeLayout.LayoutParams) viewLeftEndurance.getLayoutParams(); //取控件textView当前的布局参数 linearParams.height = 20;// 控件的高强制设成20
+                linearParams.width = (int) (battery / 100.00 * rlytEnduranceBg.getWidth());// 强制设置控件的宽
+                viewLeftEndurance.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        timeDown();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (null != handler) {
+            handler.removeCallbacksAndMessages(null);
+        }
+    }
+
+    private void timeDown() {
+        timeDown = timeDownAll - (int) ((System.currentTimeMillis() + timeDelta) / 1000 - orderTimeL / 1000);
+        //倒计时
+        handler = new MyHandler(this);
+        Message msg = handler.obtainMessage();
+        msg.what = TIME_DOWN_COUNT;
+        msg.arg1 = timeDown - 1;
+        handler.sendMessage(msg);
+    }
+
+    private void getCarParkInfo() {
+        carParkRespRecover = (CarParkResp) getIntent().getSerializableExtra("recoverData");
+        if (null != carParkRespRecover) {
+            carResp = carParkRespRecover.getCarBaseInfo();
+            if (carResp != null) {
+                parkResp = carParkRespRecover.getParkBaseinfo();
+                if (null != parkResp) {
+                    parkResp.setDistance(getDistance(parkResp.getLongitude(), parkResp.getLatitude()));
+                }
+
+                Logger.i(TAG, "进入复活？carResp.getOrderNo()=" + carResp.getCarSharingOrderNo());
+                orderCarResp = new OrderCarResp();
+                orderCarResp.setCarSharingOrderNumber(carResp.getCarSharingOrderNo());
+                orderCarResp.setSystemTime(carResp.getSystemTime());
+                orderCarResp.setOrderTime(carResp.getOrderTime());
+
+                isRevival = true;
+            }
+            CarParkResp.BeforeHandPark beforeHandPark = carParkRespRecover.getBeforehandPark();
+            if (null != beforeHandPark) {
+                parksRespChooseReturn = new ParksResp();
+                parksRespChooseReturn.setId(beforeHandPark.getId() + "");
+                parksRespChooseReturn.setParkName(beforeHandPark.getParkName());
+                parksRespChooseReturn.setParkAddress(beforeHandPark.getParkAddress());
+                parksRespChooseReturn.setLatitude(beforeHandPark.getLatitude());
+                parksRespChooseReturn.setLongitude(beforeHandPark.getLongitude());
+            }
+        }
+    }
+
+    private String getDistance(String lng, String lat) {
+        Double d1 = InstanceUtils.insDouble(lng, lat);
+        if (d1 > 1000) {
+            return TVUtils.toString(d1 / 1000.00) + "KM";
+        } else {
+            return TVUtils.toStringInt(d1 + "") + "m";
+        }
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+        if (isSuccess(result)) {
+            if (type == CANCEL_ORDER) {//取消成功
+                ToastUtil.show(mContext, getMsg(result));
+                cancelOrderAfter();
+
+            } else if (type == FIND_CAR_CODE) {//找车
+                showSuccessDialog("鸣笛成功");
+            } else if (type == OPEN_DOOR_CODE) {//开锁
+                showSuccessDialog("开锁成功");
+                Intent intent = new Intent(mContext, UseCarReturnActivity.class);
+                intent.putExtra("carResp", carResp);
+                intent.putExtra("parkId", parkResp.getId());
+                intent.putExtra("orderId", orderCarResp.getCarSharingOrderNumber());
+                if (null != parksRespChooseReturn) {
+                    intent.putExtra("parksRespChooseReturn", parksRespChooseReturn);
+                }
+                startActivity(intent);
+                finish();
+            }
+        } else {
+            if (type == FIND_CAR_CODE) {//找车
+                showFailureDialog(2, "鸣笛失败", getMsg(result), "取消", "重试");
+            } else if (type == OPEN_DOOR_CODE) {//开锁
+                showFailureDialog(3, "开锁失败", getMsg(result), "取消", "重试");
+            } else if (type == CANCEL_ORDER && !Config.REQUEST_FAILURE.equals(getCode(result))) {//取消订单失败
+                cancelOrderAfter();
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+        if (type == FIND_CAR_CODE) {//找车
+            showFailureDialog(2, "鸣笛失败", "当前网络不太好，请检查您的网络连接", "取消", "重试");
+        } else if (type == OPEN_DOOR_CODE) {//开锁
+            showFailureDialog(3, "开锁失败", "当前网络不太好，请检查您的网络连接", "取消", "重试");
+        } else if (type == CANCEL_ORDER) {//没网络，取消失败
+            if (!NetWorkUtils.isNet()) {
+                cancelOrderAfter();
+            }
+        }
+    }
+
+    @OnClick({R.id.ivTitleLeft, R.id.tvCancelUseCar, R.id.llytTitleRight, R.id.tvWhistle, R.id.tvOpenDoor, R.id.llytNavigate})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ivTitleLeft://返回
+                finishPage();
+                break;
+            case R.id.tvCancelUseCar://取消预约
+                showFailureDialog(1, "取消预约", Config.CANCEL_PROMPT, "取消预约", "暂不取消");
+                break;
+            case R.id.llytTitleRight://车辆位置
+                Intent intent = new Intent(mContext, CarPositionActivity.class);
+                intent.putExtra("parkInfo", parkResp);
+                intent.putExtra("from", 2);//车辆位置
+                intent.putExtra("timeDown", timeDown);
+                intent.putExtra("carNumber", carResp.getCarNumber());
+                startActivity(intent);
+                break;
+            case R.id.tvWhistle://鸣笛
+                if (null != carResp) {
+                    controlCar(carResp.getCarNumber(), FIND_CAR);
+                }
+                break;
+            case R.id.tvOpenDoor://开锁
+                showFailureDialog(4, "开锁取车", "开锁后订单将开始计费，请确保已到达车辆所在的位置！", "取消", "车已找到");
+                break;
+            case R.id.llytNavigate://导航
+                if (null != parkResp) {
+                    String lat = parkResp.getLatitude();
+                    String lng = parkResp.getLongitude();
+                    if (StringUtils.isIntOrFloat(lat) && StringUtils.isIntOrFloat(lng)) {
+                        LatLng latLng = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+                        NavigationUtils.goNavigation(UseCarOrderingActivity.this, latLng, 2);
+                    }
+                }
+                break;
+        }
+    }
+
+    /**
+     * 取消订单
+     */
+    private void cancelOrder() {
+        if (orderCarResp != null) {
+            CancelOrderCarRequest data = new CancelOrderCarRequest();
+            data.setCarSharingOrderNumber(orderCarResp.getCarSharingOrderNumber());
+            data.setMethod(RequestUrls.USER_CANCEL_ORDER);
+            doGet(data, CANCEL_ORDER, "正在取消...", true);
+        }
+    }
+
+    /**
+     * 取消订单之后删除缓存数据
+     */
+    private void cancelOrderAfter() {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            mUser.setStatus(UserState.USER_STATUS_READY);
+            CacheUtils.getIn().save(mUser);
+        }
+
+        activityUtil.jumpTo(ControlerActivity.class);
+        finish();
+    }
+
+    /**
+     * 控制车辆
+     *
+     * @param lpn  车牌号
+     * @param type findCar-找车,openDoor-打开车门,closeDoor-关闭车门
+     */
+    public void controlCar(String lpn, String type) {
+        ControlCarRequest request = new ControlCarRequest();
+        request.setCarNumber(lpn);
+        request.setOperateType(type);
+        request.setMethod(RequestUrls.OPERATE_CAR);
+        if (FIND_CAR.equals(type)) {
+            doGet(request, FIND_CAR_CODE, "正在鸣笛...", true);
+        } else if (OPEN_DOOR.equals(type)) {
+            doGet(request, OPEN_DOOR_CODE, "正在开锁...", true);
+        } else if (CLOSE_DOOR.equals(type)) {
+            doGet(request, CLOSE_DOOR_CODE, "正在锁门...", true);
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+
+            finishPage();
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void finishPage() {
+//        if (isRevival) {
+        //跳转到复活的地图页面
+        Intent intent = new Intent(mContext, CarPositionActivity.class);
+        intent.putExtra("parkInfo", parkResp);
+        intent.putExtra("from", 1);//复活
+        intent.putExtra("timeDown", timeDown);
+        intent.putExtra("carNumber", carResp.getCarNumber());
+        startActivity(intent);
+//        } else {
+//            finish();
+//        }
+    }
+
+    /**
+     * 显示失败对话框
+     */
+    private void showFailureDialog(final int type, String title, String message, String negativeText, String positiveText) {
+        if (isFinishing()) {
+            return;
+        }
+        final CustomAlertDialog2 dialog2 = CustomAlertDialog2.getAlertDialog(mContext, true, true);
+        dialog2.setTitle(title);
+        if (1 == type || 4 == type) {//取消订单//开锁
+            dialog2.setBackgroundImg(R.mipmap.dialog_prompt_bg);
+        } else if (2 == type || 3 == type) {//重试找车失败//重试开锁失败
+            dialog2.setBackgroundImg(R.mipmap.dialog_failure_bg);
+        }
+
+        dialog2.setMessage(message)
+                .setOnNegativeClickListener(negativeText, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (1 == type) {//取消订单
+                            cancelOrder();
+                        }
+                        dialog2.dismiss();
+                    }
+                })
+                .setOnPositiveClickListener(positiveText, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (2 == type) {//重试找车
+                            if (null != carResp) {
+                                controlCar(carResp.getCarNumber(), FIND_CAR);
+                            }
+                        } else if (3 == type || 4 == type) {//重试开锁//车已找到，开锁
+                            if (null != carResp) {
+                                controlCar(carResp.getCarNumber(), OPEN_DOOR);
+                            }
+                        }
+                        dialog2.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    /**
+     * 显示成功弹窗
+     */
+    private void showSuccessDialog(String text) {
+        ToastUtil.showImage(this, text);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        if (null != handler) {
+//            handler.removeCallbacksAndMessages(null);
+//        }
+    }
+}

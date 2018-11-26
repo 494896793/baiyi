@@ -1,0 +1,150 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class UseCarOrderingActivity_ViewBinding<T extends UseCarOrderingActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131297110;
+
+  private View view2131296610;
+
+  private View view2131296789;
+
+  private View view2131297351;
+
+  private View view2131297249;
+
+  private View view2131296748;
+
+  @UiThread
+  public UseCarOrderingActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    target.tvTitleRight = Utils.findRequiredViewAsType(source, R.id.tvTitleRight, "field 'tvTitleRight'", TextView.class);
+    target.tvParkName = Utils.findRequiredViewAsType(source, R.id.tvParkName, "field 'tvParkName'", TextView.class);
+    target.tvParkNamedDetail = Utils.findRequiredViewAsType(source, R.id.tvParkNamedDetail, "field 'tvParkNamedDetail'", TextView.class);
+    target.tvDistance = Utils.findRequiredViewAsType(source, R.id.tvDistance, "field 'tvDistance'", TextView.class);
+    target.ivCarPic = Utils.findRequiredViewAsType(source, R.id.ivCarPic, "field 'ivCarPic'", ImageView.class);
+    target.tvCarNumber = Utils.findRequiredViewAsType(source, R.id.tvCarNumber, "field 'tvCarNumber'", TextView.class);
+    target.tvCarTypeName = Utils.findRequiredViewAsType(source, R.id.tvCarTypeName, "field 'tvCarTypeName'", TextView.class);
+    target.tvFlagRedPacketCar = Utils.findRequiredViewAsType(source, R.id.tvFlagRedPacketCar, "field 'tvFlagRedPacketCar'", TextView.class);
+    target.tvFeePerKM = Utils.findRequiredViewAsType(source, R.id.tvFeePerKM, "field 'tvFeePerKM'", TextView.class);
+    target.tvFeePerMin = Utils.findRequiredViewAsType(source, R.id.tvFeePerMin, "field 'tvFeePerMin'", TextView.class);
+    target.llytCarNumber = Utils.findRequiredViewAsType(source, R.id.llyt_car_number, "field 'llytCarNumber'", LinearLayout.class);
+    target.ivBattery = Utils.findRequiredViewAsType(source, R.id.ivBattery, "field 'ivBattery'", ImageView.class);
+    target.tvBatteryPercent = Utils.findRequiredViewAsType(source, R.id.tvBatteryPercent, "field 'tvBatteryPercent'", TextView.class);
+    target.viewLeftEndurance = Utils.findRequiredView(source, R.id.viewLeftEndurance, "field 'viewLeftEndurance'");
+    target.rlytEnduranceBg = Utils.findRequiredViewAsType(source, R.id.rlytEnduranceBg, "field 'rlytEnduranceBg'", RelativeLayout.class);
+    target.tvLeftEnduranceKM = Utils.findRequiredViewAsType(source, R.id.tvLeftEnduranceKM, "field 'tvLeftEnduranceKM'", TextView.class);
+    view = Utils.findRequiredView(source, R.id.tvCancelUseCar, "field 'tvCancelUseCar' and method 'onViewClicked'");
+    target.tvCancelUseCar = Utils.castView(view, R.id.tvCancelUseCar, "field 'tvCancelUseCar'", TextView.class);
+    view2131297110 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    target.car_color_tx = Utils.findRequiredViewAsType(source, R.id.car_color_tx, "field 'car_color_tx'", TextView.class);
+    target.car_set_tx = Utils.findRequiredViewAsType(source, R.id.car_set_tx, "field 'car_set_tx'", TextView.class);
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'onViewClicked'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytTitleRight, "method 'onViewClicked'");
+    view2131296789 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.tvWhistle, "method 'onViewClicked'");
+    view2131297351 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.tvOpenDoor, "method 'onViewClicked'");
+    view2131297249 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytNavigate, "method 'onViewClicked'");
+    view2131296748 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvTitleName = null;
+    target.tvTitleRight = null;
+    target.tvParkName = null;
+    target.tvParkNamedDetail = null;
+    target.tvDistance = null;
+    target.ivCarPic = null;
+    target.tvCarNumber = null;
+    target.tvCarTypeName = null;
+    target.tvFlagRedPacketCar = null;
+    target.tvFeePerKM = null;
+    target.tvFeePerMin = null;
+    target.llytCarNumber = null;
+    target.ivBattery = null;
+    target.tvBatteryPercent = null;
+    target.viewLeftEndurance = null;
+    target.rlytEnduranceBg = null;
+    target.tvLeftEnduranceKM = null;
+    target.tvCancelUseCar = null;
+    target.car_color_tx = null;
+    target.car_set_tx = null;
+
+    view2131297110.setOnClickListener(null);
+    view2131297110 = null;
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+    view2131296789.setOnClickListener(null);
+    view2131296789 = null;
+    view2131297351.setOnClickListener(null);
+    view2131297351 = null;
+    view2131297249.setOnClickListener(null);
+    view2131297249 = null;
+    view2131296748.setOnClickListener(null);
+    view2131296748 = null;
+
+    this.target = null;
+  }
+}

@@ -1,0 +1,96 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import com.baogang.bycx.view.ChooseCouponView;
+import com.baogang.bycx.view.ChoosePayTypeView;
+import com.baogang.bycx.view.OrderDiscountView;
+import com.kyleduo.switchbutton.SwitchButton;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class ReturnCarSuccessBillCompanyActivity_ViewBinding<T extends ReturnCarSuccessBillCompanyActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131297167;
+
+  private View view2131296610;
+
+  @UiThread
+  public ReturnCarSuccessBillCompanyActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    target.tvTotalCost = Utils.findRequiredViewAsType(source, R.id.tvTotalCost, "field 'tvTotalCost'", TextView.class);
+    target.tvOrderMileage = Utils.findRequiredViewAsType(source, R.id.tv_order_mileage, "field 'tvOrderMileage'", TextView.class);
+    target.tvCalculateMileage = Utils.findRequiredViewAsType(source, R.id.tv_calculate_mileage, "field 'tvCalculateMileage'", TextView.class);
+    target.tvReturncarMileageCost = Utils.findRequiredViewAsType(source, R.id.tv_returncar_mileage_cost, "field 'tvReturncarMileageCost'", TextView.class);
+    target.rlMileageCost = Utils.findRequiredViewAsType(source, R.id.rl_mileage_cost, "field 'rlMileageCost'", LinearLayout.class);
+    target.tvReturncarOrderCostTime = Utils.findRequiredViewAsType(source, R.id.tv_returncar_order_cost_time, "field 'tvReturncarOrderCostTime'", TextView.class);
+    target.tvCalculateTime = Utils.findRequiredViewAsType(source, R.id.tv_calculate_time, "field 'tvCalculateTime'", TextView.class);
+    target.tvReturncarOrderTimeCost = Utils.findRequiredViewAsType(source, R.id.tv_returncar_order_time_cost, "field 'tvReturncarOrderTimeCost'", TextView.class);
+    target.rlOrderCostTime = Utils.findRequiredViewAsType(source, R.id.rl_order_cost_time, "field 'rlOrderCostTime'", LinearLayout.class);
+    target.orderDiscountView = Utils.findRequiredViewAsType(source, R.id.orderDiscountView, "field 'orderDiscountView'", OrderDiscountView.class);
+    target.sbCompanyPay = Utils.findRequiredViewAsType(source, R.id.sbCompanyPay, "field 'sbCompanyPay'", SwitchButton.class);
+    target.llytChooseCouponContainer = Utils.findRequiredViewAsType(source, R.id.llytChooseCouponContainer, "field 'llytChooseCouponContainer'", LinearLayout.class);
+    target.chooseCouponView = Utils.findRequiredViewAsType(source, R.id.chooseCouponView, "field 'chooseCouponView'", ChooseCouponView.class);
+    target.choosePayTypeView = Utils.findRequiredViewAsType(source, R.id.choosePayTypeView, "field 'choosePayTypeView'", ChoosePayTypeView.class);
+    view = Utils.findRequiredView(source, R.id.tvConfirmPay, "field 'tvConfirmPay' and method 'onViewClicked'");
+    target.tvConfirmPay = Utils.castView(view, R.id.tvConfirmPay, "field 'tvConfirmPay'", TextView.class);
+    view2131297167 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'onViewClicked'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvTitleName = null;
+    target.tvTotalCost = null;
+    target.tvOrderMileage = null;
+    target.tvCalculateMileage = null;
+    target.tvReturncarMileageCost = null;
+    target.rlMileageCost = null;
+    target.tvReturncarOrderCostTime = null;
+    target.tvCalculateTime = null;
+    target.tvReturncarOrderTimeCost = null;
+    target.rlOrderCostTime = null;
+    target.orderDiscountView = null;
+    target.sbCompanyPay = null;
+    target.llytChooseCouponContainer = null;
+    target.chooseCouponView = null;
+    target.choosePayTypeView = null;
+    target.tvConfirmPay = null;
+
+    view2131297167.setOnClickListener(null);
+    view2131297167 = null;
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+
+    this.target = null;
+  }
+}

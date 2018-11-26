@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/white_drawable"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/yc_43"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="充值成功"
+            android:textColor="@color/main_background"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/white_drawable"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="充值金额"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvRechargeMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--元"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewGiftMoneyDivide"
+            style="@style/DivideLineStyle" />
+
+        <LinearLayout
+            android:id="@+id/llytGiftMoneyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="常规赠送金额"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvGiftMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--元"
+                android:textColor="@color/color_orange_ff811b"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llytFirstRechargeGiftMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/tvFirstRechargeDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="首次充值100及以上赠送金额"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvFirstRechargeGiftMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--元"
+                android:textColor="@color/color_orange_ff811b"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llytFridayRechargeGiftMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/tvFridayRechargeDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="周五优惠日充值赠送红包"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvFridayRechargeGiftMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/red_packege_normal"
+                android:drawablePadding="5dp"
+                android:text="--元"
+                android:textColor="@color/color_orange_ff811b"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewArriveMoneyDivide"
+            style="@style/DivideLineStyle" />
+
+        <LinearLayout
+            android:id="@+id/llytArriveMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="到账金额"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvArriveMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--元"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvComplete"
+        style="@style/LoginButtonEnableStyle"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="完成" />
+</LinearLayout>

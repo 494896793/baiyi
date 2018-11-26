@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:drawable="@drawable/corners_bg_white">
+    </item>
+    <item android:id="@+id/shape_bacground">
+        <shape android:shape="rectangle" >
+            <corners android:radius="20dp" />
+
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+
+</layer-list>

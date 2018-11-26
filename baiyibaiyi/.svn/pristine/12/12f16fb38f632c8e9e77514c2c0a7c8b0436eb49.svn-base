@@ -1,0 +1,111 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.fragment;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import com.baogang.bycx.view.FeeUnitMoneyView;
+import com.baogang.bycx.view.ReturnCarFeeEstimateView;
+import com.kyleduo.switchbutton.SwitchButton;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class UseCarPreOrderHourRentFragment_ViewBinding<T extends UseCarPreOrderHourRentFragment> implements Unbinder {
+  protected T target;
+
+  private View view2131296964;
+
+  private View view2131297168;
+
+  private View view2131296791;
+
+  private View view2131296746;
+
+  @UiThread
+  public UseCarPreOrderHourRentFragment_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.feeUnitMoneyView = Utils.findRequiredViewAsType(source, R.id.feeUnitMoneyView, "field 'feeUnitMoneyView'", FeeUnitMoneyView.class);
+    target.llytUseCarTypeContainer = Utils.findRequiredViewAsType(source, R.id.llytUseCarTypeContainer, "field 'llytUseCarTypeContainer'", LinearLayout.class);
+    target.ivSelectPerson = Utils.findRequiredViewAsType(source, R.id.ivSelectPerson, "field 'ivSelectPerson'", ImageView.class);
+    target.ivSelectCompany = Utils.findRequiredViewAsType(source, R.id.ivSelectCompany, "field 'ivSelectCompany'", ImageView.class);
+    view = Utils.findRequiredView(source, R.id.rlytUseCarCompany, "field 'rlytUseCarCompany' and method 'onViewClicked'");
+    target.rlytUseCarCompany = Utils.castView(view, R.id.rlytUseCarCompany, "field 'rlytUseCarCompany'", RelativeLayout.class);
+    view2131296964 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    target.tvUseCarCompany = Utils.findRequiredViewAsType(source, R.id.tvUseCarCompany, "field 'tvUseCarCompany'", TextView.class);
+    target.tvCompanyLeftAmount = Utils.findRequiredViewAsType(source, R.id.tvCompanyLeftAmount, "field 'tvCompanyLeftAmount'", TextView.class);
+    target.tvDiscountCompany = Utils.findRequiredViewAsType(source, R.id.tvDiscountCompany, "field 'tvDiscountCompany'", TextView.class);
+    target.sbCoupon = Utils.findRequiredViewAsType(source, R.id.sbCoupon, "field 'sbCoupon'", SwitchButton.class);
+    target.tvInsuranceDesc = Utils.findRequiredViewAsType(source, R.id.tvInsuranceDesc, "field 'tvInsuranceDesc'", TextView.class);
+    target.returnCarFeeEstimateView = Utils.findRequiredViewAsType(source, R.id.returnCarFeeEstimateView, "field 'returnCarFeeEstimateView'", ReturnCarFeeEstimateView.class);
+    view = Utils.findRequiredView(source, R.id.tvConfirmUseCar, "method 'onViewClicked'");
+    view2131297168 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytUseCarPerson, "method 'onViewClicked'");
+    view2131296791 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytInsuranceHelp, "method 'onViewClicked'");
+    view2131296746 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.feeUnitMoneyView = null;
+    target.llytUseCarTypeContainer = null;
+    target.ivSelectPerson = null;
+    target.ivSelectCompany = null;
+    target.rlytUseCarCompany = null;
+    target.tvUseCarCompany = null;
+    target.tvCompanyLeftAmount = null;
+    target.tvDiscountCompany = null;
+    target.sbCoupon = null;
+    target.tvInsuranceDesc = null;
+    target.returnCarFeeEstimateView = null;
+
+    view2131296964.setOnClickListener(null);
+    view2131296964 = null;
+    view2131297168.setOnClickListener(null);
+    view2131297168 = null;
+    view2131296791.setOnClickListener(null);
+    view2131296791 = null;
+    view2131296746.setOnClickListener(null);
+    view2131296746 = null;
+
+    this.target = null;
+  }
+}

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical"
+    tools:context=".activity.ChargingInfoActivity">
+
+    <include layout="@layout/layout_title_primary" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/main_background">
+
+        <LinearLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/main_background"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/content_bg"
+                android:paddingLeft="@dimen/dimen_15dp"
+                android:paddingRight="@dimen/dimen_15dp"
+                android:stretchColumns="1">
+
+                <TableRow
+                    style="@style/Tr_Device_Detail"
+                    android:background="@color/content_bg"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp">
+
+                    <!--<TextView-->
+                    <!--style="@style/Text_Device_Detail_Gray"-->
+                    <!--android:text="@string/device_detail_station_name" />-->
+
+                    <TextView
+                        android:id="@+id/tv_station_name"
+                        style="@style/Text_Device_Detail_Black"
+                        android:ellipsize="end"
+                        android:maxEms="12"
+                        android:singleLine="true"
+                        android:text="龙岗城投资商务中心充电站"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_device_status"
+                        style="@style/Text_Device_Detail_Black"
+                        android:layout_marginRight="12dp"
+                        android:gravity="center"
+                        android:text="插墙"
+                        android:textColor="@color/new_primary"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <!--<TableRow>-->
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+                <!--</TableRow>-->
+
+
+                <TableRow
+                    style="@style/Tr_Device_Detail"
+                    android:background="@color/content_bg"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp">
+
+                    <TextView
+                        style="@style/Text_Device_Detail_Gray"
+                        android:text="终端编号："
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_device_no"
+                        style="@style/Text_Device_Detail_Black"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <!--<TableRow>-->
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+                <!--</TableRow>-->
+
+                <TableRow
+                    style="@style/Tr_Device_Detail"
+                    android:background="@color/content_bg"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp">
+
+                    <TextView
+                        style="@style/Text_Device_Detail_Gray"
+                        android:text="充电借口："
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_charge_interface"
+                        style="@style/Text_Device_Detail_Black"
+                        android:layout_marginLeft="10dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <!--<TableRow>-->
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+                <!--</TableRow>-->
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12dp"
+                    android:paddingTop="12dp">
+
+                    <TextView
+                        style="@style/Text_Device_Detail_Gray"
+                        android:text="终端类型："
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_detail"
+                        style="@style/Text_Device_Detail_Black"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:maxEms="13"
+                        android:singleLine="true"
+                        android:text="公共桩  双枪同时充直流   60KW "
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/img_pile_type"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/yd_35" />
+
+
+                </LinearLayout>
+
+                <!--<TableRow>-->
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+                <!--</TableRow>-->
+
+                <!--<TableRow-->
+                <!--android:background="@color/content_bg"-->
+                <!--style="@style/Tr_Device_Detail">-->
+
+                <!--<TextView-->
+                <!--style="@style/Text_Device_Detail_Gray"-->
+                <!--android:text="@string/device_detail_state" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/tv_device_status"-->
+                <!--style="@style/Text_Device_Detail_Black"-->
+                <!--android:text="" />-->
+                <!--</TableRow>-->
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:background="@color/content_bg"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dimen_15dp"
+                android:paddingRight="@dimen/dimen_15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Text_Device_Detail_Gray"
+                        android:gravity="center"
+                        android:paddingBottom="12dp"
+                        android:paddingTop="12dp"
+                        android:text="@string/device_detail_charge_detail"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="12dp"
+                        android:paddingTop="12dp">
+
+                        <TextView
+                            style="@style/Text_Device_Detail_Gray"
+                            android:gravity="center"
+                            android:text="服务费："
+                            android:textColor="@color/text_gray"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_device_service_fee"
+                            style="@style/Text_Device_Detail_Gray"
+                            android:layout_marginLeft="10dp"
+                            android:text="123456"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--<View style="@style/Divide_Horizontal_Full" />-->
+
+                <com.baogang.bycx.widget.NoScrollListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@color/view_line"
+                    android:dividerHeight="@dimen/dimen_1dp"
+                    android:listSelector="#0000">
+
+                </com.baogang.bycx.widget.NoScrollListView>
+
+            </LinearLayout>
+
+            <!--<TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_white"
+                android:paddingLeft="@dimen/default_padding_lnr"
+                android:paddingRight="@dimen/default_padding_lnr"
+                android:layout_marginTop="20dp"
+                android:stretchColumns="1">
+
+                <TableRow
+                    style="@style/Tr_Device_Detail"
+                    >
+
+                    <TextView
+                        style="@style/Text_Device_Detail_Gray"
+                        android:text="余       额" />
+
+                    <TextView
+                        android:id="@+id/tv_balance"
+                        style="@style/Text_Device_Detail_Black"
+                        android:text="0.00元" />
+                </TableRow>
+
+            </TableLayout>-->
+
+            <Button
+                android:id="@+id/btn_charge"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/selector_primary_btn_a"
+                android:text="@string/device_detail_charging"
+                android:textColor="@color/main_background"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

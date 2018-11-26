@@ -1,0 +1,103 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class CommentsActivity_ViewBinding<T extends CommentsActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131296324;
+
+  private View view2131296316;
+
+  private View view2131296610;
+
+  @UiThread
+  public CommentsActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    target.tvTipsSatisfaction = Utils.findRequiredViewAsType(source, R.id.tv_tips_satisfaction, "field 'tvTipsSatisfaction'", TextView.class);
+    target.ratingCommentOrder = Utils.findRequiredViewAsType(source, R.id.rating_comment_order, "field 'ratingCommentOrder'", RatingBar.class);
+    target.rvCommentLabels = Utils.findRequiredViewAsType(source, R.id.rvCommentLabels, "field 'rvCommentLabels'", RecyclerView.class);
+    target.tcSecurity = Utils.findRequiredViewAsType(source, R.id.tc_security, "field 'tcSecurity'", TextView.class);
+    target.tvCleantidy = Utils.findRequiredViewAsType(source, R.id.tv_cleantidy, "field 'tvCleantidy'", TextView.class);
+    target.tvConvenient = Utils.findRequiredViewAsType(source, R.id.tv_convenient, "field 'tvConvenient'", TextView.class);
+    target.tvQuick = Utils.findRequiredViewAsType(source, R.id.tv_quick, "field 'tvQuick'", TextView.class);
+    target.rlCommentsLayout = Utils.findRequiredViewAsType(source, R.id.rl_comments_layout, "field 'rlCommentsLayout'", RelativeLayout.class);
+    target.etCommentsContent = Utils.findRequiredViewAsType(source, R.id.et_comments_content, "field 'etCommentsContent'", EditText.class);
+    view = Utils.findRequiredView(source, R.id.btn_send_comments, "field 'btnSendComments' and method 'comment'");
+    target.btnSendComments = Utils.castView(view, R.id.btn_send_comments, "field 'btnSendComments'", Button.class);
+    view2131296324 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.comment();
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.bt_commit_share, "field 'btCommitShare' and method 'commentShare'");
+    target.btCommitShare = Utils.castView(view, R.id.bt_commit_share, "field 'btCommitShare'", Button.class);
+    view2131296316 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.commentShare();
+      }
+    });
+    target.llytPayComplete = Utils.findRequiredViewAsType(source, R.id.llytPayComplete, "field 'llytPayComplete'", LinearLayout.class);
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'back'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.back();
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvTitleName = null;
+    target.tvTipsSatisfaction = null;
+    target.ratingCommentOrder = null;
+    target.rvCommentLabels = null;
+    target.tcSecurity = null;
+    target.tvCleantidy = null;
+    target.tvConvenient = null;
+    target.tvQuick = null;
+    target.rlCommentsLayout = null;
+    target.etCommentsContent = null;
+    target.btnSendComments = null;
+    target.btCommitShare = null;
+    target.llytPayComplete = null;
+
+    view2131296324.setOnClickListener(null);
+    view2131296324 = null;
+    view2131296316.setOnClickListener(null);
+    view2131296316 = null;
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+
+    this.target = null;
+  }
+}

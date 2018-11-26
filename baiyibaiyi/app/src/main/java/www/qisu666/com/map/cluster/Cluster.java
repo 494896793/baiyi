@@ -1,0 +1,100 @@
+package www.qisu666.com.map.cluster;
+
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import www.qisu666.com.callback.ParksResp;
+import www.qisu666.com.utils.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by yiyi.qi on 16/10/10.
+ */
+
+public class Cluster {
+    private LatLng mLatLng;
+    private String cityCode;
+    private List<ParksResp> mClusterItems;
+    private Marker mMarker;
+    private String cityName = "";
+    private int clusterLevel = ClusterOverlay.NO_CLUSTER;
+    private int freeCarNum = 0;
+
+    Cluster(LatLng latLng, String cityCode, String cityName) {
+
+        mLatLng = latLng;
+        this.cityCode = cityCode;
+        mClusterItems = new ArrayList<ParksResp>();
+        this.cityName = cityName;
+    }
+
+    void addClusterItem(ParksResp clusterItem) {
+        mClusterItems.add(clusterItem);
+    }
+
+    int getClusterCount() {
+        return mClusterItems.size();
+    }
+
+    /**
+     * 获取每个聚合点中的所有可用车辆数
+     *
+     * @return
+     */
+    public int getClusterCarNum() {
+        int num = 0;
+        for (int i = 0, j = mClusterItems.size(); i < j; i++) {
+            ParksResp parksResp = mClusterItems.get(i);
+            if (null != parksResp) {
+                String freeCarNum = parksResp.getParkFreeCarNum();
+                if (StringUtils.isIntOrFloat(freeCarNum)) {
+                    int carNum = Integer.parseInt(freeCarNum);
+                    num += carNum;
+                }
+            }
+        }
+        return num;
+    }
+
+    public LatLng getCenterLatLng() {
+        return mLatLng;
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    void setMarker(Marker marker) {
+        mMarker = marker;
+    }
+
+    public Marker getMarker() {
+        return mMarker;
+    }
+
+    public List<ParksResp> getClusterItems() {
+        return mClusterItems;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public int getClusterLevel() {
+        return clusterLevel;
+    }
+
+    public void setClusterLevel(int clusterLevel) {
+        this.clusterLevel = clusterLevel;
+    }
+
+    public int getFreeCarNum() {
+        return freeCarNum;
+    }
+
+    public void setFreeCarNum(int freeCarNum) {
+        this.freeCarNum = freeCarNum;
+    }
+
+}

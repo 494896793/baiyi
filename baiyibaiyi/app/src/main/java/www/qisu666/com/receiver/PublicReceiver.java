@@ -1,0 +1,86 @@
+package www.qisu666.com.receiver;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+import www.qisu666.com.utils.SBUtils;
+
+import java.util.List;
+
+public class PublicReceiver<T> extends BroadcastReceiver {
+
+    private IBeanReceive mBeanReceive;
+    private IListReceive mListReceive;
+    private String action;
+    private int fromType = 0;
+    private T data;
+    private IDataReceive mDataReceive;
+
+    public PublicReceiver(Context context, String action) {
+        this.action = action;
+        SBUtils.register(context, this);
+    }
+
+    public PublicReceiver(String action) {
+        this.action = action;
+        SBUtils.register(this);
+    }
+
+    public PublicReceiver(String action, int fromType) {
+        this.action = action;
+        this.fromType = fromType;
+        SBUtils.register(this);
+    }
+
+    public String getAction() {
+        return this.action;
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equals(action)) {
+            if (fromType == 0) {
+                data = (T) intent.getExtras().get(SBUtils.MAPKEY);
+                if (mBeanReceive != null) {
+                    mBeanReceive.getBean();
+                }
+                if (mDataReceive != null) {
+                    mDataReceive.getData((String) data);
+                }
+            } else {
+                if (mListReceive != null) {
+                    mListReceive.getList(intent.getParcelableArrayListExtra(SBUtils.MAPKEY));
+                }
+            }
+        }
+    }
+
+    public T getBean() {
+        return data;
+    }
+
+    public void setBeanReceive(IBeanReceive mBeanReceive) {
+        this.mBeanReceive = mBeanReceive;
+    }
+
+    public void setDataReceive(IDataReceive mDataReceive) {
+        this.mDataReceive = mDataReceive;
+    }
+
+    public interface IBeanReceive {
+        void getBean();
+    }
+
+    public interface IDataReceive {
+        void getData(String data);
+    }
+
+    public void setListReceive(IListReceive mListReceive) {
+        this.mListReceive = mListReceive;
+    }
+
+    public interface IListReceive {
+        void getList(List lists);
+    }
+}

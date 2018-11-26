@@ -1,0 +1,4 @@
+package com.baogang.bycx.event;
+
+public class StopLocationEvent {
+}

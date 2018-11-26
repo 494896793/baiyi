@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/default_padding">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_lnr"
+        android:layout_marginRight="@dimen/default_margin_lnr"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_start_time"
+            style="@style/TextView_Subtitle_Black"
+            android:text="00:00" />
+
+        <TextView
+            style="@style/TextView_Subtitle_Black"
+            android:text="|"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_end_time"
+            style="@style/TextView_Subtitle_Black"
+            android:text="24:00"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <View
+        style="@style/Divide_Vertical_Full"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_margin_lnr"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextView_Subtitle_Black"
+                android:text="@string/charging_detail_consumption_amount" />
+
+            <TextView
+                android:id="@+id/tv_consumption_amount"
+                style="@style/TextView_Subtitle_Black"
+                android:text="2.45度" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                style="@style/TextView_Subtitle_Black"
+                android:text="@string/charging_detail_electricity_fee" />
+
+            <TextView
+                android:id="@+id/tv_electricity_fee"
+                style="@style/TextView_Subtitle_Black"
+                android:text="￥2.77" />
+
+            <TextView
+                android:id="@+id/tv_kilowatt_hour_fee"
+                style="@style/TextView_Subtitle_Gray"
+                android:text="（0.9000元/度）" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                style="@style/TextView_Subtitle_Black"
+                android:text="@string/charging_detail_service_fee" />
+
+            <TextView
+                android:id="@+id/tv_service_fee"
+                style="@style/TextView_Subtitle_Black"
+                android:text="￥2.77" />
+
+            <TextView
+                android:id="@+id/tv_kilowatt_hour_service_fee"
+                style="@style/TextView_Subtitle_Gray"
+                android:text="（0.9000元/度）" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

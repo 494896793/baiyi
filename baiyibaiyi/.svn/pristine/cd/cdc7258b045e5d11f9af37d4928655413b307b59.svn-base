@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="@dimen/dimen_290dp"
+    android:paddingTop="@dimen/dimen_15dp"
+    android:paddingLeft="@dimen/dimen_15dp"
+    android:background="@drawable/sy_12"
+    android:paddingRight="@dimen/dimen_15dp"
+    android:layout_height="@dimen/dimen_125dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/icon"
+            android:src="@mipmap/location_name_icon"
+            android:layout_width="@dimen/dimen_16dp"
+            android:layout_height="@dimen/dimen_19dp" />
+        <TextView
+            android:id="@+id/location_name"
+            android:layout_toRightOf="@id/icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_8dp"
+            android:textSize="@dimen/dimen_18sp"
+            android:textColor="@color/white"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/near_tx"
+            android:layout_marginLeft="@dimen/dimen_9dp"
+            android:layout_centerVertical="true"
+            android:text="离我最近"
+            android:background="@drawable/tx_radio"
+            android:textColor="@color/main_tx_color"
+            android:paddingLeft="@dimen/dimen_6dp"
+            android:paddingRight="@dimen/dimen_6dp"
+            android:paddingTop="@dimen/dimen_1dp"
+            android:paddingBottom="@dimen/dimen_1dp"
+            android:layout_toRightOf="@id/location_name"
+            android:textSize="@dimen/dimen_12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/distance_tx"
+            android:textColor="@color/main_info_color"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:textSize="@dimen/dimen_13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/location_tx"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:textColor="@color/main_info_color"
+        android:text=""
+        android:textSize="@dimen/dimen_14sp"
+        android:layout_width="@dimen/dimen_260dp"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/car_linear"
+            android:gravity="center"
+            android:background="@drawable/main_bt_drawable"
+            android:layout_width="@dimen/dimen_140dp"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/dimen_32dp">
+            <TextView
+                android:id="@+id/carnum_tx"
+                android:gravity="top"
+                android:textStyle="bold"
+                android:text=""
+                android:textColor="@color/main_background"
+                android:textSize="@dimen/dimen_21sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:textColor="@color/main_background"
+                android:text="辆可用车辆"
+                android:textSize="@dimen/dimen_15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/daohang_re"
+            android:layout_marginLeft="@dimen/dimen_9dp"
+            android:gravity="center"
+            android:background="@drawable/tx_radio2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_32dp">
+            <ImageView
+                android:id="@+id/dh_icon"
+                android:gravity="top"
+                android:src="@mipmap/sy_13"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                android:layout_toRightOf="@id/dh_icon"
+                android:textColor="@color/main_tx_color"
+                android:text="导航前往"
+                android:textSize="@dimen/dimen_15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

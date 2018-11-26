@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">奇速共享</string>
+    <string name="text_default">--</string>
+    <string name="que_and_return" />
+    <string name="action_map">地图模式</string>
+    <string name="action_scan">扫一扫</string>
+    <string name="request_wrong">加载失败</string>
+    <string name="action_radar">雷达找车</string>
+    <string name="action_shake">摇一摇</string>
+    <string name="action_card">我的银行卡</string>
+    <string name="action_settings">设置</string>
+    <string name="action_login">登录</string>
+    <string name="order_txt">预订</string>
+
+    <string name="user_title">个人中心</string>
+    <string name="charging_detail_terminal_no">终端编号:</string>
+    <string name="charging_detail_charging_duration">充电时长</string>
+    <string name="charging_detail_consumption_amount">用电量：</string>
+    <string name="charging_detail_service_fee">服务费：</string>
+    <string name="device_detail_charge_detail">收费详情</string>
+    <string name="device_detail_charging">立即充电</string>
+    <string name="charging_record_charging_duration">充电时长：</string>
+    <string name="charging_record_payment_amount">支付金额：</string>
+    <string name="charging_record_actual_amount">实付金额：</string>
+    <string name="charging_record_return_amount">剩余金额：</string>
+    <string name="charging_record_title">充电记录</string>
+    <string name="charging_record_charging_amount">充电电量：</string>
+    <string name="charging_detail_payment_amount">支付金额</string>
+    <string name="charging_detail_charging_amount">充电电量</string>
+    <string name="charging_detail_charging_time">充电时间</string>
+    <string name="charging_detail_start_time">开始时间：</string>
+    <string name="charging_detail_end_time">结束时间：</string>
+    <string name="charging_detail_charge_standard">各时段充电详情/收费标准</string>
+    <string name="charging_detail_charging_detail">充电详情</string>
+    <string name="dialog_prompt_not_insert_gun">请插入充电枪后点击确定</string>
+    <string name="toast_prompt_scan_failed">扫描失败</string>
+    <string name="toast_D107_failed">终端序列号不存在，请重新扫描或手动输入</string>
+    <string name="toast_permission_camera">摄像头访问受限，请在权限设置中打开该权限</string>
+    <string name="toast_network_interrupt">网络异常，请检查您的网络连接</string>
+    <string name="toast_network_server_outage">服务器繁忙，请稍后再试</string>
+    <string name="parking_txt">停车</string>
+    <string name="service_txt">服务</string>
+    <string name="over">完成</string>
+    <string name="register_txt">注册</string>
+    <string name="up_photo_txt">上传资料</string>
+    <string name="up_photo">上传</string>
+    <string name="pwd_forget_txt">忘记密码?</string>
+    <string name="grallery_photo_txt">本地相册</string>
+    <string name="camera_photo_txt">相机拍照</string>
+    <string name="scan_text">请将充电桩二维码置于方框内</string>
+    <string name="cancel_order">取消预订</string>
+    <string name="control_car_connect">连接车辆</string>
+    <string name="control_car_open">打开车门</string>
+    <string name="control_car_close">关闭车门</string>
+    <string name="return_car">归还车辆</string>
+    <string name="control_car_cancel_order">取消预约</string>
+    <string name="order_history">预订历史</string>
+    <string name="recharge">充值</string>
+    <string name="server_phone">客服电话</string>
+    <string name="contact_server">联系客服</string>
+    <string name="server">客服</string>
+    <string name="message_alert">消息提醒</string>
+    <string name="common">新闻动态</string>
+    <string name="account">检查新版本</string>
+    <string name="splash_text">佰壹出行</string>
+    <string name="about">关于佰壹出行</string>
+    <string name="exit">退出</string>
+    <string name="tips_user_name">姓名</string>
+    <string name="tips_user_sex">性别</string>
+    <string name="user_sex_man">男</string>
+    <string name="user_sex_female">女</string>
+    <string name="user_person_id">身份证号</string>
+    <string name="dis_user_driver_id">驾驶证</string>
+    <string name="radar_scan_car">按住雷达按钮扫描附近车辆</string>
+    <string name="titlebar_register">注册页面</string>
+    <string name="titlebar_register_back">返回</string>
+
+    <string name="coupons_list">优惠券列表</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="device_detail_title">终端详情</string>
+    <string name="toast_A103">注册成功,正在为您自动登录</string>
+    <string name="station_info_phone">400-7569999</string>
+    <string name="station_info_open_time">开放时间：</string>
+    <string name="station_info_detail">详情</string>
+    <string name="station_info_comment">评论</string>
+    <string name="station_info_parking_fee">停车费：</string>
+    <string name="station_info_parking">车位</string>
+    <string name="dialog_map_exit_navi">确认退出导航？</string>
+    <string name="station_info_no">编&#160;&#160;&#160;&#160;号：</string>
+    <string name="station_info_SOC">(SOC:</string>
+    <string name="dialog_loading">正在加载中...</string>
+    <string name="station_list_title">桩点列表</string>
+    <string name="station_map_title">桩点地图</string>
+    <string name="toast_app_uninstall_baidu">请安装百度地图后重试</string>
+    <string name="toast_permission_location">定位失败，请在应用设置中打开定位权限</string>
+    <string name="toast_map_location_failed">定位失败，</string>
+    <string name="toast_map_regeocode_no_data">很抱歉，无法获取该地址信息</string>
+    <string name="toast_A104">验证码已发送</string>
+    <string name="toast_A105">重置密码成功</string>
+    <string name="toast_A109">修改头像成功</string>
+    <string name="toast_B101">修改昵称成功</string>
+    <string name="toast_B103">修改密码成功</string>
+    <string name="toast_B104">添加车辆信息成功</string>
+    <string name="toast_B105">分享充电桩成功</string>
+    <string name="toast_B106">提交桩主信息成功</string>
+    <string name="toast_B108">删除车辆信息成功</string>
+    <string name="toast_D104">收藏成功</string>
+    <string name="toast_D106">取消收藏成功</string>
+    <string name="toast_prompt_login">请先登录</string>
+    <string name="station_info_charging_fee">当前电费：</string>
+    <string name="station_info_service_fee">服务费：</string>
+    <string name="station_info_start_navi">导航</string>
+    <string name="station_info_amap">高德地图</string>
+    <string name="station_info_baidu">百度地图</string>
+    <string name="dialog_D101_no_data">附近没有符合条件的充电桩</string>
+    <string name="station_map_tips">图标内数字表示该站点空闲充电桩数量</string>
+    <string name="finish_charging_prompt_2">汽油，</string>
+    <string name="finish_charging_prompt_3">二氧化碳</string>
+    <string name="finish_charging_share_btn">晒一晒</string>
+    <string name="comment_success">评论成功！</string>
+    <string name="comment_hint">亲，分享一下充电过程中的感受吧</string>
+    <string name="finish_charging_charging_fee">电费：</string>
+    <string name="finish_charging_service_fee">服务费：</string>
+    <string name="finish_charging_prompt_1">感谢您！本次充电又为地球节省了</string>
+    <string name="comment_empty">亲，你还没输入评论内容呢！</string>
+    <string name="finish_charging_terminal_no">终端编号：</string>
+    <string name="comment_title">评价</string>
+    <string name="dialog_prompt_stop_charge">是否确认停止充电？</string>
+    <string name="connection_without_insert_prompt">连接失败，请插入充电枪后重试！</string>
+    <string name="connection_without_insert">确认插枪</string>
+    <string name="connection_failure_prompt">真遗憾！未获取到充电桩信息...</string>
+    <string name="connection_reconnection">重新连接</string>
+    <string name="dialog_prompt_cancel_charge">确定要取消充电吗？（取消后退款会退回到您的支付账户）</string>
+    <string name="connection_title">正在连接</string>
+    <string name="connection_failure">连接失败</string>
+    <string name="charging_detail_electricity_fee">电&#160;&#160;&#160;&#160;费：</string>
+    <string name="toast_device_no_is_null">请输入终端序列号</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check_member">会员认证</string>
+    <string name="order_special_line_title">预约专线</string>
+    <string name="tips_chose_sets">选择席位</string>
+    <string name="cancel_return_car">取消还车</string>
+    <string name="person_info">个人信息</string>
+    <string name="order_car">约车</string>
+    <string name="make_money">周边</string>
+    <string name="mall">商城</string>
+    <string name="mine">我</string>
+    <string name="unlogin_name">登录/注册</string>
+    <string name="mine_wallet">我的钱包</string>
+    <string name="mine_car_orders">租车订单</string>
+    <string name="mine_mall_orders">商城订单</string>
+    <string name="mine_order_car_help">租赁帮助</string>
+    <string name="mine_settings">设置</string>
+    <string name="mine_share_to_friends">分享给朋友</string>
+    <string name="mine_log_out">退出</string>
+    <string name="money_tag">￥</string>
+    <string name="title_activity_enterprise_user">EnterpriseUserActivity</string>
+    <string name="hint_input_user_name">姓名</string>
+    <string name="hint_input_person_id">身份证</string>
+    <string name="tv_input_driver_photo">请上传驾驶证照片</string>
+    <string name="title_cur_order_detail">支付</string>
+
+    <string name="coupons">优惠券</string>
+    <string name="integration">积分</string>
+    <string name="replace_admin">权限移交</string>
+    <string name="buniness_address">公司地址</string>
+    <string name="buniness_phone">公司电话</string>
+    <string name="buniness_info">公司信息</string>
+    <string name="balance">余额:</string>
+    <string name="user_car_number">用车人</string>
+    <string name="pending_user">待审核</string>
+    <string name="hint_input_old_pwd">原密码</string>
+    <string name="tips_old_pwd">密码</string>
+    <string name="hint_input_new_pwd">新密码</string>
+    <string name="tips_new_pwd">新密码</string>
+    <string name="hint_input_confirm_pwd">确认新密码</string>
+    <string name="tips_confirm_pwd">确认密码</string>
+    <string name="tips_order_car_reason">用车事由</string>
+    <string name="hint_order_car_reason">出差</string>
+    <string name="tips_create_enterprise">注册新企业</string>
+    <string name="tips_user_register_enterprise">登记新企业</string>
+    <string name="tips_user_manager_enterprise">管理企业</string>
+    <string name="tips_user_show_enterprise">企业信息</string>
+
+
+    <!--微信 支付-->
+    <string name="app_back">返回</string>
+    <string name="app_ok">确定</string>
+    <string name="app_cancel">取消</string>
+    <string name="app_tips_cancel">稍候再说</string>
+    <string name="app_tips_check">审核认证</string>
+    <string name="app_tips_disposit">押金充值</string>
+    <string name="app_continue">继续</string>
+    <string name="app_tip">提示</string>
+    <string name="app_send">发送</string>
+    <string name="app_set">设置</string>
+    <string name="app_save">保存</string>
+    <string name="app_delete">删除</string>
+    <string name="app_nextstep">下一步</string>
+    <string name="app_prevstep">上一步</string>
+    <string name="app_finish">完成</string>
+    <string name="app_find">查找</string>
+    <string name="app_edit">编辑</string>
+
+    <!-- applet -->
+    <string name="applet_secimg_title">填写验证码</string>
+    <string name="applet_secimg_change">换一张图片</string>
+    <string name="applet_seccode_tip">验证码不能为空</string>
+    <string name="applet_seccode_fail_tip">验证码错误，请重新输入</string>
+
+    <!-- verify -->
+    <string name="verify_password_null_tip">密码不能为空，请输入密码</string>
+
+    <!-- format -->
+    <string name="fmt_date">M月d日</string>
+    <string name="fmt_longdate">yyyy年M月d日</string>
+    <string name="fmt_datetime" formatted="false">M月d日 %skk:mm</string>
+    <string name="fmt_patime">kk:mm</string>
+    <string name="fmt_longtime" formatted="false">yyyy年M月d日 %skk:mm</string>
+    <string name="fmt_in60min" formatted="false">%d分钟前</string>
+    <string name="fmt_justnow">1分钟内</string>
+    <string name="fmt_dawn">凌晨</string>
+    <string name="fmt_morning">早上</string>
+    <string name="fmt_noon">中午</string>
+    <string name="fmt_afternoon">下午</string>
+    <string name="fmt_evening">晚上</string>
+    <string name="fmt_pre_yesterday">昨天</string>
+    <string name="fmt_iap_err" formatted="false">网络连接不可用，请稍候重试</string>
+
+    <string name="app_share">分享</string>
+
+    <string name="enter">这是SDK_Sample的入口界面</string>
+    <string name="reg">将该app注册到微信</string>
+    <string name="goto_send">跳转到发消息界面</string>
+    <string name="goto_pay">跳转到支付界面</string>
+    <string name="goto_fav">跳转到收藏界面</string>
+    <string name="launch_wx">启动微信</string>
+    <string name="check_timeline_supported">检查是否支持发送到朋友圈</string>
+
+    <string name="send_to_wx_title">发送到微信</string>
+    <string name="get_from_wx_title">从微信接收</string>
+    <string name="show_from_wx_title">显示微信请求的消息</string>
+    <string name="pay_by_wx_title">通过微信支付</string>
+    <string name="prepay_id_wx_text">prepayid</string>
+    <string name="invoke_ip">invoke_ip</string>
+    <string name="prepay_id_value">wx20141126110244e3e4bc4e580111072793</string>
+
+
+    <string name="errcode_success">发送成功</string>
+    <string name="errcode_cancel">发送取消</string>
+    <string name="errcode_deny">发送被拒绝</string>
+    <string name="errcode_unknown">发送返回</string>
+    <string name="charging_share">分享给朋友</string>
+    <string name="sina">新浪微博</string>
+    <string name="wechat">微信好友</string>
+    <string name="wxcircle">朋友圈</string>
+    <string name="qq">QQ</string>
+    <string name="qzone">QQ空间</string>
+
+    <string name="launch_from_wx">Launch From Weixin</string>
+
+    <!-- WXMediaMessage -->
+    <string name="input_openid">输入openid</string>
+    <string name="input_scope">输入scope</string>
+
+    <string name="send">发送到微信</string>
+    <string name="receive">从微信接收</string>
+
+    <string name="is_timeline">是否分享到朋友圈</string>
+    <string name="send_text">发送文本</string>
+    <string name="send_text_default">这段文字发送自微信SDK示例程序</string>
+
+    <string name="send_img">发送图片</string>
+    <string-array name="send_img_item">
+        <item>发送图片的二进制数据</item>
+        <item>发送图片的本地路径</item>
+        <item>发送图片的URL</item>
+    </string-array>
+    <string name="send_img_file_not_exist">文件不存在</string>
+
+    <string name="send_file">发送文件</string>
+    <string-array name="send_file_item">
+        <item>发送文件的二进制数据</item>
+        <item>发送文件的本地路径</item>
+    </string-array>
+    <string name="send_file_file_not_exist">文件不存在</string>
+
+    <string name="send_pic">发送照片</string>
+
+    <string name="send_music">发送音乐</string>
+    <string-array name="send_music_item">
+        <item>发送音乐url</item>
+        <item>发送低带宽音乐url</item>
+    </string-array>
+
+    <string name="send_video">发送视频</string>
+    <string-array name="send_video_item">
+        <item>发送视频url</item>
+        <item>发送低带宽视频url</item>
+    </string-array>
+
+    <string name="send_webpage">发送网页</string>
+    <string-array name="send_webpage_item">
+        <item>发送网页url</item>
+    </string-array>
+
+    <string name="send_appdata">发送app消息</string>
+    <string-array name="send_appdata_item">
+        <item>发送app文件本地路径</item>
+        <item>发送app二进制数据</item>
+        <item>发送无附件的app</item>
+    </string-array>
+
+    <string name="send_emoji">发送表情消息</string>
+    <string-array name="send_emoji_item">
+        <item>发送表情本地路径</item>
+        <item>发送表情二进制数据</item>
+    </string-array>
+
+    <string-array name="send_emoji_item_format">
+        <item>发送GIF图片</item>
+        <item>发送非GIF图片</item>
+    </string-array>
+
+    <!-- GetFromWXActivity -->
+    <string name="share_text_to_weixin">回应文本到微信</string>
+    <string name="share_text_default">这段文字回应自微信SDK示例程序</string>
+    <string name="share_url_to_weixin">回应URL到微信</string>
+    <string name="share_pic_to_weixin">回应图片到微信</string>
+    <string name="share_music_to_weixin">回应音乐到微信</string>
+    <string name="share_video_to_weixin">回应视频到微信</string>
+    <string name="share_appdata_to_weixin">回应app消息到微信</string>
+
+    <string name="register_as_weixin_app_sender">注册微信事件发送器</string>
+    <string name="get_token_from_weixin">获取微信访问Token</string>
+    <string name="unregister_from_weixin">从微信反注册</string>
+
+    <string name="show_from_wx_tip">这个界面用于显示微信向第三方app请求显示的信息</string>
+
+    <string name="unifiedorder_v3_wx">APP支付生成预支付订单</string>
+    <string name="pay__pre_by_wxap">生成APP微信支付参数</string>
+
+    <string name="pay_by_wxap">调起微信支付</string>
+    <string name="check_pay">检查微信版本是否支持支付</string>
+    <string name="input_package_value">输入package value</string>
+    <string name="input_sign">输入sign</string>
+    <string name="getting_access_token">正在获取access token...</string>
+    <string name="get_access_token_succ">获取access token成功</string>
+    <string name="get_access_token_fail" formatted="false">获取access token失败，原因%s</string>
+    <string name="getting_prepayid">正在获取预支付订单...</string>
+    <string name="paying">支付中</string>
+    <string name="get_prepayid_succ">获取prepayid成功</string>
+    <string name="get_prepayid_fail" formatted="false">获取prepayid失败，原因%s</string>
+
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+
+    <!-- BC-test -->
+    <string name="bc_pay" formatted="false">微信支付</string>
+    <string name="bc_pay_wx_title">微信支付</string>
+    <string name="bc_pay_goto_wx">打开微信支付</string>
+
+
+    <string name="preference_default_tts_role">xiaoyan</string>
+    <string name="preference_key_tts_speed">tts_speed</string>
+    <string name="preference_title_tts_speed">语速</string>
+    <string name="preference_default_tts_speed">50</string>
+    <string name="preference_dialog_title_tts_speed">选择语速</string>
+    <string name="preference_key_tts_volume">tts_volume</string>
+    <string name="preference_title_tts_volume">音量</string>
+    <string name="preference_default_tts_volume">50</string>
+    <string name="preference_dialog_title_tts_volume">选择音量</string>
+    <string name="preference_key_tts_pitch">tts_pitch</string>
+    <string name="preference_title_tts_pitch">语调</string>
+    <string name="preference_default_tts_pitch">50</string>
+    <string name="intell_bd_title">智能播报</string>
+    <string name="xiex_string">行之有道汽车服务股份有限公司</string>
+    <string name="tv_downloading">正在下载...</string>
+    <string name="tv_find_new_version">发现新版本</string>
+    <string name="tv_find_none_new_version">已是最新版本</string>
+    <string name="btn_send_comments">提交评价</string>
+    <string name="et_please_comments">给个好评呗！</string>
+    <string name="tv_satisfaction_1">非常不满意</string>
+    <string name="tv_satisfaction_2">不满意</string>
+    <string name="tv_satisfaction_3">一般</string>
+    <string name="tv_satisfaction_4">满意</string>
+    <string name="tv_satisfaction_5">超级满意</string>
+
+    <!-- 下拉刷新  end -->
+    <string name="drop_down_list_header_default_text">Click to refresh&#8230;</string>
+    <string name="drop_down_list_header_pull_text">Drop Down to refresh&#8230;</string>
+    <string name="drop_down_list_header_release_text">Release to refresh&#8230;</string>
+    <string name="drop_down_list_header_loading_text">加载中&#8230;</string>
+    <string name="drop_down_list_footer_default_text"></string>
+    <string name="drop_down_list_footer_loading_text">加载中&#8230;</string>
+    <string name="drop_down_list_footer_no_more_text">无更多信息</string>
+    <string name="iv_back_str">返回</string>
+    <string name="tv_time_lease_str">分时租赁</string>
+    <string name="tv_start_car_str">启动</string>
+    <string name="tv_close_door_str">关门</string>
+    <string name="tv_park_str">停车场</string>
+    <string name="tv_charge_plie_str">充电桩</string>
+    <string name="tv_open_door_str">开门</string>
+    <string name="tv_return_car_str">还车</string>
+    <string name="tv_pay_finished_str">支付成功！</string>
+
+    <string name="cancel">取消</string>
+    <string name="login">登录</string>
+    <string name="login_phone">请输入手机号</string>
+    <string name="no_account">还没有账号?</string>
+    <string name="register_now">立即注册</string>
+
+    <string name="net_wrong">糟糕，网络连接失败!</string>
+
+
+</resources>

@@ -1,0 +1,76 @@
+package com.baogang.bycx.view
+
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.view.Gravity
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import com.baogang.bycx.R
+import com.baogang.bycx.callback.LongRentComboListResp
+import com.baogang.bycx.callback.SystemConfigResp
+import com.baogang.bycx.constant.Config
+import com.baogang.bycx.utils.CacheUtils
+import com.baogang.bycx.utils.StringUtils
+
+/**
+ * Created by wujiancheng on 2018/01/06.
+ * 春节活动
+ */
+class SpringFestivalPPW {
+    fun showSpringFestivalPPW(activity: Activity, festivalShareVo: LongRentComboListResp.FestivalShareVo?) {
+
+        val screenWidth = activity.resources.displayMetrics.widthPixels
+
+        val popupWindowWrap = PopupWindowWrap(activity)
+        popupWindowWrap
+                .setContentView(R.layout.ppw_spring_festival) { contentView ->
+                    val ivHeadBg: ImageView = contentView.findViewById(R.id.ivHeadBg)
+                    val ivHeadBgParams = ivHeadBg.layoutParams
+                    //宽为屏幕宽的84%
+                    val ivHeadBgWidth = screenWidth.times(0.84).toInt()
+                    ivHeadBgParams.width = ivHeadBgWidth
+                    ivHeadBg.layoutParams = ivHeadBgParams
+
+                    val llytBg: LinearLayout = contentView.findViewById(R.id.llytBg)
+                    val llytBgParams = llytBg.layoutParams
+                    //宽为屏幕宽的84%
+                    val llytBgWidth = screenWidth.times(0.84).toInt()
+                    llytBgParams.width = llytBgWidth
+                    llytBg.layoutParams = llytBgParams
+
+                    val tvTip: TextView = contentView.findViewById(R.id.tvTip)
+                    tvTip.text = Config.SPRING_FESTIVAL_TIP
+
+                    //分享图标
+                    val shareView: ShareView = contentView.findViewById(R.id.shareView)
+                    shareView.setWeixinFriendIcon(R.mipmap.share_friend_red)
+                    shareView.setWeixinTimeLineIcon(R.mipmap.share_time_line_red)
+                    shareView.setQQFriendIcon(R.mipmap.share_qq_red)
+                    val shareUrl = festivalShareVo?.shareUrl ?: ""
+                    if (!StringUtils.isEmpty(shareUrl)) {
+                        shareView.setData(shareUrl, festivalShareVo?.title ?: "", festivalShareVo?.content ?: "")
+                    }
+
+                    //联系客服
+                    val tvConnectKeFu: TextView = contentView.findViewById(R.id.tvConnectKeFu)
+                    tvConnectKeFu.setOnClickListener {
+                        val systemParams: SystemConfigResp? = CacheUtils.getIn().system_Info
+                        val keFuTel = systemParams?.kfphone
+                        if (!StringUtils.isEmpty(keFuTel)) {
+                            val uri = Uri.parse("tel:" + keFuTel)
+                            val intent = Intent(Intent.ACTION_DIAL, uri)
+                            activity.startActivity(intent)
+                        }
+                    }
+
+                    val llytSpringFestivalContainer: LinearLayout = contentView.findViewById(R.id.llytSpringFestivalContainer)
+                    llytSpringFestivalContainer.setOnClickListener { popupWindowWrap.dismiss() }
+                }.setAnim(R.style.AnimBottom)
+        popupWindowWrap.setOnDismissListener {
+            popupWindowWrap.dismiss()
+        }
+        popupWindowWrap.showAtLocation(activity.window.decorView.findViewById(android.R.id.content), Gravity.CENTER, 0, 0)
+    }
+}

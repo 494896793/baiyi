@@ -1,0 +1,16 @@
+package www.qisu666.com.request;
+
+/**
+ * 取消短租预约套餐
+ */
+public class LongRentCancelOrderRequest extends RequestBaseParams {
+    private String carRentOrderNumber;//短租订单号
+
+    public String getCarRentOrderNumber() {
+        return carRentOrderNumber;
+    }
+
+    public void setCarRentOrderNumber(String carRentOrderNumber) {
+        this.carRentOrderNumber = carRentOrderNumber;
+    }
+}

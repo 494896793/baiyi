@@ -1,0 +1,95 @@
+package com.baogang.bycx.callback;
+
+public class AppUpdateResp {
+
+    private String category;
+    private String describe;
+    private String name;
+    private int versionRecord;
+    private String downloadUrl;
+    private int id;
+    private String isForce;
+    private String createTime;
+    private String versionNo;
+    private String size;
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getVersionRecord() {
+        return versionRecord;
+    }
+
+    public void setVersionRecord(int versionRecord) {
+        this.versionRecord = versionRecord;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getIsForce() {
+        return isForce;
+    }
+
+    public void setIsForce(String isForce) {
+        this.isForce = isForce;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getVersionNo() {
+        return versionNo;
+    }
+
+    public void setVersionNo(String versionNo) {
+        this.versionNo = versionNo;
+    }
+}

@@ -1,0 +1,40 @@
+package www.qisu666.com.utils;
+
+/**
+ * Created by Administrator on 2016/6/14.
+ */
+public class MapUtils {
+
+    public static final double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+    //解密成为火星坐标
+    public static String bd_decrypt(double bd_lat, double bd_lon)
+    {
+        double x = bd_lon - 0.0065, y = bd_lat - 0.006;
+        double z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
+        double theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
+        double gg_lon = z * Math.cos(theta);
+        double gg_lat = z * Math.sin(theta);
+        return gg_lat+","+gg_lon;
+    }
+    //加密成为摩卡托坐标
+    public static String bd_encrypt(double gg_lat, double gg_lon)
+    {
+        double x = gg_lon, y = gg_lat;
+        double z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
+        double theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
+        double bd_lon = z * Math.cos(theta) + 0.0065;
+        double bd_lat = z * Math.sin(theta) + 0.006;
+        return bd_lat+","+bd_lon;
+    }
+
+    public static double[] gaoDeToBaidu(double gd_lon, double gd_lat) {
+        double[] bd_lat_lon = new double[2];
+        double x = gd_lon, y = gd_lat;
+        double z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
+        double theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
+        bd_lat_lon[0] = z * Math.cos(theta) + 0.0065;
+        bd_lat_lon[1] = z * Math.sin(theta) + 0.006;
+        return bd_lat_lon;
+    }
+
+}

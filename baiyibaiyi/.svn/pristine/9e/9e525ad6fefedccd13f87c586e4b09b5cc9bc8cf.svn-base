@@ -1,0 +1,107 @@
+package com.baogang.bycx.adapter
+
+import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import com.baogang.bycx.R
+import com.baogang.bycx.callback.PledgeHistoryResp
+import com.baogang.bycx.utils.DateUtils
+
+/**
+ * Created by wujiancheng on 2017/10/21.
+ * 保证金明细
+ */
+class PledgeHistoryAdapter(val context: Context, val data: List<PledgeHistoryResp>) : RecyclerView.Adapter<PledgeHistoryAdapter.PledgeHistoryViewHolder>() {
+    private var onItemClickListener: OnItemClickListener? = null
+    override fun onBindViewHolder(holder: PledgeHistoryViewHolder?, position: Int) {
+        if (position in data.indices) {
+            val itemData = data[position]
+            holder?.tvPledgeTime?.text = DateUtils.timestampToString(itemData.dealTime.toString(), "yyyy-MM-dd HH:mm:ss")
+            when (itemData.type) {
+                "charge" -> {
+                    holder?.tvPledgeStatus?.setTextColor(ContextCompat.getColor(context, R.color.white))
+                    holder?.tvPledgeStatus?.text = "缴纳"
+                    holder?.ivToDetail?.visibility = View.INVISIBLE
+                    holder?.tvPledgeMoney?.setTextColor(ContextCompat.getColor(context, R.color.warn_notice_color))
+                    holder?.tvPledgeMoney?.text = "+${(itemData.amount.div(100))}"
+                    holder?.tvPledgeMoney?.visibility = View.VISIBLE
+                }
+                "refund" -> {
+                    holder?.tvPledgeStatus?.setTextColor(ContextCompat.getColor(context, R.color.white))
+                    holder?.tvPledgeStatus?.text = "退还"
+                    holder?.ivToDetail?.visibility = View.VISIBLE
+                    holder?.tvPledgeMoney?.setTextColor(ContextCompat.getColor(context, R.color.warn_notice_color))
+                    holder?.tvPledgeMoney?.text = "-${(itemData.amount.div(100))}"
+
+                    when (itemData.status) {
+//                1申请退款中，2退款驳回，3退款完成,4取消退款，5退款中(客服审核完后的状态) 6退款失败(财务打款失败)
+                        "3" -> {
+                            holder?.tvPledgeStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+                            holder?.tvPledgeMoney?.visibility = View.VISIBLE
+                        }
+                        "5" -> {
+                            holder?.tvPledgeStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.color_blue_02b2e4))
+                            holder?.tvPledgeMoney?.visibility = View.GONE
+                        }
+                        else -> {
+                            holder?.tvPledgeStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+                            holder?.tvPledgeMoney?.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+            //            (charge:充值 refund:退款)
+            holder?.tvPledgeStatusDesc?.text = when (itemData.status) {
+//                1申请退款中，2退款驳回，3退款完成,4取消退款，5退款中(客服审核完后的状态) 6退款失败(财务打款失败)
+                "1" -> "(申请退款中)"
+                "2" -> "(退款驳回)"
+                "3" -> "(退款完成)"
+                "4" -> "(取消退款)"
+                "5" -> "(退款中)"
+                "6" -> "(退款失败)"
+                else -> ""
+            }
+
+            holder?.llytPledgeHistory?.setOnClickListener {
+                //退还才有详情
+                if ("refund" == itemData.type) {
+                    onItemClickListener?.onItemClick(position)
+                }
+            }
+        }
+    }
+
+
+    override fun getItemCount(): Int = data.size
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PledgeHistoryViewHolder {
+        val inflate = LayoutInflater.from(context)
+        return PledgeHistoryViewHolder(inflate.inflate(R.layout.listitem_pledge_history, parent, false))
+    }
+
+    class PledgeHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val llytPledgeHistory: LinearLayout = itemView.findViewById(R.id.llytPledgeHistory)
+        val tvPledgeTime: TextView = itemView.findViewById(R.id.tvPledgeTime)
+        val tvPledgeStatus: TextView = itemView.findViewById(R.id.tvPledgeStatus)
+        val tvPledgeStatusDesc: TextView = itemView.findViewById(R.id.tvPledgeStatusDesc)
+        val tvPledgeMoney: TextView = itemView.findViewById(R.id.tvPledgeMoney)
+        val ivToDetail: ImageView = itemView.findViewById(R.id.ivToDetail)
+        val viewDivideLine: View = itemView.findViewById(R.id.ivToDetail)
+
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.onItemClickListener = onItemClickListener
+    }
+}

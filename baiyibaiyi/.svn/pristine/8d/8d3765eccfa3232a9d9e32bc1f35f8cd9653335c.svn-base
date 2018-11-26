@@ -1,0 +1,413 @@
+package com.baogang.bycx.utils;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
+
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+public class FileUtil2 {
+    private static final String TAG = FileUtil2.class.getSimpleName();
+    public static final String IMG_TAKE_PIC_DIR = "baogny/img/camera";
+    //图片的缓存文件夹
+    public static final String IMG_CACHE_DIR = "baogny/img";
+    //glide缓存
+    public static final String IMG_GLIDE_CACHE_DIR = "baogny/img/cache";
+    //资质认证文件夹
+    public static final String IMG_VERIFY_DIR = "baogny/verify";
+    /**
+     * 需要知道当前SD卡的目录，Environment.getExternalStorageDierctory()
+     */
+    private String SDPATH;
+
+    public String getSDPATH() {
+        return SDPATH;
+    }
+
+    public FileUtil2() { // 目录名/sdcard
+        SDPATH = Environment.getExternalStorageDirectory() + File.separator;
+        File file = new File(SDPATH + "test.txt");
+        try {
+            boolean create = file.createNewFile();
+            if (create) {
+                file.delete();
+            } else {
+                SDPATH = "/mnt/sdcard" + File.separator;
+            }
+        } catch (Exception e) {
+            SDPATH = "/mnt/sdcard" + File.separator;
+            e.printStackTrace();
+        }
+    }
+
+
+    // 在sdcard卡上创建文件
+    public File createSDFile(String fileName) throws IOException {
+        File file = new File(SDPATH + fileName);
+        try {
+            file.createNewFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    // 在sd卡上创建目录
+    public File createSDDir(String dirName) {
+        File dir = new File(SDPATH + dirName);
+        try {
+
+            System.out.println("===isexist:" + SDPATH + dirName + ",exists:"
+                    + dir.exists() + ",mkdir:" + dir.mkdir());
+            // mkdir只能创建一级目录 ,mkdirs可以创建多级目录
+            // dir.mkdir();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dir;
+    }
+
+    // 判断sd卡上的文件夹是否存在
+    public boolean isFileExist(String fileName) {
+        File file = new File(SDPATH + fileName);
+        System.out.println("===isexist:" + SDPATH + fileName + ",exists:"
+                + file.exists());
+        return file.exists();
+    }
+
+    // 判断sd卡上的文件夹是否存在
+    public boolean Filedelete(String fileName) {
+        File file = new File(SDPATH + fileName);
+        return file.delete();
+    }
+
+    /**
+     * 将一个inputstream里面的数据写入SD卡中 第一个参数为目录名 第二个参数为文件名
+     */
+    public File write2SDFromInput(String path, String fileName,
+                                  InputStream inputstream) {
+        File file = null;
+        OutputStream output = null;
+        try {
+            createSDDir(path);
+            file = createSDFile(path + fileName);
+            output = new FileOutputStream(file);
+            // 4k为单位，每4K写一次
+            byte buffer[] = new byte[4 * 1024];
+            int temp = 0;
+            while ((temp = inputstream.read(buffer)) != -1) {
+                // 获取指定信,防止写入没用的信息
+                output.write(buffer, 0, temp);
+            }
+            output.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                output.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return file;
+    }
+
+    /**
+     * 将数据写入指定文件夹中的文件
+     *
+     * @param fileName 文件名
+     * @param content  数据
+     * @return 是否写入成功
+     */
+    public static boolean writeFile(String fileName, String content, String dir) {
+
+        if (Environment.getExternalStorageState()
+                .equals(Environment.MEDIA_MOUNTED)) {
+            String basePath = getSDBasePath();
+            InputStream is = null;
+            OutputStream os = null;
+            try {
+
+                String path = basePath + dir;
+                File pathFile = new File(path);
+                if (!pathFile.exists()) {
+                    pathFile.mkdirs();
+                }
+                File file = new File(path + fileName);
+                if (file.exists()) {
+                    file.delete();
+                }
+                file.createNewFile();
+
+                is = new ByteArrayInputStream(content.getBytes());
+                os = new FileOutputStream(file);
+                byte[] buffer = new byte[4 * 1024];
+                int temp;
+                while ((temp = is.read(buffer)) != -1) {
+                    os.write(buffer, 0, temp);
+                }
+                return true;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (is != null) {
+                        is.close();
+                    }
+                    if (os != null) {
+                        os.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
+    }
+
+    public static File saveBitmap(String fileName, String dir, Bitmap bitmap) {
+        if (Environment.getExternalStorageState()
+                .equals(Environment.MEDIA_MOUNTED)) {
+            String basePath = getSDBasePath();
+            OutputStream os = null;
+            try {
+
+                String path = basePath + dir;
+                File pathFile = new File(path);
+                if (!pathFile.exists()) {
+                    pathFile.mkdirs();
+                }
+                File file = new File(path + fileName);
+                if (file.exists()) {
+                    file.delete();
+                }
+                file.createNewFile();
+                os = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+                return file;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (os != null) {
+                        os.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 将bitmap保存到指定的文件目录中,先删除原来的file,在保持成新的file
+     *
+     * @param bitmap   要保存的bitmap
+     * @param filePath 保存路径
+     * @return 保存后的file
+     */
+    public static File saveBitmapToNew(Context context, Bitmap bitmap, String filePath) {
+
+        File file = new File(filePath);
+        File fileNew = null;
+        if (file.exists()) {
+            String fileNameNew = file.getName();
+            if (fileNameNew.contains(".jpg")) {
+                fileNameNew = fileNameNew.replace(".jpg", "0.jpg");
+            } else if (fileNameNew.contains(".png")) {
+                fileNameNew = fileNameNew.replace(".png", "0.png");
+            } else if (fileNameNew.contains(".jpeg")) {
+                fileNameNew = fileNameNew.replace(".jpeg", "0.jpeg");
+            }
+            File dir = new File(getSDBasePath() + File.separator + IMG_TAKE_PIC_DIR);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            fileNew = new File(dir + File.separator + fileNameNew);
+            if (!fileNew.exists()) {
+                try {
+                    fileNew.createNewFile();
+//                    file.delete();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (fileNew == null) {
+            return null;
+        }
+
+        try {
+            FileOutputStream fos = new FileOutputStream(fileNew);
+            BufferedOutputStream bos = new BufferedOutputStream(fos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            Log.i(TAG, "保存后的图片=" + bitmap.getByteCount());
+
+            bos.flush();
+            bos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+//          释放Bitmap
+            if (!bitmap.isRecycled()) {
+                bitmap.recycle();
+            }
+        }
+
+//        updateFileFromDatabase(context, file);
+        updateFileFromDatabase(context, fileNew);
+        return fileNew;
+    }
+
+    /**
+     * 从指定的文件夹中读取文件列表
+     *
+     * @param dir 文件夹
+     * @return 文件夹中的文件列表
+     */
+    public static List<Map<String, String>> readFilesInDir(String dir) {
+        List<Map<String, String>> listFiles = new LinkedList<>();
+        if (Environment.getExternalStorageState()
+                .equals(Environment.MEDIA_MOUNTED)) {
+            String basePath = getSDBasePath();
+            String path = basePath + dir;
+            File pathFile = new File(path);
+            File[] files = pathFile.listFiles();
+            if (files != null && files.length > 0) {
+                for (File file : files) {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("name", file.getName());
+                    map.put("path", file.getAbsolutePath());
+                    listFiles.add(0, map);
+                }
+            }
+        }
+        return listFiles;
+    }
+
+    /**
+     * 指定文件夹中的文件数量
+     *
+     * @param dir 指定的文件夹名称
+     * @return 文件数量
+     */
+    public static int getFilesCount(String dir) {
+        if (Environment.getExternalStorageState()
+                .equals(Environment.MEDIA_MOUNTED)) {
+            String basePath = getSDBasePath();
+            String path = basePath + dir;
+            File pathFile = new File(path);
+            File[] files = pathFile.listFiles();
+            if (files != null && files.length > 0) {
+                return files.length;
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * sd卡的根目录
+     *
+     * @return
+     */
+    private static String getSDBasePath() {
+        String basePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        return basePath;
+    }
+
+    /**
+     * 删除文件后更新数据库  通知媒体库更新文件夹
+     */
+    public static void updateFileFromDatabase(Context context, File file) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            String[] paths = new String[]{Environment.getExternalStorageDirectory().toString()};
+//            MediaScannerConnection.scanFile(context, paths, null, null);
+//            MediaScannerConnection.scanFile(context, new String[]{
+//                            file.getAbsolutePath()},
+//                    null, new MediaScannerConnection.OnScanCompletedListener() {
+//                        public void onScanCompleted(String path, Uri uri) {
+//                        }
+//                    });
+//        } else {
+//            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+//        }
+        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        Uri uri;
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            String packageName = context.getApplicationInfo().packageName;
+            String authority = packageName + ".fileProvider";
+            uri = FileProvider.getUriForFile(context.getApplicationContext(), authority, file);
+        } else {
+            uri = Uri.fromFile(file);
+        }
+        intent.setData(uri);
+        context.sendBroadcast(intent);
+    }
+
+    /**
+     * 获取文件URI
+     *
+     * @param context
+     * @param file
+     * @return 兼容7.0以上版本
+     */
+    public static Uri getFileUri(Context context, File file) {
+        Uri uri;
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            String packageName = context.getApplicationInfo().packageName;
+            String authority = packageName + ".fileProvider";
+            uri = FileProvider.getUriForFile(context.getApplicationContext(), authority, file);
+        } else {
+            uri = Uri.fromFile(file);
+        }
+        return uri;
+    }
+
+    /**
+     * 以时间为名称创建文件
+     *
+     * @return
+     */
+    public static File newFileInstance(String dirPath) {
+        String basePath = getSDBasePath();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault());
+        File dir = new File(basePath + File.separator + dirPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File file = new File(basePath + File.separator + dirPath + File.separator + sdf.format(new Date()) + ".jpg");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return file;
+    }
+}

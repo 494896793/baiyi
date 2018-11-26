@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlytSelectInsurance"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dimen_10dp"
+    android:background="@drawable/linear_shape"
+    android:orientation="vertical"
+    android:paddingLeft="15dp">
+
+    <RelativeLayout
+        android:id="@+id/llytInsuranceHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/tvInsuranceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="不计免赔"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_17sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="15sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tvInsuranceText"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:src="@mipmap/help_icon" />
+
+        <com.kyleduo.switchbutton.SwitchButton
+            android:id="@+id/sbCoupon"
+            style="@style/SwitchButtonStyleMD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:checked="true" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvInsuranceDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llytInsuranceHelp"
+        android:layout_marginRight="@dimen/dimen_15dp"
+        android:paddingBottom="18dp"
+        android:paddingTop="10dp"
+        android:text="--"
+        android:textColor="@color/main_info_color"
+        android:textSize="14sp" />
+
+</RelativeLayout>

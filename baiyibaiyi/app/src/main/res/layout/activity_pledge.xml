@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:background="@drawable/white_drawable"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_170dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_14dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="@dimen/dimen_17dp"
+                android:id="@+id/tvShouldPledge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应交总额¥500"
+                android:textColor="@color/main_info_color"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/ivPledgeHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:src="@mipmap/help_white_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_48dp"
+                android:id="@+id/tvPledge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¥0"
+                android:textColor="@color/warn_notice_color"
+                android:textSize="36sp" />
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dimen_14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已交保证金"
+                android:textColor="@color/notice_color"
+                android:textSize="@dimen/dimen_13sp" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvCommitPledge"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:background="@drawable/selector_primary_btn"
+        android:textColor="@color/main_background"
+        android:textSize="18sp"
+        android:text="交纳用车违章保证金" />
+
+    <TextView
+        android:id="@+id/tvReturnPledge"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/selector_primary_btn"
+        android:gravity="center"
+        android:text="退还用车违章保证金"
+        android:textColor="@color/main_background"
+        android:textSize="18sp" />
+</LinearLayout>

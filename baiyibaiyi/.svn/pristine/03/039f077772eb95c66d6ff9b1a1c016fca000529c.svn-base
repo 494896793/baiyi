@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent">
+
+    <RelativeLayout
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_dialog_alert">
+        <TextView
+            android:id="@+id/title"
+            android:background="@null"
+            android:paddingTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible"
+            android:text="111"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="111"
+            android:id="@+id/message"
+            android:layout_below="@+id/title"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:paddingBottom="15dp"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="5dp"/>
+
+        <View
+            android:layout_marginTop="@dimen/dimen_2dp"
+            android:visibility="gone"
+            android:id="@+id/divider"
+            android:layout_below="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/primary"/>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_4dp"
+            android:paddingBottom="@dimen/dimen_15dp"
+            android:id="@+id/btn_group"
+            android:orientation="horizontal"
+            android:layout_below="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/dimen_18dp"
+                android:background="@drawable/bt_white_radio"
+                android:id="@+id/cancel_btn"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen_7dp"
+                android:paddingBottom="@dimen/dimen_7dp"
+                android:textSize="@dimen/dimen_15sp"
+                android:text="取消"
+                android:textColor="@color/main_background"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:visibility="gone"
+                android:layout_width="0.3dp"
+                android:layout_height="match_parent"
+                android:background="@color/primary"/>
+
+            <TextView
+                android:layout_marginLeft="@dimen/dimen_25dp"
+                android:layout_marginRight="@dimen/dimen_18dp"
+                android:background="@drawable/bt_main_radio"
+                android:id="@+id/confirm_btn"
+                android:gravity="center"
+                android:paddingTop="@dimen/dimen_7dp"
+                android:paddingBottom="@dimen/dimen_7dp"
+                android:text="确定"
+                android:textSize="@dimen/dimen_15sp"
+                android:textColor="@color/confirm_passed"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

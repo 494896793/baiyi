@@ -1,0 +1,98 @@
+package com.baogang.bycx.adapter
+
+import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import com.baogang.bycx.R
+import com.baogang.bycx.bean.PersonCenterItem
+import com.baogang.bycx.utils.DensityUtil
+import com.baogang.bycx.utils.StringUtils
+import com.baogang.bycx.utils.logI
+
+/**
+ * Created by wujiancheng on 2017/12/9.
+ * 个人中心
+ */
+class PersonCenterAdapter(val context: Context, private val personItems: List<PersonCenterItem>) : RecyclerView.Adapter<PersonCenterAdapter.PersonCenterViewHolder>() {
+    private var onPersonCenterItemClickListener: OnPersonCenterItemClickListener? = null
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PersonCenterViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.listitem_person_center, parent, false)
+        return PersonCenterViewHolder(view)
+    }
+
+    override fun getItemCount(): Int = personItems.size
+
+    override fun onBindViewHolder(holder: PersonCenterViewHolder?, position: Int) {
+        when (position.div(3)) {
+        //第一行
+            0 -> {
+                setTopBottomHeight(holder, 30F, 20F)
+            }
+        //第二行
+            1 -> {
+                setTopBottomHeight(holder, 20F, 20F)
+            }
+        //第三行
+            2 -> {
+                setTopBottomHeight(holder, 20F, 40F)
+            }
+        }
+        val item = personItems[position]
+        holder?.ivPersonItemIcon?.setImageResource(item.itemIcon)
+        holder?.tvPersonItemName?.text = item.itemName
+        if (!StringUtils.isEmpty(item.itemDetail)) {
+            holder?.tvPersonItemDetail?.text = item.itemDetail
+            holder?.tvPersonItemDetail?.visibility = View.VISIBLE
+        } else {
+            holder?.tvPersonItemDetail?.visibility = View.GONE
+        }
+
+        holder?.ivRedPoint?.visibility = if (item.hasNewMessage) View.VISIBLE else View.INVISIBLE
+        holder?.rlytPersonItem?.setOnClickListener {
+            onPersonCenterItemClickListener?.onPersonCenterItemClick(position)
+        }
+        if (PersonCenterItem.Companion.my_company == item.itemKey) {
+            //认证企业
+            holder?.tvPersonItemDetail?.setTextColor(ContextCompat.getColor(context, R.color.color_blue_02b2e4))
+        } else {
+            holder?.tvPersonItemDetail?.setTextColor(ContextCompat.getColor(context, R.color.color_gray_949fa4))
+        }
+    }
+
+    private fun setTopBottomHeight(holder: PersonCenterViewHolder?, heightTopDp: Float, heightBottomDp: Float) {
+        val heightTopPx = DensityUtil().dp2px(context, heightTopDp)
+        val heightBottomPx = DensityUtil().dp2px(context, heightBottomDp)
+//        logI("heightTopPx=" + heightTopPx)
+//        logI("heightBottomPx=" + heightBottomPx)
+        val paramsTop = holder?.viewTopLine?.layoutParams
+        paramsTop?.height = heightTopPx
+        holder?.viewTopLine?.layoutParams = paramsTop
+        val paramsBottom = holder?.viewBottomLine?.layoutParams
+        paramsBottom?.height = heightBottomPx
+        holder?.viewBottomLine?.layoutParams = paramsBottom
+    }
+
+    class PersonCenterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val rlytPersonItem: RelativeLayout = itemView.findViewById(R.id.rlytPersonItem)
+        val ivPersonItemIcon: ImageView = itemView.findViewById(R.id.ivPersonItemIcon)
+        val tvPersonItemName: TextView = itemView.findViewById(R.id.tvPersonItemName)
+        val tvPersonItemDetail: TextView = itemView.findViewById(R.id.tvPersonItemDetail)
+        val ivRedPoint: ImageView = itemView.findViewById(R.id.ivRedPoint)
+        val viewTopLine: View = itemView.findViewById(R.id.viewTopLine)
+        val viewBottomLine: View = itemView.findViewById(R.id.viewBottomLine)
+    }
+
+    interface OnPersonCenterItemClickListener {
+        fun onPersonCenterItemClick(position: Int)
+    }
+
+    fun setOnPersonCenterItemClickListener(onPersonCenterItemClickListener: OnPersonCenterItemClickListener) {
+        this.onPersonCenterItemClickListener = onPersonCenterItemClickListener
+    }
+}

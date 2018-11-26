@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ratingbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_title_primary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/main_background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/content_bg">
+
+            <www.qisu666.com.widget.StarBar
+                android:id="@+id/starBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="10dp"
+                ratingbar:starCount="5"
+                ratingbar:starDistance="5dp"
+                ratingbar:starEmpty="@mipmap/ic_star_unselect"
+                ratingbar:starFill="@mipmap/ic_star_selected"
+                ratingbar:starSize="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="@dimen/dimen_15dp"
+                android:text="总分"
+                android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:text="5分"
+                android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_total_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingRight="@dimen/dimen_15dp"
+                android:text="5分"
+                android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+
+        <!--<View-->
+        <!--style="@style/Divide_Horizontal_Full"-->
+        <!--android:background="#E6E6E6" />-->
+
+        <EditText
+            android:id="@+id/et_comment_content"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/content_bg"
+            android:gravity="top"
+            android:hint="@string/comment_hint"
+            android:padding="@dimen/dimen_15dp"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_14dp" />
+
+        <TextView
+            android:id="@+id/tv_comment_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/content_bg"
+            android:gravity="right"
+            android:padding="5dp"
+            android:text="300"
+            android:textColor="@color/text_gray" />
+
+        <TextView
+            android:id="@+id/tv_referring"
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/selector_primary_btn_a"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="@color/main_background"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

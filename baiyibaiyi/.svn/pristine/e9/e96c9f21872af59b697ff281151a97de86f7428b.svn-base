@@ -1,0 +1,117 @@
+package com.baogang.bycx.sdk.stationMap;
+
+/**
+ * 717219917@qq.com ${DATA} 17:44.
+ */
+
+import com.alibaba.fastjson.annotation.JSONField;
+
+import org.xutils.db.annotation.Column;
+import org.xutils.db.annotation.Table;
+
+//新写的桩点地图 的单个item 类
+@Table(name = "StationLocation")
+public class StationLocation {
+
+
+//    {"charge_distance":695.5979,"charge_station_type":"2","latitude":"31.916513","longitude":"118.665948","pile_fast_num_free":"0",
+// "pile_slow_num_free":"0","station_id":471,"total_pile_count":"1"}
+
+    @Column(name = "stationId",isId = true)
+    @JSONField(name="stationId")
+    public String stationId;               //桩子id
+
+    @Column(name="charge_distance")
+    @JSONField(name="charge_distance")
+    public  double  charge_distance;       //与当前的距离
+
+
+    @Column(name="chargeStationType")
+    @JSONField(name="chargeStationType")
+    public String chargeStationType;     //充电类型    1.快充  2.慢冲  3.快慢充
+
+    @Column(name="latitude")
+    @JSONField(name="latitude")
+    public String latitude;                //经纬度
+
+    @Column(name="longitude")
+    @JSONField(name="longitude")
+    public String longitude;
+
+    @Column(name="pileFastNumFree")
+    @JSONField(name="pileFastNumFree")
+    public String pileFastNumFree;      //快桩空闲个数
+
+    @Column(name="pileSlowNumFree")
+    @JSONField(name="pileSlowNumFree")
+    public String pileSlowNumFree;       //慢桩空闲个数
+
+    @Column(name="totalPileCount")
+    @JSONField(name="totalPileCount")
+    public String totalPileCount;         //桩总数
+
+    public double getCharge_distance() {
+        return charge_distance;
+    }
+
+    public void setCharge_distance(double charge_distance) {
+        this.charge_distance = charge_distance;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getStationId() {
+        return stationId;
+    }
+
+    public void setStationId(String stationId) {
+        this.stationId = stationId;
+    }
+
+    public String getChargeStationType() {
+        return chargeStationType;
+    }
+
+    public void setChargeStationType(String chargeStationType) {
+        this.chargeStationType = chargeStationType;
+    }
+
+    public String getPileFastNumFree() {
+        return pileFastNumFree;
+    }
+
+    public void setPileFastNumFree(String pileFastNumFree) {
+        this.pileFastNumFree = pileFastNumFree;
+    }
+
+    public String getPileSlowNumFree() {
+        return pileSlowNumFree;
+    }
+
+    public void setPileSlowNumFree(String pileSlowNumFree) {
+        this.pileSlowNumFree = pileSlowNumFree;
+    }
+
+    public String getTotalPileCount() {
+        return totalPileCount;
+    }
+
+    public void setTotalPileCount(String totalPileCount) {
+        this.totalPileCount = totalPileCount;
+    }
+
+}

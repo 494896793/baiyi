@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="25dp"
+    android:background="@drawable/white_drawable"
+    android:layout_marginRight="25dp">
+
+    <RelativeLayout
+        android:id="@+id/rlyt_dialog_prompt_bg"
+        android:layout_width="@dimen/dimen_280dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/iv_dialog_prompt_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/dialog_pledge_pay_bg" />
+
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:paddingLeft="@dimen/dimen_10dp"
+        android:paddingRight="@dimen/dimen_10dp"
+        android:id="@+id/llytCustomerContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rlyt_dialog_prompt_bg"
+        android:layout_alignRight="@id/rlyt_dialog_prompt_bg"
+        android:layout_below="@id/title_tx"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/rlytChooseWxContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@color/white"
+            android:paddingRight="15dp">
+
+            <ImageView
+                android:id="@+id/iv_weixin_pic"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_22dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/yc_47" />
+
+            <TextView
+                android:id="@+id/tvChooseWx"
+                style="@style/tvPayType"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_weixin_pic"
+                android:text="微信"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivChooseWeixin"
+                android:layout_width="@dimen/dimen_24dp"
+                android:layout_height="@dimen/dimen_24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/yc_43" />
+        </RelativeLayout>
+
+        <View
+            style="@style/DivideLineStyle"
+            android:layout_marginLeft="15dp" />
+
+        <RelativeLayout
+            android:id="@+id/rlytChooseAliContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@color/white"
+            android:paddingRight="15dp">
+
+            <ImageView
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:id="@+id/ivAliPic"
+                android:layout_width="@dimen/dimen_25dp"
+                android:layout_height="@dimen/dimen_22dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/yc_48" />
+
+            <TextView
+                android:id="@+id/tvChooseAli"
+                style="@style/tvPayType"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/ivAliPic"
+                android:text="支付宝"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivChooseAli"
+                android:layout_width="@dimen/dimen_24dp"
+                android:layout_height="@dimen/dimen_24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/yc_42" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_above="@id/llytCustomerContent"
+        android:layout_alignLeft="@id/llytCustomerContent"
+        android:layout_alignRight="@id/llytCustomerContent"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:src="@mipmap/dialog_prompt_bg" />
+
+    <RelativeLayout
+        android:paddingBottom="@dimen/dimen_20dp"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rlyt_dialog_prompt_bg"
+        android:layout_alignRight="@id/rlyt_dialog_prompt_bg"
+        android:layout_below="@id/llytCustomerContent">
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/dialog_button_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/tv_dialog_confirm"
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_blue_radius"
+                android:gravity="center"
+                android:textColor="@color/new_primary" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginBottom="@dimen/dimen_20dp"
+        android:id="@+id/title_tx"
+        android:layout_marginTop="@dimen/dimen_12dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/dimen_22sp"
+        android:textColor="@color/main_background"
+        android:text="交纳用车违章保证金"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

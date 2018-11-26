@@ -1,0 +1,65 @@
+package www.qisu666.com.activity;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+
+import com.amap.api.navi.AMapNavi;
+import com.amap.api.navi.AMapNaviListener;
+import com.amap.api.navi.AMapNaviView;
+import com.amap.api.navi.AMapNaviViewListener;
+import com.amap.api.navi.AMapNaviViewOptions;
+import com.amap.api.navi.enums.PathPlanningStrategy;
+import com.amap.api.navi.model.AMapCalcRouteResult;
+import com.amap.api.navi.model.AMapLaneInfo;
+import com.amap.api.navi.model.AMapModelCross;
+import com.amap.api.navi.model.AMapNaviCameraInfo;
+import com.amap.api.navi.model.AMapNaviCross;
+import com.amap.api.navi.model.AMapNaviInfo;
+import com.amap.api.navi.model.AMapNaviLocation;
+import com.amap.api.navi.model.AMapNaviRouteNotifyData;
+import com.amap.api.navi.model.AMapNaviTrafficFacilityInfo;
+import com.amap.api.navi.model.AMapServiceAreaInfo;
+import com.amap.api.navi.model.AimLessModeCongestionInfo;
+import com.amap.api.navi.model.AimLessModeStat;
+import com.amap.api.navi.model.NaviInfo;
+import com.amap.api.navi.model.NaviLatLng;
+import com.autonavi.tbt.TrafficFacilityInfo;
+import www.qisu666.com.R;
+import www.qisu666.com.utils.DialogHelper;
+import www.qisu666.com.utils.LogUtils;
+import www.qisu666.com.utils.NaviErrorUtils;
+import www.qisu666.com.utils.TTSController;
+import www.qisu666.com.utils.ToastUtil;
+import www.qisu666.com.widget.AlertDialog;
+
+import org.xutils.common.util.LogUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+
+//导航页面
+public class NaviActivity extends BaseActivity{
+    @Override
+    public void setView() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

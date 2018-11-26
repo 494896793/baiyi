@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layoutTitle"
+        layout="@layout/title_back" />
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/dimen_17dp"
+        android:id="@+id/llytCommit"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvPrevious"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="上一步"
+            android:textColor="@color/color_gray_999999"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvCommit"
+            android:layout_marginLeft="@dimen/dimen_37dp"
+            android:layout_marginRight="@dimen/dimen_37dp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_45dp"
+            android:layout_weight="2"
+            android:background="@drawable/selector_primary_btn"
+            android:gravity="center"
+            android:text="提交报销申请"
+            android:textColor="@color/main_background"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llytCommit"
+        android:layout_below="@id/layoutTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/dimen_15dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="20dp"
+                android:text="收款方式"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_17sp" />
+            
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:background="@drawable/linear_shape"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/llytReturnToBalance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="47dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="余额"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_15sp" />
+
+                        <TextView
+                            android:id="@+id/tvBalanceValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="(充值--元)"
+                            android:textColor="@color/main_info_color"
+                            android:textSize="13sp" />
+
+                        <ImageView
+                            android:id="@+id/ivReturnToBalance"
+                            android:layout_width="@dimen/dimen_18dp"
+                            android:layout_height="@dimen/dimen_18dp"
+                            android:src="@mipmap/yc_43" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvBalanceTip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="@color/warn_notice_color"
+                        android:text="--" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginRight="@dimen/dimen_15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_0.5dp"
+                    android:background="@color/view_line"
+                    android:layout_marginLeft="15dp" />
+
+                <LinearLayout
+                    android:id="@+id/llytReturnToCash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="47dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="现金"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_15sp" />
+
+                        <TextView
+                            android:id="@+id/tvCashValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="(打款--元)"
+                            android:textColor="@color/main_info_color"
+                            android:textSize="13sp" />
+
+                        <ImageView
+                            android:id="@+id/ivReturnToCash"
+                            android:layout_width="@dimen/dimen_18dp"
+                            android:layout_height="@dimen/dimen_18dp"
+                            android:src="@mipmap/yc_42" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvCashTip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="@color/warn_notice_color"
+                        android:text="--" />
+
+                    <www.qisu666.com.view.GetMoneyAccountView
+                        android:id="@+id/getMoneyAccountView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:visibility="gone">
+
+                    </www.qisu666.com.view.GetMoneyAccountView>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

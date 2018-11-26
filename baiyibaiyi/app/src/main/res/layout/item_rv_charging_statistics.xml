@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/linear_shape"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/default_padding_tnb"
+            android:paddingLeft="@dimen/default_padding_lnr"
+            android:paddingRight="@dimen/default_padding_lnr"
+            android:paddingTop="@dimen/default_padding_tnb">
+
+            <ImageView
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:src="@mipmap/shijian"
+                android:layout_width="@dimen/dimen_18dp"
+                android:layout_height="@dimen/dimen_18dp" />
+            <TextView
+                android:id="@+id/tv_month"
+                style="@style/TextView_Subtitle_Black"
+                android:drawablePadding="10dp"
+                android:layout_marginLeft="@dimen/dimen_11dp"
+                android:text="9"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <TextView
+                style="@style/TextView_Subtitle_Black"
+                android:text="/"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2016"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <!--<TextView-->
+            <!--style="@style/TextView_Subtitle_Black_Weight"-->
+            <!--android:layout_marginLeft="@dimen/default_margin_lnr"-->
+            <!--android:text="@string/charging_statistics_charging_total"-->
+            <!--android:textColor="@color/primary"-->
+            <!--android:textSize="@dimen/text_normal" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_charging_total"-->
+            <!--style="@style/TextView_Subtitle_Dark_Gray"-->
+            <!--android:text="22.45"-->
+            <!--android:textSize="@dimen/text_normal" />-->
+
+            <!--<TextView-->
+            <!--style="@style/TextView_Subtitle_Dark_Gray"-->
+            <!--android:text="度"-->
+            <!--android:textSize="@dimen/text_normal" />-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_charging_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.78"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="充电电量(度)"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_charging_times"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.78"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="充电总次数"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_charging_average"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.78"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="平均每次充电(度)"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--<View style="@style/Divide_Horizontal"/>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="vertical"-->
+    <!--android:paddingBottom="@dimen/default_padding_tnb"-->
+    <!--android:paddingLeft="@dimen/default_padding_lnr"-->
+    <!--android:paddingRight="@dimen/default_padding_lnr"-->
+    <!--android:paddingTop="@dimen/default_padding_tnb">-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--style="@style/TextView_Subtitle_Black_Weight"-->
+    <!--android:text="@string/charging_statistics_charging_times" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_charging_times"-->
+    <!--style="@style/TextView_Subtitle_Black"-->
+    <!--android:text="3" />-->
+
+    <!--<TextView-->
+    <!--style="@style/TextView_Subtitle_Black"-->
+    <!--android:text="次" />-->
+
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="@dimen/default_margin_tnb"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<TextView-->
+    <!--style="@style/TextView_Subtitle_Black_Weight"-->
+    <!--android:text="@string/charging_statistics_charging_average" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_charging_average"-->
+    <!--style="@style/TextView_Subtitle_Black"-->
+    <!--android:text="22.45" />-->
+
+    <!--<TextView-->
+    <!--style="@style/TextView_Subtitle_Black"-->
+    <!--android:text="度" />-->
+
+    <!--</LinearLayout>-->
+
+
+    <!--</LinearLayout>-->
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/default_margin_tnb"-->
+    <!--android:background="@color/main_background" />-->
+
+</LinearLayout>

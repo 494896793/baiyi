@@ -1,0 +1,47 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.adapter;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class OrderListAdapter$ViewHolder_ViewBinding<T extends OrderListAdapter.ViewHolder> implements Unbinder {
+  protected T target;
+
+  @UiThread
+  public OrderListAdapter$ViewHolder_ViewBinding(T target, View source) {
+    this.target = target;
+
+    target.tvCarCost = Utils.findRequiredViewAsType(source, R.id.tv_car_cost, "field 'tvCarCost'", TextView.class);
+    target.tvCarOrderStatus = Utils.findRequiredViewAsType(source, R.id.tv_car_order_status, "field 'tvCarOrderStatus'", TextView.class);
+    target.ivOrderArrow = Utils.findRequiredViewAsType(source, R.id.ivOrderArrow, "field 'ivOrderArrow'", ImageView.class);
+    target.tvStartTime = Utils.findRequiredViewAsType(source, R.id.tv_start_time, "field 'tvStartTime'", TextView.class);
+    target.tvCarStartPosition = Utils.findRequiredViewAsType(source, R.id.tv_car_start_position, "field 'tvCarStartPosition'", TextView.class);
+    target.tvCarEndPosition = Utils.findRequiredViewAsType(source, R.id.tv_car_end_position, "field 'tvCarEndPosition'", TextView.class);
+    target.tvDiscountCompany = Utils.findRequiredViewAsType(source, R.id.tvDiscountCompany, "field 'tvDiscountCompany'", TextView.class);
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvCarCost = null;
+    target.tvCarOrderStatus = null;
+    target.ivOrderArrow = null;
+    target.tvStartTime = null;
+    target.tvCarStartPosition = null;
+    target.tvCarEndPosition = null;
+    target.tvDiscountCompany = null;
+
+    this.target = null;
+  }
+}

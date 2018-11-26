@@ -1,0 +1,199 @@
+package com.baogang.bycx.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.adapter.AreaListAdapter;
+import com.baogang.bycx.adapter.MyFragmentStatePagerAdapter;
+import com.baogang.bycx.callback.CityListResp;
+import com.baogang.bycx.callback.ParkListByCityResp;
+import com.baogang.bycx.constant.Config;
+import com.baogang.bycx.constant.RequestUrls;
+import com.baogang.bycx.fragment.ParkPointListFragment;
+import com.baogang.bycx.request.AreaListRequest;
+import com.baogang.bycx.rx.RxBus;
+import com.baogang.bycx.rx.RxBusEvent;
+import com.baogang.bycx.rx.RxEventCodes;
+import com.baogang.bycx.utils.CacheUtils;
+import com.baogang.bycx.utils.Logger;
+import com.baogang.bycx.utils.UserUtils;
+import com.baogang.bycx.view.ViewPagerNoScroll;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import rx.functions.Action1;
+
+/**
+ * 区域列表
+ */
+
+public class AreaListActivity extends BaseActivity {
+    private static final String TAG = AreaListActivity.class.getSimpleName();
+    private static final int CODE_AREA_LIST = 1;
+    @BindView(R.id.tvTitleName)
+    TextView tvTitleName;
+    @BindView(R.id.tvTitleRight)
+    TextView tvTitleRight;
+    @BindView(R.id.rv_area_list)
+    RecyclerView rvAreaList;
+    @BindView(R.id.pager_park_point)
+    ViewPagerNoScroll pagerParkPoint;
+
+    private AreaListAdapter areaListAdapter;
+    private List<ParkListByCityResp> datas = new ArrayList<>();
+
+    private MyFragmentStatePagerAdapter myFragmentStatePagerAdapter;
+
+    private String mCityCode = Config.DEFAULT_CITY_CODE;
+    private int from = 0;//默认从主页进来搜索
+
+    /**
+     * 更新网点列表
+     *
+     * @param datas
+     */
+    public void updateParkPointList(List<ParkListByCityResp> datas) {
+        if (datas == null) {
+            return;
+        }
+        int pageCount = datas.size();
+        List<Fragment> fragments = new ArrayList<>();
+        for (int i = 0; i < pageCount; i++) {
+            ParkListByCityResp data = datas.get(i);
+            if (null != data) {
+                Fragment fragment = new ParkPointListFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("areaId", data.getId() + "");
+                bundle.putString("areaName", data.getName());
+                bundle.putString("carNum", data.getParkList().size() + "");
+                bundle.putSerializable("data", (Serializable) data.getParkList());
+                bundle.putInt("from", from);
+                fragment.setArguments(bundle);
+                fragments.add(fragment);
+            }
+        }
+        Logger.i(TAG, "fragment数量 == " + fragments.size());
+        myFragmentStatePagerAdapter = new MyFragmentStatePagerAdapter(getSupportFragmentManager(), fragments);
+        pagerParkPoint.setAdapter(myFragmentStatePagerAdapter);
+        if (datas.size() > 0) {
+            pagerParkPoint.setCurrentItem(0, false);//默认第一个
+            //更改背景
+            areaListAdapter.setSelectPos(0);
+            areaListAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void setView() {
+        setContentView(R.layout.activity_area_list);
+    }
+
+    @Override
+    public void initDatas() {
+        tvTitleName.setText("全部网点");
+        String nowCity = CacheUtils.getIn().getStr(CacheUtils.curCity);
+        if (!TextUtils.isEmpty(nowCity)) {
+            tvTitleRight.setText(nowCity);
+        } else {
+            tvTitleRight.setText(Config.DEFAULT_CITY_NAME);
+        }
+
+        //记录来自哪个页面的搜索，默认主页
+        from = getIntent().getIntExtra("from", 0);
+
+        areaListAdapter = new AreaListAdapter(mContext, datas);
+        areaListAdapter.setOnItemClickListener(new AreaListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, List<ParkListByCityResp> data, int position) {
+                Logger.i(TAG, "点击的position == " + position);
+                pagerParkPoint.setCurrentItem(position, false);
+                //更改背景
+                areaListAdapter.setSelectPos(position);
+                areaListAdapter.notifyDataSetChanged();
+            }
+        });
+
+        rvAreaList.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+        rvAreaList.setAdapter(areaListAdapter);
+
+        mCityCode = UserUtils.getCityCode();
+        getAreaList(mCityCode);
+
+        observeRxEventCode();
+    }
+
+    private void observeRxEventCode() {
+        busSubscription = RxBus.getInstance()
+                .toObservable(RxBusEvent.class)
+                .subscribe(new Action1<RxBusEvent>() {
+                    @Override
+                    public void call(RxBusEvent rxBusEvent) {
+                        int eventCode = rxBusEvent.getEventCode();
+                        switch (eventCode) {
+                            case RxEventCodes.CODE_CHOOSE_CITY://切换城市
+                                CityListResp cityListResp = (CityListResp) rxBusEvent.getContent();
+                                String cityCode = cityListResp.getCode();
+                                if (!mCityCode.equals(cityCode)) {
+                                    tvTitleRight.setText(cityListResp.getName());
+                                    //刷新数据
+                                    getAreaList(cityCode);
+                                    mCityCode = cityCode;
+                                }
+                                break;
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+        if (isSuccess(result)) {
+            if (type == CODE_AREA_LIST) {
+                List<ParkListByCityResp> resp = getList(result, ParkListByCityResp.class);
+                datas.clear();
+                if (resp != null && resp.size() > 0) {
+                    datas.addAll(resp);
+                }
+                areaListAdapter.notifyDataSetChanged();
+
+                updateParkPointList(datas);
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+
+    @OnClick({R.id.ivTitleLeft, R.id.llytTitleRight})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ivTitleLeft:
+                finish();
+                break;
+            case R.id.llytTitleRight://选择城市
+                Intent intent = new Intent(mContext, CityListActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
+    private void getAreaList(String cityCode) {
+        AreaListRequest request = new AreaListRequest();
+        request.setCode(cityCode);
+        request.setMethod(RequestUrls.QUERY_AREA_PARK_BY_CITYCODE);
+        doGet(request, CODE_AREA_LIST, Config.LOADING_STRING, true);
+    }
+}

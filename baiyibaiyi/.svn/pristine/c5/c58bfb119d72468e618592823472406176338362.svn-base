@@ -1,0 +1,45 @@
+package www.qisu666.com.fragment;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+
+import java.util.ArrayList;
+
+
+/**
+ * 717219917@qq.com 2018/7/5 17:55.
+ * 充电页面
+ */
+public class Fragment_ChongDian extends BaseFragment {
+
+    @Override
+    public int setLayoutResId() {
+        return 0;
+    }
+
+    @Override
+    public void initDatas(View view) {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

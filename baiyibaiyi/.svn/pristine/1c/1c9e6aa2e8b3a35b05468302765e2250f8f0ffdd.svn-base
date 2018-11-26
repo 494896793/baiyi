@@ -1,0 +1,253 @@
+package com.baogang.bycx.utils;
+
+import android.text.TextUtils;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
+/**
+ * TextView设置判空工具类
+ * 2015/10/20.
+ */
+public class TVUtils {
+    public static void setTime(String time, TextView tvBeginTime, TextView tvEndTime, String type) {
+        try {
+            JSONObject timeJson = new JSONObject(time);
+            int beginTime = timeJson.getInt("beginTime");
+            int endTime = timeJson.getInt("endTime");
+            String lasttime;
+            if (doTime(beginTime).equals("00:00")) {
+                lasttime = "24:00";
+            } else {
+                lasttime = doTime(beginTime);
+            }
+            if (type.equals("carlist")) {
+                tvBeginTime.setText(doTime(endTime) + " - " + lasttime);
+                tvEndTime.setText(doTime(beginTime) + " - " + doTime(endTime));
+            } else {
+                tvBeginTime.setText("(" + doTime(endTime) + " - " + lasttime + ")");
+                tvEndTime.setText("(" + doTime(beginTime) + " - " + doTime(endTime) + ")");
+            }
+        } catch (JSONException e) {
+            tvBeginTime.setText("");
+            tvBeginTime.setText("");
+        }
+    }
+
+    private static String doTime(int time) {
+        String result = "";
+        if (time == 0) {
+            result = "00:00";
+        } else if (time > 0 && time < 10) {
+            result = "0" + time + ":00";
+        } else {
+            result = time + ":00";
+        }
+        return result;
+    }
+
+    public static String toYuan(String str) {
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+//        DecimalFormat decimalFormat = new DecimalFormat("0");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String yuan = (int) (strD / 100) + "";//format 返回的是字符串
+        return yuan;
+    }
+
+    public static String toYuan(double dou) {
+//        DecimalFormat decimalFormat = new DecimalFormat("0");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String yuan = (int) (dou / 100) + "";//format 返回的是字符串
+        return yuan;
+    }
+
+    public static String toYuanString(double d) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String str = decimalFormat.format(d / 100);//format 返回的是字符串
+        return str;
+    }
+
+    public static String toYuanString(String str) {
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String strNew = decimalFormat.format(strD / 100);//format 返回的是字符串
+        return strNew;
+    }
+
+    public static String toYuanInt(String str) {
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+        DecimalFormat decimalFormat;
+        if (str.length() > 1) {//100
+            if (str.endsWith("00")) {
+                decimalFormat = new DecimalFormat("0");
+            } else if (str.endsWith("0")) {
+                decimalFormat = new DecimalFormat("0.0");
+            } else {
+                decimalFormat = new DecimalFormat("0.00");
+            }
+        } else if (str.length() == 1 && strD != 0) {//一位数的情况
+            decimalFormat = new DecimalFormat("0.0");
+        } else {//为0位空
+            decimalFormat = new DecimalFormat("0");
+        }
+        String strNew = decimalFormat.format(strD / 100);//format 返回的是字符串
+        return strNew;
+    }
+
+    public static String toAppString(String str) {
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String strNew = decimalFormat.format(strD);//format 返回的是字符串
+        return strNew;
+    }
+
+    public static String toYuanStringInt(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return null;
+        }
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+        DecimalFormat decimalFormat;
+        if (str.length() > 1) {//100
+            if (str.endsWith("00")) {
+                decimalFormat = new DecimalFormat("0");
+            } else {
+                decimalFormat = new DecimalFormat("0.00");
+            }
+        } else if (str.length() == 1 && strD != 0) {//一位数的情况
+            decimalFormat = new DecimalFormat("0.00");
+        } else {//为0位空
+            decimalFormat = new DecimalFormat("0");
+        }
+        String strNew = decimalFormat.format(strD / 100);//format 返回的是字符串
+        return strNew;
+    }
+
+    public static String toStringInt(String str) {
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("0");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String strNew = decimalFormat.format(strD);//format 返回的是字符串
+        return strNew;
+    }
+
+    public static String toString(double d) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        decimalFormat.setRoundingMode(RoundingMode.DOWN);
+        String str = decimalFormat.format(d);//format 返回的是字符串
+        return str;
+    }
+
+
+    public static String toString(float d) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        decimalFormat.setRoundingMode(RoundingMode.DOWN);
+        String str = decimalFormat.format(d);//format 返回的是字符串
+        return str;
+    }
+
+    public static String toMin(float d) {
+        DecimalFormat decimalFormat = new DecimalFormat("00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String str = decimalFormat.format(d);//format 返回的是字符串
+        return str;
+    }
+
+    public static String toString1(float d) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        String str = decimalFormat.format(d);//format 返回的是字符串
+        return str;
+    }
+
+    public static String toString0(String str) {
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+        String strTemp = (int) strD + "";//format 返回的是字符串
+        return strTemp;
+    }
+
+    public static String toString1(String str) {
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");//构造方法的字符格式这里如果小数不足1位,会以0补足.
+        String strTemp = decimalFormat.format(strD);//format 返回的是字符串
+        return strTemp;
+    }
+
+    public static String toString2(String str) {
+        double strD = 0;
+        if (StringUtils.isIntOrFloat(str)) {
+            strD = Double.parseDouble(str);
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足1位,会以0补足.
+        decimalFormat.setRoundingMode(RoundingMode.DOWN);
+        String strTemp = decimalFormat.format(strD);//format 返回的是字符串
+        return strTemp;
+    }
+
+    public static String toString4(double d) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.0000");//构造方法的字符格式这里如果小数不足4位,会以0补足.
+        String str = decimalFormat.format(d);//format 返回的是字符串
+        return str;
+    }
+
+    public static String toString4(float d) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.0000");//构造方法的字符格式这里如果小数不足4位,会以0补足.
+        String str = decimalFormat.format(d);//format 返回的是字符串
+        return str;
+    }
+
+    public static String toStringInt2(String str) {
+        DecimalFormat df = new DecimalFormat("###,###");
+        return df.format(Double.parseDouble(str));
+    }
+
+    /**
+     * 1星显示“非常不满意”，2星显示“不满意”，3星显示“一般“，4星显示“满意”，5星显示“超级满意”
+     *
+     * @param i
+     * @return
+     */
+    public static String evaluateStar(int i) {
+        String evaluate = "超级满意";
+        switch (i) {
+            case 1:
+                evaluate = "非常不满意";
+                break;
+            case 2:
+                evaluate = "不满意";
+                break;
+            case 3:
+                evaluate = "一般满意";
+                break;
+            case 4:
+                evaluate = "满意";
+                break;
+            case 5:
+                evaluate = "超级满意";
+                break;
+        }
+        return evaluate;
+    }
+}

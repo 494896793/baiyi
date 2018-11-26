@@ -1,0 +1,23 @@
+package com.baogang.bycx.app;
+
+/**
+ * Created by wujiancheng on 2017/11/13.
+ */
+
+public class CouponType {
+    public static final String CAN_USE = "canUse";//可使用
+    public static final String USED = "used";//已使用
+    public static final String OUT_TIME = "outTime";//已过期
+
+    public static final String CAN_USE_CHOOSE = "canUseChoose";//选择页面可用
+    public static final String CANNOT_USE_CHOOSE = "cannotUseChoose";//选择页面不可用
+
+    //只展示，不能选
+    public static String[] IS_IN_SHOW_COUPON = {CAN_USE, USED, OUT_TIME};
+    //可选
+    public static String[] IS_IN_CHOOSE_COUPON = {CAN_USE_CHOOSE, CANNOT_USE_CHOOSE};
+
+    public static final String RED_PK_COUPON = "redPkCoupon";//红包车优惠券
+    public static final String DISCOUNT_COUPON = "discountCoupon";//折扣券
+    public static final String NOT_ENOUGH_MONEY = "notEnoughMoney";//消费金额不足时提示
+}

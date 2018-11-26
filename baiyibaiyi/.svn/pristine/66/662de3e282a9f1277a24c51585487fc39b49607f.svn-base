@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llytDayTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvDayTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日间(-- - --)："
+            android:textColor="@color/color_gray_666666"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvFeePerKM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="@color/color_blue_02b2e4"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/公里+"
+            android:textColor="@color/color_gray_666666"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvFeePerMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="@color/color_blue_02b2e4"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/分钟"
+            android:textColor="@color/color_gray_666666"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:id="@+id/tvNightTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="夜间(-- - --)："
+            android:textColor="@color/color_gray_666666"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvFeePerKMNight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="@color/color_blue_02b2e4"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/公里+"
+            android:textColor="@color/color_gray_666666"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/tvFeePerMinNight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="@color/color_blue_02b2e4"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/分钟"
+            android:textColor="@color/color_gray_666666"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

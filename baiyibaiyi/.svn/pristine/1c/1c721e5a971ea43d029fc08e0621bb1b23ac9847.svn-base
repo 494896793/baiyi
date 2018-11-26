@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical"
+    tools:context=".activity.StationInfoActivity">
+
+    <include layout="@layout/layout_title_primary" />
+
+    <com.baogang.bycx.widget.PullToRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/gifImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/anim_refresh" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:background="@color/main_background"
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdge="none">
+
+            <LinearLayout
+                android:id="@+id/layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    android:layout_marginLeft="@dimen/dimen_11dp"
+                    android:layout_marginRight="@dimen/dimen_11dp"
+                    android:id="@+id/convenientBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" />
+
+                <RelativeLayout
+                    android:layout_marginLeft="@dimen/dimen_11dp"
+                    android:layout_marginRight="@dimen/dimen_11dp"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_170dp">
+                    <LinearLayout
+                        android:background="@drawable/linear_shape"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_150dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/dimen_15dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false">
+
+                            <ImageView
+                                android:visibility="gone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:src="@mipmap/ic_station_charging" />
+
+                            <TextView
+                                android:background="@drawable/linear_shape"
+                                android:id="@+id/tv_station_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:text="充电站名称"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dimen_18sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/default_margin_tnb"
+                            android:layout_marginLeft="@dimen/dimen_15dp"
+                            android:layout_marginRight="@dimen/dimen_15dp"
+                            android:layout_marginTop="@dimen/default_margin_tnb"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/station_info_open_time"
+                                android:textColor="@color/text_gray"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_open_time"
+                                style="@style/TextView_Subtitle_Black_Weight"
+                                android:text=""
+                                android:textColor="@color/white" />
+
+                            <LinearLayout
+                                android:id="@+id/layout_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/content_bg"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="16dp"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginRight="3dp"
+                                    android:src="@mipmap/kfrx_co" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/station_info_phone"
+                                    android:textColor="@color/new_primary"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/default_margin_tnb"
+                            android:layout_marginLeft="@dimen/dimen_15dp"
+                            android:layout_marginRight="@dimen/dimen_15dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_marginRight="@dimen/dimen_11dp"
+                                    android:layout_centerVertical="true"
+                                    android:id="@+id/loca_icon"
+                                    android:src="@mipmap/yd_22"
+                                    android:layout_width="@dimen/dimen_13dp"
+                                    android:layout_height="@dimen/dimen_15dp" />
+                                <TextView
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@id/loca_icon"
+                                    android:id="@+id/tv_address"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center|left"
+                                    android:maxLines="2"
+                                    android:text="@string/station_info_phone"
+                                    android:textColor="@color/text_gray"
+                                    android:textSize="14sp" />
+                            </RelativeLayout>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/img_navi"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/yd_25" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/linear_shape"
+                    android:layout_marginRight="@dimen/dimen_11dp"
+                    android:layout_marginLeft="@dimen/dimen_11dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/dimen_15dp"
+                    android:paddingRight="@dimen/dimen_15dp"
+                    android:paddingTop="@dimen/dimen_15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/station_info_charging_fee"
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tv_charging_fee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.00"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="元/度"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@mipmap/yd_20" />
+
+                        <TextView
+                            android:textSize="@dimen/dimen_14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/station_info_service_fee"
+                            android:textColor="@color/text_gray" />
+
+                        <TextView
+                            android:textSize="@dimen/dimen_14sp"
+                            android:id="@+id/tv_service_fee"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:text="0.00" />
+
+                        <TextView
+                            android:textSize="@dimen/dimen_14sp"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:text="元/度" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:src="@mipmap/yd_21" />
+
+                        <TextView
+                            android:textSize="@dimen/dimen_14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/station_info_parking_fee"
+                            android:textColor="@color/text_gray" />
+
+                        <TextView
+                            android:textSize="@dimen/dimen_14sp"
+                            android:id="@+id/tv_station_parking_fee"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:text="0.00" />
+
+                        <ImageView
+                            android:id="@+id/station_info_gengduo"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@mipmap/gengduo2" />
+
+                    </LinearLayout>
+
+
+                    <com.baogang.bycx.widget.CustomListView
+                        android:id="@+id/listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:divider="@color/text_gray"
+                        android:dividerHeight="1dp"
+                        android:focusable="false"
+                        android:listSelector="#0000"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_marginTop="@dimen/dimen_10dp"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginRight="@dimen/dimen_10dp"
+                            android:layout_marginTop="@dimen/dimen_3dp"
+                            android:layout_width="@dimen/dimen_15dp"
+                            android:layout_height="@dimen/dimen_15dp"
+                            android:src="@mipmap/yd_19"
+                            />
+                        <TextView
+                            android:layout_marginRight="@dimen/dimen_2dp"
+                            android:textSize="14dp"
+                            android:text="电费："
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/station_info_diandufei"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:background="@drawable/linear_shape"
+                    android:layout_marginLeft="@dimen/dimen_11dp"
+                    android:layout_marginRight="@dimen/dimen_11dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.baogang.bycx.widget.CustomRadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_tnb"
+                        android:background="@color/content_bg"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:textStyle="bold"
+                            android:id="@+id/radio_detail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_rb_station_info"
+                            android:button="@null"
+                            android:checked="true"
+                            android:gravity="center"
+                            android:padding="@dimen/dimen_15dp"
+                            android:text="@string/station_info_detail"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_15dp" />
+
+                        <View android:visibility="gone" style="@style/Divide_Vertical" />
+
+                        <RadioButton
+                            android:textStyle="bold"
+                            android:id="@+id/radio_parking"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_rb_station_info"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="@dimen/default_padding"
+                            android:text="@string/station_info_parking"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_15dp" />
+
+                        <View  android:visibility="gone" style="@style/Divide_Vertical" />
+
+                        <RadioButton
+                            android:textStyle="bold"
+                            android:id="@+id/radio_comment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_rb_station_info"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="@dimen/default_padding"
+                            android:text="@string/station_info_comment"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_subtitle" />
+
+                    </com.baogang.bycx.widget.CustomRadioGroup>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:id="@+id/line_re_one"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <View
+                                android:layout_marginLeft="@dimen/dimen_44dp"
+                                android:layout_marginRight="@dimen/dimen_44dp"
+                                android:background="@color/new_primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dimen_3dp"/>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/line_re_two"
+                            android:visibility="invisible"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <View
+                                android:layout_marginLeft="@dimen/dimen_44dp"
+                                android:layout_marginRight="@dimen/dimen_44dp"
+                                android:background="@color/new_primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dimen_3dp"
+                                />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/line_re_three"
+                            android:visibility="invisible"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <View
+                                android:layout_marginLeft="@dimen/dimen_44dp"
+                                android:layout_marginRight="@dimen/dimen_44dp"
+                                android:background="@color/new_primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dimen_3dp"/>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <!--<View style="@style/Divide_Horizontal" />-->
+
+                    <com.baogang.bycx.widget.CustomViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="25dp"
+                        android:paddingBottom="15dp">
+
+                    </com.baogang.bycx.widget.CustomViewPager>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </com.baogang.bycx.widget.PullToRefreshLayout>
+
+
+</LinearLayout>

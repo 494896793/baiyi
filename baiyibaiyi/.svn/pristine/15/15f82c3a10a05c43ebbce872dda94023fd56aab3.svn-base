@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <RelativeLayout
+        android:id="@+id/rlytNoData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/ivNoData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/no_data" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llytViolateWarn"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/color_yellow_fff7d9"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@mipmap/warn_yellow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:text="请您尽快处理交通违章，或联系客服处理"
+            android:textColor="@color/color_yellow_fec200" />
+
+        <ImageView
+            android:layout_width="7dp"
+            android:layout_height="10dp"
+            android:src="@mipmap/arrow_right_yellow" />
+    </LinearLayout>
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvViolateList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:clipToPadding="true"
+            android:saveEnabled="false" />
+    </com.liaoinstan.springview.widget.SpringView>
+
+</LinearLayout>

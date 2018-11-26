@@ -1,0 +1,62 @@
+package com.baogang.bycx.view
+
+import android.app.Activity
+import android.content.Context
+import android.text.Spannable
+import android.text.SpannableString
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.widget.FrameLayout
+import com.amap.api.maps.model.LatLng
+import com.baogang.bycx.R
+import com.baogang.bycx.callback.ParksResp
+import com.baogang.bycx.utils.NavigationUtils
+import com.baogang.bycx.utils.StringUtils
+import com.baogang.bycx.utils.logI
+import kotlinx.android.synthetic.main.view_park_info.view.*
+import java.lang.Double
+
+/**
+ * Created by wujiancheng on 2018/1/12.
+ * 网点信息展示
+ */
+class ParkInfoView : FrameLayout {
+    constructor(context: Context?) : this(context, null)
+    constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
+    }
+
+    private fun init() {
+        LayoutInflater.from(context).inflate(R.layout.view_park_info, this)
+    }
+
+    fun setData(activity: Activity, parksResp: ParksResp) {
+        val parkName = parksResp.parkName
+        val isNearest = parksResp.isNearest
+        if (isNearest) {
+            val replace = "离我最近"
+            val spannableString = SpannableString(parkName + " " + replace)
+
+            //获取图片
+            val span = CustomImageSpan(context, R.mipmap.nearest_icon, CustomImageSpan.ALIGN_FONT_CENTER)
+
+            spannableString.setSpan(span, (parkName + " ").length, (parkName + " " + replace).length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+            tvParkName.text = spannableString
+        } else {
+            tvParkName.text = parkName
+        }
+        tvParkNamedDetail.text = parksResp.parkAddress
+        tvDistance.text = parksResp.distance
+        //导航
+        llytNavigate.setOnClickListener {
+            val lat = parksResp.latitude
+            val lng = parksResp.longitude
+            if (StringUtils.isIntOrFloat(lat) && StringUtils.isIntOrFloat(lng)) {
+                val latLng = LatLng(Double.valueOf(lat), Double.valueOf(lng))
+                NavigationUtils.goNavigation(activity, latLng, 2)
+            }
+        }
+    }
+}

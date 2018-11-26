@@ -1,0 +1,169 @@
+package com.baogang.bycx.adapter;
+
+import android.content.Context;
+import android.graphics.Paint;
+import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.callback.LongRentComboListResp;
+import com.baogang.bycx.utils.DateUtils;
+import com.baogang.bycx.utils.StringUtils;
+import com.baogang.bycx.utils.TVUtils;
+import com.baogang.bycx.view.ViewPagerWithTitleView;
+
+import java.text.ParseException;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by wujiancheng on 2017/9/21.
+ * 短租套餐
+ */
+
+public class LongRentComboAdapter extends BaseAdapter {
+    private Context mContext;
+    private List<LongRentComboListResp> longRentComboListResps;
+    private LayoutInflater inflater;
+    private int selectedPos = 0;
+
+    public LongRentComboAdapter(Context context, List<LongRentComboListResp> longRentComboListResps) {
+        super(context, longRentComboListResps);
+        this.mContext = context;
+        this.longRentComboListResps = longRentComboListResps;
+        inflater = LayoutInflater.from(context);
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        if (null == convertView) {
+            convertView = inflater.inflate(R.layout.listitem_long_rent_combo, parent, false);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+
+        LongRentComboListResp resp = longRentComboListResps.get(position);
+        if (null != resp) {
+            String name = resp.getName();
+            if (StringUtils.isEmpty(name)) {
+                name = "";
+            }
+            holder.tvComboName.setText(name);
+
+            //原价
+            String beforeMoney = resp.getBeforeMoney();
+            if (StringUtils.isEmpty(beforeMoney)) {
+                holder.tvComboPriceOld.setVisibility(View.GONE);
+            }else {
+                holder.tvComboPriceOld.setText("¥" + TVUtils.toStringInt(Integer.parseInt(beforeMoney) / 100.00 + ""));
+                holder.tvComboPriceOld.setVisibility(View.VISIBLE);
+                holder.tvComboPriceOld.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //中划线
+            }
+            //现价
+            String money = resp.getMoney();
+            if (StringUtils.isEmpty(money)) {
+                money = "0";
+            }
+            holder.tvComboPriceNew.setText("¥" + TVUtils.toStringInt(Integer.parseInt(money) / 100.00 + ""));
+
+            String startTime = resp.getSystemTime();
+            String endTime = resp.getEndTime();
+            int days = resp.getDays();
+            if (!StringUtils.isEmpty(startTime)) {
+                long start = Long.parseLong(startTime);
+                long dayTime = days * 24 * 60 * 60 * 1000L;
+                endTime = (dayTime + start) + "";
+            }
+
+            try {
+                startTime = DateUtils.timestampToString(startTime, "MM月dd日 HH:mm");
+                endTime = DateUtils.timestampToString(endTime, "MM月dd日 HH:mm");
+                holder.tvComboTime.setText(startTime + " 至 " + endTime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if (position == selectedPos) {
+                holder.ivSelect.setImageResource(R.mipmap.yc_43);
+                holder.llytComboDetail.setVisibility(View.VISIBLE);
+                holder.top_view.setVisibility(View.VISIBLE);
+                List<LongRentComboListResp.DiscountInfo> infos = resp.getDiscountInfo();
+                if (null != infos && infos.size() > 0) {
+                    holder.llytComboDetail.removeAllViews();
+                    int i = 0;
+                    for (LongRentComboListResp.DiscountInfo info : infos) {
+                        View childView = inflater.inflate(R.layout.listitem_long_rent_combo_detail, holder.llytComboDetail, false);
+                        TextView tvDetailName = (TextView) childView.findViewById(R.id.tvComboDetailName);
+                        tvDetailName.setText(info.getName());
+
+                        TextView tvDetailMoney = (TextView) childView.findViewById(R.id.tvComboDetailMoney);
+                        tvDetailMoney.setText(info.getDetail());
+                        if (i == 0) {
+                            tvDetailMoney.setTextColor(ContextCompat.getColor(mContext, R.color.color_gray_666666));
+                        } else {
+                            tvDetailMoney.setTextColor(ContextCompat.getColor(mContext, R.color.color_orange_ff811b));
+                        }
+                        i++;
+                        holder.llytComboDetail.addView(childView);
+                    }
+                } else {
+                    holder.llytComboDetail.setVisibility(View.GONE);
+                }
+            } else {
+                holder.ivSelect.setImageResource(R.mipmap.yc_42);
+                holder.llytComboDetail.setVisibility(View.GONE);
+                holder.top_view.setVisibility(View.GONE);
+            }
+
+            //最后一条线隐藏
+//            if (position == getCount() - 1) {
+//                holder.viewBottomLine.setVisibility(View.GONE);
+//            } else {
+//                holder.viewBottomLine.setVisibility(View.VISIBLE);
+//            }
+        }
+
+        return convertView;
+    }
+
+
+    public static class ViewHolder {
+        @BindView(R.id.tvComboName)
+        TextView tvComboName;
+        @BindView(R.id.tvComboPriceOld)
+        TextView tvComboPriceOld;
+        @BindView(R.id.tvComboPriceNew)
+        TextView tvComboPriceNew;
+        @BindView(R.id.tvComboTime)
+        TextView tvComboTime;
+        @BindView(R.id.ivSelect)
+        ImageView ivSelect;
+        @BindView(R.id.llytComboDetail)
+        LinearLayout llytComboDetail;
+        @BindView(R.id.viewBottomLine)
+        View viewBottomLine;
+        @BindView(R.id.top_view)
+        View top_view;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+
+    public void setSelectedPos(int selectedPos) {
+        this.selectedPos = selectedPos;
+        notifyDataSetChanged();
+    }
+}

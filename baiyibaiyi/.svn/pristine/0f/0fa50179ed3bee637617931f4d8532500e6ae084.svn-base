@@ -1,0 +1,8 @@
+package www.qisu666.com.callback
+
+/**
+ * Created by wujiancheng on 2017/12/14.
+ */
+data class InviteFriendsResp(var obtainAwardMoney: Int = 0, var inviteSuccCount: Int = 0, var indirectInviteCount: Int = 0, var vo: Vo = Vo())
+
+data class Vo(var title: String = "", var content: String = "", var shareUrl: String = "")

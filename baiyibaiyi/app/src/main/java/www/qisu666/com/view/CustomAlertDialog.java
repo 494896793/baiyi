@@ -1,0 +1,293 @@
+package www.qisu666.com.view;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.text.SpannableStringBuilder;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+
+/**
+ * 自定义提示框 <br/>
+ * 2015-9-18-下午12:05:17
+ *
+ * @author Wu Jiancheng
+ */
+public class CustomAlertDialog extends Dialog {
+
+    private static final String TAG = CustomAlertDialog.class.getSimpleName();
+    private Context mContext;
+    private static CustomAlertDialog mAlertDialog = null;
+    private LinearLayout llytContent;
+    private TextView tv_dialog_title;
+    private TextView tv_dialog_content;
+    private TextView tv_dialog_cancel;
+    private TextView tv_dialog_confirm;
+    private LinearLayout llyt_btn;
+    private LinearLayout llyt_container;
+    private View viewContainer;
+
+    private String confirmText = "";
+    private String cancelText = "";
+    private String title = "";
+    private String message = "";
+    private SpannableStringBuilder messageSSb;
+    private int mCancelColor = -1;
+    private int mConfirmColor = -2;
+    /**
+     * 确定按钮监听
+     */
+    private View.OnClickListener onPositiveClickListener;
+    /**
+     * 取消按钮监听
+     */
+    private View.OnClickListener onNegaClickListener;
+
+    private CustomAlertDialog(Context context) {
+        super(context);
+        setOwnerActivity((Activity) context);
+        mContext = context;
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate CustomAlertDialog");
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.dialog_alert_content);
+        initView();
+        initData();
+
+        if (mAlertDialog != null) {
+            // 位置
+            Window window = mAlertDialog.getWindow();
+            window.setGravity(Gravity.CENTER); // dialog显示的位置
+            window.setWindowAnimations(R.style.AnimBottom); // 添加动画
+            window.setBackgroundDrawableResource(android.R.color.transparent);
+            //设置宽度
+            setWidth(window);
+        }
+    }
+
+    /**
+     * @param context
+     * @return
+     */
+    public static CustomAlertDialog getAlertDialog(Context context) {
+        if (mAlertDialog != null) {
+            mAlertDialog.dismiss();
+        }
+        mAlertDialog = new CustomAlertDialog(context);
+        mAlertDialog.setCancelable(false);
+        mAlertDialog.setCanceledOnTouchOutside(false);
+
+        return mAlertDialog;
+    }
+
+    /**
+     * @param context
+     * @param cancelable
+     * @param canceledOnTouchOutside
+     * @return
+     */
+    public static CustomAlertDialog getAlertDialog(Context context, boolean cancelable, boolean canceledOnTouchOutside) {
+        if (mAlertDialog != null) {
+            mAlertDialog.dismiss();
+        }
+        mAlertDialog = new CustomAlertDialog(context);
+        mAlertDialog.setCancelable(cancelable);
+        mAlertDialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
+
+        return mAlertDialog;
+    }
+
+    private void initView() {
+        llytContent = (LinearLayout) findViewById(R.id.llyt_content);
+        tv_dialog_title = (TextView) findViewById(R.id.tv_dialog_title);
+        tv_dialog_content = (TextView) findViewById(R.id.tv_dialog_content);
+
+        tv_dialog_cancel = (TextView) findViewById(R.id.tv_dialog_cancel);
+        tv_dialog_confirm = (TextView) findViewById(R.id.tv_dialog_confirm);
+        llyt_btn = (LinearLayout) findViewById(R.id.llyt_btn);
+
+        llyt_container = (LinearLayout) findViewById(R.id.llyt_container);
+    }
+
+    /**
+     * 将对话框的大小按屏幕大小的百分比设置
+     *
+     * @param window
+     */
+    private void setWidth(Window window) {
+        int screenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
+        WindowManager.LayoutParams p = window.getAttributes(); //获取对话框当前的参数值
+        p.width = (int) (screenWidth * 62.0 / 75.0);
+        window.setAttributes(p);
+    }
+
+    private void initData() {
+        // 各个控件如果没有设置就将他们隐藏
+        if (title != null && !"".equals(title)) {
+            tv_dialog_title.setText(title);
+        } else {
+            tv_dialog_title.setVisibility(View.GONE);
+        }
+        if (mCancelColor != -1) {
+            tv_dialog_cancel.setTextColor(ContextCompat.getColor(mContext, mCancelColor));
+        }
+        if (mConfirmColor != -2) {
+            tv_dialog_confirm.setTextColor(ContextCompat.getColor(mContext, mConfirmColor));
+        }
+        if (message != null && !"".equals(message)) {
+            tv_dialog_content.setText(message);
+        } else {
+            if (messageSSb != null) {
+                tv_dialog_content.setText(messageSSb);
+            } else {
+                tv_dialog_content.setVisibility(View.GONE);
+            }
+        }
+
+        if ((title == null || "".equals(title)) && (message == null || "".equals(message)) && messageSSb == null) {
+            llytContent.setVisibility(View.GONE);
+        }
+
+        if (viewContainer == null) {
+            llyt_container.setVisibility(View.GONE);
+        } else {
+            llyt_container.addView(viewContainer);
+        }
+
+        if (onPositiveClickListener == null) {
+            tv_dialog_confirm.setVisibility(View.GONE);
+        } else {
+            tv_dialog_confirm.setText(confirmText);
+            tv_dialog_confirm.setOnClickListener(onPositiveClickListener);
+        }
+        if (onNegaClickListener == null) {
+            tv_dialog_cancel.setVisibility(View.GONE);
+        } else {
+            tv_dialog_cancel.setText(cancelText);
+            tv_dialog_cancel.setOnClickListener(onNegaClickListener);
+        }
+        if (onPositiveClickListener == null && onNegaClickListener == null) {
+            llyt_btn.setVisibility(View.GONE);
+        }
+        if (onPositiveClickListener != null && onNegaClickListener == null) {
+            tv_dialog_confirm.setBackgroundResource(R.drawable.button_right_corner);
+        }
+        if (onPositiveClickListener == null && onNegaClickListener != null) {
+            tv_dialog_cancel.setBackgroundResource(R.drawable.button_left_corner);
+        }
+    }
+
+    /**
+     * 确定按钮
+     *
+     * @param character
+     * @param onPositiveClickListener
+     */
+    public CustomAlertDialog setOnPositiveClickListener(String character, View.OnClickListener onPositiveClickListener) {
+        confirmText = character;
+        this.onPositiveClickListener = onPositiveClickListener;
+        return mAlertDialog;
+    }
+
+    /**
+     * 取消按钮
+     *
+     * @param character
+     * @param onNegativeClickListener
+     */
+    public CustomAlertDialog setOnNegativeClickListener(String character, View.OnClickListener onNegativeClickListener) {
+        cancelText = character;
+        this.onNegaClickListener = onNegativeClickListener;
+        return mAlertDialog;
+    }
+
+    /**
+     * 标题
+     *
+     * @param title
+     */
+    public CustomAlertDialog setTitle(String title) {
+        this.title = title;
+        return mAlertDialog;
+    }
+
+    /**
+     * @param //取消按钮的颜色
+     * @return
+     */
+    public CustomAlertDialog setBtnCancelColor(int curColor) {
+        this.mCancelColor = curColor;
+        return mAlertDialog;
+    }
+
+    /**
+     * @param //确定按钮的颜色
+     * @return
+     */
+    public CustomAlertDialog setBtnConfirmColor(int curColor) {
+        this.mConfirmColor = curColor;
+        return mAlertDialog;
+    }
+
+    /**
+     * 提示内容
+     *
+     * @param message
+     */
+    public CustomAlertDialog setMessage(String message) {
+        this.message = message;
+        return mAlertDialog;
+    }
+
+    /**
+     * 提示内容
+     *
+     * @param messageSSb
+     */
+    public CustomAlertDialog setMessage(SpannableStringBuilder messageSSb) {
+        this.messageSSb = messageSSb;
+        return mAlertDialog;
+    }
+
+    /**
+     * 设置自定义View
+     *
+     * @param viewContainer
+     */
+    public CustomAlertDialog setViewContainer(View viewContainer) {
+        this.viewContainer = viewContainer;
+        viewContainer.setBackgroundColor(mContext.getResources().getColor(R.color.white));
+        return mAlertDialog;
+    }
+
+    /**
+     * 只设置一条提示信息，没标题
+     *
+     * @param msg 提示信息
+     * @return
+     */
+    public CustomAlertDialog setSingleMessage(String msg) {
+        this.message = "";
+        this.title = "";
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_login_message, null);
+        TextView tvMsg = (TextView) contentView.findViewById(R.id.tv_msg);
+        tvMsg.setText(msg);
+        setViewContainer(contentView);
+        return this;
+    }
+}

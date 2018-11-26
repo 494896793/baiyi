@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_marginLeft="@dimen/dimen_11dp"
+        android:layout_marginRight="@dimen/dimen_11dp"
+        android:background="@drawable/linear_shape"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_jilu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_jilu_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:src="@mipmap/cdjl2" />
+
+            <TextView
+                android:id="@+id/tv_jilu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:text="充电记录"
+                android:textColor="@color/new_primary"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/iv_jilu_sanjiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:paddingTop="2dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/xiala2" />
+        </LinearLayout>
+
+        <View
+            android:background="@color/view_line"
+            android:layout_width="1dp"
+            android:layout_height="30dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_tongji"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_tongji_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:src="@mipmap/cdtj1" />
+
+            <TextView
+                android:id="@+id/tv_tongji"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:text="充电统计"
+                android:textColor="@color/text_gray"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/iv_tongji_sanjiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:paddingTop="2dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/xiala1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:id="@+id/viewPager_server"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+    
+</LinearLayout>

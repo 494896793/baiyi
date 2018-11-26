@@ -1,0 +1,171 @@
+package com.baogang.bycx.callback;
+
+import com.amap.api.maps.model.LatLng;
+import com.baogang.bycx.request.RequestBaseParams;
+
+import java.io.Serializable;
+
+/**
+ * 首页网点列表
+ */
+public class ParksResp extends RequestBaseParams implements Serializable {
+
+    private String parkAddress;// 地点 string
+    private String parkFreeCarNum;//空闲车辆 string
+    private String parkFreeCarportNum;//空闲车位 string
+    private String latitude = "0";// 纬度 string
+    private String longitude = "0";// 经度 string
+    private String id;//停车场id string
+    private String parkName;//停车场名称 string
+    private String parkType;// 停车场类别 string
+    private String cityCode;
+    private String remark;//":"",
+    private String spaceNums;//":2
+    private Float discountLimit;//折扣优惠率
+    private String distance = "";
+    private boolean isNearest = false;//是否离我最近
+    private boolean isShowInfoWindow = false;//该网点是否显示InfoWindow
+    private int redPacketCarNum = 0;//红包车数量
+    private boolean isSelected = false;
+
+    public String getParkAddress() {
+        return parkAddress;
+    }
+
+    public void setParkAddress(String parkAddress) {
+        this.parkAddress = parkAddress;
+    }
+
+    public String getParkFreeCarNum() {
+        return parkFreeCarNum;
+    }
+
+    public void setParkFreeCarNum(String parkFreeCarNum) {
+        this.parkFreeCarNum = parkFreeCarNum;
+    }
+
+    public String getParkFreeCarportNum() {
+        return parkFreeCarportNum;
+    }
+
+    public void setParkFreeCarportNum(String parkFreeCarportNum) {
+        this.parkFreeCarportNum = parkFreeCarportNum;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getParkName() {
+        return parkName;
+    }
+
+    public void setParkName(String parkName) {
+        this.parkName = parkName;
+    }
+
+    public String getParkType() {
+        return parkType;
+    }
+
+    public void setParkType(String parkType) {
+        this.parkType = parkType;
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getSpaceNums() {
+        return spaceNums;
+    }
+
+    public void setSpaceNums(String spaceNums) {
+        this.spaceNums = spaceNums;
+    }
+
+    public Float getDiscountLimit() {
+        return discountLimit;
+    }
+
+    public void setDiscountLimit(Float discountLimit) {
+        this.discountLimit = discountLimit;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public boolean isNearest() {
+        return isNearest;
+    }
+
+    public void setNearest(boolean nearest) {
+        isNearest = nearest;
+    }
+
+    public LatLng getLatlng() {
+        return new LatLng(Double.parseDouble(latitude),
+                Double.parseDouble(longitude));
+    }
+
+    public boolean isShowInfoWindow() {
+        return isShowInfoWindow;
+    }
+
+    public void setShowInfoWindow(boolean showInfoWindow) {
+        isShowInfoWindow = showInfoWindow;
+    }
+
+    public int getRedPacketCarNum() {
+        return redPacketCarNum;
+    }
+
+    public void setRedPacketCarNum(int redPacketCarNum) {
+        this.redPacketCarNum = redPacketCarNum;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+}

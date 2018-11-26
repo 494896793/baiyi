@@ -1,0 +1,656 @@
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\res\layout\design_bottom_navigation_item.xml:26
+-keep class android.support.design.internal.BaselineLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\res\layout\design_navigation_item.xml:17
+-keep class android.support.design.internal.NavigationMenuItemView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\res\layout\design_navigation_menu.xml:17
+-keep class android.support.design.internal.NavigationMenuView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\res\layout\design_layout_snackbar_include.xml:18
+-keep class android.support.design.internal.SnackbarContentLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\res\layout\design_text_input_password_icon.xml:18
+-keep class android.support.design.widget.CheckableImageButton { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\res\layout\design_bottom_sheet_dialog.xml:26
+-keep class android.support.design.widget.CoordinatorLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\res\layout-sw600dp-v13\design_layout_snackbar.xml:18
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\res\layout\design_layout_snackbar.xml:18
+-keep class android.support.design.widget.Snackbar$SnackbarLayout { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:72
+-keep class android.support.v4.content.FileProvider { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\PhotoPicker\build\intermediates\packaged_res\release\layout\__picker_picker_fragment_image_pager.xml:7
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_guide.xml:6
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_chongdian.xml:98
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\view_coupon_viewpager_with_title.xml:10
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\view_message_viewpager_with_title.xml:10
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\view_viewpager_with_title.xml:10
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\view_viewpager_with_titles.xml:10
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_car_position.xml:2
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_main.xml:2
+-keep class android.support.v4.widget.DrawerLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_alert_dialog_material.xml:41
+-keep class android.support.v4.widget.NestedScrollView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_alert_dialog_button_bar_material.xml:43
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_alert_dialog_material.xml:52
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_alert_dialog_material.xml:66
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_alert_dialog_title_material.xml:56
+-keep class android.support.v4.widget.Space { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_select_dialog_material.xml:23
+-keep class android.support.v7.app.AlertController$RecycleListView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_action_menu_item_layout.xml:17
+-keep class android.support.v7.view.menu.ActionMenuItemView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_expanded_menu_layout.xml:17
+-keep class android.support.v7.view.menu.ExpandedMenuView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_list_menu_item_layout.xml:17
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_popup_menu_item_layout.xml:17
+-keep class android.support.v7.view.menu.ListMenuItemView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout-v26\abc_screen_toolbar.xml:27
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_toolbar.xml:27
+-keep class android.support.v7.widget.ActionBarContainer { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout-v26\abc_screen_toolbar.xml:44
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_action_mode_bar.xml:19
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_toolbar.xml:43
+-keep class android.support.v7.widget.ActionBarContextView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout-v26\abc_screen_toolbar.xml:17
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_toolbar.xml:17
+-keep class android.support.v7.widget.ActionBarOverlayLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_action_menu_layout.xml:17
+-keep class android.support.v7.widget.ActionMenuView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_activity_chooser_view.xml:19
+-keep class android.support.v7.widget.ActivityChooserView$InnerLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_alert_dialog_material.xml:18
+-keep class android.support.v7.widget.AlertDialogLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_alert_dialog_button_bar_material.xml:26
+-keep class android.support.v7.widget.ButtonBarLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_content_include.xml:19
+-keep class android.support.v7.widget.ContentFrameLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_alert_dialog_title_material.xml:45
+-keep class android.support.v7.widget.DialogTitle { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_simple_overlay_action_mode.xml:23
+-keep class android.support.v7.widget.FitWindowsFrameLayout { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_dialog_title_material.xml:22
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_simple.xml:17
+-keep class android.support.v7.widget.FitWindowsLinearLayout { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_invite_friends.xml:32
+-keep class android.support.v7.widget.LinearLayoutCompat { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\PhotoPicker\build\intermediates\packaged_res\release\layout\__picker_fragment_photo_picker.xml:8
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_area_list.xml:19
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_car_comments.xml:101
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_connect_return_car.xml:60
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_park_list.xml:10
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_parking_fee_return.xml:186
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_parking_fee_status.xml:30
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_person_center.xml:52
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_pledge_history.xml:10
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_pledge_refund_commit.xml:34
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_problem_upload.xml:135
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_recharge_balance.xml:74
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_recommend_park_search.xml:13
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_traffic_violation.xml:56
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_car_list.xml:6
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_my_coupon.xml:13
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_park_point_list.xml:7
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\view_recycler_view_with_content.xml:7
+-keep class android.support.v7.widget.RecyclerView { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_search_view.xml:75
+-keep class android.support.v7.widget.SearchView$SearchAutoComplete { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout-v26\abc_screen_toolbar.xml:37
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_toolbar.xml:36
+# Referenced at C:\baiyi\bycx\PhotoPicker\build\intermediates\packaged_res\release\layout\__picker_toolbar.xml:2
+-keep class android.support.v7.widget.Toolbar { <init>(...); }
+
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_simple.xml:25
+# Referenced at C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\res\layout\abc_screen_simple_overlay_action_mode.xml:32
+-keep class android.support.v7.widget.ViewStubCompat { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail.xml:154
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail_long_rent.xml:235
+-keep class cn.lankton.flowlayout.FlowLayout { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:196
+-keep class com.alipay.sdk.app.H5AuthActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:201
+-keep class com.alipay.sdk.app.H5PayActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:575
+-keep class com.amap.api.location.APSService { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_car_position.xml:29
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_choose_return_car.xml:28
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_main.xml:19
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_point_aggregation.xml:13
+-keep class com.amap.api.maps.MapView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_recommend_park.xml:25
+-keep class com.amap.api.maps.TextureMapView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_navi.xml:8
+-keep class com.amap.api.navi.AMapNaviView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_navi.xml:13
+-keep class com.amap.api.navi.view.DriveWayView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:469
+-keep class com.baogang.bycx.activity.AllOrderActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:323
+-keep class com.baogang.bycx.activity.AreaListActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:393
+-keep class com.baogang.bycx.activity.CannotReturnSampleActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:459
+-keep class com.baogang.bycx.activity.CaptureActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:278
+-keep class com.baogang.bycx.activity.CarListActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:295
+-keep class com.baogang.bycx.activity.CarPositionActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:441
+-keep class com.baogang.bycx.activity.ChargingActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:303
+-keep class com.baogang.bycx.activity.ChooseReturnParkActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:274
+-keep class com.baogang.bycx.activity.CityListActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:260
+-keep class com.baogang.bycx.activity.CommentsActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:389
+-keep class com.baogang.bycx.activity.ConnectReturnCarActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:100
+-keep class com.baogang.bycx.activity.ControlerActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:234
+-keep class com.baogang.bycx.activity.CouponActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:404
+-keep class com.baogang.bycx.activity.CouponChoiceActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:319
+-keep class com.baogang.bycx.activity.DepositRefundActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:447
+-keep class com.baogang.bycx.activity.FinishChargingActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:186
+-keep class com.baogang.bycx.activity.GuideActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:384
+-keep class com.baogang.bycx.activity.IdVerifyStatusActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:416
+-keep class com.baogang.bycx.activity.InviteFriendsActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:206
+-keep class com.baogang.bycx.activity.LoginActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:181
+-keep class com.baogang.bycx.activity.MainActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:224
+-keep class com.baogang.bycx.activity.MessageActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:191
+-keep class com.baogang.bycx.activity.MoneyLogsActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:412
+-keep class com.baogang.bycx.activity.MyCompanyActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:229
+-keep class com.baogang.bycx.activity.MyWalletActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:444
+-keep class com.baogang.bycx.activity.NaviActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:211
+-keep class com.baogang.bycx.activity.OrderDetailActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:215
+-keep class com.baogang.bycx.activity.OrderDetailCompanyActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:339
+-keep class com.baogang.bycx.activity.OrderDetailLongRentActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:247
+-keep class com.baogang.bycx.activity.OrderListActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:299
+-keep class com.baogang.bycx.activity.ParkListActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:343
+-keep class com.baogang.bycx.activity.ParkingFeeReturnActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:348
+-keep class com.baogang.bycx.activity.ParkingFeeReturnCommitActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:364
+-keep class com.baogang.bycx.activity.ParkingFeeStatusActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:265
+-keep class com.baogang.bycx.activity.PersonCenterActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:368
+-keep class com.baogang.bycx.activity.PledgeActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:372
+-keep class com.baogang.bycx.activity.PledgeHistoryActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:380
+-keep class com.baogang.bycx.activity.PledgeRefundCommitActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:376
+-keep class com.baogang.bycx.activity.PledgeRefundStatusActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:424
+-keep class com.baogang.bycx.activity.ProblemUploadActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:219
+-keep class com.baogang.bycx.activity.RechargeBalanceActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:420
+-keep class com.baogang.bycx.activity.RechargeSuccessActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:428
+-keep class com.baogang.bycx.activity.RecommendParkActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:433
+-keep class com.baogang.bycx.activity.RecommendParkSearchActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:307
+-keep class com.baogang.bycx.activity.ReturnCarSuccessBillActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:311
+-keep class com.baogang.bycx.activity.ReturnCarSuccessBillCompanyActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:335
+-keep class com.baogang.bycx.activity.ReturnCarSuccessBillLongRentActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:270
+-keep class com.baogang.bycx.activity.SearchParkActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:256
+-keep class com.baogang.bycx.activity.SettingActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:89
+-keep class com.baogang.bycx.activity.SplashActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:450
+-keep class com.baogang.bycx.activity.StationInfoActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:327
+-keep class com.baogang.bycx.activity.TrafficViolationActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:331
+-keep class com.baogang.bycx.activity.UseCarLongRentReturnActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:285
+-keep class com.baogang.bycx.activity.UseCarOrderingActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:408
+-keep class com.baogang.bycx.activity.UseCarOrderingLongRentActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:282
+-keep class com.baogang.bycx.activity.UseCarPreOrderingActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:290
+-keep class com.baogang.bycx.activity.UseCarReturnActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:251
+-keep class com.baogang.bycx.activity.VerifyIDCardActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:315
+-keep class com.baogang.bycx.activity.WebActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:63
+-keep class com.baogang.bycx.app.MyApplication { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:437
+-keep class com.baogang.bycx.droid.Activity_SelectCity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\recent_city.xml:17
+-keep class com.baogang.bycx.droid.MyGridView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\main.xml:86
+-keep class com.baogang.bycx.droid.MyLetterListView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:467
+-keep class com.baogang.bycx.map.geoFence.GeoFenceService { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:566
+-keep class com.baogang.bycx.receiver.IPushReceiver { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:463
+-keep class com.baogang.bycx.service.IPushService { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:454
+-keep class com.baogang.bycx.service.MyLocationService { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:577
+-keep class com.baogang.bycx.service.TimeCountService { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:576
+-keep class com.baogang.bycx.service.UpdateService { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\view_car_info_order.xml:180
+-keep class com.baogang.bycx.view.BatteryView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_pre_ordering.xml:18
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\listitem_car_list.xml:7
+-keep class com.baogang.bycx.view.CarInfoOrderView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_long_rent_return.xml:19
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_return.xml:19
+-keep class com.baogang.bycx.view.CarInfoView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail.xml:73
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail_company.xml:95
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail_long_rent.xml:162
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill.xml:199
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill_company.xml:211
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill_long_rent.xml:95
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_ordering_long_rent.xml:161
+-keep class com.baogang.bycx.view.ChooseCouponView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail.xml:82
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail_company.xml:103
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail_long_rent.xml:167
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill.xml:206
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill_company.xml:219
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill_long_rent.xml:104
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_ordering_long_rent.xml:169
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\ppw_pay_long_rent.xml:55
+-keep class com.baogang.bycx.view.ChoosePayTypeView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_choose_return_car.xml:19
+-keep class com.baogang.bycx.view.ChooseReturnParkView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_car_position.xml:68
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_main.xml:203
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_person_center.xml:32
+-keep class com.baogang.bycx.view.CircleImageView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\item_comments_lable.xml:15
+-keep class com.baogang.bycx.view.ColorSpecView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_coupon.xml:64
+-keep class com.baogang.bycx.view.CouponViewPagerWithTitleView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_use_car_pre_order_hour_rent.xml:68
+-keep class com.baogang.bycx.view.FeeUnitMoneyView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_parking_fee_return_commit.xml:172
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_pledge_refund_commit.xml:60
+-keep class com.baogang.bycx.view.GetMoneyAccountView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_invite_friends.xml:54
+-keep class com.baogang.bycx.view.InviteFriendsDataView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_main.xml:87
+-keep class com.baogang.bycx.view.KfEarPhoneView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail_long_rent.xml:84
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill_long_rent.xml:78
+-keep class com.baogang.bycx.view.LongRentBillView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_long_rent_return.xml:42
+-keep class com.baogang.bycx.view.LongRentLeftTimeView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_message.xml:12
+-keep class com.baogang.bycx.view.MessageViewPagerWithTitleView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_search_park.xml:75
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_search_park.xml:98
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_use_car_pre_order_long_rent.xml:18
+-keep class com.baogang.bycx.view.NestedListView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail_long_rent.xml:89
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill.xml:193
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill_company.xml:172
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill_long_rent.xml:86
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\layout_car_order_detail.xml:187
+-keep class com.baogang.bycx.view.OrderDiscountView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_main.xml:128
+-keep class com.baogang.bycx.view.ParkInfoView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_parking_fee_status.xml:19
+-keep class com.baogang.bycx.view.ReceiptAccountView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_recommend_park.xml:53
+-keep class com.baogang.bycx.view.RecommendParkView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_problem_upload.xml:98
+-keep class com.baogang.bycx.view.RecyclerViewWithContentView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_use_car_pre_order_hour_rent.xml:91
+-keep class com.baogang.bycx.view.ReturnCarFeeEstimateView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_long_rent_return.xml:99
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_return.xml:39
+-keep class com.baogang.bycx.view.ReturnCarParkNaviView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_recommend_park_search.xml:8
+-keep class com.baogang.bycx.view.SearchView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_invite_friends.xml:88
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\ppw_spring_festival.xml:77
+-keep class com.baogang.bycx.view.ShareView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_main.xml:14
+-keep class com.baogang.bycx.view.TitleMainView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_long_rent_return.xml:37
+-keep class com.baogang.bycx.view.UseCarCostLongView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_long_rent_return.xml:91
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_return.xml:29
+-keep class com.baogang.bycx.view.UseCarCostView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_area_list.xml:28
+-keep class com.baogang.bycx.view.ViewPagerNoScroll { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_coupon_choice.xml:10
+-keep class com.baogang.bycx.view.ViewPagerWithTitleView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_use_car_pre_ordering.xml:23
+-keep class com.baogang.bycx.view.ViewPagerWithTitleViews { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_main.xml:152
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\layout_cyclic_viewpager.xml:13
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\ppw_send_red_packet.xml:8
+-keep class com.baogang.bycx.view.WrapContentHeightViewPager { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_charging.xml:121
+-keep class com.baogang.bycx.widget.CircleProgressBar { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_device_no.xml:24
+-keep class com.baogang.bycx.widget.ClearEditText { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_station_info.xml:278
+-keep class com.baogang.bycx.widget.CustomListView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_station_info.xml:326
+-keep class com.baogang.bycx.widget.CustomRadioGroup { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_station_info.xml:429
+-keep class com.baogang.bycx.widget.CustomViewPager { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_charging_detail.xml:300
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_device_detail.xml:238
+-keep class com.baogang.bycx.widget.NoScrollListView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_station_info.xml:13
+-keep class com.baogang.bycx.widget.PullToRefreshLayout { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_comment.xml:25
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\item_lv_comment.xml:47
+-keep class com.baogang.bycx.widget.StarBar { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:169
+-keep class com.baogang.bycx.wxapi.WXEntryActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:176
+-keep class com.baogang.bycx.wxapi.WXPayEntryActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_capture.xml:18
+-keep class com.baogang.bycx.zxing.view.ViewfinderView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:396
+-keep class com.baogang.zxing.CaptureActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:635
+-keep class com.baogang.zxing.PreferencesActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\zxing\build\intermediates\packaged_res\release\layout\capture.xml:27
+-keep class com.baogang.zxing.ViewfinderView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:639
+-keep class com.baogang.zxing.encode.EncodeActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:674
+-keep class com.baogang.zxing.history.HistoryActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:682
+-keep class com.baogang.zxing.share.AppPickerActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:678
+-keep class com.baogang.zxing.share.BookmarkPickerActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:664
+-keep class com.baogang.zxing.share.ShareActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_station_info.xml:44
+-keep class com.bigkoo.convenientbanner.ConvenientBanner { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\OpenSourceControl\build\intermediates\packaged_res\release\layout\include_viewpager.xml:11
+-keep class com.bigkoo.convenientbanner.view.CBLoopViewPager { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\item_lv_comment.xml:21
+-keep class com.de.hdodenhof.circleimageview.CircleImageView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\zxing\build\intermediates\packaged_res\release\layout\search_book_contents_list_item.xml:17
+-keep class com.google.zxing.client.android.book.SearchBookContentsListItem { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_point_aggregation.xml:158
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_charging_record.xml:16
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_charging_statistics.xml:15
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_comment_detail.xml:8
+-keep class com.handmark.pulltorefresh.library.PullToRefreshListView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:754
+-keep class com.igexin.download.DownloadProvider { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:749
+-keep class com.igexin.download.DownloadReceiver { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:745
+-keep class com.igexin.download.DownloadService { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:737
+-keep class com.igexin.sdk.GActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:730
+-keep class com.igexin.sdk.PushActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:722
+-keep class com.igexin.sdk.PushManagerReceiver { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:710
+-keep class com.igexin.sdk.PushReceiver { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:696
+-keep class com.igexin.sdk.PushService { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:705
+-keep class com.igexin.sdk.PushServiceUser { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_detail_company.xml:77
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_return_car_success_bill_company.xml:193
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\layout_choose_coupon.xml:21
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\layout_deduction_insurance.xml:36
+-keep class com.kyleduo.switchbutton.SwitchButton { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_money_logs.xml:12
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_order_list.xml:9
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_traffic_violation.xml:51
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_my_coupon.xml:8
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_my_coupon.xml:20
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_system_message.xml:21
+-keep class com.liaoinstan.springview.widget.SpringView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\fragment_station_comment.xml:7
+-keep class com.linfaxin.recyclerview.PullRefreshLoadRecyclerView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:154
+-keep class com.mob.tools.MobUIShell { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:148
+-keep class com.tencent.connect.common.AssistActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_main.xml:105
+-keep class com.yinglan.scrolllayout.ScrollLayout { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:356
+-keep class me.iwf.photopicker.PhotoPagerActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:352
+-keep class me.iwf.photopicker.PhotoPickerActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\build\intermediates\manifests\full\release\AndroidManifest.xml:360
+-keep class me.iwf.photopicker.PhotoPickerPagerActivity { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\PhotoPicker\build\intermediates\packaged_res\release\layout\__picker_activity_photo_pager.xml:16
+# Referenced at C:\baiyi\bycx\PhotoPicker\build\intermediates\packaged_res\release\layout\__picker_activity_photo_picker_pager.xml:14
+-keep class me.iwf.photopicker.fragment.ImagePagerFragment { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\PhotoPicker\build\intermediates\packaged_res\release\layout\__picker_item_photo.xml:2
+-keep class me.iwf.photopicker.widget.SquareItemLayout { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\PhotoPicker\build\intermediates\packaged_res\release\layout\__picker_picker_item_pager.xml:10
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_cannot_return_sample.xml:2
+-keep class me.iwf.photopicker.widget.TouchImageView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\OpenSourceControl\build\intermediates\packaged_res\release\layout\widget_refresh_view.xml:6
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_connection.xml:32
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_station_info.xml:22
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\dialog_loading.xml:15
+-keep class pl.droidsonroids.gif.GifImageView { <init>(...); }
+
+# Referenced at C:\baiyi\bycx\app\src\main\res\layout\activity_charging.xml:152
+-keep class www.qisu666.com.widget.WaveView { <init>(...); }
+

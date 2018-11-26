@@ -1,0 +1,180 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import cn.lankton.flowlayout.FlowLayout;
+import com.baogang.bycx.R;
+import com.baogang.bycx.view.ChooseCouponView;
+import com.baogang.bycx.view.ChoosePayTypeView;
+import com.baogang.bycx.view.LongRentBillView;
+import com.baogang.bycx.view.OrderDiscountView;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class OrderDetailLongRentActivity_ViewBinding<T extends OrderDetailLongRentActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131296610;
+
+  private View view2131296754;
+
+  private View view2131297324;
+
+  private View view2131297325;
+
+  private View view2131296790;
+
+  @UiThread
+  public OrderDetailLongRentActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "field 'ivTitleLeft' and method 'onViewClicked'");
+    target.ivTitleLeft = Utils.castView(view, R.id.ivTitleLeft, "field 'ivTitleLeft'", ImageView.class);
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    target.tvTitleRight = Utils.findRequiredViewAsType(source, R.id.tvTitleRight, "field 'tvTitleRight'", TextView.class);
+    target.llytTitleRight = Utils.findRequiredViewAsType(source, R.id.llytTitleRight, "field 'llytTitleRight'", LinearLayout.class);
+    target.ivCarPic = Utils.findRequiredViewAsType(source, R.id.ivCarPic, "field 'ivCarPic'", ImageView.class);
+    target.tvOrderDetailUnfold = Utils.findRequiredViewAsType(source, R.id.tvOrderDetailUnfold, "field 'tvOrderDetailUnfold'", TextView.class);
+    target.ivOrderDetailDown = Utils.findRequiredViewAsType(source, R.id.ivOrderDetailDown, "field 'ivOrderDetailDown'", ImageView.class);
+    view = Utils.findRequiredView(source, R.id.llytOrderDetailUnfold, "field 'llytOrderDetailUnfold' and method 'onViewClicked'");
+    target.llytOrderDetailUnfold = Utils.castView(view, R.id.llytOrderDetailUnfold, "field 'llytOrderDetailUnfold'", LinearLayout.class);
+    view2131296754 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    target.layoutBillDetail = Utils.findRequiredViewAsType(source, R.id.layoutBillDetail, "field 'layoutBillDetail'", LinearLayout.class);
+    target.tvCarSeatNum = Utils.findRequiredViewAsType(source, R.id.tvCarSeatNum, "field 'tvCarSeatNum'", TextView.class);
+    target.tvCarNumber = Utils.findRequiredViewAsType(source, R.id.tvCarNumber, "field 'tvCarNumber'", TextView.class);
+    target.tvCarTypeName = Utils.findRequiredViewAsType(source, R.id.tvCarTypeName, "field 'tvCarTypeName'", TextView.class);
+    target.llytCarNumber = Utils.findRequiredViewAsType(source, R.id.llyt_car_number, "field 'llytCarNumber'", LinearLayout.class);
+    target.tvCarOrderNumber = Utils.findRequiredViewAsType(source, R.id.tvCarOrderNumber, "field 'tvCarOrderNumber'", TextView.class);
+    target.tvUseCarTime = Utils.findRequiredViewAsType(source, R.id.tvUseCarTime, "field 'tvUseCarTime'", TextView.class);
+    target.tvGetCarAddr = Utils.findRequiredViewAsType(source, R.id.tvGetCarAddr, "field 'tvGetCarAddr'", TextView.class);
+    target.tvReturnCarAddr = Utils.findRequiredViewAsType(source, R.id.tvReturnCarAddr, "field 'tvReturnCarAddr'", TextView.class);
+    target.tvTotalPay = Utils.findRequiredViewAsType(source, R.id.tvTotalPay, "field 'tvTotalPay'", TextView.class);
+    target.longRentBillView = Utils.findRequiredViewAsType(source, R.id.longRentBillView, "field 'longRentBillView'", LongRentBillView.class);
+    target.orderDiscountView = Utils.findRequiredViewAsType(source, R.id.orderDiscountView, "field 'orderDiscountView'", OrderDiscountView.class);
+    target.tvDiscountCompany = Utils.findRequiredViewAsType(source, R.id.tvDiscountCompany, "field 'tvDiscountCompany'", TextView.class);
+    target.llytPayContainer = Utils.findRequiredViewAsType(source, R.id.llytPayContainer, "field 'llytPayContainer'", LinearLayout.class);
+    target.chooseCouponView = Utils.findRequiredViewAsType(source, R.id.chooseCouponView, "field 'chooseCouponView'", ChooseCouponView.class);
+    target.choosePayTypeView = Utils.findRequiredViewAsType(source, R.id.choosePayTypeView, "field 'choosePayTypeView'", ChoosePayTypeView.class);
+    target.tvCarColorName = Utils.findRequiredViewAsType(source, R.id.tvCarColorName, "field 'tvCarColorName'", TextView.class);
+    target.tvCarorderEvaluate = Utils.findRequiredViewAsType(source, R.id.tv_carorder_evaluate, "field 'tvCarorderEvaluate'", TextView.class);
+    target.ratingCommentOrder = Utils.findRequiredViewAsType(source, R.id.rating_comment_order, "field 'ratingCommentOrder'", RatingBar.class);
+    target.tvCarOrderStar = Utils.findRequiredViewAsType(source, R.id.tv_car_order_star, "field 'tvCarOrderStar'", TextView.class);
+    target.returnCarAddress = Utils.findRequiredViewAsType(source, R.id.returnCarAddress, "field 'returnCarAddress'", TextView.class);
+    target.getCarAddress = Utils.findRequiredViewAsType(source, R.id.getCarAddress, "field 'getCarAddress'", TextView.class);
+    target.orderId = Utils.findRequiredViewAsType(source, R.id.orderId, "field 'orderId'", TextView.class);
+    target.tvEvaluateContent = Utils.findRequiredViewAsType(source, R.id.tv_evaluate_content, "field 'tvEvaluateContent'", TextView.class);
+    target.rlCarOrderDetailInfo = Utils.findRequiredViewAsType(source, R.id.rl_car_order_detail_info, "field 'rlCarOrderDetailInfo'", RelativeLayout.class);
+    target.llytEvaluateContainer = Utils.findRequiredViewAsType(source, R.id.llytEvaluateContainer, "field 'llytEvaluateContainer'", LinearLayout.class);
+    view = Utils.findRequiredView(source, R.id.tvToEvaluate, "field 'tvToEvaluate' and method 'onViewClicked'");
+    target.tvToEvaluate = Utils.castView(view, R.id.tvToEvaluate, "field 'tvToEvaluate'", TextView.class);
+    view2131297324 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.tvToPay, "field 'tvToPay' and method 'onViewClicked'");
+    target.tvToPay = Utils.castView(view, R.id.tvToPay, "field 'tvToPay'", TextView.class);
+    view2131297325 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    target.flowLayout = Utils.findRequiredViewAsType(source, R.id.flowLayout, "field 'flowLayout'", FlowLayout.class);
+    target.tvStatus = Utils.findRequiredViewAsType(source, R.id.tvStatus, "field 'tvStatus'", TextView.class);
+    view = Utils.findRequiredView(source, R.id.llytToRefundParkFee, "method 'onViewClicked'");
+    view2131296790 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.ivTitleLeft = null;
+    target.tvTitleName = null;
+    target.tvTitleRight = null;
+    target.llytTitleRight = null;
+    target.ivCarPic = null;
+    target.tvOrderDetailUnfold = null;
+    target.ivOrderDetailDown = null;
+    target.llytOrderDetailUnfold = null;
+    target.layoutBillDetail = null;
+    target.tvCarSeatNum = null;
+    target.tvCarNumber = null;
+    target.tvCarTypeName = null;
+    target.llytCarNumber = null;
+    target.tvCarOrderNumber = null;
+    target.tvUseCarTime = null;
+    target.tvGetCarAddr = null;
+    target.tvReturnCarAddr = null;
+    target.tvTotalPay = null;
+    target.longRentBillView = null;
+    target.orderDiscountView = null;
+    target.tvDiscountCompany = null;
+    target.llytPayContainer = null;
+    target.chooseCouponView = null;
+    target.choosePayTypeView = null;
+    target.tvCarColorName = null;
+    target.tvCarorderEvaluate = null;
+    target.ratingCommentOrder = null;
+    target.tvCarOrderStar = null;
+    target.returnCarAddress = null;
+    target.getCarAddress = null;
+    target.orderId = null;
+    target.tvEvaluateContent = null;
+    target.rlCarOrderDetailInfo = null;
+    target.llytEvaluateContainer = null;
+    target.tvToEvaluate = null;
+    target.tvToPay = null;
+    target.flowLayout = null;
+    target.tvStatus = null;
+
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+    view2131296754.setOnClickListener(null);
+    view2131296754 = null;
+    view2131297324.setOnClickListener(null);
+    view2131297324 = null;
+    view2131297325.setOnClickListener(null);
+    view2131297325 = null;
+    view2131296790.setOnClickListener(null);
+    view2131296790 = null;
+
+    this.target = null;
+  }
+}

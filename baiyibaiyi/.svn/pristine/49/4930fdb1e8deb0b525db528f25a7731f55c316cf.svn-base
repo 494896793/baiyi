@@ -1,0 +1,44 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.adapter;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class RechargeAdapter$ViewHolder_ViewBinding<T extends RechargeAdapter.ViewHolder> implements Unbinder {
+  protected T target;
+
+  @UiThread
+  public RechargeAdapter$ViewHolder_ViewBinding(T target, View source) {
+    this.target = target;
+
+    target.tvRechargeMoney = Utils.findRequiredViewAsType(source, R.id.tvRechargeMoney, "field 'tvRechargeMoney'", TextView.class);
+    target.llytRechargeBg = Utils.findRequiredViewAsType(source, R.id.llytRechargeBg, "field 'llytRechargeBg'", LinearLayout.class);
+    target.llytGift = Utils.findRequiredViewAsType(source, R.id.llytGift, "field 'llytGift'", LinearLayout.class);
+    target.tvPresentMoney = Utils.findRequiredViewAsType(source, R.id.tvPresentMoney, "field 'tvPresentMoney'", TextView.class);
+    target.ivRedPackage = Utils.findRequiredViewAsType(source, R.id.ivRedPackage, "field 'ivRedPackage'", ImageView.class);
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvRechargeMoney = null;
+    target.llytRechargeBg = null;
+    target.llytGift = null;
+    target.tvPresentMoney = null;
+    target.ivRedPackage = null;
+
+    this.target = null;
+  }
+}

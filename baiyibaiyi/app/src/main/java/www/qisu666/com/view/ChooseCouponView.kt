@@ -1,0 +1,113 @@
+package www.qisu666.com.view
+
+import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.FrameLayout
+import www.qisu666.com.R
+import www.qisu666.com.utils.TVUtils
+import kotlinx.android.synthetic.main.layout_choose_coupon.view.*
+
+/**
+ * Created by wujiancheng on 2017/11/27.
+ * 支付时选择优惠券
+ */
+class ChooseCouponView : FrameLayout {
+    private var onCheckedChangeListener: OnCheckedChangeListener? = null
+    private var onCouponChooseListener: OnCouponChooseListener? = null
+
+    constructor(context: Context?) : super(context) {
+        init()
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init()
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
+    }
+
+    private fun init() {
+        LayoutInflater.from(context).inflate(R.layout.layout_choose_coupon, this)
+        sbCoupon.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                rlytChooseCoupon.visibility = View.VISIBLE
+            } else {
+                rlytChooseCoupon.visibility = View.GONE
+            }
+            onCheckedChangeListener?.onCheckedChange(isChecked)
+        }
+        rlytChooseCoupon.setOnClickListener {
+            onCouponChooseListener?.onCouponChoose()
+        }
+    }
+
+    /**
+     * 设置优惠券值和颜色
+     */
+    fun setData(text: String, textColor: Int = 0) {
+        tvCouponValue.text = text
+        if (textColor != 0) {
+            tvCouponValue.setTextColor(ContextCompat.getColor(context, textColor))
+        }
+    }
+
+    /**
+     * 打折券的打折金额
+     */
+    fun setDiscountCouponValue(discountMoney: Double) {
+        tvCouponDiscountMoney.text = "-¥${TVUtils.toString(discountMoney)}"
+    }
+
+    /**
+     * 是否要显示打折券的打折金额
+     */
+    fun setDiscountCouponVisibility(shouldShow: Boolean) = when (shouldShow) {
+        true -> {
+            tvCouponDiscountMoney.visibility = View.VISIBLE
+        }
+        false -> {
+            tvCouponDiscountMoney.visibility = View.GONE
+        }
+    }
+
+    /**
+     * @param couponDesc 优惠券说明
+     */
+    fun setCouponDesc(couponDesc: String) {
+        tvCouponDesc.text = couponDesc
+    }
+
+    /**
+     * 是否要显示优惠券使用说明
+     */
+    fun setCouponDescVisibility(shouldShow: Boolean) = when (shouldShow) {
+        true -> {
+            rlytCouponDesc.visibility = View.VISIBLE
+        }
+        false -> {
+            rlytCouponDesc.visibility = View.GONE
+        }
+    }
+
+    //优惠券的开关
+    interface OnCheckedChangeListener {
+        fun onCheckedChange(isChecked: Boolean)
+    }
+
+    fun setOnCheckedChangeListener(onCheckedChangeListener: OnCheckedChangeListener) {
+        this.onCheckedChangeListener = onCheckedChangeListener
+    }
+
+    //点击选择优惠券
+    interface OnCouponChooseListener {
+        fun onCouponChoose()
+    }
+
+    fun setOnCouponChooseListener(onCouponChooseListener: OnCouponChooseListener) {
+        this.onCouponChooseListener = onCouponChooseListener
+    }
+}

@@ -1,0 +1,415 @@
+package com.baogang.bycx.activity;
+
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.Rect;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.amap.api.maps.model.LatLng;
+import com.baogang.bycx.R;
+import com.baogang.bycx.adapter.ParkListAdapter;
+import com.baogang.bycx.callback.CarResp;
+import com.baogang.bycx.callback.ParkListResp;
+import com.baogang.bycx.callback.ParkResp;
+import com.baogang.bycx.callback.ParksResp;
+import com.baogang.bycx.constant.Config;
+import com.baogang.bycx.constant.RequestUrls;
+import com.baogang.bycx.request.ParkListRequest;
+import com.baogang.bycx.utils.DataUtils;
+import com.baogang.bycx.utils.DateUtils;
+import com.baogang.bycx.utils.Logger;
+import com.baogang.bycx.utils.NavigationUtils;
+import com.baogang.bycx.utils.StringUtils;
+import com.baogang.bycx.utils.TVUtils;
+import com.baogang.bycx.utils.ToastUtil;
+import com.bumptech.glide.Glide;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersTouchListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+/**
+ * Created by wujiancheng on 2017/7/31.
+ * 一键用车，网点列表
+ */
+
+public class ParkListActivity extends BaseActivity {
+    private static final String TAG = ParkListActivity.class.getSimpleName();
+    private static final int PARK_LIST_CODE = 1;
+    @BindView(R.id.tvTitleName)
+    TextView tvTitleName;
+    private String parkIds;
+    private List<ParksResp> oneKeyParks;
+    private List<CarResp> mTotalData = new ArrayList<>();
+    private List<ParkListResp> mData = new ArrayList<>();
+    private AnimalsHeadersAdapter adapter;
+
+    //记录每个park的最后一辆车在列表中的position，用于判断隐藏灰色条的位置
+    private List<Integer> hideGrayDiVidePos = new ArrayList<>();
+
+    @Override
+    public void setView() {
+        setContentView(R.layout.activity_park_list);
+    }
+
+    @Override
+    public void initDatas() {
+        tvTitleName.setText("最近可用车辆");
+        parkIds = getIntent().getStringExtra("parkIds");
+        oneKeyParks = (List<ParksResp>) getIntent().getSerializableExtra("oneKeyParks");
+        //记录位置
+        int freeCarNumLastPosition = 0;
+        for (ParksResp parksResp : oneKeyParks) {
+            int freeCarNum = DataUtils.toInt(parksResp.getParkFreeCarNum());
+            freeCarNumLastPosition = freeCarNumLastPosition + freeCarNum;
+            hideGrayDiVidePos.add(freeCarNumLastPosition);
+        }
+        Logger.i(TAG, "hideGrayDiVidePos==" + hideGrayDiVidePos);
+
+        initView();
+        getParkListData();
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+        if (isSuccess(result)) {
+            if (type == PARK_LIST_CODE) {
+                List<ParkListResp> listResps = getList(result, ParkListResp.class);
+                mData.clear();
+                mData.addAll(listResps);
+
+                mTotalData.clear();
+                Logger.i(TAG, "listResps==" + listResps.size());
+                for (ParkListResp resp : listResps) {
+                    List<CarResp> datas = resp.getCarInfoList();
+                    mTotalData.addAll(datas);
+                }
+                adapter.addAll(mTotalData);
+            }
+        } else {
+            ToastUtil.show(mContext, "附近没有可用车辆");
+        }
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+
+    /**
+     * 获取网点列表
+     */
+    private void getParkListData() {
+        ParkListRequest data = new ParkListRequest();
+        data.setDepotIds(parkIds);
+        data.setMethod(RequestUrls.QUERY_NEARBY_CAR_LIST);
+        doGet(data, PARK_LIST_CODE, Config.LOADING_STRING, true);
+    }
+
+    private void initView() {
+        final RecyclerView rvParkList = (RecyclerView) findViewById(R.id.rvParkList);
+
+        // Set adapter populated with example dummy data
+        adapter = new AnimalsHeadersAdapter();
+        adapter.addAll(mTotalData);
+        rvParkList.setAdapter(adapter);
+
+        // Set layout manager
+        int orientation = getLayoutManagerOrientation(getResources().getConfiguration().orientation);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this, orientation, false);
+        rvParkList.setLayoutManager(layoutManager);
+
+        // Add the sticky headers decoration
+        final StickyRecyclerHeadersDecoration headersDecor = new StickyRecyclerHeadersDecoration(adapter);
+        rvParkList.addItemDecoration(headersDecor);
+
+        // Add decoration for dividers between list items
+//        rvParkList.addItemDecoration(new DividerDecoration(this));
+
+        // Add touch listeners
+        StickyRecyclerHeadersTouchListener touchListener =
+                new StickyRecyclerHeadersTouchListener(rvParkList, headersDecor);
+
+        touchListener.setOnHeaderClickListener(
+                new StickyRecyclerHeadersTouchListener.OnHeaderClickListener() {
+                    @Override
+                    public void onHeaderClick(View header, int position, long headerId, MotionEvent e) {
+                        //导航
+                        View view = header.findViewById(R.id.llytNavigate);
+                        Logger.i(TAG, "parkId = " + headerId + ",parkIds=" + parkIds);
+                        if (inRangeOfView(view, e)) {
+                            for (ParksResp infoCode : oneKeyParks) {
+                                if ((headerId + "").equals(infoCode.getId())) {
+                                    String lat = infoCode.getLatitude();
+                                    String lng = infoCode.getLongitude();
+                                    Logger.i(TAG, "lat=" + lat + ",lng=" + lng);
+                                    if (StringUtils.isIntOrFloat(lat) && StringUtils.isIntOrFloat(lng)) {
+                                        LatLng latLng = new LatLng(Double.valueOf(lat), Double.valueOf(lng));
+                                        NavigationUtils.goNavigation(ParkListActivity.this, latLng, 2);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
+
+        rvParkList.addOnItemTouchListener(touchListener);
+//        rvParkList.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+////                adapter.remove(adapter.getItem(position));
+//            }
+//        }));
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                headersDecor.invalidateHeaders();
+            }
+        });
+    }
+
+    private int getLayoutManagerOrientation(int activityOrientation) {
+        if (activityOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            return LinearLayoutManager.VERTICAL;
+        } else {
+            return LinearLayoutManager.HORIZONTAL;
+        }
+    }
+
+    @OnClick(R.id.ivTitleLeft)
+    public void onViewClicked() {
+        finish();
+    }
+
+    public class AnimalsHeadersAdapter extends ParkListAdapter<AnimalsHeadersAdapter.ViewHolder>
+            implements StickyRecyclerHeadersAdapter<AnimalsHeadersAdapter.ViewHolderHeader> {
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.listitem_cars_container, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            final CarResp data = getItem(position);
+            if (null == data) {
+                return;
+            }
+
+            ParkResp park = null;
+
+            for (ParkListResp resp : mData) {
+                ParkResp tmp = resp.getDepot();
+                if (null != tmp && tmp.getId() != null && tmp.getId().equals(data.getParkId())) {
+                    park = tmp;
+                    break;
+                }
+            }
+            if (null == park) {
+                return;
+            }
+            int isRedCar = data.getIsRedPkCar();
+            //是否是红包车(1 是，0 不是)
+            if (isRedCar == 1) {
+                holder.ivFlagRedPacketCar.setVisibility(View.VISIBLE);
+            } else {
+                holder.ivFlagRedPacketCar.setVisibility(View.GONE);
+            }
+            Glide.with(mContext).load(data.getSmallCarImgUri()).into(holder.ivCarType);
+            holder.tvCarNumber.setText(data.getCarNumber());
+            holder.car_color_tx.setText(data.getCarColor());
+            holder.car_set_tx.setText(data.getCarSetsNums() + "座");
+            holder.tvCarBrand.setText(data.getCarBrand() + data.getModels());
+            String battery = data.getBatteryResidual() + "";
+            if (!"null".equals(battery) && !"".equals(battery)) {
+                double batteryD = Double.valueOf(battery);
+                int batteryPercent = (int) batteryD;
+                holder.tvBatteryPercent.setText(batteryPercent + "%");
+//                if (batteryPercent >= 80) {
+//                    holder.tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.color_green_59d66f));
+//                } else if (batteryPercent >= 40) {
+//                    holder.tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.color_orange_ff811b));
+//                } else {
+//                    holder.tvBatteryPercent.setTextColor(ContextCompat.getColor(mContext, R.color.color_red_e71100));
+//                }
+            }
+            String milesMoneyUnit = data.getMilesMoney();
+            String timeMoneyUnit = data.getTimeMoney();
+            String electricityMoney=data.getElectricityMoney()+"";
+            boolean isNightTimeSection = DateUtils.isNightTimeSection(data.getNightBeginRateHour(), data.getNightEndRateHour());
+            if (isNightTimeSection) {
+                //当前时间属于夜间时间段
+                milesMoneyUnit = data.getNightMilesUnit() + "";
+                timeMoneyUnit = data.getNightTimeUnit() + "";
+            }
+
+            if(null!=electricityMoney&&!electricityMoney.equals("")){
+                if (null != milesMoneyUnit && !"".equals(milesMoneyUnit) && null != timeMoneyUnit && !"".equals(timeMoneyUnit)) {
+                    holder.tvCarFee.setText("计费：里程费+电镀费+时长费\n"+Html.fromHtml("<font color='#51E7D3'>" + TVUtils.toString(Integer.parseInt(milesMoneyUnit) / 100.00) + "</font>元/公里+<font color='#51E7D3'>"+TVUtils.toString(Integer.parseInt(electricityMoney) / 100.00) +"</font>元+<font color='#51E7D3'>" + TVUtils.toString(Integer.parseInt(timeMoneyUnit) / 100.00) + "</font>元/分钟"));
+                } else if (null != milesMoneyUnit && !"".equals(milesMoneyUnit)) {
+                    holder.tvCarFee.setText("计费：里程费+电镀费\n"+Html.fromHtml("<font color='#51E7D3'>" + TVUtils.toString(Integer.parseInt(milesMoneyUnit) / 100.00) + "</font>元/公里+<font color='#51E7D3'>"+TVUtils.toString(Integer.parseInt(electricityMoney) / 100.00)+"</font>元"));
+                } else {
+                    holder.tvCarFee.setText("计费：时长费+电镀费\n"+Html.fromHtml("<font color='#51E7D3'>" + TVUtils.toString(Integer.parseInt(timeMoneyUnit) / 100.00) + "</font>元/分钟+<font color='#51E7D3'>"+TVUtils.toString(Integer.parseInt(electricityMoney) / 100.00)+"</font>元"));
+                }
+            }else{
+                if (null != milesMoneyUnit && !"".equals(milesMoneyUnit) && null != timeMoneyUnit && !"".equals(timeMoneyUnit)) {
+                    holder.tvCarFee.setText("计费：里程费+时长费\n"+Html.fromHtml("<font color='#51E7D3'>" + TVUtils.toString(Integer.parseInt(milesMoneyUnit) / 100.00) + "</font>元/公里+<font color='#51E7D3'>" + TVUtils.toString(Integer.parseInt(timeMoneyUnit) / 100.00) + "</font>元/分钟"));
+                } else if (null != milesMoneyUnit && !"".equals(milesMoneyUnit)) {
+                    holder.tvCarFee.setText("计费：里程费\n"+Html.fromHtml("<font color='#51E7D3'>" + TVUtils.toString(Integer.parseInt(milesMoneyUnit) / 100.00) + "</font>元/公里"));
+                } else {
+                    holder.tvCarFee.setText("计费：时长费\n"+Html.fromHtml("<font color='#51E7D3'>" + TVUtils.toString(Integer.parseInt(timeMoneyUnit) / 100.00) + "</font>元/分钟"));
+                }
+            }
+
+            //订车
+            final ParkResp finalPark = park;
+            holder.tvOrderCar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, UseCarPreOrderingActivity.class);
+                    intent.putExtra("carInfo", data);
+                    intent.putExtra("parkInfo", finalPark);
+
+                    startActivityForResult(intent, CarListActivity.REQUEST_CODE_ORDER);
+                }
+            });
+
+//            for (int i : hideGrayDiVidePos) {
+//                if (position == i - 1) {
+//                    holder.viewHeader.setVisibility(View.VISIBLE);
+//                    break;
+//                } else {
+//                    holder.viewHeader.setVisibility(View.GONE);
+//                }
+//            }
+        }
+
+        @Override
+        public long getHeaderId(int position) {
+//            if (position == 0) {
+//                return -1;
+//            } else {
+            return Long.parseLong(getItem(position).getParkId());
+//            }
+        }
+
+        @Override
+        public ViewHolderHeader onCreateHeaderViewHolder(ViewGroup parent) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.layout_use_car_park_container, parent, false);
+            return new ViewHolderHeader(view);
+        }
+
+        @Override
+        public void onBindHeaderViewHolder(ViewHolderHeader holder, int position) {
+            CarResp carInfoCode = getItem(position);
+            if (null == carInfoCode) {
+                return;
+            }
+            ParkResp park = null;
+            for (ParkListResp resp : mData) {
+                ParkResp parkTmp = resp.getDepot();
+                String parkId = carInfoCode.getParkId();
+                if (parkId != null && !"".equals(parkId) && parkId.equals(parkTmp.getId())) {
+                    park = parkTmp;
+                    break;
+                }
+            }
+
+            if (null == park) {
+                return;
+            }
+
+            holder.tvParkName.setText(park.getParkName());
+            holder.tvParkNamedDetail.setText(park.getParkAddress());
+            for (ParksResp parksResp : oneKeyParks) {
+                if (parksResp.getId().equals(park.getId())) {
+                    holder.tvDistance.setText(parksResp.getDistance());
+                    break;
+                }
+            }
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            @BindView(R.id.ivFlagRedPacketCar)
+            ImageView ivFlagRedPacketCar;
+            @BindView(R.id.ivCarType)
+            ImageView ivCarType;
+            @BindView(R.id.tvCarNumber)
+            TextView tvCarNumber;
+            @BindView(R.id.tvBatteryPercent)
+            TextView tvBatteryPercent;
+            @BindView(R.id.tvCarFee)
+            TextView tvCarFee;
+            @BindView(R.id.tvCarBrand)
+            TextView tvCarBrand;
+            @BindView(R.id.tvOrderCar)
+            TextView tvOrderCar;
+            @BindView(R.id.car_set_tx)
+            TextView car_set_tx;
+            @BindView(R.id.car_color_tx)
+            TextView car_color_tx;
+//            @BindView(R.id.viewHeader)
+//            View viewHeader;
+
+            ViewHolder(View view) {
+                super(view);
+                ButterKnife.bind(this, view);
+            }
+        }
+
+        class ViewHolderHeader extends RecyclerView.ViewHolder {
+            @BindView(R.id.tvParkName)
+            TextView tvParkName;
+            @BindView(R.id.tvParkNamedDetail)
+            TextView tvParkNamedDetail;
+            @BindView(R.id.tvDistance)
+            TextView tvDistance;
+            @BindView(R.id.llytNavigate)
+            LinearLayout llytNavigate;
+//            @BindView(R.id.ivNavigate)
+//            ImageView ivNavigate;
+
+            ViewHolderHeader(View view) {
+                super(view);
+                ButterKnife.bind(this, view);
+            }
+        }
+    }
+
+    private boolean inRangeOfView(View view, MotionEvent ev) {
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        int x = location[0];
+        int y = location[1];
+        if (x == 0 || y == 0) {
+            Rect rect = new Rect();
+            view.getGlobalVisibleRect(rect);
+            x = rect.left;
+            y = rect.top;
+        }
+        if (ev.getX() < x || ev.getX() > (x + view.getWidth())) {//|| ev.getY() < y || ev.getY() > (y + view.getHeight())
+            return false;
+        }
+        return true;
+    }
+}

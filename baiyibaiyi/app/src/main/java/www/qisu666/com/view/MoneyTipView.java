@@ -1,0 +1,157 @@
+package www.qisu666.com.view;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+
+public class MoneyTipView extends RelativeLayout implements View.OnClickListener {
+    private ItemListener listener;
+    private TextView tv_view_all;
+    private TextView tv_view_charge;
+    private TextView tv_view_defund;
+    private TextView tv_view_pay;
+    private ImageView iv_view_all;
+    private ImageView iv_view_charge;
+    private ImageView iv_view_defund;
+    private ImageView iv_view_pay;
+
+    public void setListener(ItemListener listener) {
+        this.listener = listener;
+    }
+
+    public MoneyTipView(Context context) {
+        super(context);
+        init(context);
+    }
+
+    public MoneyTipView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(context);
+    }
+
+    public MoneyTipView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context);
+    }
+
+    private void init(Context context) {
+        View view = LayoutInflater.from(context).inflate(R.layout.view_money_detail, this);
+        view.setOnClickListener(this);
+        findViewById(R.id.rl_view_all).setOnClickListener(this);
+        findViewById(R.id.rl_view_charge).setOnClickListener(this);
+        findViewById(R.id.rl_view_defund).setOnClickListener(this);
+        findViewById(R.id.rl_view_pay).setOnClickListener(this);
+        findViewById(R.id.rl_detail_context).setOnClickListener(this);
+
+        tv_view_all = (TextView) view.findViewById(R.id.tv_view_all);
+        tv_view_charge = (TextView) view.findViewById(R.id.tv_view_charge);
+        tv_view_defund = (TextView) view.findViewById(R.id.tv_view_defund);
+        tv_view_pay = (TextView) view.findViewById(R.id.tv_view_pay);
+
+        iv_view_all = (ImageView) view.findViewById(R.id.iv_view_all);
+        iv_view_charge = (ImageView) view.findViewById(R.id.iv_view_charge);
+        iv_view_defund = (ImageView) view.findViewById(R.id.iv_view_defund);
+        iv_view_pay = (ImageView) view.findViewById(R.id.iv_view_pay);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Resources resources = getResources();
+        switch (v.getId()) {
+            /**
+             * 全部
+             */
+            case R.id.rl_view_all:
+                tv_view_all.setTextColor(resources.getColor(R.color.new_primary));
+                tv_view_charge.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_defund.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_pay.setTextColor(resources.getColor(R.color.color_black_333333));
+
+                iv_view_all.setVisibility(View.VISIBLE);
+                iv_view_charge.setVisibility(View.GONE);
+                iv_view_defund.setVisibility(View.GONE);
+                iv_view_pay.setVisibility(View.GONE);
+
+                if (listener != null) {
+                    listener.all();
+                }
+                break;
+            /**
+             * 充值
+             */
+            case R.id.rl_view_charge:
+                tv_view_all.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_charge.setTextColor(getResources().getColor(R.color.new_primary));
+                tv_view_defund.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_pay.setTextColor(resources.getColor(R.color.color_black_333333));
+
+                iv_view_all.setVisibility(View.GONE);
+                iv_view_charge.setVisibility(View.VISIBLE);
+                iv_view_defund.setVisibility(View.GONE);
+                iv_view_pay.setVisibility(View.GONE);
+                if (listener != null) {
+                    listener.add();
+                }
+                break;
+            /**
+             * 退款
+             */
+            case R.id.rl_view_defund:
+                tv_view_all.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_charge.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_defund.setTextColor(getResources().getColor(R.color.new_primary));
+                tv_view_pay.setTextColor(resources.getColor(R.color.color_black_333333));
+
+                iv_view_all.setVisibility(View.GONE);
+                iv_view_charge.setVisibility(View.GONE);
+                iv_view_defund.setVisibility(View.VISIBLE);
+                iv_view_pay.setVisibility(View.GONE);
+                if (listener != null) {
+                    listener.defund();
+                }
+                break;
+            /**
+             * 消费
+             */
+            case R.id.rl_view_pay:
+                tv_view_all.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_charge.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_defund.setTextColor(resources.getColor(R.color.color_black_333333));
+                tv_view_pay.setTextColor(getResources().getColor(R.color.new_primary));
+
+                iv_view_all.setVisibility(View.GONE);
+                iv_view_charge.setVisibility(View.GONE);
+                iv_view_defund.setVisibility(View.GONE);
+                iv_view_pay.setVisibility(View.VISIBLE);
+                if (listener != null) {
+                    listener.delete();
+                }
+                break;
+            case R.id.rl_detail_context:
+                if (listener != null) {
+                    listener.removev();
+                }
+                break;
+        }
+    }
+
+    public interface ItemListener {
+        void all();
+
+        void add();
+
+        void defund();
+
+        void delete();
+
+        void removev();
+    }
+}

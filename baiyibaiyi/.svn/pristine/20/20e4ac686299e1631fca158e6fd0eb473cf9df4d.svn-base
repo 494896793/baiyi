@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llytReturnAddr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您要去哪儿"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_17sp" />
+
+        <TextView
+            android:id="@+id/tvReturnAddr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/color_gray_999999"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/arrow_right" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlytNavigate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        >
+
+        <View
+            android:background="@color/view_line"
+            android:layout_marginRight="@dimen/dimen_15dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginLeft="15dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp">
+
+            <TextView
+                android:id="@+id/tvParkName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="85dp"
+                android:text="--"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvParkAddr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvParkName"
+                android:layout_marginRight="85dp"
+                android:layout_marginTop="10dp"
+                android:text="--"
+                android:textColor="@color/main_info_color"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivNavigate"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/yc_15" />
+
+            <View
+                android:visibility="gone"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@id/tvParkAddr"
+                android:layout_alignTop="@id/tvParkName"
+                android:layout_toLeftOf="@id/ivNavigate"
+                android:background="@color/color_gray_e5e5e5" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,24 @@
+package com.baogang.bycx.app;
+
+/**
+ * 支付类型
+ */
+public class PayMode {
+    public static final int RECHARGE_PAY = 1;// 充值支付
+
+    public static final int ALI_PAY_MODE = 1;// 支付宝支付
+    public static final int YINLIAN_PAY_MODE = 2;// 银联支付
+    public static final int WEIXIN_PAY_MODE = 3;//微信支付
+    public static final int CAIFU_PAY_MODE = 4;//财付通支付
+    public static final int COMPANY_PAY_MODE = 5;//企业支付
+    public static final int BALANCE_PAY_MODE = -1;//余额支付
+
+
+    public static final String BALANCE_PAY_TYPE = "B";//余额
+    public static final String ALI_PAY_TYPE = "A";//支付宝
+    public static final String CAIFU_PAY_TYPE = "RequestBaseParams";//财付通
+    public static final String WEIXIN_PAY_TYPE = "WX";//微信
+    public static final String YINLIAN_PAY_TYPE = "U";//银联
+    public static final String ORIGINAL_PAY_TYPE = "R";//原路退回
+    public static final String COMPANY_PAY_TYPE = "E";//企业支付
+}

@@ -1,0 +1,137 @@
+package com.baogang.bycx.view;
+
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.callback.BillLongRentResp;
+import com.baogang.bycx.utils.DateUtils;
+import com.baogang.bycx.utils.StringUtils;
+import com.baogang.bycx.utils.TVUtils;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by wujiancheng on 2017/9/24.
+ * 短租账单中的明细
+ */
+
+public class LongRentBillView extends LinearLayout {
+
+    private ViewHolder viewHolder;
+
+    public LongRentBillView(Context context) {
+        super(context);
+        init();
+    }
+
+    public LongRentBillView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    public LongRentBillView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_bill_long_rent, this);
+        viewHolder = new ViewHolder(view);
+    }
+
+    public void setData(BillLongRentResp billLongRentResp) {
+        viewHolder.tvComboName.setText(billLongRentResp.getPackageName());
+        String comboMoneyStr = billLongRentResp.getPackageMoney();
+        if (!StringUtils.isEmpty(comboMoneyStr)) {
+            viewHolder.tvComboMoney.setText(TVUtils.toString(Integer.parseInt(comboMoneyStr) / 100.0) + "元");
+        }
+
+        //短租优惠券减免
+        String rentOrderCouponMoney = billLongRentResp.getRentOrderCouponMoney();
+        if (!StringUtils.isEmpty(rentOrderCouponMoney)) {
+            double discountMoney = Integer.parseInt(rentOrderCouponMoney) / 100.0;
+            viewHolder.tvComboDiscountMoney.setText("-" + TVUtils.toString(discountMoney) + "元");
+        } else {
+            viewHolder.rlytComboDiscount.setVisibility(View.GONE);
+        }
+
+        String transferMoney=billLongRentResp.getTransferMoney();
+        if(!TextUtils.isEmpty(transferMoney)){
+            viewHolder.transfer_re.setVisibility(VISIBLE);
+            viewHolder.tvTransferValueMoney.setText(TVUtils.toString(Integer.parseInt(transferMoney) / 100.0)+"元");
+        }else{
+            viewHolder.transfer_re.setVisibility(GONE);
+        }
+
+        //套餐内不计免赔金额
+        String comboInsurance = billLongRentResp.getInsuranceMoney();
+        if (!StringUtils.isEmpty(comboInsurance)) {
+            double comboInsuranceD = Double.parseDouble(comboInsurance);
+            if (comboInsuranceD * 1000 != 0) {
+                viewHolder.tvComboInsuranceMoney.setText(TVUtils.toString(comboInsuranceD / 100.00) + "元");
+            } else {
+                viewHolder.llytComboInsurance.setVisibility(View.GONE);
+            }
+        } else {
+            viewHolder.llytComboInsurance.setVisibility(View.GONE);
+        }
+        //套餐外总时长
+        String comboExtraTime = billLongRentResp.getOutTimeTotalMinute();
+        if (!StringUtils.isEmpty(comboExtraTime)) {
+            viewHolder.tvComboExtraMileage.setText("(" + billLongRentResp.getOutTimeTotalMileage() + "公里)");
+            String comboExtraMileageMoney = billLongRentResp.getOutTimeMileageMoney();
+            if (!StringUtils.isEmpty(comboExtraMileageMoney)) {
+                viewHolder.tvComboExtraMileageMoney.setText(TVUtils.toString(Integer.parseInt(comboExtraMileageMoney) / 100.00) + "元");
+            }
+            viewHolder.tvComboExtraTime.setText("(" + DateUtils.minuteToDay(Integer.parseInt(comboExtraTime)) + ")");
+            String comboExtraTimeMoney = billLongRentResp.getOutTimeTotalMinuteCost();
+            if (!StringUtils.isEmpty(comboExtraTimeMoney)) {
+                viewHolder.tvComboExtraTimeMoney.setText(TVUtils.toString(Integer.parseInt(comboExtraTimeMoney) / 100.00) + "元");
+            }
+        } else {
+            //隐藏套餐外信息
+            viewHolder.llytComboExtra.setVisibility(View.GONE);
+        }
+    }
+
+    static class ViewHolder {
+        @BindView(R.id.tvComboName)
+        TextView tvComboName;
+        @BindView(R.id.tvComboMoney)
+        TextView tvComboMoney;
+        @BindView(R.id.rlytComboDiscount)
+        RelativeLayout rlytComboDiscount;
+        @BindView(R.id.tvComboDiscountMoney)
+        TextView tvComboDiscountMoney;
+        @BindView(R.id.tvComboInsuranceMoney)
+        TextView tvComboInsuranceMoney;
+        @BindView(R.id.llytComboInsurance)
+        RelativeLayout llytComboInsurance;
+        @BindView(R.id.tvComboExtraMileage)
+        TextView tvComboExtraMileage;
+        @BindView(R.id.tvComboExtraMileageMoney)
+        TextView tvComboExtraMileageMoney;
+        @BindView(R.id.tvComboExtraTime)
+        TextView tvComboExtraTime;
+        @BindView(R.id.tvComboExtraTimeMoney)
+        TextView tvComboExtraTimeMoney;
+        @BindView(R.id.llytComboExtra)
+        LinearLayout llytComboExtra;
+        @BindView(R.id.transfer_re)
+        RelativeLayout transfer_re;
+        @BindView(R.id.tvTransferValueMoney)
+        TextView tvTransferValueMoney;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+}

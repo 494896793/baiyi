@@ -1,0 +1,55 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+	package
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:11-39
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:2:1-13:12
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:3:5-63
+application
+ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:4:5-12:19
+provider#android.support.v4.content.FileProvider
+ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:5:9-11:20
+	android:grantUriPermissions
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:9:13-47
+	android:authorities
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:7:13-64
+	android:exported
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:8:13-37
+	android:name
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:6:13-67
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:10:13-124
+	android:resource
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:10:75-122
+	android:name
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml:10:24-74
+uses-sdk
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyi\bycx\PhotoPicker\src\main\AndroidManifest.xml

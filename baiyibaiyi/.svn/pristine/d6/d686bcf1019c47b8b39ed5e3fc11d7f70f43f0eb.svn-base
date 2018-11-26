@@ -1,0 +1,111 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class MyWalletActivity_ViewBinding<T extends MyWalletActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131296610;
+
+  private View view2131296789;
+
+  private View view2131296949;
+
+  private View view2131296944;
+
+  private View view2131297326;
+
+  @UiThread
+  public MyWalletActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.tvTitleRight = Utils.findRequiredViewAsType(source, R.id.tvTitleRight, "field 'tvTitleRight'", TextView.class);
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    target.tvBalance = Utils.findRequiredViewAsType(source, R.id.tvBalance, "field 'tvBalance'", TextView.class);
+    target.tvRechargeBalance = Utils.findRequiredViewAsType(source, R.id.tvRechargeBalance, "field 'tvRechargeBalance'", TextView.class);
+    target.tvGiftBalance = Utils.findRequiredViewAsType(source, R.id.tvGiftBalance, "field 'tvGiftBalance'", TextView.class);
+    target.tvDepositText = Utils.findRequiredViewAsType(source, R.id.tvDepositText, "field 'tvDepositText'", TextView.class);
+    target.tvDepositStatus = Utils.findRequiredViewAsType(source, R.id.tvDepositStatus, "field 'tvDepositStatus'", TextView.class);
+    target.tvCouponNumber = Utils.findRequiredViewAsType(source, R.id.tvCouponNumber, "field 'tvCouponNumber'", TextView.class);
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'onViewClick'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytTitleRight, "method 'onViewClick'");
+    view2131296789 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.rlytDeposit, "method 'onViewClick'");
+    view2131296949 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.rlytCoupon, "method 'onViewClick'");
+    view2131296944 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.tvToRecharge, "method 'onViewClick'");
+    view2131297326 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvTitleRight = null;
+    target.tvTitleName = null;
+    target.tvBalance = null;
+    target.tvRechargeBalance = null;
+    target.tvGiftBalance = null;
+    target.tvDepositText = null;
+    target.tvDepositStatus = null;
+    target.tvCouponNumber = null;
+
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+    view2131296789.setOnClickListener(null);
+    view2131296789 = null;
+    view2131296949.setOnClickListener(null);
+    view2131296949 = null;
+    view2131296944.setOnClickListener(null);
+    view2131296944 = null;
+    view2131297326.setOnClickListener(null);
+    view2131297326 = null;
+
+    this.target = null;
+  }
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:gravity="center_horizontal">
+
+    <include
+        android:id="@+id/title_layout"
+        layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_layout"
+        android:background="@color/main_background">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/tx_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="1、上传驾驶证照片"
+                android:layout_marginTop="@dimen/dimen_17dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_15sp" />
+
+
+            <ImageView
+                android:id="@+id/ivDriveCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_135dp"
+                android:layout_below="@id/tx_1"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginTop="@dimen/dimen_14dp"
+                android:background="@mipmap/upload_drive_card_bg" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:layout_below="@id/ivDriveCard"
+                android:id="@+id/tx_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="2、上传身份证照片"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_15sp" />
+
+            <ImageView
+                android:id="@+id/ivIdCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_135dp"
+                android:layout_below="@id/tx_2"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginTop="15dp"
+                android:background="@mipmap/upload_id_card_bg" />
+
+            <TextView
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:layout_below="@id/ivIdCard"
+                android:id="@+id/tx_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="3、上传手持身份证照片"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_15sp" />
+
+            <ImageView
+                android:id="@+id/ivPersonWithCard"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_135dp"
+                android:layout_below="@id/tx_3"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginTop="15dp"
+                android:background="@mipmap/upload_person_with_card_bg" />
+
+            <TextView
+                android:layout_marginLeft="@dimen/dimen_37dp"
+                android:layout_marginRight="@dimen/dimen_37dp"
+                android:background="@drawable/selector_primary_btn"
+                android:id="@+id/tvSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:layout_below="@id/ivPersonWithCard"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="30dp"
+                android:clickable="true"
+                android:gravity="center"
+                android:textSize="@dimen/dimen_18sp"
+                android:textColor="@color/main_background"
+                android:text="提交" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

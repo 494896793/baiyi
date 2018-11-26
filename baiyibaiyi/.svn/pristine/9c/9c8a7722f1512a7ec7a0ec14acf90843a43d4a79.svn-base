@@ -1,0 +1,487 @@
+package com.baogang.bycx.activity;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
+
+import com.amap.api.navi.AMapNavi;
+import com.amap.api.navi.AMapNaviListener;
+import com.amap.api.navi.AMapNaviView;
+import com.amap.api.navi.AMapNaviViewListener;
+import com.amap.api.navi.AMapNaviViewOptions;
+import com.amap.api.navi.enums.PathPlanningStrategy;
+import com.amap.api.navi.model.AMapCalcRouteResult;
+import com.amap.api.navi.model.AMapLaneInfo;
+import com.amap.api.navi.model.AMapModelCross;
+import com.amap.api.navi.model.AMapNaviCameraInfo;
+import com.amap.api.navi.model.AMapNaviCross;
+import com.amap.api.navi.model.AMapNaviInfo;
+import com.amap.api.navi.model.AMapNaviLocation;
+import com.amap.api.navi.model.AMapNaviRouteNotifyData;
+import com.amap.api.navi.model.AMapNaviTrafficFacilityInfo;
+import com.amap.api.navi.model.AMapServiceAreaInfo;
+import com.amap.api.navi.model.AimLessModeCongestionInfo;
+import com.amap.api.navi.model.AimLessModeStat;
+import com.amap.api.navi.model.NaviInfo;
+import com.amap.api.navi.model.NaviLatLng;
+import com.autonavi.tbt.TrafficFacilityInfo;
+import com.baogang.bycx.R;
+import com.baogang.bycx.utils.DialogHelper;
+import com.baogang.bycx.utils.LogUtils;
+import com.baogang.bycx.utils.NaviErrorUtils;
+import com.baogang.bycx.utils.TTSController;
+import com.baogang.bycx.utils.ToastUtil;
+import com.baogang.bycx.widget.AlertDialog;
+
+import org.xutils.common.util.LogUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
+
+//导航页面
+public class NaviActivity extends BaseActivity implements AMapNaviListener, AMapNaviViewListener {
+
+    AMapNaviView mAMapNaviView;
+    AMapNavi mAMapNavi;
+    TTSController mTtsManager;
+    NaviLatLng mEndLatlng;
+    NaviLatLng mStartLatlng;
+    List<NaviLatLng> mStartList = new ArrayList<NaviLatLng>();
+    List<NaviLatLng> mEndList = new ArrayList<NaviLatLng>();
+    List<NaviLatLng> mWayPointList;
+
+//    private DriveWayView mDriveWayView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setView(R.layout.activity_navi, getResources().getColor(R.color.bg_navi_topic));
+        mTtsManager = TTSController.getInstance(getApplication());
+        mTtsManager.init();
+        mTtsManager.startSpeaking();
+
+        mAMapNavi = AMapNavi.getInstance(getApplication());
+        mAMapNavi.addAMapNaviListener(this);
+        mAMapNavi.addAMapNaviListener(mTtsManager);
+//       mAMapNavi.setEmulatorNaviSpeed(70);
+
+
+        try {
+            LogUtils.d("起始位置：" + mStartLatlng.getLatitude() + "," + mStartLatlng.getLongitude());
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        try {
+            LogUtils.d("目标位置：" + mEndLatlng.getLatitude() + "," + mEndLatlng.getLongitude());
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+
+
+//        if(getIntent().getParcelableExtra("current")!=null){
+//            mStartLatlng = getIntent().getParcelableExtra("current");
+        mStartLatlng = new NaviLatLng(Double.valueOf(getIntent().getStringExtra("current_lat")), Double.valueOf(getIntent().getStringExtra("current_lon")));
+        LogUtils.d("起始位置：" + mStartLatlng.getLatitude() + "," + mStartLatlng.getLongitude());
+//        }
+//        if(getIntent().getParcelableExtra("target")!=null){
+//            mEndLatlng = getIntent().getParcelableExtra("target");
+        mEndLatlng = new NaviLatLng(Double.valueOf(getIntent().getStringExtra("target_lat")), Double.valueOf(getIntent().getStringExtra("target_lon")));
+
+        LogUtils.d("目标位置：" + mEndLatlng.getLatitude() + "," + mEndLatlng.getLongitude());
+//        }
+
+        mAMapNaviView = (AMapNaviView) findViewById(R.id.navi_view);
+        mAMapNaviView.onCreate(savedInstanceState);
+        mAMapNaviView.setAMapNaviViewListener(this);
+
+        AMapNaviViewOptions options = mAMapNaviView.getViewOptions();
+        options.setNaviNight(false);
+        options.setTrafficBarEnabled(false);
+        options.setTrafficInfoUpdateEnabled(false);
+//        options.setNaviViewTopic(AMapNaviViewOptions.BLUE_COLOR_TOPIC);//设置导航界面主题
+        mAMapNaviView.setViewOptions(options);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAMapNaviView.onResume();
+        mStartList.add(mStartLatlng);
+        mEndList.add(mEndLatlng);
+        try {
+            mAMapNavi.calculateDriveRoute(mStartList, mEndList, mWayPointList, PathPlanningStrategy.DRIVING_DEFAULT);
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mAMapNaviView.onPause();
+        mTtsManager.stopSpeaking();// 仅仅是停止你当前在说的这句话，一会到新的路口还是会再说的
+//        mAMapNavi.stopNavi();// 停止导航之后，会触及底层stop，然后就不会再有回调了，但是讯飞当前还是没有说完的半句话还是会说完
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAMapNaviView.onDestroy();
+        mAMapNavi.stopNavi();  //since 1.6.0 不再在naviview destroy的时候自动执行AMapNavi.stopNavi(); 请自行执行
+        mAMapNavi.destroy();
+        mTtsManager.destroy();
+    }
+
+    @Override
+    public void onInitNaviFailure() {
+        LogUtils.e("init navi Failed");
+    }
+
+    @Override
+    public void onInitNaviSuccess() {
+        LogUtils.e("init navi 初始化成功");
+//        AMapNavi mAMapNavi = null;
+//        mAMapNavi = AMapNavi.getInstance(this);
+        mAMapNavi.setUseInnerVoice(false);//
+        mAMapNavi.calculateDriveRoute(mStartList, mEndList, mWayPointList, PathPlanningStrategy.DRIVING_DEFAULT);
+    }
+
+    @Override
+    public void onStartNavi(int i) {
+        LogUtil.e("开始导航回调：" + i);
+
+
+    }
+
+    @Override
+    public void onTrafficStatusUpdate() {
+
+    }
+
+    @Override
+    public void onLocationChange(AMapNaviLocation aMapNaviLocation) {
+
+    }
+
+    @Override
+    public void onGetNavigationText(int i, String s) {
+
+    }
+
+    @Override
+    public void onGetNavigationText(String s) {
+
+    }
+
+    @Override
+    public void onEndEmulatorNavi() {
+
+    }
+
+    @Override
+    public void onArriveDestination() {
+
+    }
+
+//    @Override
+//    public void onCalculateRouteSuccess() {
+//        mAMapNavi.startNavi(AMapNavi.GPSNaviMode);
+//    }
+
+    @Override
+    public void onCalculateRouteFailure(int errorInfo) {
+        LogUtils.e("导航路径规划失败：" + errorInfo);
+        String msg = NaviErrorUtils.errorMsg(errorInfo);
+        if (msg != null) {
+            ToastUtil.showToast(msg);
+        }
+    }
+
+    @Override
+    public void onReCalculateRouteForYaw() {
+
+    }
+
+    @Override
+    public void onReCalculateRouteForTrafficJam() {
+
+    }
+
+    @Override
+    public void onArrivedWayPoint(int i) {
+
+    }
+
+    @Override
+    public void onGpsOpenStatus(boolean b) {
+
+    }
+
+    @Override
+    public void onNaviInfoUpdated(AMapNaviInfo aMapNaviInfo) {
+
+    }
+
+    @Override
+    public void updateCameraInfo(AMapNaviCameraInfo[] aMapNaviCameraInfos) {
+
+    }
+
+    @Override
+    public void updateIntervalCameraInfo(AMapNaviCameraInfo aMapNaviCameraInfo, AMapNaviCameraInfo aMapNaviCameraInfo1, int i) {
+
+    }
+
+    @Override
+    public void onServiceAreaUpdate(AMapServiceAreaInfo[] aMapServiceAreaInfos) {
+
+    }
+
+    @Override
+    public void onNaviInfoUpdate(NaviInfo naviInfo) {
+
+    }
+
+    @Override
+    public void OnUpdateTrafficFacility(AMapNaviTrafficFacilityInfo aMapNaviTrafficFacilityInfo) {
+
+    }
+
+    @Override
+    public void OnUpdateTrafficFacility(TrafficFacilityInfo trafficFacilityInfo) {
+
+    }
+
+    @Override
+    public void showCross(AMapNaviCross aMapNaviCross) {
+
+    }
+
+    @Override
+    public void hideCross() {
+
+    }
+
+    @Override
+    public void showModeCross(AMapModelCross aMapModelCross) {
+
+    }
+
+    @Override
+    public void hideModeCross() {
+
+    }
+
+    @Override
+    public void showLaneInfo(AMapLaneInfo[] aMapLaneInfos, byte[] laneBackgroundInfo, byte[] laneRecommendedInfo) {
+//        mDriveWayView.loadDriveWayBitmap(laneBackgroundInfo, laneRecommendedInfo);
+//        mDriveWayView.setVisibility(View.VISIBLE);
+
+
+//        or
+//        只接收数据，自行绘制属于你的道路选择view
+//        下面是解释
+//
+//        Log.d("解释：", "当前车道数量为" + laneInfos.length + "条");
+//        for (int i = 0; i < laneInfos.length; i++) {
+//            AMapLaneInfo info = laneInfos[i];
+//            Log.d("解释：", "该条车道的类型为" + info.getLaneTypeIdHexString());
+//            你将收到两位字符
+//            第一位表示背景
+//            第二位表示当前推荐的方向（如果不推荐则为F）
+//            请看drawable-hpdi，里面有一些图
+//            其中，从0 - E，各自代表
+//
+//             直行0
+//             左转1
+//             左转，直行2
+//             右转3
+//             右转和直行4
+//             左转调头5
+//             左转和右转6
+//             直行，左转，右转 7
+//             右转调头8
+//             直行，左转调头9
+//             直行，右转调头A
+//             左转和左转调头B
+//             右转和右转掉头C
+//             。。。
+//
+//            所以（以下三图均存在）
+//            如果00，说明该车道为直行且推荐直行
+//            如果0F，说明该车道为直行，但不推荐
+//            如果20，说明该车道为左转直行车道，推荐直行
+//            以此类推
+    }
+
+    @Override
+    public void showLaneInfo(AMapLaneInfo aMapLaneInfo) {
+
+    }
+
+    @Override
+    public void hideLaneInfo() {
+//        mDriveWayView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onCalculateRouteSuccess(int[] ints) {
+//        mAMapNavi.startNavi(NaviType.GPS);
+        Log.d("wlx", "导航页面加载成功-----success02");
+        mAMapNavi.startNavi(AMapNavi.GPSNaviMode);
+    }
+
+
+    @Override
+    public void notifyParallelRoad(int i) {
+
+    }
+
+    @Override
+    public void OnUpdateTrafficFacility(AMapNaviTrafficFacilityInfo[] aMapNaviTrafficFacilityInfos) {
+
+    }
+
+    @Override
+    public void updateAimlessModeStatistics(AimLessModeStat aimLessModeStat) {
+
+    }
+
+    @Override
+    public void updateAimlessModeCongestionInfo(AimLessModeCongestionInfo aimLessModeCongestionInfo) {
+
+    }
+
+    @Override
+    public void onPlayRing(int i) {
+
+    }
+
+    @Override
+    public void onCalculateRouteSuccess(AMapCalcRouteResult aMapCalcRouteResult) {
+        Log.d("wlx", "导航页面加载成功-----success01");
+        mAMapNavi.startNavi(AMapNavi.GPSNaviMode);
+    }
+
+    @Override
+    public void onCalculateRouteFailure(AMapCalcRouteResult aMapCalcRouteResult) {
+        Log.d("wlx", "导航页面加载失败：" + Arrays.toString(aMapCalcRouteResult.getRouteid()));
+        Log.d("wlx", "导航页面加载失败：" + aMapCalcRouteResult.getCalcRouteType());
+        Log.d("wlx", "导航页面加载失败：" + aMapCalcRouteResult.getErrorCode());
+
+    }
+
+    @Override
+    public void onNaviRouteNotify(AMapNaviRouteNotifyData aMapNaviRouteNotifyData) {
+
+    }
+
+    @Override
+    public void onNaviSetting() {
+
+    }
+
+    @Override
+    public void onNaviCancel() {
+
+    }
+
+    @Override
+    public boolean onNaviBackClick() {
+        LogUtils.d("onNaviBackClick");
+        showExitDialog();
+        return true;
+    }
+
+    /**
+     * 显示退出导航确认窗
+     */
+    private void showExitDialog() {
+        DialogHelper.confirmDialog(this, getString(R.string.dialog_map_exit_navi), new AlertDialog.OnDialogButtonClickListener() {
+            @Override
+            public void onConfirm() {
+                finish();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+        });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            showExitDialog();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onNaviMapMode(int i) {
+
+    }
+
+    @Override
+    public void onNaviTurnClick() {
+
+    }
+
+    @Override
+    public void onNextRoadClick() {
+
+    }
+
+    @Override
+    public void onScanViewButtonClick() {
+
+    }
+
+    @Override
+    public void onLockMap(boolean b) {
+
+    }
+
+    @Override
+    public void onNaviViewLoaded() {
+        Log.d("wlx", "导航页面加载成功");
+        Log.d("wlx", "请不要使用AMapNaviView.getMap().setOnMapLoadedListener();会overwrite导航SDK内部画线逻辑");
+        mAMapNavi.startNavi(AMapNavi.GPSNaviMode);
+    }
+
+    @Override
+    public void onMapTypeChanged(int i) {
+
+    }
+
+    @Override
+    public void onNaviViewShowMode(int i) {
+
+    }
+
+    @Override
+    public void setView() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

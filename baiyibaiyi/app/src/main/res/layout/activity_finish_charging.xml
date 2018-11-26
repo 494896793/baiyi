@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical"
+    tools:context=".activity.FinishChargingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40dp"
+        android:background="@color/content_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout_home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingRight="@dimen/dimen_15dp">
+
+            <ImageView
+                android:layout_width="@dimen/dimen_16dp"
+                android:layout_height="@dimen/dimen_16dp"
+                android:layout_marginLeft="@dimen/dimen_15dp"
+                android:src="@mipmap/ic_left_arrow_white" />
+
+            <TextView
+                style="@style/TextView_Normal"
+                android:layout_marginLeft="8dp"
+                android:text="首页"
+                android:textColor="@color/text_gray"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/layout_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <!--<ImageView-->
+            <!--android:layout_width="@dimen/icon_finish_charging_wnh"-->
+            <!--android:layout_height="@dimen/icon_finish_charging_wnh"-->
+            <!--android:src="@mipmap/ic_finish_charging_comment"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginLeft="@dimen/default_margin_lnr"/>-->
+
+            <TextView
+                style="@style/TextView_Normal"
+                android:layout_marginRight="@dimen/dimen_15dp"
+                android:text="@string/comment_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadingEdgeLength="0dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_shape"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_station_name"
+                    style="@style/TextView_Normal"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="充电站名称"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/TextView_Normal"
+                        android:layout_gravity="center_horizontal"
+                        android:singleLine="true"
+                        android:text="@string/finish_charging_terminal_no"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/tv_terminal_no"
+                        style="@style/TextView_Normal"
+                        android:layout_gravity="center_horizontal"
+                        android:singleLine="true"
+                        android:text="20000084"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <!--<View-->
+                <!--style="@style/Divide_Horizontal"-->
+                <!--android:layout_marginBottom="@dimen/default_margin_tnb"-->
+                <!--android:layout_marginTop="@dimen/default_margin_tnb" />-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/TextView_Normal"
+                        android:layout_gravity="center_horizontal"
+                        android:drawableLeft="@mipmap/yd_28"
+                        android:drawablePadding="5dp"
+                        android:singleLine="true"
+                        android:text="@string/finish_charging_charging_fee"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_charging_fee"
+                        style="@style/TextView_Normal"
+                        android:layout_gravity="center_horizontal"
+                        android:singleLine="true"
+                        android:text="1.13元/度"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        style="@style/TextView_Normal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@mipmap/yd_26"
+                        android:drawablePadding="5dp"
+                        android:singleLine="true"
+                        android:text="@string/finish_charging_service_fee"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_service_fee"
+                        style="@style/TextView_Normal"
+                        android:layout_gravity="center_horizontal"
+                        android:singleLine="true"
+                        android:text="0.5元/度"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_charge_fee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="77.75"
+                        android:textColor="@color/white"
+                        android:textSize="50sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="充电费用（元）"
+                        android:textColor="@color/text_gray"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/yd_46"
+                            android:drawablePadding="5dp"
+                            android:text="已充电量"
+                            android:textColor="@color/text_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_charge_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="0.16"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/yd_46"
+                            android:drawablePadding="5dp"
+                            android:text="已充时长"
+                            android:textColor="@color/text_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_charge_duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="00:00:00"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/yd_46"
+                            android:drawablePadding="5dp"
+                            android:text="退回金额"
+                            android:textColor="@color/text_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_reback_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="0.16"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/yd_46"
+                            android:drawablePadding="5dp"
+                            android:text="完成时间"
+                            android:textColor="@color/text_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_charge_finish_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="00:00:00"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@mipmap/yd_46"
+                            android:drawablePadding="5dp"
+                            android:text="优惠金额"
+                            android:textColor="@color/text_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_gift_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="0.16"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@mipmap/yd_46"
+                                android:drawablePadding="5dp"
+                                android:text="SOC"
+                                android:textColor="@color/text_gray"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_charge_soc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="00:00:00"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="25dp"
+                android:background="@mipmap/yd_43"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextView_Normal"
+                    android:layout_marginTop="50dp"
+                    android:text="@string/finish_charging_prompt_1"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_prompt_1"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_gasoline"
+                        style="@style/TextView_Normal"
+                        android:text="1.55L"
+                        android:textColor="@color/new_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/TextView_Normal"
+                        android:text="@string/finish_charging_prompt_2"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_co2"
+                        style="@style/TextView_Content_Title"
+                        android:text="0.55kg"
+                        android:textColor="@color/new_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/TextView_Normal"
+                        android:text="@string/finish_charging_prompt_3"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btn_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/selector_primary_btn_a"
+                    android:gravity="center"
+                    android:text="@string/finish_charging_share_btn"
+                    android:textColor="@color/main_background"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/main_background" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

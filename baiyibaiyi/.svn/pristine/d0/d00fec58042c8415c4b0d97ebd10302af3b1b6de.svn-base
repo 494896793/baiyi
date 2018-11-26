@@ -1,0 +1,35 @@
+package www.qisu666.com.callback
+
+import android.os.Parcel
+import android.os.Parcelable
+
+/**
+ * Created by wujiancheng on 2017/12/20.
+ * 启动页和活动页的图片响应
+ */
+data class SplashAndActivityResp(var url: String? = "", var imgUrl: String? = "", var androidImgUrl: String? = "") : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString())
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest?.writeString(this.url)
+        dest?.writeString(this.imgUrl)
+        dest?.writeString(this.androidImgUrl)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<SplashAndActivityResp> {
+        override fun createFromParcel(parcel: Parcel): SplashAndActivityResp {
+            return SplashAndActivityResp(parcel)
+        }
+
+        override fun newArray(size: Int): Array<SplashAndActivityResp?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

@@ -1,0 +1,158 @@
+package com.baogang.bycx.utils;
+
+import android.os.AsyncTask;
+import android.text.TextUtils;
+
+import com.alibaba.fastjson.JSON;
+import com.baogang.bycx.app.MyApplication;
+import com.baogang.bycx.callback.SecData;
+import com.baogang.bycx.callback.UserInfoResp;
+import com.baogang.bycx.constant.Config;
+import com.baogang.bycx.constant.RequestUrls;
+
+import java.io.File;
+import java.util.HashMap;
+
+public class UpdateImp {
+    private UpLoadPhotoTask mUpLoadPhotoTask = null;
+    private File headPic;
+    private File mPicFile;
+    private File idCarpic;
+    private UpdateImgListener listener;
+    private MyApplication application;
+    private String method;
+    private String fileUse;
+    private String fileFormat;
+
+    public String getFileFormat() {
+        return fileFormat;
+    }
+
+    public void setFileFormat(String fileFormat) {
+        this.fileFormat = fileFormat;
+    }
+
+    public void setHeadPic(File headPic) {
+        this.headPic = headPic;
+    }
+
+    public void setmPicFile(File mPicFile) {
+        this.mPicFile = mPicFile;
+    }
+
+    public File getIdCarpic() {
+        return idCarpic;
+    }
+
+    public void setIdCarpic(File idCarpic) {
+        this.idCarpic = idCarpic;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public void setFileUse(String fileUse) {
+        this.fileUse = fileUse;
+    }
+
+    public UpdateImp(UpdateImgListener listener, MyApplication application) {
+        this.application = application;
+        this.listener = listener;
+    }
+
+    public void upLoad(Object data) {
+        if (mUpLoadPhotoTask != null) {
+            mUpLoadPhotoTask.cancel(true);
+            mUpLoadPhotoTask = null;
+        }
+        mUpLoadPhotoTask = new UpLoadPhotoTask(data);
+        mUpLoadPhotoTask.execute();
+    }
+
+    private class UpLoadPhotoTask extends AsyncTask<Void, Void, Void> {
+        private String mReturnJsonData;
+        private SecData response;
+        private Object data;
+
+        public UpLoadPhotoTask(Object data) {
+            this.data = data;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            listener.before();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            /**
+             * file   图片
+             fileFormat   文件后缀（如 jpg, txt等）
+             fileName   文件名称
+             fileUse
+             */
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("cId", application.getCID());
+            map.put("customerId", CacheUtils.getIn().getUserInfo().getId());
+            map.put("method", method);
+            map.put("customerPhone", CacheUtils.getIn().getUserInfo().getPhone());
+//            map.put("version", PlatformInfo.VERSION);
+            map.put("type", "Android");
+
+            map.put("param", JSON.toJSONString(data));
+            map.put("fileFormat", "jpg");
+            if (mPicFile != null) {
+                map.put("fileName", mPicFile.getName());
+            }
+            map.put("fileUse", fileUse);
+            String loginToken = SharedPreferencesUtils.getString(MyApplication.getApplication(), Config.LOGIN_TOKEN, "");
+            if (!TextUtils.isEmpty(loginToken)) {
+                map.put("customerToken", loginToken);
+            }
+
+            String urlPath = RequestUrls.url;
+            final HashMap<String, File> files = new HashMap<String, File>();
+            if (headPic != null) {//头像
+                files.put("headPortraitFile", headPic);
+            }
+            if (mPicFile != null) {//驾照
+                files.put("driverNumberPic", mPicFile);
+            }
+            if (idCarpic != null) {//身份证
+                files.put("idCardPic", idCarpic);
+            }
+            try {
+                mReturnJsonData = AbFileUtil.postFile(urlPath, map, files, UserUtils.getToken());//urlPath,
+                Logger.e("返回信息=" + mReturnJsonData);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            try {
+                response = JSON.parseObject(mReturnJsonData, SecData.class);
+                if (response != null && Config.REQUEST_SUCCESS.equals(response.getCode())) {
+                    UserInfoResp userInfoResp = response.getResult();
+                    String token = CacheUtils.getIn().getUserInfo().getToken();
+                    if (TextUtils.isEmpty(userInfoResp.getToken())) {
+                        userInfoResp.setToken(token);
+                    }
+                    CacheUtils.getIn().save(userInfoResp);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            listener.after(response);
+        }
+    }
+
+    public interface UpdateImgListener {
+        void before();
+
+        void after(SecData response);
+    }
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+
+    <TextView
+        android:id="@+id/tv_start_navi"
+        style="@style/tv_popup"
+        android:text="@string/station_info_start_navi"
+        android:layout_marginTop="@dimen/dimen_1dp"/>
+
+    <TextView
+        android:id="@+id/tv_amap"
+        style="@style/tv_popup"
+        android:text="@string/station_info_amap"
+        android:layout_marginTop="@dimen/dimen_1dp"/>
+
+    <TextView
+        android:id="@+id/tv_baidu"
+        style="@style/tv_popup"
+        android:text="@string/station_info_baidu"
+        android:layout_marginTop="@dimen/dimen_1dp" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        style="@style/tv_popup"
+        android:text="@string/app_cancel"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

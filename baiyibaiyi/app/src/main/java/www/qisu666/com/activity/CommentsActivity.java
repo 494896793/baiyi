@@ -1,0 +1,413 @@
+package www.qisu666.com.activity;
+
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.SparseArray;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.adapter.CommentLabelAdapter;
+import www.qisu666.com.app.CouponType;
+import www.qisu666.com.app.OrderType;
+import www.qisu666.com.callback.EvaluateLabelResp;
+import www.qisu666.com.callback.RedPacketResp;
+import www.qisu666.com.constant.RequestUrls;
+import www.qisu666.com.request.EvaluateRequest;
+import www.qisu666.com.request.GetEvaluateListRequest;
+import www.qisu666.com.request.RedPacketRequest;
+import www.qisu666.com.rx.RxBus;
+import www.qisu666.com.rx.RxBusEvent;
+import www.qisu666.com.rx.RxEventCodes;
+import www.qisu666.com.utils.CustomGridLayoutManager;
+import www.qisu666.com.utils.Logger;
+import www.qisu666.com.utils.ToastUtil;
+import www.qisu666.com.utils.UserUtils;
+import www.qisu666.com.view.ColorSpecView;
+import www.qisu666.com.view.CustomAlertDialog;
+import www.qisu666.com.view.RedPacketPPW;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import rx.functions.Action1;
+
+/**
+ * 订单评价
+ * 相应的文字为：
+ * 1星显示“非常不满意”，
+ * 2星显示“不满意”，
+ * 3星显示“一般“，
+ * 4星显示“满意”，
+ * 5星显示“超级满意”
+ */
+public class CommentsActivity extends BaseActivity implements
+        RatingBar.OnRatingBarChangeListener {
+
+    @BindView(R.id.tvTitleName)
+    TextView tvTitleName;
+    @BindView(R.id.tv_tips_satisfaction)
+    TextView tvTipsSatisfaction;
+    @BindView(R.id.rating_comment_order)
+    RatingBar ratingCommentOrder;
+    //    @BindView(R.id.lable_group)
+//    LableViewGroup lableGroup;
+    @BindView(R.id.rvCommentLabels)
+    RecyclerView rvCommentLabels;
+    @BindView(R.id.tc_security)
+    TextView tcSecurity;
+    @BindView(R.id.tv_cleantidy)
+    TextView tvCleantidy;
+    @BindView(R.id.tv_convenient)
+    TextView tvConvenient;
+    @BindView(R.id.tv_quick)
+    TextView tvQuick;
+    @BindView(R.id.rl_comments_layout)
+    RelativeLayout rlCommentsLayout;
+    @BindView(R.id.et_comments_content)
+    EditText etCommentsContent;
+    @BindView(R.id.btn_send_comments)
+    Button btnSendComments;
+    @BindView(R.id.bt_commit_share)
+    Button btCommitShare;
+    @BindView(R.id.llytPayComplete)
+    LinearLayout llytPayComplete;
+
+    private String orderNo;
+    private String fromType = null;
+    public ColorSpecView lableView;
+    private StringBuffer labChecked = new StringBuffer();
+    private ArrayList<String> labCheckedList = new ArrayList<>();
+    private SparseArray<String[]> lableMap = new SparseArray<>();
+    private static int REQUEST_EVALUATE_LABEL = 0;
+    private static int COMMIT_EVALUATE_CONTENT = 1;
+    private static int QUERY_RED_PACKET = 2;//获取红包
+    private int fromPage = 0;//0:订单进来，1:还车成功进来
+    //1:后台还车后跳转到订单列表后，按返回键跳到主页
+    private int toMain = 0;
+    private int showTip = 0;//是否显示支付成功提示,1:显示
+    private CommentLabelAdapter adapter;
+    private List<String> totalLabels = new ArrayList<>();
+    private String orderType = "";//订单类型
+    //是否是支付完成进来的（如果是红包车，支付完成进来要送红包；如果是直接进入评价不送红包）
+    private boolean isPayComplete = false;
+    //提示框，非红包
+    private List<RedPacketResp> tipList = new ArrayList<>();
+
+    @Override
+    public void setView() {
+        setContentView(R.layout.activity_car_comments);
+    }
+
+    @Override
+    public void initDatas() {
+
+        initData();
+        GetEvaluateListRequest data = new GetEvaluateListRequest(OrderType.CAR_ORDER);
+        data.setMethod(RequestUrls.MEMBER_REQUEST_EVALUATE_LABEL);
+        doGet(data, REQUEST_EVALUATE_LABEL, "", false);
+        ratingCommentOrder.setOnRatingBarChangeListener(this);
+
+        controlKeyboardLayout(findViewById(R.id.svComment), etCommentsContent);
+        observeRxEventCode();
+    }
+
+    private void observeRxEventCode() {
+        busSubscription = RxBus.getInstance()
+                .toObservable(RxBusEvent.class)
+                .subscribe(new Action1<RxBusEvent>() {
+                    @Override
+                    public void call(RxBusEvent rxBusEvent) {
+                        int eventCode = rxBusEvent.getEventCode();
+                        switch (eventCode) {
+                            case RxEventCodes.CODE_RED_PACKET_DISMISS_CALLBACK://红包弹出消失后的回调
+                                showTip();
+                                break;
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+        if (isSuccess(result)) {
+            if (type == REQUEST_EVALUATE_LABEL) {
+                List<EvaluateLabelResp> evaluateLabelResp = getList(result, EvaluateLabelResp.class);
+                onGetLablesSuccess(evaluateLabelResp);
+            } else if (type == COMMIT_EVALUATE_CONTENT) {
+                ToastUtil.show(mContext, "评论成功!");
+                finishPage();
+            } else if (type == QUERY_RED_PACKET) {//赠送红包
+                List<RedPacketResp> resp = getList(result, RedPacketResp.class);
+                if (null != resp && resp.size() > 0) {
+                    for (RedPacketResp redPacketResp : resp) {
+                        //消费金额不足时提示
+                        if (CouponType.NOT_ENOUGH_MONEY.equals(redPacketResp.getType())) {
+                            tipList.add(redPacketResp);
+                        }
+                    }
+                    resp.removeAll(tipList);
+                    if (resp.size() > 0) {//有红包
+                        new RedPacketPPW().showRedPacketPPW(this, resp);
+                    } else {//没有红包
+                        showTip();
+                    }
+                }
+            }
+        } else {
+            if (type == REQUEST_EVALUATE_LABEL) {
+                ToastUtil.show(mContext, getMsg(result));
+            } else if (type == COMMIT_EVALUATE_CONTENT) {
+                ToastUtil.show(mContext, getMsg(result));
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+
+    private void initData() {
+        orderNo = getIntent().getStringExtra("orderNo");
+        if (null == orderNo) {
+            orderNo = "";
+        }
+        fromType = getIntent().getStringExtra("type");
+        fromPage = getIntent().getIntExtra("fromPage", 0);
+        toMain = getIntent().getIntExtra("toMain", 0);
+        showTip = getIntent().getIntExtra("showTip", 0);
+        if (showTip == 1) {
+            tvTitleName.setText("支付成功");
+//            llytPayComplete.setVisibility(View.VISIBLE);
+        } else {
+            tvTitleName.setText("评价");
+        }
+        //该评价的订单的类型
+        orderType = getIntent().getStringExtra("orderType");
+        if (null == orderType) {
+            orderType = "";
+        }
+        isPayComplete = getIntent().getBooleanExtra("isPayComplete", false);
+//        if (isPayComplete) {
+        requestRedPacket();
+//        }
+
+        ratingCommentOrder.setRating(5);
+        rvCommentLabels.setLayoutManager(new CustomGridLayoutManager(mContext, 2));
+    }
+
+    @OnClick(R.id.ivTitleLeft)
+    void back() {
+        finishPage();
+    }
+
+
+    @OnClick(R.id.btn_send_comments)
+    void comment() {
+        if (!TextUtils.isEmpty(orderNo)) {
+            packLables();
+            commentDriverOrderComments();
+        }
+    }
+
+    @OnClick(R.id.bt_commit_share)
+    void commentShare() {
+        comment();
+    }
+
+    private void packLables() {
+        if (labCheckedList.size() > 0) {
+            labChecked.setLength(0);
+            for (int i = 0; i < labCheckedList.size(); i++) {
+                if (i > 0) {
+                    labChecked.append(",");
+                }
+                labChecked.append(labCheckedList.get(i));
+            }
+        }
+    }
+
+    /**
+     * 提交评价
+     */
+    private void commentDriverOrderComments() {
+        if (etCommentsContent.getText().length() > 30) {
+            showToast("评论不能超过30个字");
+            return;
+        }
+        EvaluateRequest data = new EvaluateRequest(orderNo, fromType,
+                ((int) ratingCommentOrder.getRating()) + "",
+                stringFilter(etCommentsContent.getText().toString()), labChecked.toString());
+        data.setCustomerId(UserUtils.getCustomerId());
+        data.setMethod(RequestUrls.MEMBER_SUBMIT_EVALUATE);
+        doGet(data, COMMIT_EVALUATE_CONTENT, "正在提交中···", true);
+    }
+
+    /**
+     * 过滤特殊字符
+     *
+     * @param
+     * @return
+     * @throws PatternSyntaxException
+     */
+    private String stringFilter(String str) throws PatternSyntaxException {
+        String regEx = "[/\\\\\\<>|\"\n\t]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.replaceAll("");
+    }
+
+
+    @Override
+    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+        switch ((int) rating) {
+            case 0:
+                ratingCommentOrder.setRating(1);
+                break;
+            case 1:
+                tvTipsSatisfaction.setText(R.string.tv_satisfaction_1);
+                labCheckedList.clear();
+                addChild((int) ratingCommentOrder.getRating(), labCheckedList);
+                break;
+            case 2:
+                tvTipsSatisfaction.setText(R.string.tv_satisfaction_2);
+                labCheckedList.clear();
+                addChild((int) ratingCommentOrder.getRating(), labCheckedList);
+
+                break;
+            case 3:
+                tvTipsSatisfaction.setText(R.string.tv_satisfaction_3);
+                labCheckedList.clear();
+                addChild((int) ratingCommentOrder.getRating(), labCheckedList);
+                break;
+            case 4:
+                tvTipsSatisfaction.setText(R.string.tv_satisfaction_4);
+                labCheckedList.clear();
+                addChild((int) ratingCommentOrder.getRating(), labCheckedList);
+                break;
+            case 5:
+                tvTipsSatisfaction.setText(R.string.tv_satisfaction_5);
+                labCheckedList.clear();
+                addChild((int) ratingCommentOrder.getRating(), labCheckedList);
+                break;
+        }
+    }
+
+    private void addChild(int star, ArrayList<String> lables) {
+        if (lableMap != null && lableMap.indexOfKey(star) >= 0) {
+            String[] lableArray = lableMap.get(star);
+            totalLabels.clear();
+            totalLabels.addAll(Arrays.asList(lableArray));
+
+            if (totalLabels != null) {
+                if (adapter == null) {
+                    adapter = new CommentLabelAdapter(mContext, totalLabels);
+                    adapter.setCheckedLabels(lables);
+                    rvCommentLabels.setAdapter(adapter);
+
+                    adapter.setOnItemClickListner(new CommentLabelAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View v) {
+                            ColorSpecView specView = (ColorSpecView) v;
+                            if (specView.isChecked()) {
+                                specView.setTextColor(ContextCompat.getColor(mContext, R.color.main_background));
+                                specView.setBackground(getResources().getDrawable(R.drawable.corners_bg_et_grays));
+                                labCheckedList.add(specView.getText().toString());
+                            } else {
+                                specView.setBackground(getResources().getDrawable(R.drawable.corners_bg_et_gray));
+                                specView.setTextColor(ContextCompat.getColor(mContext, R.color.color_gray_bbbbbb));
+                                labCheckedList.remove(specView.getText().toString());
+                            }
+                            Logger.i("选择的标签=" + labCheckedList.toString());
+                        }
+                    });
+                } else {
+                    adapter.setCheckedLabels(lables);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }
+    }
+
+    private void onGetLablesSuccess(List<EvaluateLabelResp> labs) {
+        if (labs != null && labs.size() > 0) {
+            lableMap.clear();
+            for (int i = 0; i < labs.size(); i++) {
+                EvaluateLabelResp lableInfo = labs.get(i);
+                if (lableInfo.getLabel() != null) {
+                    if (lableInfo.getLabel().contains("#")) {
+                        lableMap.put(Integer.parseInt(lableInfo.getStarLevel()),
+                                lableInfo.getLabel().split("#"));
+                    } else {
+                        String[] lable = {lableInfo.getLabel()};
+                        lableMap.put(Integer.parseInt(lableInfo.getStarLevel()), lable);
+                    }
+                }
+            }
+            labChecked.setLength(0);
+            labCheckedList.clear();
+            addChild((int) ratingCommentOrder.getRating(), labCheckedList);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishPage();
+    }
+
+    private void finishPage() {
+
+        if (fromPage == 1) {//还车
+            activityUtil.jumpTo(ControlerActivity.class);
+        } else if (fromPage == 0) {//订单
+            RxBus rxBus = RxBus.getInstance();
+            RxBusEvent event = new RxBusEvent();
+            event.setEventCode(RxEventCodes.REFRESH_COUPON);
+            event.setContent(toMain);
+            rxBus.post(event);
+            setResult(RESULT_OK);
+        }
+
+        finish();
+    }
+
+    /**
+     * 获取红包车赠送的红包
+     */
+    private void requestRedPacket() {
+        RedPacketRequest request = new RedPacketRequest(UserUtils.getCustomerId(), orderNo, orderType);
+        request.setMethod(RequestUrls.SEND_RED_PACKET);
+        doGet(request, QUERY_RED_PACKET, "", false);
+    }
+
+    private void showTip() {
+        if (tipList != null && tipList.size() > 0) {
+            String msg = tipList.get(0).getMsg();
+//            msg = msg.replaceAll("，", "\n");
+            final CustomAlertDialog customAlertDialog = CustomAlertDialog.getAlertDialog(mContext, true, true);
+            customAlertDialog
+                    .setMessage(msg)
+                    .setBtnConfirmColor(R.color.new_primary)
+                    .setOnPositiveClickListener("知道了", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            customAlertDialog.dismiss();
+                        }
+                    }).show();
+        }
+    }
+}

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.baogang.bycx.view.CarInfoView
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginTop="@dimen/dimen_14dp"
+                android:id="@+id/carInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:background="@drawable/linear_shape"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <com.baogang.bycx.view.UseCarCostLongView
+                    android:id="@+id/useCarCostLongView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.baogang.bycx.view.LongRentLeftTimeView
+                    android:id="@+id/longRentLeftTimeView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="@dimen/dimen_15dp">
+
+                    <TextView
+                        android:id="@+id/tvComboTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="时长:--"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvComboMileage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="里程:--"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvComboFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="费用:--"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:id="@+id/useCarCostViewContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.baogang.bycx.view.UseCarCostView
+                    android:id="@+id/useCarCostView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+
+            <com.baogang.bycx.view.ReturnCarParkNaviView
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:background="@drawable/linear_shape"
+                android:id="@+id/returnCarParkNaviView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:background="@drawable/linear_shape"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/power_linear"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="@dimen/dimen_60dp">
+                    <LinearLayout
+                        android:id="@+id/open_power_linear"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/open_power"
+                            android:src="@mipmap/yc_63"
+                            android:layout_width="@dimen/dimen_30dp"
+                            android:layout_height="@dimen/dimen_14dp" />
+                        <TextView
+                            android:layout_marginLeft="@dimen/dimen_20dp"
+                            android:text="开启动力"
+                            android:textSize="@dimen/dimen_15sp"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <View
+                        android:layout_marginTop="@dimen/dimen_12dp"
+                        android:layout_marginBottom="@dimen/dimen_12dp"
+                        android:background="@color/view_line"
+                        android:layout_width="@dimen/dimen_0.5dp"
+                        android:layout_height="match_parent"/>
+                    <LinearLayout
+                        android:id="@+id/close_power_linear"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/close_power"
+                            android:src="@mipmap/yc_64"
+                            android:layout_width="@dimen/dimen_30dp"
+                            android:layout_height="@dimen/dimen_14dp" />
+                        <TextView
+                            android:layout_marginLeft="@dimen/dimen_20dp"
+                            android:text="关闭动力"
+                            android:textSize="@dimen/dimen_15sp"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/power_line"
+                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:background="@color/view_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_92dp"
+                    android:gravity="center_vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_15sp"
+                            android:id="@+id/tvWhistle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dimen_12dp"
+                            android:drawableTop="@mipmap/yc_35"
+                            android:gravity="center"
+                            android:text="鸣笛" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginBottom="@dimen/dimen_18dp"
+                        android:layout_marginTop="@dimen/dimen_18dp"
+                        android:background="@color/view_line_2"
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_15sp"
+                            android:id="@+id/tvOpenDoor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dimen_12dp"
+                            android:drawableTop="@mipmap/yc_36"
+                            android:gravity="center"
+                            android:text="开锁" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginBottom="@dimen/dimen_18dp"
+                        android:layout_marginTop="@dimen/dimen_18dp"
+                        android:background="@color/view_line_2"
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_15sp"
+                            android:id="@+id/tvCloseDoor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dimen_12dp"
+                            android:drawableTop="@mipmap/yc_38"
+                            android:gravity="center"
+                            android:text="锁门" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvReturnCar"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/selector_primary_btn"
+                android:gravity="center"
+                android:text="立即还车"
+                android:textColor="@color/main_background"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_refund_park_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginRight="30dp"
+                    android:text="报销停车费"
+                    android:textColor="@color/new_primary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvToRecharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="30dp"
+                    android:text="我要充电"
+                    android:textColor="@color/new_primary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

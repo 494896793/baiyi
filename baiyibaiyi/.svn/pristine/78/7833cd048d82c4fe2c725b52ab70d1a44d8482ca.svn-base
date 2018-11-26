@@ -1,0 +1,41 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class ParkListActivity$AnimalsHeadersAdapter$ViewHolderHeader_ViewBinding<T extends ParkListActivity.AnimalsHeadersAdapter.ViewHolderHeader> implements Unbinder {
+  protected T target;
+
+  @UiThread
+  public ParkListActivity$AnimalsHeadersAdapter$ViewHolderHeader_ViewBinding(T target, View source) {
+    this.target = target;
+
+    target.tvParkName = Utils.findRequiredViewAsType(source, R.id.tvParkName, "field 'tvParkName'", TextView.class);
+    target.tvParkNamedDetail = Utils.findRequiredViewAsType(source, R.id.tvParkNamedDetail, "field 'tvParkNamedDetail'", TextView.class);
+    target.tvDistance = Utils.findRequiredViewAsType(source, R.id.tvDistance, "field 'tvDistance'", TextView.class);
+    target.llytNavigate = Utils.findRequiredViewAsType(source, R.id.llytNavigate, "field 'llytNavigate'", LinearLayout.class);
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvParkName = null;
+    target.tvParkNamedDetail = null;
+    target.tvDistance = null;
+    target.llytNavigate = null;
+
+    this.target = null;
+  }
+}

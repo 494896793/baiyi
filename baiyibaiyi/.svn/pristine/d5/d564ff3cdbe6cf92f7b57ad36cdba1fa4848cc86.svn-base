@@ -1,0 +1,1297 @@
+-- Merging decision tree log ---
+provider#android.support.v4.content.FileProvider
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:68:9-78:20
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:9-20:20
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:9-20:20
+	android:grantUriPermissions
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:72:13-47
+	android:authorities
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:70:13-64
+		REJECTED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:13-64
+	android:exported
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:71:13-37
+	tools:replace
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:73:13-48
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:69:13-67
+manifest
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-23:12
+MERGED from [com.github.chrisbanes:PhotoView:1.3.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\PhotoView-1.3.0.aar\67875076b04eb77e32848cbd99786dd7\AndroidManifest.xml:2:1-12:12
+MERGED from [com.liaoinstan.springview:library:1.3.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\library-1.3.0.aar\e8ad17c6a60d18d315487ec93a8fb0b0\AndroidManifest.xml:2:1-17:12
+MERGED from [com.androidkun:pulltorefreshrecyclerview:1.0.9] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\pulltorefreshrecyclerview-1.0.9.aar\0179932468f8b1d1fa68635db6ac9f44\AndroidManifest.xml:2:1-17:12
+MERGED from [com.android.support:design:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\75ccf1768cfe8d39d4b046c6f91b94db\AndroidManifest.xml:17:1-22:12
+MERGED from [:OpenSourceControl] C:\baiyi\bycx\OpenSourceControl\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-139:12
+MERGED from [cn.lankton:flowlayout:3.1.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\flowlayout-3.1.0.aar\8b0416963f5d245fc2d37917c603165e\AndroidManifest.xml:2:1-17:12
+MERGED from [com.android.support:appcompat-v7:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\AndroidManifest.xml:17:1-22:12
+MERGED from [org.xutils:xutils:3.3.34] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\xutils-3.3.34.aar\e7957480f4443fd7b990cbc91195b44b\AndroidManifest.xml:2:1-14:12
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:2:1-115:12
+MERGED from [com.jakewharton:butterknife:8.4.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\butterknife-8.4.0.aar\abd2650d96a8cbf7eb589f8dfb0b0718\AndroidManifest.xml:2:1-7:12
+MERGED from [com.tencent.bugly:crashreport:2.1.3] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\crashreport-2.1.3.aar\6926b90df22a14b8104fc6e2274644eb\AndroidManifest.xml:2:1-11:12
+MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxandroid-1.2.1.aar\555484751bcbc2950d9e5b5fe772340e\AndroidManifest.xml:15:1-21:12
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\cec8422fe5d70c0540e1ce24f0861c22\AndroidManifest.xml:17:1-22:12
+MERGED from [:volley] C:\baiyi\bycx\volley\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:PullRefreshLibrary-master] C:\baiyi\bycx\PullRefreshLibrary-master\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:library] C:\baiyi\bycx\library\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-11:12
+MERGED from [:scrolllayout] C:\baiyi\bycx\scrolllayout\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [com.jakewharton.rxbinding2:rxbinding:2.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxbinding-2.0.0.aar\f0f4704fe19940a3921af8af8795c34c\AndroidManifest.xml:2:1-8:12
+MERGED from [com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\view-pager-transforms-1.2.32.aar\09535bf58240199da44485a9c1cf4445\AndroidManifest.xml:17:1-27:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.1.aar\db21ce2e6924b6c45dfc603e71e70a46\AndroidManifest.xml:15:1-21:12
+MERGED from [com.orhanobut:logger:2.2.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\logger-2.2.0.aar\0b211fe9e608901b71929f0e1a6bd31e\AndroidManifest.xml:2:1-8:12
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.5.0.aar\7712a6e20561f0bfe598f128227e7904\AndroidManifest.xml:2:1-13:12
+MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.1.17] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\android-gif-drawable-1.1.17.aar\4e9a5db67d94efb766b6cf85e629fee6\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-fragment-27.0.2.aar\d4fd62477b9b31ad7ca57f2985c1c536\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.0.2.aar\d2911b0ed9c378595882ba863181c279\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.0.2.aar\10a8adada106d4fd3b96093049a2562f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.0.2.aar\759d9d6e336c99ef96079af09c192e98\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.0.2.aar\1add05369701cc764b5247c3b734fee1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.0.2.aar\5922eb346c905b95c87511bca7bc937f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\transition-27.0.2.aar\55814637851a36aea3e2b1ccc17f76df\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\c1735ef748b150071b2f542873907fa8\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\71683e311374102e6be611d962ad2de4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.facebook.stetho:stetho:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-1.5.0.aar\40dde9aa4a5b3ee95b340d6a2b45ffa8\AndroidManifest.xml:2:1-13:12
+MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\e79a4702ec4fa481b6c2027d514cc305\AndroidManifest.xml:17:1-24:12
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+	package
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:4:5-31
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:1-565:12
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:10:5-79
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:14:5-79
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:14:5-79
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:10:22-76
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:12:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:13:5-81
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:13:22-78
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:14:5-76
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:16:5-76
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:16:5-76
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:14:22-73
+uses-permission#android.permission.INTERNET
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:17:5-67
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:12:5-67
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:12:5-67
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:17:22-64
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:18:5-75
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:13:5-75
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:13:5-75
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:18:22-72
+uses-permission#android.permission.ACCESS_CACHE_FILESYSTEM
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:19:5-21:47
+	tools:ignore
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:21:9-44
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:20:9-66
+uses-permission#org.simalliance.openmobileapi.SMARTCARD
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:23:22-76
+uses-permission#android.permission.NFC
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:25:5-62
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:25:22-59
+uses-feature#android.hardware.nfc.hce
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:27:5-61
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:27:19-58
+uses-permission#android.permission.BLUETOOTH
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:30:5-68
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:30:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:31:5-74
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:31:22-71
+uses-permission#android.permission.CALL_PHONE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:32:5-69
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:32:22-66
+uses-permission#android.permission.CAMERA
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:33:5-65
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:33:22-62
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:34:5-76
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:15:5-76
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:15:5-76
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:34:22-73
+uses-permission#android.permission.CLEAR_APP_CACHE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:35:5-74
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:35:22-71
+uses-permission#android.permission.GET_TASKS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:36:5-68
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:21:5-68
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:21:5-68
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:36:22-65
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:37:5-84
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:37:22-81
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:38:5-81
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:18:5-81
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:18:5-81
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:38:22-78
+uses-permission#android.permission.SEND_SMS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:39:5-67
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:39:22-64
+uses-permission#android.permission.VIBRATE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:40:5-66
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:20:5-66
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:20:5-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:40:22-63
+uses-permission#android.permission.WAKE_LOCK
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:41:5-68
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:17:5-68
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:17:5-68
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:41:22-65
+uses-permission#android.permission.READ_LOGS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:42:5-68
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:42:22-65
+uses-permission#android.permission.RECEIVE_SMS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:43:5-70
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:43:22-67
+uses-permission#android.permission.READ_SMS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:44:5-67
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:44:22-64
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:45:5-78
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:24:5-78
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:24:5-78
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:45:22-75
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:46:5-81
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:19:5-81
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:19:5-81
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:46:22-78
+uses-permission#android.hardware.sensor.accelerometer
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:47:5-77
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:47:22-74
+uses-permission#android.permission.READ_CONTACTS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:48:5-72
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:48:22-69
+uses-feature#android.hardware.camera
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:50:5-60
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:50:19-57
+uses-feature#android.hardware.autofocus
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:51:5-63
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:51:19-60
+uses-permission#android.permission.FLASHLIGHT
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:53:5-69
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:53:22-66
+uses-permission#android.permission.DISABLE_KEYGUARD
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:54:5-75
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:54:22-72
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:55:5-73
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:55:22-70
+uses-permission#android.permission.CHANGE_CONFIGURATION
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:56:5-79
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:56:22-76
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:57:5-80
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:57:22-77
+application
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:59:5-564:19
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-21:19
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-21:19
+MERGED from [com.liaoinstan.springview:library:1.3.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\library-1.3.0.aar\e8ad17c6a60d18d315487ec93a8fb0b0\AndroidManifest.xml:11:5-15:19
+MERGED from [com.liaoinstan.springview:library:1.3.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\library-1.3.0.aar\e8ad17c6a60d18d315487ec93a8fb0b0\AndroidManifest.xml:11:5-15:19
+MERGED from [com.androidkun:pulltorefreshrecyclerview:1.0.9] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\pulltorefreshrecyclerview-1.0.9.aar\0179932468f8b1d1fa68635db6ac9f44\AndroidManifest.xml:11:5-15:19
+MERGED from [com.androidkun:pulltorefreshrecyclerview:1.0.9] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\pulltorefreshrecyclerview-1.0.9.aar\0179932468f8b1d1fa68635db6ac9f44\AndroidManifest.xml:11:5-15:19
+MERGED from [:OpenSourceControl] C:\baiyi\bycx\OpenSourceControl\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-15:19
+MERGED from [:OpenSourceControl] C:\baiyi\bycx\OpenSourceControl\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-15:19
+MERGED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-137:19
+MERGED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-137:19
+MERGED from [cn.lankton:flowlayout:3.1.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\flowlayout-3.1.0.aar\8b0416963f5d245fc2d37917c603165e\AndroidManifest.xml:11:5-15:19
+MERGED from [cn.lankton:flowlayout:3.1.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\flowlayout-3.1.0.aar\8b0416963f5d245fc2d37917c603165e\AndroidManifest.xml:11:5-15:19
+MERGED from [org.xutils:xutils:3.3.34] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\xutils-3.3.34.aar\e7957480f4443fd7b990cbc91195b44b\AndroidManifest.xml:12:5-20
+MERGED from [org.xutils:xutils:3.3.34] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\xutils-3.3.34.aar\e7957480f4443fd7b990cbc91195b44b\AndroidManifest.xml:12:5-20
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:33:5-113:19
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:33:5-113:19
+MERGED from [:volley] C:\baiyi\bycx\volley\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-15:19
+MERGED from [:volley] C:\baiyi\bycx\volley\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-15:19
+MERGED from [:PullRefreshLibrary-master] C:\baiyi\bycx\PullRefreshLibrary-master\build\intermediates\manifests\full\debug\AndroidManifest.xml:9:5-20
+MERGED from [:PullRefreshLibrary-master] C:\baiyi\bycx\PullRefreshLibrary-master\build\intermediates\manifests\full\debug\AndroidManifest.xml:9:5-20
+MERGED from [:scrolllayout] C:\baiyi\bycx\scrolllayout\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-15:19
+MERGED from [:scrolllayout] C:\baiyi\bycx\scrolllayout\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-15:19
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.5.0.aar\7712a6e20561f0bfe598f128227e7904\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.5.0.aar\7712a6e20561f0bfe598f128227e7904\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.stetho:stetho:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-1.5.0.aar\40dde9aa4a5b3ee95b340d6a2b45ffa8\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.stetho:stetho:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-1.5.0.aar\40dde9aa4a5b3ee95b340d6a2b45ffa8\AndroidManifest.xml:11:5-20
+	android:supportsRtl
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:66:9-35
+	android:label
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:64:9-41
+	android:hardwareAccelerated
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:62:9-43
+	android:persistent
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:65:9-34
+	android:icon
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:63:9-36
+	android:allowBackup
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:61:9-35
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:67:9-42
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:60:9-58
+meta-data#com.amap.api.v2.apikey
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:80:9-82:64
+	android:value
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:82:13-61
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:81:13-50
+meta-data#com.baogang.bycx.utils.glideUtil.MyGlideModule
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:83:9-85:43
+	android:value
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:85:13-40
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:84:13-74
+activity#com.baogang.bycx.activity.SplashActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:87:9-97:20
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:90:13-49
+	android:label
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:89:13-45
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:91:13-71
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:88:13-68
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:92:13-96:29
+action#android.intent.action.MAIN
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:93:17-69
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:93:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:95:17-77
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:95:27-74
+activity#com.baogang.bycx.activity.ControlerActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:98:9-109:20
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:101:13-49
+	android:label
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:100:13-45
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:102:13-71
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:99:13-55
+activity#com.tencent.connect.common.AssistActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:140:9-143:75
+	android:configChanges
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:142:13-74
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:143:13-72
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:141:13-69
+activity#com.mob.tools.MobUIShell
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:146:9-159:20
+	android:windowSoftInputMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:150:13-67
+	android:configChanges
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:148:13-74
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:149:13-72
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:147:13-52
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:tencent1106238659
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:151:13-158:29
+data
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:152:17-60
+	android:scheme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:152:23-57
+action#android.intent.action.VIEW
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:154:17-69
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:154:25-66
+category#android.intent.category.BROWSABLE
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:156:17-78
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:156:27-75
+category#android.intent.category.DEFAULT
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:157:17-76
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:157:27-73
+activity#com.baogang.bycx.wxapi.WXEntryActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:161:9-166:75
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:165:13-49
+	android:exported
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:164:13-36
+	android:configChanges
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:163:13-74
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:166:13-72
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:162:13-66
+activity#com.baogang.bycx.wxapi.WXPayEntryActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:168:9-172:52
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:172:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:171:13-43
+	android:exported
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:170:13-36
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:169:13-53
+activity#com.baogang.bycx.activity.MainActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:173:9-177:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:176:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:175:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:177:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:174:13-66
+activity#com.baogang.bycx.activity.GuideActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:179:9-183:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:182:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:181:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:183:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:180:13-67
+activity#com.baogang.bycx.activity.MoneyLogsActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:185:9-189:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:188:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:187:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:189:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:186:13-71
+activity#com.alipay.sdk.app.H5AuthActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:190:9-194:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:193:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:192:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:194:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:191:13-61
+activity#com.alipay.sdk.app.H5PayActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:195:9-199:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:198:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:197:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:199:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:196:13-60
+activity#com.baogang.bycx.activity.LoginActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:200:9-204:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:203:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:202:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:204:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:201:13-67
+activity#com.baogang.bycx.activity.OrderDetailActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:205:9-208:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:207:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:208:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:206:13-73
+activity#com.baogang.bycx.activity.OrderDetailCompanyActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:209:9-212:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:211:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:212:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:210:13-80
+activity#com.baogang.bycx.activity.RechargeBalanceActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:213:9-217:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:216:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:215:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:217:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:214:13-77
+activity#com.baogang.bycx.activity.MessageActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:218:9-222:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:221:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:220:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:222:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:219:13-69
+activity#com.baogang.bycx.activity.MyWalletActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:223:9-227:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:226:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:225:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:227:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:224:13-70
+activity#com.baogang.bycx.activity.CouponActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:228:9-232:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:231:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:230:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:232:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:229:13-68
+activity#com.baogang.bycx.activity.OrderListActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:239:9-242:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:241:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:242:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:240:13-71
+activity#com.baogang.bycx.activity.VerifyIDCardActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:243:9-247:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:246:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:245:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:247:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:244:13-74
+activity#com.baogang.bycx.activity.SettingActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:248:9-251:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:250:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:251:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:249:13-69
+activity#com.baogang.bycx.activity.CommentsActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:252:9-256:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:255:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:254:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:256:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:253:13-70
+activity#com.baogang.bycx.activity.PersonCenterActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:257:9-261:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:260:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:259:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:261:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:258:13-74
+activity#com.baogang.bycx.activity.SearchParkActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:262:9-265:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:264:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:265:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:263:13-72
+activity#com.baogang.bycx.activity.CityListActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:266:9-269:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:268:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:269:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:267:13-70
+activity#com.baogang.bycx.activity.CarListActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:270:9-273:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:272:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:273:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:271:13-69
+activity#com.baogang.bycx.activity.UseCarPreOrderingActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:274:9-276:52
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:276:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:275:13-79
+activity#com.baogang.bycx.activity.UseCarOrderingActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:277:9-281:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:280:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:279:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:281:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:278:13-76
+activity#com.baogang.bycx.activity.UseCarReturnActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:282:9-286:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:285:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:284:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:286:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:283:13-74
+activity#com.baogang.bycx.activity.CarPositionActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:287:9-290:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:289:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:290:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:288:13-73
+activity#com.baogang.bycx.activity.ParkListActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:291:9-294:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:293:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:294:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:292:13-70
+activity#com.baogang.bycx.activity.ChooseReturnParkActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:295:9-298:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:297:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:298:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:296:13-78
+activity#com.baogang.bycx.activity.ReturnCarSuccessBillActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:299:9-302:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:301:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:302:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:300:13-82
+activity#com.baogang.bycx.activity.ReturnCarSuccessBillCompanyActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:303:9-306:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:305:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:306:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:304:13-89
+activity#com.baogang.bycx.activity.WebActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:307:9-310:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:309:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:310:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:308:13-65
+activity#com.baogang.bycx.activity.DepositRefundActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:311:9-314:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:313:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:314:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:312:13-75
+activity#com.baogang.bycx.activity.AreaListActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:315:9-318:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:317:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:318:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:316:13-70
+activity#com.baogang.bycx.activity.TrafficViolationActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:319:9-322:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:321:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:322:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:320:13-78
+activity#com.baogang.bycx.activity.UseCarLongRentReturnActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:323:9-326:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:325:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:326:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:324:13-82
+activity#com.baogang.bycx.activity.ReturnCarSuccessBillLongRentActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:327:9-330:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:329:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:330:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:328:13-90
+activity#com.baogang.bycx.activity.OrderDetailLongRentActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:331:9-334:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:333:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:334:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:332:13-81
+activity#com.baogang.bycx.activity.ParkingFeeReturnActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:335:9-339:57
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:337:13-49
+	android:windowSoftInputMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:339:13-54
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:338:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:336:13-78
+activity#com.baogang.bycx.activity.ParkingFeeReturnCommitActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:340:9-343:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:342:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:343:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:341:13-84
+activity#me.iwf.photopicker.PhotoPickerActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:344:9-347:66
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:346:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:347:13-63
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:345:13-66
+activity#me.iwf.photopicker.PhotoPagerActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:348:9-351:66
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:350:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:351:13-63
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:349:13-65
+activity#me.iwf.photopicker.PhotoPickerPagerActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:352:9-355:66
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:354:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:355:13-63
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:353:13-71
+activity#com.baogang.bycx.activity.ParkingFeeStatusActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:356:9-359:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:358:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:359:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:357:13-62
+activity#com.baogang.bycx.activity.PledgeActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:360:9-363:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:362:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:363:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:361:13-52
+activity#com.baogang.bycx.activity.PledgeHistoryActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:364:9-367:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:366:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:367:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:365:13-59
+activity#com.baogang.bycx.activity.PledgeRefundStatusActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:368:9-371:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:370:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:371:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:369:13-64
+activity#com.baogang.bycx.activity.PledgeRefundCommitActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:372:9-375:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:374:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:375:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:373:13-64
+activity#com.baogang.bycx.activity.IdVerifyStatusActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:376:9-380:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:379:13-49
+	android:launchMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:378:13-44
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:380:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:377:13-60
+activity#com.baogang.bycx.activity.ConnectReturnCarActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:381:9-384:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:383:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:384:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:382:13-62
+activity#com.baogang.bycx.activity.CannotReturnSampleActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:385:9-387:52
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:387:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:386:13-64
+activity#com.baogang.zxing.CaptureActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:388:9-396:20
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:391:13-49
+	android:clearTaskOnLaunch
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:390:13-45
+	android:stateNotNeeded
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:392:13-42
+	android:windowSoftInputMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:394:13-60
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:393:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:389:13-61
+activity#com.baogang.bycx.activity.CouponChoiceActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:397:9-400:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:399:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:400:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:398:13-58
+activity#com.baogang.bycx.activity.UseCarOrderingLongRentActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:401:9-404:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:403:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:404:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:402:13-68
+activity#com.baogang.bycx.activity.MyCompanyActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:405:9-408:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:407:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:408:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:406:13-55
+activity#com.baogang.bycx.activity.InviteFriendsActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:409:9-412:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:411:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:412:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:410:13-59
+activity#com.baogang.bycx.activity.RechargeSuccessActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:413:9-416:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:415:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:416:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:414:13-61
+activity#com.baogang.bycx.activity.ProblemUploadActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:417:9-420:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:419:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:420:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:418:13-59
+activity#com.baogang.bycx.activity.RecommendParkActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:421:9-425:57
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:423:13-49
+	android:windowSoftInputMode
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:425:13-54
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:424:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:422:13-59
+activity#com.baogang.bycx.activity.RecommendParkSearchActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:426:9-429:69
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:428:13-49
+	android:theme
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:429:13-66
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:427:13-65
+activity#com.baogang.bycx.droid.Activity_SelectCity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:430:9-434:20
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:432:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:431:13-54
+activity#com.baogang.bycx.activity.ChargingActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:435:9-436:51
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:436:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:435:19-60
+activity#com.baogang.bycx.activity.NaviActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:437:9-438:51
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:438:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:437:19-56
+activity#com.baogang.bycx.activity.FinishChargingActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:439:9-440:51
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:440:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:439:19-66
+activity#com.baogang.bycx.activity.StationInfoActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:441:9-442:51
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:442:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:441:19-63
+service#com.baogang.bycx.service.MyLocationService
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:443:9-446:39
+	android:enabled
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:445:13-35
+	android:exported
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:446:13-36
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:444:13-70
+activity#com.baogang.bycx.activity.CaptureActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:447:9-448:51
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:448:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:447:19-59
+service#com.baogang.bycx.service.IPushService
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:449:9-452:39
+	android:enabled
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:451:13-35
+	android:exported
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:452:13-36
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:450:13-65
+service#com.baogang.bycx.map.geoFence.GeoFenceService
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:454:9-81
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:454:18-78
+activity#com.baogang.bycx.activity.AllOrderActivity
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:455:9-460:20
+	android:screenOrientation
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:457:13-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:456:13-54
+receiver#com.baogang.bycx.receiver.IPushReceiver
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:547:9-554:20
+	android:exported
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:549:13-37
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:548:13-67
+intent-filter#action:name:com.igexin.sdk.action.yK9baM45Lf90tVYvXFCSt2
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:550:13-553:29
+action#com.igexin.sdk.action.yK9baM45Lf90tVYvXFCSt2
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:551:17-87
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:551:25-84
+service#com.amap.api.location.APSService
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:556:9-68
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:556:18-65
+service#com.baogang.bycx.service.UpdateService
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:557:9-74
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:557:18-71
+service#com.baogang.bycx.service.TimeCountService
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:558:9-77
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:558:18-74
+meta-data#UMENG_APPKEY
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:560:9-562:56
+	android:value
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:562:13-53
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:561:13-40
+uses-sdk
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.chrisbanes:PhotoView:1.3.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\PhotoView-1.3.0.aar\67875076b04eb77e32848cbd99786dd7\AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.chrisbanes:PhotoView:1.3.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\PhotoView-1.3.0.aar\67875076b04eb77e32848cbd99786dd7\AndroidManifest.xml:8:5-10:41
+MERGED from [com.liaoinstan.springview:library:1.3.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\library-1.3.0.aar\e8ad17c6a60d18d315487ec93a8fb0b0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.liaoinstan.springview:library:1.3.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\library-1.3.0.aar\e8ad17c6a60d18d315487ec93a8fb0b0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.androidkun:pulltorefreshrecyclerview:1.0.9] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\pulltorefreshrecyclerview-1.0.9.aar\0179932468f8b1d1fa68635db6ac9f44\AndroidManifest.xml:7:5-9:41
+MERGED from [com.androidkun:pulltorefreshrecyclerview:1.0.9] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\pulltorefreshrecyclerview-1.0.9.aar\0179932468f8b1d1fa68635db6ac9f44\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:design:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\design-27.0.2.aar\926fa2174f9772e1e83509b4504b1137\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\75ccf1768cfe8d39d4b046c6f91b94db\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-v4-27.0.2.aar\75ccf1768cfe8d39d4b046c6f91b94db\AndroidManifest.xml:20:5-44
+MERGED from [:OpenSourceControl] C:\baiyi\bycx\OpenSourceControl\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:OpenSourceControl] C:\baiyi\bycx\OpenSourceControl\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.lankton:flowlayout:3.1.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\flowlayout-3.1.0.aar\8b0416963f5d245fc2d37917c603165e\AndroidManifest.xml:7:5-9:41
+MERGED from [cn.lankton:flowlayout:3.1.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\flowlayout-3.1.0.aar\8b0416963f5d245fc2d37917c603165e\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.2.aar\607c0dd29ceb785b6d871732de84d220\AndroidManifest.xml:20:5-44
+MERGED from [org.xutils:xutils:3.3.34] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\xutils-3.3.34.aar\e7957480f4443fd7b990cbc91195b44b\AndroidManifest.xml:8:5-10:41
+MERGED from [org.xutils:xutils:3.3.34] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\xutils-3.3.34.aar\e7957480f4443fd7b990cbc91195b44b\AndroidManifest.xml:8:5-10:41
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:7:5-9:41
+MERGED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jakewharton:butterknife:8.4.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\butterknife-8.4.0.aar\abd2650d96a8cbf7eb589f8dfb0b0718\AndroidManifest.xml:5:5-43
+MERGED from [com.jakewharton:butterknife:8.4.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\butterknife-8.4.0.aar\abd2650d96a8cbf7eb589f8dfb0b0718\AndroidManifest.xml:5:5-43
+MERGED from [com.tencent.bugly:crashreport:2.1.3] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\crashreport-2.1.3.aar\6926b90df22a14b8104fc6e2274644eb\AndroidManifest.xml:7:5-9:41
+MERGED from [com.tencent.bugly:crashreport:2.1.3] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\crashreport-2.1.3.aar\6926b90df22a14b8104fc6e2274644eb\AndroidManifest.xml:7:5-9:41
+MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxandroid-1.2.1.aar\555484751bcbc2950d9e5b5fe772340e\AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxandroid-1.2.1.aar\555484751bcbc2950d9e5b5fe772340e\AndroidManifest.xml:19:5-43
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\cec8422fe5d70c0540e1ce24f0861c22\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\cec8422fe5d70c0540e1ce24f0861c22\AndroidManifest.xml:20:5-43
+MERGED from [:volley] C:\baiyi\bycx\volley\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:volley] C:\baiyi\bycx\volley\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:PullRefreshLibrary-master] C:\baiyi\bycx\PullRefreshLibrary-master\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-43
+MERGED from [:PullRefreshLibrary-master] C:\baiyi\bycx\PullRefreshLibrary-master\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-43
+MERGED from [:library] C:\baiyi\bycx\library\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:library] C:\baiyi\bycx\library\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:scrolllayout] C:\baiyi\bycx\scrolllayout\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:scrolllayout] C:\baiyi\bycx\scrolllayout\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jakewharton.rxbinding2:rxbinding:2.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxbinding-2.0.0.aar\f0f4704fe19940a3921af8af8795c34c\AndroidManifest.xml:6:5-44
+MERGED from [com.jakewharton.rxbinding2:rxbinding:2.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxbinding-2.0.0.aar\f0f4704fe19940a3921af8af8795c34c\AndroidManifest.xml:6:5-44
+MERGED from [com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\view-pager-transforms-1.2.32.aar\09535bf58240199da44485a9c1cf4445\AndroidManifest.xml:23:5-25:41
+MERGED from [com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\view-pager-transforms-1.2.32.aar\09535bf58240199da44485a9c1cf4445\AndroidManifest.xml:23:5-25:41
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.1.aar\db21ce2e6924b6c45dfc603e71e70a46\AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\rxandroid-2.0.1.aar\db21ce2e6924b6c45dfc603e71e70a46\AndroidManifest.xml:19:5-43
+MERGED from [com.orhanobut:logger:2.2.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\logger-2.2.0.aar\0b211fe9e608901b71929f0e1a6bd31e\AndroidManifest.xml:6:5-43
+MERGED from [com.orhanobut:logger:2.2.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\logger-2.2.0.aar\0b211fe9e608901b71929f0e1a6bd31e\AndroidManifest.xml:6:5-43
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.5.0.aar\7712a6e20561f0bfe598f128227e7904\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.stetho:stetho-okhttp3:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-okhttp3-1.5.0.aar\7712a6e20561f0bfe598f128227e7904\AndroidManifest.xml:7:5-9:41
+MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.1.17] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\android-gif-drawable-1.1.17.aar\4e9a5db67d94efb766b6cf85e629fee6\AndroidManifest.xml:7:5-9:41
+MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.1.17] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\android-gif-drawable-1.1.17.aar\4e9a5db67d94efb766b6cf85e629fee6\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-fragment:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-fragment-27.0.2.aar\d4fd62477b9b31ad7ca57f2985c1c536\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-fragment-27.0.2.aar\d4fd62477b9b31ad7ca57f2985c1c536\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.0.2.aar\d2911b0ed9c378595882ba863181c279\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.0.2.aar\d2911b0ed9c378595882ba863181c279\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.0.2.aar\10a8adada106d4fd3b96093049a2562f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.0.2.aar\10a8adada106d4fd3b96093049a2562f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.0.2.aar\759d9d6e336c99ef96079af09c192e98\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.0.2.aar\759d9d6e336c99ef96079af09c192e98\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.0.2.aar\1add05369701cc764b5247c3b734fee1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.0.2.aar\1add05369701cc764b5247c3b734fee1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.0.2.aar\5922eb346c905b95c87511bca7bc937f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.0.2.aar\5922eb346c905b95c87511bca7bc937f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\transition-27.0.2.aar\55814637851a36aea3e2b1ccc17f76df\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\transition-27.0.2.aar\55814637851a36aea3e2b1ccc17f76df\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\c1735ef748b150071b2f542873907fa8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.0.2.aar\c1735ef748b150071b2f542873907fa8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\71683e311374102e6be611d962ad2de4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.0.2] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\support-compat-27.0.2.aar\71683e311374102e6be611d962ad2de4\AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.stetho:stetho:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-1.5.0.aar\40dde9aa4a5b3ee95b340d6a2b45ffa8\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.stetho:stetho:1.5.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\stetho-1.5.0.aar\40dde9aa4a5b3ee95b340d6a2b45ffa8\AndroidManifest.xml:7:5-9:41
+MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\e79a4702ec4fa481b6c2027d514cc305\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.3] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\runtime-1.0.3.aar\e79a4702ec4fa481b6c2027d514cc305\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:74:13-77:52
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:13-19:67
+MERGED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:13-19:67
+	android:resource
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:76:17-51
+		REJECTED from [:PhotoPicker] C:\baiyi\bycx\PhotoPicker\build\intermediates\manifests\full\debug\AndroidManifest.xml:19:17-64
+	tools:replace
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:77:17-49
+	android:name
+		ADDED from C:\baiyi\bycx\app\src\main\AndroidManifest.xml:75:17-67
+activity#com.baogang.zxing.PreferencesActivity
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:86:9-89:45
+	android:stateNotNeeded
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:89:13-42
+	android:label
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:88:13-53
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:87:13-65
+activity#com.baogang.zxing.encode.EncodeActivity
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:90:9-114:20
+	android:stateNotNeeded
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:92:13-42
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:91:13-67
+intent-filter#action:name:com.google.zxing.client.android.ENCODE+category:name:android.intent.category.DEFAULT
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:93:13-97:29
+action#com.google.zxing.client.android.ENCODE
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:94:17-81
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:94:25-78
+intent-filter#action:name:android.intent.action.SEND+category:name:android.intent.category.DEFAULT+data:mimeType:text/x-vcard
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:99:13-105:29
+action#android.intent.action.SEND
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:100:17-69
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:100:25-66
+intent-filter#action:name:android.intent.action.SEND+category:name:android.intent.category.DEFAULT+data:mimeType:text/plain
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:107:13-113:29
+activity#com.baogang.zxing.share.ShareActivity
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:115:9-124:20
+	android:screenOrientation
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:117:13-45
+	android:stateNotNeeded
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:118:13-42
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:116:13-65
+intent-filter#action:name:com.google.zxing.client.android.SHARE+category:name:android.intent.category.DEFAULT
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:119:13-123:29
+action#com.google.zxing.client.android.SHARE
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:120:17-80
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:120:25-77
+activity#com.baogang.zxing.history.HistoryActivity
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:125:9-128:45
+	android:stateNotNeeded
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:128:13-42
+	android:label
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:127:13-50
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:126:13-69
+activity#com.baogang.zxing.share.BookmarkPickerActivity
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:129:9-132:45
+	android:stateNotNeeded
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:132:13-42
+	android:label
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:131:13-57
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:130:13-74
+activity#com.baogang.zxing.share.AppPickerActivity
+ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:133:9-136:45
+	android:stateNotNeeded
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:136:13-42
+	android:label
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:135:13-52
+	android:name
+		ADDED from [:zxing] C:\baiyi\bycx\zxing\build\intermediates\manifests\full\debug\AndroidManifest.xml:134:13-69
+uses-permission#getui.permission.GetuiService.${PACKAGE_NAME}
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:27:5-85
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:27:22-82
+uses-permission#getui.permission.GetuiService.com.baogang.bycx
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:27:5-85
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:27:22-82
+permission#getui.permission.GetuiService.${PACKAGE_NAME}
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:29:5-31:44
+	android:protectionLevel
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:31:9-41
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:30:9-69
+permission#getui.permission.GetuiService.com.baogang.bycx
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:29:5-31:44
+	android:protectionLevel
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:31:9-41
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:30:9-69
+meta-data#PUSH_APPID
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:37:9-39:47
+	android:value
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:39:13-44
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:38:13-38
+meta-data#PUSH_APPKEY
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:40:9-42:48
+	android:value
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:42:13-45
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:41:13-39
+meta-data#PUSH_APPSECRET
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:43:9-45:51
+	android:value
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:45:13-48
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:44:13-42
+service#com.igexin.sdk.PushService
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:48:9-56:19
+	android:process
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:52:13-43
+	android:label
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:51:13-47
+	android:exported
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:50:13-36
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:49:13-54
+intent-filter#action:name:com.igexin.sdk.action.service.message
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:53:13-55:29
+action#com.igexin.sdk.action.service.message
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:54:17-80
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:54:25-77
+service#com.igexin.sdk.PushServiceUser
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:57:9-60:54
+	android:label
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:60:13-51
+	android:exported
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:59:13-36
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:58:13-58
+receiver#com.igexin.sdk.PushReceiver
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:62:9-73:20
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:62:19-61
+intent-filter#action:name:android.intent.action.ACTION_POWER_CONNECTED+action:name:android.intent.action.ACTION_POWER_DISCONNECTED+action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.MEDIA_MOUNTED+action:name:android.intent.action.USER_PRESENT+action:name:android.net.conn.CONNECTIVITY_CHANGE+action:name:com.igexin.sdk.action.refreshls
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:63:13-72:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:64:17-79
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:64:25-76
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:65:17-79
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:65:25-76
+action#android.intent.action.USER_PRESENT
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:66:17-77
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:66:25-74
+action#com.igexin.sdk.action.refreshls
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:67:17-74
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:67:25-71
+action#android.intent.action.MEDIA_MOUNTED
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:69:17-78
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:69:25-75
+action#android.intent.action.ACTION_POWER_CONNECTED
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:70:17-87
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:70:25-84
+action#android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:71:17-90
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:71:25-87
+receiver#com.igexin.sdk.PushManagerReceiver
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:74:9-80:20
+	android:exported
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:76:13-37
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:75:13-62
+intent-filter#action:name:com.igexin.sdk.action.pushmanager
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:77:13-79:29
+action#com.igexin.sdk.action.pushmanager
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:78:17-76
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:78:25-73
+activity#com.igexin.sdk.PushActivity
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:82:9-88:75
+	android:process
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:86:13-43
+	android:excludeFromRecents
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:84:13-46
+	android:exported
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:85:13-37
+	android:theme
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:88:13-72
+	android:taskAffinity
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:87:13-67
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:83:13-55
+activity#com.igexin.sdk.GActivity
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:89:9-95:75
+	android:process
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:93:13-43
+	android:excludeFromRecents
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:91:13-46
+	android:exported
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:92:13-36
+	android:theme
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:95:13-72
+	android:taskAffinity
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:94:13-67
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:90:13-52
+service#com.igexin.download.DownloadService
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:97:9-99:46
+	android:process
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:99:13-43
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:98:13-63
+receiver#com.igexin.download.DownloadReceiver
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:101:9-105:20
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:101:19-70
+intent-filter#action:name:android.net.conn.CONNECTIVITY_CHANGE
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:102:13-104:29
+provider#com.igexin.download.DownloadProvider
+ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:108:9-111:46
+	android:process
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:111:13-43
+	android:authorities
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:110:13-60
+	android:name
+		ADDED from [com.getui:sdk:2.9.0.0] C:\Users\lp\.gradle\caches\transforms-1\files-1.1\sdk-2.9.0.0.aar\7712efcad971b56021c727983aedd561\AndroidManifest.xml:109:13-64

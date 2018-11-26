@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <View
+        style="@style/Divide_Horizontal_Full"/>
+
+    <TextView
+        android:id="@+id/tx_title"
+        style="@style/TextView_Subtitle_Black"
+        android:textSize="16dp"
+        android:text="@string/charging_share"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/default_margin_tnb"
+        android:layout_marginBottom="@dimen/default_margin_tnb"/>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="auto_fit"
+        android:columnWidth="80dp"
+        android:gravity="center_horizontal"
+        android:listSelector="#0000"
+        android:horizontalSpacing="2dp"
+        android:layout_marginBottom="20dp"/>
+
+</LinearLayout>

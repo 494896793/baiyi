@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/viewTopLine"
+        android:layout_width="0.001dp"
+        android:layout_height="12dp" />
+
+    <TextView
+        android:id="@+id/tvTitleBarName"
+        style="@style/TextNoIncludeFontPaddingStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewTopLine"
+        android:layout_centerInParent="true"
+        android:paddingBottom="12dp"
+        android:text="------"
+        android:textColor="@color/new_primary"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/viewTitleBarNameLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_3dp"
+        android:layout_alignLeft="@id/tvTitleBarName"
+        android:layout_alignRight="@id/tvTitleBarName"
+        android:layout_below="@id/tvTitleBarName"
+        android:layout_centerHorizontal="true"
+        android:background="@color/new_primary" />
+
+    <ImageView
+        android:id="@+id/ivRedPoint"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_above="@id/tvTitleBarName"
+        android:layout_toRightOf="@id/tvTitleBarName"
+        android:src="@mipmap/red_point"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_menu"
+        android:background="@mipmap/controler_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_44dp">
+        <RelativeLayout
+            android:id="@+id/car_re"
+            android:paddingRight="@dimen/dimen_20dp"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_7dp"
+                android:id="@+id/car_menu"
+                android:text="共享汽车"
+                android:textSize="@dimen/dimen_17sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:id="@+id/view_first"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_below="@id/car_menu"
+                android:background="@color/new_primary"
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_3dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/elect_re"
+            android:gravity="left"
+            android:paddingLeft="@dimen/dimen_20dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_7dp"
+                android:id="@+id/elect_menu"
+                android:text="共享充电"
+                android:textSize="@dimen/dimen_17sp"
+                android:textColor="@color/main_info_color"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <View
+                android:visibility="gone"
+                android:id="@+id/view_second"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:layout_below="@id/elect_menu"
+                android:background="@color/new_primary"
+                android:layout_width="@dimen/dimen_30dp"
+                android:layout_height="@dimen/dimen_3dp"/>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,51 @@
+package www.qisu666.com.activity;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.adapter.ChargeFeeAdapter;
+import www.qisu666.com.event.Message;
+import www.qisu666.com.request.MyNetwork;
+import www.qisu666.com.request.utils.FlatFunction;
+import www.qisu666.com.request.utils.MyMessageUtils;
+import www.qisu666.com.request.utils.ResultSubscriber;
+import www.qisu666.com.request.utils.RxNetHelper;
+import www.qisu666.com.utils.CacheUtils;
+import www.qisu666.com.utils.JsonUtils;
+import www.qisu666.com.utils.StringUtil;
+import www.qisu666.com.widget.NoScrollListView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+
+//充电结束详情页面
+public class ChargingDetailActivity extends BaseActivity {
+    @Override
+    public void setView() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen_10dp"
+    android:paddingRight="@dimen/dimen_10dp">
+
+    <View
+        android:id="@+id/viewTopLine"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/transparent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_150dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/linear_shape"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/left_re"
+                    android:layout_width="@dimen/dimen_132dp"
+                    android:layout_height="@dimen/dimen_150dp"
+                    android:background="@drawable/white_drawable">
+
+                    <ImageView
+                        android:id="@+id/elect_img"
+                        android:layout_width="@dimen/dimen_23dp"
+                        android:layout_height="@dimen/dimen_11dp"
+                        android:layout_marginLeft="@dimen/dimen_6dp"
+                        android:layout_marginTop="@dimen/dimen_12dp"
+                        android:src="@mipmap/yc_18" />
+
+                    <TextView
+                        android:id="@+id/tvBatteryPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/elect_img"
+                        android:layout_marginLeft="@dimen/dimen_4dp"
+                        android:layout_toRightOf="@id/elect_img"
+                        android:textColor="@color/main_background"
+                        android:textSize="@dimen/dimen_12sp" />
+
+                    <ImageView
+                        android:id="@+id/ivCarType"
+                        android:layout_width="@dimen/dimen_110dp"
+                        android:layout_height="53dp"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/order_detail_car_pic" />
+
+                    <TextView
+                        android:id="@+id/tvCarNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ivCarType"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen_9dp"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/left_re"
+                    android:paddingLeft="@dimen/dimen_18dp">
+
+                    <TextView
+                        android:id="@+id/tvOrderCar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_32dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/dimen_15dp"
+                        android:layout_marginRight="@dimen/dimen_15dp"
+                        android:background="@drawable/selector_primary_btn"
+                        android:gravity="center"
+                        android:text="立即订车"
+                        android:textColor="@color/main_background"
+                        android:textSize="@dimen/dimen_15sp" />
+
+                    <TextView
+                        android:id="@+id/tvBatteryText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="27dp"
+                        android:layout_marginTop="14dp"
+                        android:text="电量"
+                        android:textColor="@color/color_gray_666666"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+
+                    <View
+                        android:id="@+id/viewLine"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="14dp"
+                        android:layout_toRightOf="@id/tvBatteryText"
+                        android:background="@color/color_gray_dce1e5"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tvCarFee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvCarFeeText"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        android:layout_marginTop="@dimen/dimen_11dp"
+                        android:layout_toRightOf="@id/viewLine"
+                        android:background="@drawable/main_tx_radio"
+                        android:gravity="center_horizontal"
+                        android:paddingBottom="@dimen/dimen_1dp"
+                        android:paddingLeft="@dimen/dimen_4dp"
+                        android:paddingRight="@dimen/dimen_4dp"
+                        android:paddingTop="@dimen/dimen_1dp"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="@dimen/dimen_11sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/car_name_re"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_16dp"
+                        android:gravity="center_vertical"
+                        android:paddingRight="@dimen/dimen_15dp">
+
+                        <TextView
+                            android:id="@+id/tvCarBrand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="--"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/dimen_18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/car_color_tx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/car_set_tx"
+                            android:background="@drawable/main_tx_radio"
+                            android:paddingBottom="@dimen/dimen_1dp"
+                            android:paddingLeft="@dimen/dimen_4dp"
+                            android:paddingRight="@dimen/dimen_4dp"
+                            android:paddingTop="@dimen/dimen_1dp"
+                            android:text="--"
+                            android:textColor="@color/main_info_color"
+                            android:textSize="@dimen/dimen_12sp" />
+
+                        <TextView
+                            android:id="@+id/car_set_tx"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="@dimen/dimen_10dp"
+                            android:background="@drawable/main_tx_radio"
+                            android:paddingBottom="@dimen/dimen_1dp"
+                            android:paddingLeft="@dimen/dimen_4dp"
+                            android:paddingRight="@dimen/dimen_4dp"
+                            android:paddingTop="@dimen/dimen_1dp"
+                            android:text="--"
+                            android:textColor="@color/main_info_color"
+                            android:textSize="@dimen/dimen_12sp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tvCarFeeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/car_name_re"
+                        android:layout_marginTop="@dimen/dimen_11dp"
+                        android:background="@drawable/main_tx_radio"
+                        android:paddingBottom="@dimen/dimen_1dp"
+                        android:paddingLeft="@dimen/dimen_4dp"
+                        android:paddingRight="@dimen/dimen_4dp"
+                        android:paddingTop="@dimen/dimen_1dp"
+                        android:text="计费"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="@dimen/dimen_12sp"
+                        android:visibility="gone" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivFlagRedPacketCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_70dp"
+            android:src="@mipmap/yc_61" />
+    </RelativeLayout>
+</LinearLayout>

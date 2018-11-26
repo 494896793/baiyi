@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_background"
+    >
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:background="@drawable/white_drawable"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_159dp">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/ivCarPic"
+            android:layout_width="@dimen/dimen_245dp"
+            android:layout_height="@dimen/dimen_82dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="@dimen/dimen_23dp"
+            android:src="@mipmap/order_detail_car_pic" />
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/llytOrderDetailUnfold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvOrderDetailUnfold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="展开"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivOrderDetailDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="15dp"
+                android:src="@mipmap/order_detail_arrow_down" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_14dp"
+            android:id="@+id/llyt_car_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivCarPic"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+
+                <TextView
+                    android:id="@+id/tvCarTypeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:textColor="@color/main_background"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:id="@+id/tvCarColorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/notice_color"
+                    android:paddingLeft="@dimen/dimen_4dp"
+                    android:paddingRight="@dimen/dimen_4dp"
+                    android:paddingTop="@dimen/dimen_1dp"
+                    android:background="@drawable/square_gray"
+                    android:paddingBottom="@dimen/dimen_1dp"
+                    android:textSize="13sp" />
+                <TextView
+                    android:background="@drawable/square_gray"
+                    android:paddingLeft="@dimen/dimen_4dp"
+                    android:paddingRight="@dimen/dimen_4dp"
+                    android:paddingTop="@dimen/dimen_1dp"
+                    android:paddingBottom="@dimen/dimen_1dp"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:id="@+id/tvCarSeatNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/notice_color"
+                    android:textSize="13sp" />
+                <TextView
+                    android:background="@drawable/square_gray"
+                    android:paddingLeft="@dimen/dimen_4dp"
+                    android:paddingRight="@dimen/dimen_4dp"
+                    android:paddingTop="@dimen/dimen_1dp"
+                    android:paddingBottom="@dimen/dimen_1dp"
+                    android:layout_marginLeft="@dimen/dimen_8dp"
+                    android:id="@+id/tvCarNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/notice_color"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

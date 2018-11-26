@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivRedPacket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/bg_send_red_packet" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ivRedPacket"
+        android:layout_alignLeft="@id/ivRedPacket"
+        android:layout_alignRight="@id/ivRedPacket"
+        android:layout_alignTop="@id/ivRedPacket"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="0.01dp"
+            android:layout_height="0dp"
+            android:layout_weight="57" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="71"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="0.01dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|bottom">
+
+                <TextView
+                    android:id="@+id/tvMoneyFlag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="¥"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvRedPacketMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/tvDiscountFlag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="折"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.01dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvRedPacketDesc"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="139"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="6dp"
+            android:paddingTop="23dp"
+            android:textColor="@color/color_yellow_ffe2b1" />
+    </LinearLayout>
+</RelativeLayout>

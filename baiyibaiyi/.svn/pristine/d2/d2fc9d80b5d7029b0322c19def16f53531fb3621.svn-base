@@ -1,0 +1,70 @@
+package com.baogang.bycx.request;
+
+public class EvaluateRequest extends RequestBaseParams {
+    private String customerId;
+    private String carsharingorder;
+    private String evaluateType;
+    private String evaluateStarLevel;
+    private String evaluateText;
+    private String evaluateLabel;
+
+    public EvaluateRequest() {
+    }
+
+    public EvaluateRequest(String carsharingorder, String evaluateType,
+                           String evaluateStarLevel, String evaluateText, String evaluateLabel) {
+        this.carsharingorder = carsharingorder;
+        this.evaluateType = evaluateType;
+        this.evaluateStarLevel = evaluateStarLevel;
+        this.evaluateText = evaluateText;
+        this.evaluateLabel = evaluateLabel;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getEvaluateText() {
+        return evaluateText;
+    }
+
+    public void setEvaluateText(String evaluateText) {
+        this.evaluateText = evaluateText;
+    }
+
+    public String getEvaluateStarLevel() {
+        return evaluateStarLevel;
+    }
+
+    public void setEvaluateStarLevel(String evaluateStarLevel) {
+        this.evaluateStarLevel = evaluateStarLevel;
+    }
+
+    public String getEvaluateType() {
+        return evaluateType;
+    }
+
+    public void setEvaluateType(String evaluateType) {
+        this.evaluateType = evaluateType;
+    }
+
+    public String getEvaluateLabel() {
+        return evaluateLabel;
+    }
+
+    public void setEvaluateLabel(String evaluateLabel) {
+        this.evaluateLabel = evaluateLabel;
+    }
+
+    public String getCarsharingorder() {
+        return carsharingorder;
+    }
+
+    public void setCarsharingorder(String carsharingorder) {
+        this.carsharingorder = carsharingorder;
+    }
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ratingbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/content_bg"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/default_padding"
+    android:paddingRight="@dimen/default_padding"
+    >
+
+    <View
+        android:background="@color/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"/>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.de.hdodenhof.circleimageview.CircleImageView
+            android:layout_marginTop="@dimen/dimen_2dp"
+            android:id="@+id/civ_comment_user_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_user_portrait"
+            android:src="@mipmap/ge_1" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/civ_comment_user_icon"
+            android:gravity="center_vertical"
+            android:text="183****6372"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_normal"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical">
+
+            <www.qisu666.com.widget.StarBar
+                android:id="@+id/starbar_comment_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                ratingbar:starCount="5"
+                ratingbar:starDistance="0dp"
+                ratingbar:starEmpty="@mipmap/ic_star_unselect"
+                ratingbar:starFill="@mipmap/ic_star_selected"
+                ratingbar:starSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_comment_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="4分"
+                android:textColor="@color/text_gray"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_comment_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_user_name"
+            android:layout_below="@id/tv_user_name"
+            android:gravity="center_vertical"
+            android:text="嗯，充电体验很好，以后就选奇速共享啦！"
+            android:textColor="@color/text_dark_gray"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:layout_marginBottom="@dimen/dimen_12dp"
+            android:id="@+id/tv_comment_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_comment_detail"
+            android:layout_below="@id/tv_comment_detail"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:text="2016-09-09    14:07"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_normal" />
+
+        <View
+            android:visibility="gone"
+            style="@style/Divide_Horizontal_Full"
+            android:layout_below="@id/tv_comment_time"
+            android:layout_marginTop="15dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

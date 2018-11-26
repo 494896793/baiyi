@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dimen_18dp"
+        android:paddingTop="@dimen/dimen_20dp">
+
+        <include layout="@layout/layout_use_car_park" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_140dp"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:background="@drawable/linear_shape">
+
+
+        <RelativeLayout
+            android:id="@+id/car_left_re"
+            android:layout_width="@dimen/dimen_132dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_drawable">
+
+            <ImageView
+                android:id="@+id/ivBattery"
+                android:layout_width="@dimen/dimen_23dp"
+                android:layout_height="@dimen/dimen_11dp"
+                android:layout_marginLeft="@dimen/dimen_6dp"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:src="@mipmap/yc_18" />
+
+            <TextView
+                android:id="@+id/tvBatteryPercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_4dp"
+                android:layout_marginTop="@dimen/dimen_11dp"
+                android:layout_toRightOf="@id/ivBattery"
+                android:text="--%"
+                android:textColor="@color/main_background"
+                android:textSize="@dimen/dimen_12sp" />
+
+            <ImageView
+                android:id="@+id/ivCarPic"
+                android:layout_width="100dp"
+                android:layout_height="72dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:src="@mipmap/order_detail_car_pic" />
+
+            <TextView
+                android:id="@+id/tvCarNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivCarPic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/dimen_23dp"
+                android:paddingTop="@dimen/dimen_9dp"
+                android:text="粤B -----"
+                android:textColor="@color/main_info_color"
+                android:textSize="@dimen/dimen_14sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llyt_car_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/car_left_re"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/dimen_15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dimen_16dp">
+
+                <TextView
+                    android:id="@+id/tvCarTypeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_18dp"
+                    android:text="----"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_18sp" />
+
+                <TextView
+                    android:id="@+id/tvFlagRedPacketCar"
+                    style="@style/RedPacketCarFlagStyle"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_toLeftOf="@+id/car_color_tx"
+                    android:text="红包车"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/car_color_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_toLeftOf="@+id/car_set_tx"
+                    android:background="@drawable/main_tx_radio"
+                    android:paddingBottom="@dimen/dimen_1dp"
+                    android:paddingLeft="@dimen/dimen_6dp"
+                    android:paddingRight="@dimen/dimen_6dp"
+                    android:paddingTop="@dimen/dimen_1dp"
+                    android:text="--"
+                    android:textColor="@color/main_info_color"
+                    android:textSize="@dimen/dimen_12sp" />
+
+                <TextView
+                    android:id="@+id/car_set_tx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/main_tx_radio"
+                    android:paddingBottom="@dimen/dimen_1dp"
+                    android:paddingLeft="@dimen/dimen_6dp"
+                    android:paddingRight="@dimen/dimen_6dp"
+                    android:paddingTop="@dimen/dimen_1dp"
+                    android:text="--"
+                    android:textColor="@color/main_info_color"
+                    android:textSize="@dimen/dimen_12sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/main_tx_radio"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="计费： 里程费+电度费+时长费"
+                    android:textColor="@color/color_gray_666666"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvFeeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dimen_1dp"
+                    android:paddingLeft="@dimen/dimen_6dp"
+                    android:paddingRight="@dimen/dimen_6dp"
+                    android:paddingTop="@dimen/dimen_1dp"
+                    android:text="@string/text_default"
+                    android:textColor="@color/color_gray_666666"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_12dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="续航约:"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="@dimen/dimen_13sp" />
+
+                    <TextView
+                        android:id="@+id/tvLeftEnduranceKM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="9dp"
+                        android:text="--KM"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="@dimen/dimen_13sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlytEnduranceBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_4dp"
+                    android:layout_marginTop="@dimen/dimen_11dp"
+                    android:background="@drawable/bg_battery_gray">
+
+                    <View
+                        android:id="@+id/viewLeftEndurance"
+                        android:layout_width="20dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/bg_battery_green" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/linear_shape">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvWhistle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/dimen_15dp"
+                android:drawableTop="@mipmap/yc_35"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dimen_15dp"
+                android:paddingTop="@dimen/dimen_20dp"
+                android:text="鸣笛找车"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/dimen_1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dimen_18dp"
+            android:layout_marginTop="@dimen/dimen_18dp"
+            android:background="@color/view_line_2" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvOpenDoor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/dimen_15dp"
+                android:drawableTop="@mipmap/yc_36"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dimen_15dp"
+                android:paddingTop="@dimen/dimen_20dp"
+                android:text="开锁"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_10dp"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_16dp"
+            android:layout_height="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_9dp"
+            android:src="@mipmap/yc_37" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="提示：点击鸣笛时可能会鸣笛、闪灯，请不要受到惊吓"
+            android:textColor="@color/warn_notice_color"
+            android:textSize="@dimen/dimen_13sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCancelUseCar"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginBottom="@dimen/dimen_30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/selector_primary_btn"
+        android:gravity="center"
+        android:text="取消预约"
+        android:textColor="@color/main_background"
+        android:textSize="18sp" />
+</LinearLayout>

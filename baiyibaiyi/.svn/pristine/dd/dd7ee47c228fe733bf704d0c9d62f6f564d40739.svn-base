@@ -1,0 +1,9 @@
+package com.baogang.bycx.request
+
+import com.baogang.bycx.utils.UserUtils
+
+/**
+ * Created by wujiancheng on 2018/1/19.
+ * 充值列表
+ */
+data class RechargeListRequest(var customerId: String = UserUtils.getCustomerId()) : RequestBaseParams()

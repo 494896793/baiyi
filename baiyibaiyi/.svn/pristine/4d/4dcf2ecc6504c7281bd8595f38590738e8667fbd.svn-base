@@ -1,0 +1,197 @@
+package com.baogang.bycx.adapter
+
+import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
+import android.widget.TextView
+import com.baogang.bycx.R
+import com.baogang.bycx.app.CouponType
+import com.baogang.bycx.callback.CouponBean
+import com.baogang.bycx.utils.DateUtils
+import com.baogang.bycx.utils.StringUtils
+import com.baogang.bycx.utils.TVUtils
+import java.text.ParseException
+import java.util.*
+
+/**
+ * Created by wujiancheng on 2017/11/13.
+ */
+class MyCouponAdapter(val context: Context, var data: List<CouponBean>, val type: String) : RecyclerView.Adapter<MyCouponAdapter.MyCouponViewHolder>() {
+
+    private var onCouponItemClickListener: OnCouponItemClickListener? = null
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyCouponViewHolder {
+        val inflater = LayoutInflater.from(context)
+        val view = inflater.inflate(R.layout.listitem_coupon, parent, false)
+        return MyCouponViewHolder(context, view, type)
+    }
+
+    override fun getItemCount(): Int = data.size
+
+    override fun onBindViewHolder(holder: MyCouponViewHolder?, position: Int) {
+        val coupon = data[position]
+        holder?.tvCouponTitle?.text = coupon.title
+        val couponBalance = coupon.money
+        var balance = 0
+        if (StringUtils.isIntOrFloat(couponBalance)) {
+            balance = Integer.parseInt(couponBalance)
+        }
+        val couponType = coupon.couponType
+        if ("4" == couponType) {
+            //折扣券
+            holder?.tvCouponAmountFlag?.visibility = View.GONE
+            holder?.tvCouponDiscountFlag?.visibility = View.VISIBLE
+            holder?.tvCouponAmount?.text = TVUtils.toString1((balance.div(10.0)).toString())
+        } else {
+            //普通优惠券
+            holder?.tvCouponAmountFlag?.visibility = View.VISIBLE
+            holder?.tvCouponDiscountFlag?.visibility = View.GONE
+            holder?.tvCouponAmount?.text = TVUtils.toStringInt((balance.div(100.0)).toString())
+        }
+
+        var startTime = ""
+        var endTime = ""
+        try {
+            startTime = DateUtils.timestampToString(coupon.startTime, "yyyy-MM-dd")
+            endTime = DateUtils.timestampToString(coupon.endTime, "yyyy-MM-dd")
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+        holder?.tvCouponTime?.text = "$startTime  至 $endTime"
+        if (CouponType.CAN_USE == type || type in CouponType.IS_IN_CHOOSE_COUPON) {//可使用，或选择优惠券，展示“即将过期”
+            if (!StringUtils.isEmpty(coupon.endTime)) {
+                val endTimeL = coupon.endTime.toLong()
+                val nowL = Date().time
+                if (endTimeL.minus(2.times(24).times(60).times(60).times(1000)) <= nowL) {
+                    holder?.tvTimeStatus?.visibility = View.VISIBLE
+                    holder?.tvTimeStatus?.text = "即将过期"
+                } else {
+                    holder?.tvTimeStatus?.visibility = View.GONE
+                }
+            }
+        } else {
+            holder?.tvTimeStatus?.visibility = View.GONE
+        }
+
+        holder?.llytConditionDetail?.removeAllViews()
+        if (coupon.isShowCondition) {
+            holder?.llytConditionDetail?.visibility = View.VISIBLE
+            if (CouponType.CAN_USE == type || type == CouponType.CAN_USE_CHOOSE) {//可使用
+                holder?.ivArrowDetail?.setImageResource(R.mipmap.gr_31)
+            } else if (type == CouponType.USED || type == CouponType.OUT_TIME) {//已使用 或 已过期
+                holder?.ivArrowDetail?.setImageResource(R.mipmap.gr_31)
+            } else if (type == CouponType.CANNOT_USE_CHOOSE) {//不可用
+                holder?.ivArrowDetail?.setImageResource(R.mipmap.gr_31)
+                holder?.ivArrowDetail?.alpha = 0.4F
+            }
+        } else {
+            holder?.llytConditionDetail?.visibility = View.GONE
+            if (CouponType.CAN_USE == type || type == CouponType.CAN_USE_CHOOSE) {//可使用
+                holder?.ivArrowDetail?.setImageResource(R.mipmap.gr_30)
+            } else if (type == CouponType.USED || type == CouponType.OUT_TIME) {//已使用 或 已过期
+                holder?.ivArrowDetail?.setImageResource(R.mipmap.gr_30)
+            } else if (type == CouponType.CANNOT_USE_CHOOSE) {//不可用
+                holder?.ivArrowDetail?.setImageResource(R.mipmap.gr_30)
+                holder?.ivArrowDetail?.alpha = 0.4F
+            }
+        }
+        //使用条件详情
+        val limits: List<String>? = coupon.limit
+        if (limits?.isNotEmpty() ?: false) {
+            holder?.tvCouponCondition?.text = "以下情况可用"
+            holder?.ivArrowDetail?.visibility = View.VISIBLE
+
+            val inflater = LayoutInflater.from(context)
+            for (conditionItem in limits!!) {
+                val viewCondition = inflater.inflate(R.layout.listitem_coupon_condition, holder?.llytConditionDetail, false)
+                val ivPoint = viewCondition.findViewById<ImageView>(R.id.ivPoint)
+                val tvCouponUseCondition = viewCondition.findViewById<TextView>(R.id.tvCouponUseCondition)
+                if (CouponType.CAN_USE == type || type == CouponType.CAN_USE_CHOOSE) {//可使用
+                    ivPoint.setImageResource(R.mipmap.point_gray)
+                    tvCouponUseCondition.setTextColor(ContextCompat.getColor(context, R.color.color_gray_666666))
+                } else if (type == CouponType.USED || type == CouponType.OUT_TIME) {//已使用 或 已过期
+                    ivPoint.setImageResource(R.mipmap.point_gray_light)
+                    tvCouponUseCondition.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+                } else if (type == CouponType.CANNOT_USE_CHOOSE) {//不可用
+                    ivPoint.setImageResource(R.mipmap.point_gray)
+                    tvCouponUseCondition.setTextColor(ContextCompat.getColor(context, R.color.color_gray_666666))
+                }
+
+                tvCouponUseCondition.text = conditionItem
+                holder?.llytConditionDetail?.addView(viewCondition)
+            }
+            holder?.ivArrowDetail?.setOnClickListener {
+                coupon.isShowCondition = !coupon.isShowCondition
+                notifyDataSetChanged()
+            }
+        } else {
+            holder?.tvCouponCondition?.text = "无使用门槛"
+            holder?.ivArrowDetail?.visibility = View.GONE
+            holder?.llytConditionDetail?.visibility = View.GONE
+        }
+
+        if (type == CouponType.CAN_USE_CHOOSE) {//点击选择优惠券
+            holder?.rlytCouponContainer?.setOnClickListener {
+                onCouponItemClickListener?.onCouponItemClick(coupon)
+            }
+        }
+
+    }
+
+    class MyCouponViewHolder(context: Context, itemView: View, type: String) : RecyclerView.ViewHolder(itemView) {
+        val rlytCouponContainer: RelativeLayout = itemView.findViewById(R.id.rlytCouponContainer)
+        val tvCouponTitle: TextView = itemView.findViewById(R.id.tvCouponTitle)
+        val tvCouponTime: TextView = itemView.findViewById(R.id.tvCouponTime)
+        val tvTimeStatus: TextView = itemView.findViewById(R.id.tvTimeStatus)
+        val tvCouponAmountFlag: TextView = itemView.findViewById(R.id.tvCouponAmountFlag)
+        val tvCouponAmount: TextView = itemView.findViewById(R.id.tvCouponAmount)
+        val tvCouponDiscountFlag: TextView = itemView.findViewById(R.id.tvCouponDiscountFlag)
+        val tvCouponCondition: TextView = itemView.findViewById(R.id.tvCouponCondition)
+        val ivArrowDetail: ImageView = itemView.findViewById(R.id.ivArrowDetail)
+        val llytConditionDetail: LinearLayout = itemView.findViewById(R.id.llytConditionDetail)
+        private val viewBottomLine: View = itemView.findViewById(R.id.viewBottomLine)
+
+        init {
+            when (type) {
+                CouponType.CAN_USE, CouponType.CAN_USE_CHOOSE -> {//可使用
+                    setColor(context, R.color.main_background, R.color.main_info_color, R.color.warn_notice_color,
+                            R.color.warn_notice_color, R.color.main_info_color)
+                }
+                CouponType.USED, CouponType.OUT_TIME -> {//已使用，过期
+                    setColor(context, R.color.main_info_color, R.color.notice_color, R.color.notice_color,
+                            R.color.main_info_color, R.color.notice_color)
+                }
+                CouponType.CANNOT_USE_CHOOSE -> {//不可用
+                    setColor(context, R.color.color_black_333333, R.color.color_gray_666666, R.color.color_yellow_fca800,
+                            R.color.color_blue_02b2e4_40, R.color.color_blue_02b2e4_40)
+                }
+            }
+        }
+
+        private fun setColor(context: Context, colorTitle: Int, colorTime: Int, colorTimeStatus: Int, colorMoney: Int, colorCondition: Int) {
+            tvCouponTitle.setTextColor(ContextCompat.getColor(context, colorTitle))
+            tvCouponTime.setTextColor(ContextCompat.getColor(context, colorTime))
+            tvTimeStatus.setTextColor(ContextCompat.getColor(context, colorTimeStatus))
+            tvCouponAmount.setTextColor(ContextCompat.getColor(context, colorMoney))
+            tvCouponAmountFlag.setTextColor(ContextCompat.getColor(context, colorMoney))
+            tvCouponDiscountFlag.setTextColor(ContextCompat.getColor(context, colorMoney))
+            tvCouponCondition.setTextColor(ContextCompat.getColor(context, colorCondition))
+            viewBottomLine.setBackgroundColor(ContextCompat.getColor(context, colorMoney))
+        }
+    }
+
+    interface OnCouponItemClickListener {
+        fun onCouponItemClick(couponBean: CouponBean)
+    }
+
+    fun setOnCouponItemClickListener(onCouponItemClickListener: OnCouponItemClickListener) {
+        this.onCouponItemClickListener = onCouponItemClickListener
+    }
+}

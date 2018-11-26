@@ -1,0 +1,212 @@
+package com.baogang.bycx.utils;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.math.BigDecimal;
+
+/**
+ * Created by Administrator on 2017/4/11.
+ */
+
+public class ImageUtil {
+    private static final String TAG = ImageUtil.class.getSimpleName();
+    private static final int MAX_SIZE = 700;//K
+    private static final int IMAGE_HEIGHT = 800;
+    private static final int IMAGE_WIDTH = 480;
+
+    /**
+     * 压缩图片
+     *
+     * @param bitmap   源图片
+     * @param width    想要的宽度
+     * @param height   想要的高度
+     * @param isAdjust 是否自动调整尺寸, true图片就不会拉伸，false严格按照你的尺寸压缩
+     * @return Bitmap
+     */
+    public Bitmap reduce(Bitmap bitmap, int width, int height, boolean isAdjust) {
+        // 如果想要的宽度和高度都比源图片小，就不压缩了，直接返回原图
+        if (bitmap.getWidth() < width && bitmap.getHeight() < height) {
+            return bitmap;
+        }
+        // 根据想要的尺寸精确计算压缩比例, 方法详解：public BigDecimal divide(BigDecimal divisor, int scale, int roundingMode);
+        // scale表示要保留的小数位, roundingMode表示如何处理多余的小数位，BigDecimal.ROUND_DOWN表示自动舍弃
+        float sx = new BigDecimal(width).divide(new BigDecimal(bitmap.getWidth()), 4, BigDecimal.ROUND_DOWN).floatValue();
+        float sy = new BigDecimal(height).divide(new BigDecimal(bitmap.getHeight()), 4, BigDecimal.ROUND_DOWN).floatValue();
+        if (isAdjust) {// 如果想自动调整比例，不至于图片会拉伸
+            sx = (sx < sy ? sx : sy);
+            sy = sx;// 哪个比例小一点，就用哪个比例
+        }
+        Matrix matrix = new Matrix();
+        matrix.postScale(sx, sy);// 调用api中的方法进行压缩，就大功告成了
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    private static int getRatioSize(int bitWidth, int bitHeight) {
+        Logger.i(TAG, "图片的宽长=" + bitWidth + "," + bitHeight);
+        // 图片最大分辨率
+        int imageHeight = IMAGE_HEIGHT;
+        int imageWidth = IMAGE_WIDTH;
+        if (bitWidth > bitHeight) {
+            imageHeight = IMAGE_WIDTH;
+            imageWidth = IMAGE_HEIGHT;
+        }
+        // 缩放比
+        int ratio = 1;
+        // 缩放比,由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+        if (bitWidth > bitHeight && bitWidth > imageWidth) {
+            // 如果图片宽度比高度大,以宽度为基准
+            ratio = bitWidth / imageWidth;
+        } else if (bitWidth < bitHeight && bitHeight > imageHeight) {
+            // 如果图片高度比宽度大，以高度为基准
+            ratio = bitHeight / imageHeight;
+        }
+        // 最小比率为1
+        if (ratio <= 0)
+            ratio = 1;
+        return ratio;
+    }
+
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        if (width > height) {
+            int tmp = reqWidth;
+            reqWidth = reqHeight;
+            reqHeight = tmp;
+        }
+        Logger.i(TAG, "图片的宽长=" + width + "," + height);
+        Logger.i(TAG, "要求图片的宽长=" + reqWidth + "," + reqHeight);
+        int inSampleSize = 1;
+        if (height > reqHeight || width > reqWidth) {
+            final int heightRatio = Math.round((float) height
+                    / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+
+        return inSampleSize;
+    }
+
+    /**
+     * 压缩图片
+     *
+     * @param image 要压缩的bitmap
+     * @return 压缩后的bitmap
+     */
+    public static Bitmap compressBitmap(Bitmap image) {
+        // 最大图片大小
+        int maxSize = MAX_SIZE;
+        // 获取尺寸压缩倍数
+        int ratio = getRatioSize(image.getWidth(), image.getHeight());
+        Logger.i(TAG, "缩放的比例=" + ratio);
+        // 压缩Bitmap到对应尺寸
+        Bitmap result = Bitmap.createBitmap(image.getWidth() / ratio, image.getHeight() / ratio, Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(result);
+        Rect rect = new Rect(0, 0, image.getWidth() / ratio, image.getHeight() / ratio);
+        canvas.drawBitmap(image, null, rect, null);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        // 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 100;
+        result.compress(Bitmap.CompressFormat.JPEG, options, baos);
+        Logger.i(TAG, "压缩前 == " + baos.toByteArray().length);
+        // 循环判断如果压缩后图片是否大于maxSize,大于继续压缩
+        while (baos.toByteArray().length / 1024 > maxSize) {
+            Logger.i(TAG, "压缩过程中 == " + baos.toByteArray().length);
+            // 重置baos即清空baos
+            baos.reset();
+            // 每次都减少10
+            options -= 5;
+            // 这里压缩options%，把压缩后的数据存放到baos中
+            result.compress(Bitmap.CompressFormat.JPEG, options, baos);
+            Logger.i(TAG, "压缩过程中后 == " + baos.toByteArray().length);
+        }
+        Logger.i(TAG, "压缩后 == " + baos.toByteArray().length);
+        byte[] bts = baos.toByteArray();
+        Bitmap bmp = BitmapFactory.decodeByteArray(bts, 0, bts.length);
+        Logger.i(TAG, "压缩后bmp == " + bmp.getByteCount());
+        try {
+            baos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 释放Bitmap
+        if (!result.isRecycled()) {
+            result.recycle();
+        }
+        return bmp;
+    }
+
+    /**
+     * 根据路径获得突破并压缩返回bitmap用于显示
+     *
+     * @param filePath  图片的路径
+     * @param reqWidth  要求的图片的像素
+     * @param reqHeight 要求的图片的像素
+     * @return
+     */
+    public static Bitmap getSmallBitmap(String filePath, int reqWidth, int reqHeight) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(filePath, options);
+
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        Logger.i(TAG, "inSampleSize=" + options.inSampleSize);
+        options.inJustDecodeBounds = false;
+
+        return BitmapFactory.decodeFile(filePath, options);
+    }
+
+    /**
+     * 压缩图片不失真
+     *
+     * @param imagePath 要压缩的图片路径
+     * @return 压缩后的bitmap
+     */
+    public static Bitmap compressBitmapKeepTrue(String imagePath) {
+        // 最大图片大小
+//        int maxSize = MAX_SIZE;
+
+        Bitmap bitmap = getSmallBitmap(imagePath, IMAGE_WIDTH, IMAGE_HEIGHT);
+
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        // 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+//        int options = 100;
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);
+//        Logger.i(TAG, "压缩前 == " + baos.toByteArray().length);
+//        // 循环判断如果压缩后图片是否大于maxSize,大于继续压缩
+//        while (baos.toByteArray().length / 1024 > maxSize) {
+//            Logger.i(TAG, "压缩过程中 == " + baos.toByteArray().length);
+//            // 重置baos即清空baos
+//            baos.reset();
+//            // 每次都减少10
+//            options -= 5;
+//            // 这里压缩options%，把压缩后的数据存放到baos中
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);
+//            Logger.i(TAG, "压缩过程中后 == " + baos.toByteArray().length);
+//        }
+//        Logger.i(TAG, "压缩后 == " + baos.toByteArray().length);
+//        byte[] bts = baos.toByteArray();
+//        Bitmap bmp = BitmapFactory.decodeByteArray(bts, 0, bts.length);
+//        Logger.i(TAG, "压缩后bmp == " + bmp.getByteCount());
+//        try {
+//            baos.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        // 释放Bitmap
+//        if (!bitmap.isRecycled()) {
+//            bitmap.recycle();
+//        }
+        return bitmap;
+    }
+}

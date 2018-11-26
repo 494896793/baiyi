@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/linear_shape"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/tvUseCarHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/dimen_10dp"
+        android:drawableRight="@mipmap/yc_30"
+        android:gravity="center"
+        android:text="分时租赁"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_17sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_24dp"
+        android:paddingRight="@dimen/dimen_17dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvOverUseTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="11"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvOverUseTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvOverUseTime"
+                android:layout_centerHorizontal="true"
+                android:text="    时长(分钟）"
+                android:textColor="@color/main_info_color"
+                android:textSize="@dimen/dimen_13sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvOverUseFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="--"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvOverUseFee"
+                android:layout_centerHorizontal="true"
+                android:text="  费用(元）"
+                android:textColor="@color/main_info_color"
+                android:textSize="@dimen/dimen_13sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvOverMileage"
+                android:layout_centerHorizontal="true"
+                android:text="里程(公里)"
+                android:textColor="@color/main_info_color"
+                android:textSize="@dimen/dimen_13sp" />
+
+            <TextView
+                android:id="@+id/tvOverMileage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="--"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_22sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

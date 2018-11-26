@@ -1,0 +1,72 @@
+package www.qisu666.com.fragment;
+
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.adapter.ChargingStatisticsAdapter;
+import www.qisu666.com.app.MyApplication;
+import www.qisu666.com.bean.ChongdianTongji;
+import www.qisu666.com.bean.EventMsg;
+import www.qisu666.com.bean.RxBus;
+import www.qisu666.com.event.LoginEvent;
+import www.qisu666.com.event.Message;
+import www.qisu666.com.request.MyNetwork;
+import www.qisu666.com.request.utils.FlatFunction;
+import www.qisu666.com.request.utils.MyMessageUtils;
+import www.qisu666.com.request.utils.ResultSubscriber;
+import www.qisu666.com.request.utils.RxNetHelper;
+
+import www.qisu666.com.sdk.stationMap.JsonUtil;
+import www.qisu666.com.sdk.stationMap.StationLocation;
+import www.qisu666.com.utils.CacheUtils;
+import www.qisu666.com.utils.JsonUtils;
+import www.qisu666.com.utils.ToastUtil;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.xutils.common.util.LogUtil;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ * 充电统计
+ */
+public class ChargingStatisticsFragment extends BaseFragment {
+    @Override
+    public int setLayoutResId() {
+        return 0;
+    }
+
+    @Override
+    public void initDatas(View view) {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

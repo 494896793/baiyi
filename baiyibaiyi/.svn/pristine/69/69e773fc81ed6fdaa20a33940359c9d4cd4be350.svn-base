@@ -1,0 +1,577 @@
+package www.qisu666.com.activity
+
+import android.content.Intent
+import android.os.Handler
+import android.os.Message
+import android.text.Html
+import android.view.KeyEvent
+import android.view.View
+import com.alibaba.fastjson.JSON
+import www.qisu666.com.R
+import www.qisu666.com.app.PayMode
+import www.qisu666.com.callback.*
+import www.qisu666.com.constant.Config
+import www.qisu666.com.constant.RequestUrls
+import www.qisu666.com.pay.ali.AlipayManager
+import www.qisu666.com.pay.wx.WxPayManager
+import www.qisu666.com.request.CouponListChooseRequest
+import www.qisu666.com.request.LongRentCancelOrderRequest
+import www.qisu666.com.request.LongRentPrePayOrderRequest
+import www.qisu666.com.request.UserInfoRequest
+import www.qisu666.com.rx.RxBus
+import www.qisu666.com.rx.RxBusEvent
+import www.qisu666.com.rx.RxEventCodes
+import www.qisu666.com.utils.*
+import www.qisu666.com.view.ChooseCouponView
+import www.qisu666.com.view.CustomAlertDialog2
+import www.qisu666.com.view.SpringFestivalPPW
+import kotlinx.android.synthetic.main.activity_use_car_ordering_long_rent.*
+import kotlinx.android.synthetic.main.title_back.*
+import java.lang.ref.WeakReference
+import java.text.ParseException
+import java.util.*
+import kotlin.concurrent.timerTask
+
+/**
+ * Created by wujiancheng on 2017/11/24.
+ * 用车短租预约
+ */
+class UseCarOrderingLongRentActivity : BaseActivity() {
+    private val REQUEST_COUPON_LIST = 1//可用优惠券
+    private val REQUEST_CANCEL_LONG_RENT = 2//取消预约
+    private val REQUEST_PRE_PAY_LONG_RENT = 3//预支付短租套餐
+    private val REQUEST_USER_INFO = 4//用户信息
+
+    private val DIALOG_CANCEL_ORDER = 1//取消预约的提示
+
+    companion object {
+        private val TIME_DOWN_COUNT = 1
+    }
+
+    private var selectedCombo: LongRentComboListResp? = null
+    private var maxInsuranceMoneyTotal: Int = 0//总不计免赔
+    private var isSelectInsurance = true
+    private var orderCarResp: LongRentOrderCarResp? = null
+    private var carResp: CarResp? = null
+
+    //服务器当前时间
+    private var systemTimeL: Long = 0
+    //预约时间
+    private var orderTimeL: Long = 0
+    //服务器当前时间和手机当前时间之间的差
+    private var timeDelta: Long = 0
+
+    private val timeDownAll = Config.TIME_DOWN
+    private var timeDown = Config.TIME_DOWN
+    private var handler: MyHandler? = null
+
+    private var payType = ""
+
+    //套餐原价
+    private var beforeMoney = 0.0
+
+    //选择的优惠券
+    private var couponBean: CouponBean? = null
+    private var couponListChooseResp: CouponListChooseResp? = null
+    //是否选择优惠券
+    private var isChooseCoupon = true
+    //是否是春节活动
+    private var isSpringFestival = ""
+
+    private class MyHandler(activity: UseCarOrderingLongRentActivity) : Handler() {
+        var weakReference: WeakReference<UseCarOrderingLongRentActivity>? = null
+
+        init {
+            weakReference = WeakReference(activity)
+        }
+
+        override fun handleMessage(msg: Message) {
+            super.handleMessage(msg)
+            when (msg.what) {
+                TIME_DOWN_COUNT -> {
+                    val activity = weakReference?.get()
+                    if (activity != null) {
+                        activity.timeDown = msg.arg1
+                        if (activity.timeDown <= 0) {
+                            logI("取消订单了")
+                            removeCallbacksAndMessages(null)
+                            //取消订单
+                            activity.requestCancelLongRentOrder()
+                        } else {
+                            logI("fragment.timeDown=${activity.timeDown}")
+                            if (activity.tvDownTime != null) {
+                                activity.tvDownTime.text = Html.fromHtml("车辆已为您锁定，请在<font color='#51E7D3'>" + DateUtils.time2MinuteSecond(activity.timeDown) + "</font>内支付")
+                            }
+                            activity.timeDown--
+                            val message = activity.handler?.obtainMessage()
+                            message?.what = TIME_DOWN_COUNT
+                            message?.arg1 = activity.timeDown
+                            activity.handler?.sendMessageDelayed(message, 1000)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun setView() {
+        setContentView(R.layout.activity_use_car_ordering_long_rent)
+    }
+
+    override fun initDatas() {
+        tvTitleName.text = "确认支付"
+        ivTitleLeft.setOnClickListener {
+            //取消订单
+            showFailureDialog(DIALOG_CANCEL_ORDER, "取消预约", Config.CANCEL_PROMPT, "取消预约", "暂不取消")
+        }
+        isSelectInsurance = intent.getBooleanExtra("isSelectInsurance", true)
+        orderCarResp = intent.getSerializableExtra("orderCarResp") as LongRentOrderCarResp?
+        selectedCombo = intent.getSerializableExtra("selectedCombo") as LongRentComboListResp?
+        carResp = intent.getSerializableExtra("carResp") as CarResp?
+        val maxInsuranceMoney = carResp?.maxInsuranceMoney ?: 0
+
+        isSpringFestival = selectedCombo?.isFestival ?: ""
+
+        //套餐天数
+        val days = selectedCombo?.days ?: 0
+        //不计免赔
+        maxInsuranceMoneyTotal = maxInsuranceMoney.times(days).div(100)
+        if (!isSelectInsurance) {//没有选择不计免赔
+            maxInsuranceMoneyTotal = 0
+        }
+
+        //套餐金额
+        var money = selectedCombo?.money
+        if (StringUtils.isEmpty(money)) {
+            money = "0"
+        }
+        var beforeMoneyTmp = selectedCombo?.beforeMoney
+        logI("beforeMoneyTmp = ${beforeMoneyTmp}")
+        if (StringUtils.isEmpty(beforeMoneyTmp)) {
+            beforeMoneyTmp = "0"
+        }
+        beforeMoney = TVUtils.toString2(beforeMoneyTmp?.toInt()?.div(100.0)?.toString() ?: "0.0").toDouble()
+        tvMoney.text = "¥${TVUtils.toString0(getActualPayMoney().toString())}"
+
+        //计费说明
+        if (!StringUtils.isEmpty(beforeMoneyTmp) && days != 0) {
+            var realDays = days
+            if (isSpringFestival == "1") {//春节活动
+                val giveDays = selectedCombo?.giveDays ?: "0"
+                realDays = days.minus(giveDays.toInt())
+            }
+            val unitMoney = beforeMoneyTmp?.toInt()?.div(realDays)?.div(100) ?: 0
+            if (maxInsuranceMoneyTotal != 0) {
+                tvFeeDetail.text = "${unitMoney}元/天*${realDays}天+${maxInsuranceMoneyTotal}元(不计免赔)"
+            } else {
+                tvFeeDetail.text = "${unitMoney}元/天*${realDays}天"
+            }
+        }
+        if (beforeMoneyTmp == money) {
+            tvFeeDiscount.visibility = View.GONE
+        } else {
+            if (!StringUtils.isEmpty(beforeMoneyTmp)) {
+                val beforeMoneyI = beforeMoneyTmp?.toInt() ?: 0
+                val moneyI = money?.toInt() ?: 0
+                tvFeeDiscount.text = "-${beforeMoneyI.minus(moneyI).div(100)}元(短租优惠)"
+            } else {
+                tvFeeDiscount.visibility = View.GONE
+            }
+        }
+
+
+        //选择支付方式
+        choosePayTypeView.setOnPayTypeChooseListener {
+            payType = it//支付类型：余额，微信，支付宝
+            //实付金额
+            setActualPayMoney()
+        }
+        choosePayTypeView.setPayMoney(getActualPayMoney(), Config.ORDER_CATEGORY_LONG_RENT, false)
+
+        var startTime = selectedCombo?.systemTime
+        var endTime = selectedCombo?.endTime
+        if (!StringUtils.isEmpty(startTime)) {
+            val start = startTime?.toLong() ?: 0
+            endTime = days.times(24).times(60).times(60).times(1000).plus(start).toString()
+        }
+        //套餐时间
+        try {
+            startTime = DateUtils.timestampToString(startTime, "MM月dd日 HH:mm")
+            endTime = DateUtils.timestampToString(endTime, "MM月dd日 HH:mm")
+            tvTime.text = "$startTime 至 $endTime"
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+        setActualPayMoney()
+
+        //倒计时
+        timeDown = Config.TIME_DOWN
+
+        val systemTime = orderCarResp?.systemTime
+        val orderTime = orderCarResp?.orderTime
+        systemTimeL = systemTime?.toLong() ?: 0
+        orderTimeL = orderTime?.toLong() ?: 0
+        timeDelta = systemTimeL - System.currentTimeMillis()
+        timeDown()
+
+        //取消支付
+        tvCancelPay.setOnClickListener {
+            showFailureDialog(DIALOG_CANCEL_ORDER, "取消预约", Config.CANCEL_PROMPT, "取消预约", "暂不取消")
+        }
+        //确认支付
+        tvToPay.setOnClickListener {
+            requestPrePayLongRentOrder()
+        }
+        //优惠券
+        chooseCouponView.setCouponDesc(Config.COUPON_DESC_LONG_RENT)
+        chooseCouponView.setOnCheckedChangeListener(object : ChooseCouponView.OnCheckedChangeListener {
+            override fun onCheckedChange(isChecked: Boolean) {
+                isChooseCoupon = isChecked
+                choosePayTypeView.setPayMoney(getActualPayMoney(), Config.ORDER_CATEGORY_LONG_RENT, false)
+                if (couponBean != null && isChooseCoupon) {
+                    chooseCouponView.setCouponDescVisibility(true)
+                } else {
+                    chooseCouponView.setCouponDescVisibility(false)
+                }
+
+            }
+        })
+        chooseCouponView.setOnCouponChooseListener(object : ChooseCouponView.OnCouponChooseListener {
+            override fun onCouponChoose() {
+                val intent1 = Intent(mContext, CouponChoiceActivity::class.java)
+                intent1.putExtra("couponData", couponListChooseResp)
+                intent1.putExtra("orderId", orderCarResp?.carRentOrderNumber ?: "")
+                startActivity(intent1)
+            }
+
+        })
+
+        if (isSpringFestival == "1") {
+            //是春节活动,不能用优惠券
+            chooseCouponViewLine.visibility = View.GONE
+            chooseCouponView.visibility = View.GONE
+        } else {
+            //不是春节活动
+            //获取优惠券列表
+            getCouponsList()
+        }
+
+        observeEvent()
+    }
+
+    private fun observeEvent() {
+        busSubscription = RxBus.getInstance()
+                .toObservable(RxBusEvent::class.java)
+                .subscribe { rxBusEvent ->
+                    when (rxBusEvent.eventCode) {
+                        RxEventCodes.CODE_LONG_USE_CAR_PAY_SUCCESS -> {//短租用车微信或支付宝支付成功
+                            paySuccess()
+                        }
+                        RxEventCodes.CODE_CLOSE_WX_CLIENT_TIP -> {//微信或支付宝支付取消，关闭加载框
+                            closeDialog()
+                        }
+                        RxEventCodes.CHOOSE_COUPON -> {//选择优惠券
+                            couponBean = rxBusEvent.content as CouponBean
+                            if (null != couponBean) {
+                                if ("4" != couponBean?.couponType) {
+                                    //普通优惠券
+                                    chooseCouponView.setData("¥${getCouponValue()}", 0)
+                                    chooseCouponView.setDiscountCouponVisibility(false)
+                                } else {
+                                    //折扣优惠券
+                                    val discount = getCouponDiscount()
+                                    if (!StringUtils.isEmpty(discount)) {
+                                        chooseCouponView.setData("${discount}折", 0)
+                                        chooseCouponView.setDiscountCouponValue(getCouponValue())
+                                        chooseCouponView.setDiscountCouponVisibility(true)
+                                    }
+                                }
+                                chooseCouponView.setCouponDescVisibility(true)
+                                //重置余额是否可用
+                                choosePayTypeView.setPayMoney(getActualPayMoney(), Config.ORDER_CATEGORY_LONG_RENT, false)
+                            }
+                        }
+                    }
+                }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //开启倒计时
+        timeDown()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //停止倒计时
+        removeHandler()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        removeHandler()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event?.repeatCount == 0) {
+            //已经预约了订单，取消订单
+            showFailureDialog(DIALOG_CANCEL_ORDER, "取消预约", Config.CANCEL_PROMPT, "取消预约", "暂不取消")
+        }
+        return super.onKeyDown(keyCode, event)
+    }
+
+    private fun timeDown() {
+        timeDown = timeDownAll - ((System.currentTimeMillis() + timeDelta) / 1000 - orderTimeL / 1000).toInt()
+        //先移除
+        removeHandler()
+        //倒计时
+        handler = MyHandler(this)
+        val msg = handler?.obtainMessage()
+        msg?.what = TIME_DOWN_COUNT
+        msg?.arg1 = timeDown - 1
+        handler?.sendMessage(msg)
+    }
+
+    private fun removeHandler() {
+        handler?.removeCallbacksAndMessages(null)
+    }
+
+    override fun onComplete(result: String?, type: Int) {
+        if (isSuccess(result)) {
+            when (type) {
+                REQUEST_CANCEL_LONG_RENT -> {//取消预约订单成功
+                    ToastUtil.show(mContext, getMsg(result))
+                    cancelOrder()
+                }
+                REQUEST_PRE_PAY_LONG_RENT -> {//预支付短租套餐
+                    val msg = getBean(result, PrePayResp::class.java)
+                    if (PayMode.BALANCE_PAY_TYPE == payType || msg.carSharingPayMoney == 0) {
+                        ToastUtil.showImage(mContext, "支付成功")
+                        //支付成功后
+                        paySuccess()
+                        //更新余额
+                        queryUserInfo()
+                    } else if (PayMode.WEIXIN_PAY_TYPE == payType) {
+                        val data = JSON.parseObject(msg.carSharingPayRequestData, WeixinPayData::class.java)
+                        val wxPayManager = WxPayManager()
+                        wxPayManager.pay(this, application, data, msg.carSharingPayMoney, RxEventCodes.CODE_LONG_USE_CAR_PAY_SUCCESS)
+                    } else if (PayMode.ALI_PAY_TYPE == payType) {
+                        doCheck(Config.PAYING_STRING, true)
+                        val alipayManager = AlipayManager()
+                        alipayManager.pay(this, msg.carSharingPayRequestData, RxEventCodes.CODE_LONG_USE_CAR_PAY_SUCCESS)
+                    }
+                }
+                REQUEST_USER_INFO -> {//获取用户信息
+                    val userInfoResp = getBean(result, UserInfoResp::class.java)
+                    if (null != userInfoResp) {
+                        CacheUtils.getIn().save(userInfoResp)
+                    }
+                }
+                REQUEST_COUPON_LIST -> {//获取优惠券
+                    couponListChooseResp = getBean(result, CouponListChooseResp::class.java)
+                    if (couponListChooseResp?.canUseList?.isNotEmpty() ?: false) {
+                        chooseCouponView.setData("可用(" + couponListChooseResp?.canUseList?.size + ")", R.color.color_blue_02b2e4)
+                    } else {
+                        setCouponUnenable()
+                    }
+                    choosePayTypeView.setPayMoney(getActualPayMoney(), Config.ORDER_CATEGORY_LONG_RENT, false)
+                }
+            }
+        } else {
+            when (type) {
+                REQUEST_CANCEL_LONG_RENT -> {//取消预约订单失败
+                    if (Config.REQUEST_FAILURE != getCode(result)) {
+                        cancelOrder()
+                    } else {
+                        ToastUtil.show(mContext, getMsg(result))
+                    }
+                }
+            }
+        }
+    }
+
+    override fun onFailure(msg: String?, type: Int) {
+        when (type) {
+            REQUEST_CANCEL_LONG_RENT -> {//取消预约订单失败
+                if (!NetWorkUtils.isNet()) {
+                    cancelOrder()
+                }
+            }
+        }
+    }
+
+    /**
+     * 取消短租预约套餐
+     */
+    private fun requestCancelLongRentOrder() {
+        val request = LongRentCancelOrderRequest()
+        request.carRentOrderNumber = orderCarResp?.carRentOrderNumber ?: ""
+        request.method = RequestUrls.QUERY_LONG_RENT_CANCEL_ORDER
+        doGet(request, REQUEST_CANCEL_LONG_RENT, Config.LOADING_STRING, true)
+    }
+
+    /**
+     * 预支付短租套餐
+     */
+    private fun requestPrePayLongRentOrder() {
+        val request = LongRentPrePayOrderRequest()
+        request.carRentOrderNumber = orderCarResp?.carRentOrderNumber ?: ""
+        request.carSharingPayType = payType
+        if (isChooseCoupon) {
+            request.couponNo = couponBean?.couponCode ?: ""
+        }
+        request.method = RequestUrls.QUERY_LONG_RENT_PRE_PAY
+        doGet(request, REQUEST_PRE_PAY_LONG_RENT, Config.PAYING_STRING, true)
+    }
+
+    private fun queryUserInfo() {
+        val data = UserInfoRequest()
+        val userInfoResp = CacheUtils.getIn().userInfo
+        if (userInfoResp != null) {
+            data.customerPhone = userInfoResp.phone
+            data.method = RequestUrls.QUERY_USER_INFO
+            doGet(data, REQUEST_USER_INFO, "", false)
+        }
+    }
+
+    /**
+     * 显示失败对话框
+     */
+    private fun showFailureDialog(type: Int, title: String, message: String, negativeText: String, positiveText: String) {
+        val dialog2 = CustomAlertDialog2.getAlertDialog(mContext, true, true)
+        dialog2.setTitle(title)
+        if (type == DIALOG_CANCEL_ORDER) {//取消订单
+            dialog2.setBackgroundImg(R.mipmap.dialog_prompt_bg)
+        }
+
+        dialog2.setMessage(message)
+                .setOnNegativeClickListener(negativeText) {
+                    if (type == DIALOG_CANCEL_ORDER) {//取消订单
+                        requestCancelLongRentOrder()
+                    }
+                    dialog2.dismiss()
+                }
+                .setOnPositiveClickListener(positiveText) { dialog2.dismiss() }
+                .show()
+    }
+
+    /**
+     * 支付成功后，跳转到用车还车页面
+     */
+    private fun paySuccess() {
+        val intent = Intent(mContext, UseCarLongRentReturnActivity::class.java)
+        if (null != carResp) {
+            intent.putExtra("carResp", carResp)
+        }
+        if (null != orderCarResp) {
+            intent.putExtra("orderId", orderCarResp?.carRentOrderNumber)
+        }
+        if (null != selectedCombo){
+            intent.putExtra("selectedCombo",selectedCombo)
+        }
+        startActivity(intent)
+        finish()
+    }
+
+    /**
+     * 取消订单
+     */
+    private fun cancelOrder() {
+        val event = RxBusEvent<Any>()
+        event.eventCode = RxEventCodes.CODE_CANCEL_LONG_RENT_ORDER
+        RxBus.getInstance().post(event)
+
+        finish()
+    }
+
+    /**
+     * 获取优惠券
+     */
+    private fun getCouponsList() {
+        val data = CouponListChooseRequest()
+        data.customerId = UserUtils.getCustomerId()
+        data.orderId = orderCarResp?.carRentOrderNumber ?: ""
+        data.method = RequestUrls.QUERY_ORDER_CAN_USE_COUPON
+        doGet(data, REQUEST_COUPON_LIST, Config.LOADING_STRING, true)
+    }
+
+    /**
+     * 获取选中优惠券的值
+     * @return
+     */
+    private fun getCouponValue(): Double {
+        var coupon = 0.0
+        val type = couponBean?.couponType
+        if ("4" != type) {//非折扣券
+            //选择了优惠券
+            val couponBalance = couponBean?.money ?: ""
+            if (StringUtils.isIntOrFloat(couponBalance)) {
+                coupon = TVUtils.toString((Integer.parseInt(couponBalance).div(100.00))).toDouble()
+            }
+        } else {//折扣券
+            val discount = getCouponDiscount()
+            if (!StringUtils.isEmpty(discount)) {
+                //打折的金额
+                coupon = beforeMoney - discount.toFloat().div(10.0).times(beforeMoney)
+            }
+        }
+
+        if (!isChooseCoupon) {//没选择优惠券
+            coupon = 0.0
+        }
+        logI("优惠金额=" + coupon)
+        return coupon
+    }
+
+    /**
+     * 获取选中优惠券的折扣
+     * @return
+     */
+    private fun getCouponDiscount(): String {
+        var discount = ""
+        //折扣优惠券
+        if ("4" == couponBean?.couponType) {
+            //选择了优惠券
+            val money = couponBean?.money ?: ""
+            if (!StringUtils.isEmpty(money)) {
+                discount = TVUtils.toString1(money.toInt().div(10.0).toString())
+            }
+        }
+        return discount
+    }
+
+    /**
+     * 实付金额
+
+     * @return 实付金额
+     */
+    private fun getActualPayMoney(): Double {
+        var payMoney = 0.0
+        val couponValue = getCouponValue()
+        if (couponValue == 0.0) {
+            val money = selectedCombo?.money
+            if (!StringUtils.isEmpty(money)) {
+                payMoney = money?.toDouble()?.div(100.0) ?: 0.0
+            }
+        } else {
+            payMoney = beforeMoney - couponValue
+        }
+
+        if (payMoney < 0) {
+            payMoney = 0.00
+        }
+        return payMoney + maxInsuranceMoneyTotal
+    }
+
+    private fun setCouponUnenable() {
+        chooseCouponView.setData("无可用", R.color.color_gray_999999)
+    }
+
+    /**
+     * 设置支付控件金额显示
+     */
+    private fun setActualPayMoney() {
+        tvToPay.text = "支付 ¥${TVUtils.toString(getActualPayMoney())}"
+    }
+}

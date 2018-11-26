@@ -1,0 +1,22 @@
+package www.qisu666.com.rx;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+/**
+ * @author wujiancheng
+ * 将子线程和主线程的调用封装
+ */
+public class RxSchedulersHelper {
+    public static <T> Observable.Transformer<T,T> ioMain(){
+        return new Observable.Transformer<T, T>() {
+            @Override
+            public Observable<T> call(Observable<T> observable) {
+                return observable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .repeat(1);
+            }
+        };
+    }
+}

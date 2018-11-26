@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <www.qisu666.com.view.ReceiptAccountView
+                android:id="@+id/receiptAccountView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/main_background"
+                android:paddingBottom="20dp"
+                android:paddingLeft="40dp"
+                android:paddingTop="20dp" />
+
+            <View style="@style/DivideLineStyle" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvAuditStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:paddingTop="35dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:id="@+id/llytReCommit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="30dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvReCommit"
+                    style="@style/LoginButtonEnableStyle"
+                    android:gravity="center"
+                    android:text="重新提交" />
+
+                <TextView
+                    android:id="@+id/tvTel"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/corners_bg_et_gray"
+                    android:gravity="center"
+                    android:text="联系客服"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

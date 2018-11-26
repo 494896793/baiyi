@@ -1,0 +1,126 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class LoginActivity_ViewBinding<T extends LoginActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131296947;
+
+  private View view2131296948;
+
+  private View view2131296317;
+
+  private View view2131296766;
+
+  private View view2131297217;
+
+  private View view2131296610;
+
+  @UiThread
+  public LoginActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    view = Utils.findRequiredView(source, R.id.rlytDeletePhone, "field 'rlytDeletePhone' and method 'onViewClick'");
+    target.rlytDeletePhone = Utils.castView(view, R.id.rlytDeletePhone, "field 'rlytDeletePhone'", RelativeLayout.class);
+    view2131296947 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    target.etLoginPhone = Utils.findRequiredViewAsType(source, R.id.etLoginPhone, "field 'etLoginPhone'", EditText.class);
+    view = Utils.findRequiredView(source, R.id.rlytDeletePwd, "field 'rlytDeletePwd' and method 'onViewClick'");
+    target.rlytDeletePwd = Utils.castView(view, R.id.rlytDeletePwd, "field 'rlytDeletePwd'", RelativeLayout.class);
+    view2131296948 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    target.etLoginPwd = Utils.findRequiredViewAsType(source, R.id.etLoginPwd, "field 'etLoginPwd'", EditText.class);
+    view = Utils.findRequiredView(source, R.id.btnLogin, "field 'btnLogin' and method 'onViewClick'");
+    target.btnLogin = Utils.castView(view, R.id.btnLogin, "field 'btnLogin'", TextView.class);
+    view2131296317 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytProtocol, "field 'llytProtocol' and method 'onViewClick'");
+    target.llytProtocol = Utils.castView(view, R.id.llytProtocol, "field 'llytProtocol'", LinearLayout.class);
+    view2131296766 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.tvGetVerifyCode, "field 'tvGetVerifyCode' and method 'onViewClick'");
+    target.tvGetVerifyCode = Utils.castView(view, R.id.tvGetVerifyCode, "field 'tvGetVerifyCode'", TextView.class);
+    view2131297217 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'onViewClick'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvTitleName = null;
+    target.rlytDeletePhone = null;
+    target.etLoginPhone = null;
+    target.rlytDeletePwd = null;
+    target.etLoginPwd = null;
+    target.btnLogin = null;
+    target.llytProtocol = null;
+    target.tvGetVerifyCode = null;
+
+    view2131296947.setOnClickListener(null);
+    view2131296947 = null;
+    view2131296948.setOnClickListener(null);
+    view2131296948 = null;
+    view2131296317.setOnClickListener(null);
+    view2131296317 = null;
+    view2131296766.setOnClickListener(null);
+    view2131296766 = null;
+    view2131297217.setOnClickListener(null);
+    view2131297217 = null;
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+
+    this.target = null;
+  }
+}

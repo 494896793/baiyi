@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/linear_shape"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/dimen_15dp"
+    android:paddingLeft="@dimen/dimen_15dp">
+
+    <RelativeLayout
+        android:paddingTop="@dimen/dimen_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvComboName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--套餐"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvComboName"
+            android:text="(已支付)"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvComboMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="--元"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:id="@+id/rlytComboDiscount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/tvComboDiscountName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="短租优惠券减免"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvComboDiscountMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="--元"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:id="@+id/llytComboInsurance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/tvComboInsuranceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="套餐内不计免赔"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvComboInsuranceName"
+            android:text="(已支付)"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvComboInsuranceMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="--元"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llytComboExtra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvComboExtraMileageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="套餐外里程费"
+                android:textColor="@color/notice_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvComboExtraMileage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvComboExtraMileageText"
+                android:text="(--公里)"
+                android:textColor="@color/notice_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvComboExtraMileageMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="--元"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:paddingBottom="@dimen/dimen_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/tvComboExtraTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="套餐外时长费"
+                android:textColor="@color/notice_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvComboExtraTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tvComboExtraTimeText"
+                android:text="(--:--)"
+                android:textColor="@color/notice_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvComboExtraTimeMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="--元"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

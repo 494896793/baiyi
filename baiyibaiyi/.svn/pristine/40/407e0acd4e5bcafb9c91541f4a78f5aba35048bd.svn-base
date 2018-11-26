@@ -1,0 +1,188 @@
+package com.baogang.bycx.utils;
+
+import android.text.TextUtils;
+
+import com.alibaba.fastjson.JSON;
+import com.baogang.bycx.constant.Config;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ * 网络请求结果统一解析
+ * Created by jimmy on 2016/9/29.
+ */
+
+public class ResultUtil {
+
+
+    public static <T> List<T> getListStr(String result, Class<T> clazz) {
+        try {
+            if (!TextUtils.isEmpty(result)) {
+                return JSON.parseArray(result, clazz);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> List<T> getList(String result, Class<T> clazz) {
+        try {
+            if (!TextUtils.isEmpty(result)) {
+                return JSON.parseArray(getResult(result, "result"), clazz);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> List<T> getListByPage(String result, Class<T> clazz) {
+        try {
+            if (!TextUtils.isEmpty(result)) {
+                return JSON.parseArray(getResult(getResult(result, "result"), "datas"), clazz);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> T getBean(String result, Class<T> clazz) {
+        try {
+            if (!TextUtils.isEmpty(result)) {
+                return JSON.parseObject(getResult(result, "result"), clazz);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getStringResult(String result) {
+        return getResult(result, "result");
+    }
+
+    public static boolean isSuccess(String result) {
+        String code = getResult(result, "code");
+        if (Config.REQUEST_TOKEN_ERROR.equals(code)) {
+            return false;
+        }
+        return Config.REQUEST_SUCCESS.equals(code);
+    }
+
+    public static boolean isTokenError(String r) {
+        return Config.REQUEST_TOKEN_ERROR.equals(getResult(r, "code"));
+    }
+
+    public static String getCode(String result) {
+        return getResult(result, "code");
+    }
+
+    public static String getMsg(String result) {
+        return getResult(result, "msg");
+    }
+
+    private static String getResult(String result, String key) {
+        if (TextUtils.isEmpty(result)) {
+            return "";
+        }
+        try {
+            return new JSONObject(result).getString(key);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static HashMap jsonToMap(String json) {
+        if (TextUtils.isEmpty(json)) {
+            return null;
+        }
+        HashMap<String, String> map = null;
+        try {
+            map = new HashMap<>();
+            JSONObject jsonObject = new JSONObject(json);
+            Iterator<?> iterator = jsonObject.keys();
+            while (iterator.hasNext()) {
+                String key = (String) iterator.next();
+                String value = jsonObject.get(key).toString();
+                map.put(key, value);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    public static List<HashMap> getLists(String result) {
+        List<HashMap> lists = new ArrayList<HashMap>();
+        if (!TextUtils.isEmpty(result)) {
+            try {
+                JSONObject jsonRoot = new JSONObject(result);
+                JSONArray jArray = jsonRoot.getJSONArray("result");
+                if (jArray != null && jArray.length() > 0) {
+                    for (int i = 0; i < jArray.length(); i++) {
+                        HashMap map = jsonToMap(jArray.getString(i));
+                        if (map != null) {
+                            lists.add(map);
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return lists;
+    }
+
+    public static HashMap getMap(String result) {
+        if (!TextUtils.isEmpty(result)) {
+            try {
+                JSONObject jsonRoot = new JSONObject(result);
+                return jsonToMap(jsonRoot.getString("result"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static List<HashMap> getListsOf(String strArray) {
+        List<HashMap> lists = new ArrayList<HashMap>();
+        if (!TextUtils.isEmpty(strArray)) {
+            try {
+                JSONArray jArray = new JSONArray(strArray);
+                if (jArray != null && jArray.length() > 0) {
+                    for (int i = 0; i < jArray.length(); i++) {
+                        HashMap map = jsonToMap(jArray.getString(i));
+                        if (map != null) {
+                            lists.add(map);
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return lists;
+    }
+
+    public static String getCon(HashMap data, String key) {
+        String result = "";
+        if (data != null && data.containsKey(key)) {
+            result = data.get(key) + "";
+            if (result.equals("null")) {
+                result = "";
+            }
+        }
+        return result;
+    }
+}

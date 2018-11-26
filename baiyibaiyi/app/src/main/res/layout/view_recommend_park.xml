@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp">
+
+    <include layout="@layout/layout_company_discount" />
+
+    <TextView
+        android:id="@+id/tvRecommendParkName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_default"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_white_corners_overstroke"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etRecommendContent"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="推荐停车场名称、收费标准（重要）"
+            android:maxLength="100"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/main_info_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvTextLength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:text="0/100"
+            android:textColor="@color/color_gray_bbbbbb"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCommitRecommend"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="27dp"
+        android:textSize="@dimen/dimen_18sp"
+        android:background="@drawable/selector_primary_btn"
+        android:textColor="@color/main_background"
+        android:gravity="center"
+        android:text="在这建个点吧" />
+</LinearLayout>

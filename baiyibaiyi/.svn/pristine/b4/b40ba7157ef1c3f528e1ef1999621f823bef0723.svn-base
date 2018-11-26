@@ -1,0 +1,85 @@
+package com.baogang.bycx.view
+
+import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.text.Html
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.widget.FrameLayout
+import com.baogang.bycx.R
+import com.baogang.bycx.utils.DateUtils
+import com.baogang.bycx.utils.HighlightUtil
+import com.baogang.bycx.utils.TVUtils
+import kotlinx.android.synthetic.main.view_use_car_cost_long.view.*
+
+/**
+ * Created by wujiancheng on 2017/11/4.
+ * 长时租赁 时长，里程，费用
+ */
+class UseCarCostLongView : FrameLayout {
+    constructor(context: Context?) : super(context) {
+        init()
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init()
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        init()
+    }
+
+    fun init() {
+        LayoutInflater.from(context).inflate(R.layout.view_use_car_cost_long, this)
+    }
+
+    /**
+     * 套餐内
+     * @param comboName 套餐名称
+     * @param utilTime 使用期限
+     * @param useTimeStr 使用时长，秒
+     * @param useMileage 使用里程，公里
+     * @param useCost 费用，分
+     */
+    fun setComboData(comboName: String?, utilTime: String, useTimeStr: String, useMileage: String, useCost: Int) {
+        tvComboName.text = comboName ?: ""
+        val endTime = DateUtils.timestampToString(utilTime + "", "MM月dd日 HH:mm")
+        tvComboUtilTime.text = "(至$endTime，已支付)"
+//        if (!StringUtils.isEmpty(useTimeStr)) {
+//            var useTime = Integer.parseInt(useTimeStr)
+//            useTime = useTime / 1000 / 60//分钟
+//            tvComboTime.text = DateUtils.minuteToDay(useTime)
+//        }
+        tvComboTime.text = Html.fromHtml(HighlightUtil.convertHightlightText("时长:$useTimeStr", useTimeStr, "#02b2e4"))
+        val useCostStr = TVUtils.toString(useCost.div(100.0))
+        tvComboFee.text = "费用:${useCostStr}元"
+        val useMileageStr = "${TVUtils.toString2(useMileage)}公里"
+        tvComboMileage.text = Html.fromHtml(HighlightUtil.convertHightlightText("里程:$useMileageStr", useMileageStr, "#02b2e4"))
+    }
+
+    /**
+     * 套餐已使用完毕
+     * @param comboName 套餐名称
+     * @param utilTime 使用期限
+     * @param useTimeStr 使用时长，天
+     * @param useMileage 使用里程，公里
+     * @param useCost 费用，分
+     */
+    fun setComboOverData(comboName: String?, utilTime: String, useTimeStr: String, useMileage: String, useCost: Int) {
+        tvComboName.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+        tvComboName.text = comboName ?: ""
+        val endTime = DateUtils.timestampToString(utilTime + "", "MM月dd日 HH:mm")
+        tvComboUtilTime.text = "(至$endTime，已支付)"
+//        if (!StringUtils.isEmpty(useTimeStr)) {
+//            var useTime = Integer.parseInt(useTimeStr)
+//            useTime = useTime / 1000 / 60//分钟
+//            tvComboTime.text = DateUtils.minuteToDay(useTime)
+//        }
+        tvComboTime.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+        tvComboTime.text = "时长:${useTimeStr}天"
+        tvComboFee.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+        tvComboFee.text = "费用:${TVUtils.toString(useCost.div(100.0))}元"
+        tvComboMileage.setTextColor(ContextCompat.getColor(context, R.color.color_gray_999999))
+        tvComboMileage.text = "里程:${TVUtils.toString2(useMileage)}公里"
+    }
+}

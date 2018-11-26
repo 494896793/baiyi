@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:scrollbars="none"
+        android:id="@+id/svComment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dimen_11dp"
+                android:background="@drawable/linear_shape"
+                android:layout_marginRight="@dimen/dimen_27dp"
+                android:layout_marginLeft="@dimen/dimen_27dp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_80dp">
+
+            </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/body_linear"
+                android:paddingBottom="@dimen/dimen_14dp"
+                android:layout_marginTop="@dimen/dimen_90dp"
+                android:background="@drawable/white_drawable"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/llytPayComplete"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/color_gray_efeff4"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/use_car_type_choose" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="支付成功!"
+                        android:textColor="@color/color_blue_02b2e4"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_tips_satisfaction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen_16dp"
+                        android:text="超级满意"
+                        android:layout_below="@+id/rating_comment_order"
+                        android:textColor="@color/warn_notice_color"
+                        android:textSize="@dimen/dimen_15sp" />
+
+                    <RatingBar
+                        android:id="@+id/rating_comment_order"
+                        style="@style/RatingBarStyleYellow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen_28dp"
+                        android:isIndicator="false"
+                        android:numStars="5"
+                        android:rating="5"
+                        android:stepSize="1" />
+
+                    <!--<com.baogang.bycx.view.LableViewGroup-->
+                    <!--android:id="@+id/lable_group"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_below="@id/rating_comment_order"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:layout_marginTop="30dp" />-->
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCommentLabels"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rating_comment_order"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="@dimen/dimen_60dp" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_comments_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rvCommentLabels"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/tc_security"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginLeft="40dp"
+                            android:background="@drawable/corners_bg_pi"
+                            android:gravity="center"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="车辆安全平稳"
+                            android:textColor="#686a6d"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tv_cleantidy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toRightOf="@+id/tc_security"
+                            android:background="@drawable/corners_bg_pi"
+                            android:gravity="center"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="车内整洁"
+                            android:textColor="#686a6d"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tv_convenient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_toRightOf="@+id/tv_cleantidy"
+                            android:background="@drawable/corners_bg_pi"
+                            android:gravity="center"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="租车方便"
+                            android:textColor="#686a6d"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tv_quick"
+                            android:layout_width="wrap_content"
+                            android:layout_height="36dp"
+                            android:layout_below="@+id/tc_security"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/corners_bg_pi"
+                            android:gravity="center"
+                            android:paddingLeft="12dp"
+                            android:paddingRight="12dp"
+                            android:text="还车快捷"
+                            android:textColor="#686a6d"
+                            android:textSize="13sp" />
+
+                    </RelativeLayout>
+
+                    <EditText
+                        android:id="@+id/et_comments_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_below="@id/rl_comments_layout"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/corners_bg_et_gray"
+                        android:gravity="top|left"
+                        android:hint="其他建议..."
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:paddingTop="10dp"
+                        android:textColor="@color/color_black_333333"
+                        android:textColorHint="@color/color_gray_bbbbbb"
+                        android:textSize="14sp" />
+
+                    
+
+                    <Button
+                        android:id="@+id/bt_commit_share"
+                        android:layout_width="170dp"
+                        android:layout_height="44dp"
+                        android:layout_alignRight="@+id/et_comments_content"
+                        android:layout_below="@+id/et_comments_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_commit_share"
+                        android:text="提交评论并分享"
+                        android:textColor="@color/white"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+            <Button
+                android:layout_marginBottom="@dimen/dimen_30dp"
+                android:background="@drawable/selector_primary_btn"
+                android:layout_marginLeft="@dimen/dimen_37dp"
+                android:layout_marginRight="@dimen/dimen_37dp"
+                android:id="@+id/btn_send_comments"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:layout_below="@+id/body_linear"
+                android:layout_marginTop="30dp"
+                android:text="提交" />
+            <ImageView
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/yc_55"
+                android:layout_width="@dimen/dimen_220dp"
+                android:layout_height="@dimen/dimen_84dp" />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

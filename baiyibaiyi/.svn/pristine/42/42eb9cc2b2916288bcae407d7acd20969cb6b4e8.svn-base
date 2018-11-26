@@ -1,0 +1,85 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import com.baogang.bycx.view.CouponViewPagerWithTitleView;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class CouponActivity_ViewBinding<T extends CouponActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131296323;
+
+  private View view2131296610;
+
+  private View view2131296593;
+
+  @UiThread
+  public CouponActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    view = Utils.findRequiredView(source, R.id.btn_registered_coupon, "field 'btnRegisteredCoupon' and method 'onViewClick'");
+    target.btnRegisteredCoupon = Utils.castView(view, R.id.btn_registered_coupon, "field 'btnRegisteredCoupon'", Button.class);
+    view2131296323 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    target.etCouponId = Utils.findRequiredViewAsType(source, R.id.et_coupon_id, "field 'etCouponId'", EditText.class);
+    target.layoutBindingCoupons = Utils.findRequiredViewAsType(source, R.id.layout_binding_coupons, "field 'layoutBindingCoupons'", RelativeLayout.class);
+    target.viewPagerWithTitleView = Utils.findRequiredViewAsType(source, R.id.viewPagerWithTitleView, "field 'viewPagerWithTitleView'", CouponViewPagerWithTitleView.class);
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'onViewClick'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivQrCode, "method 'onViewClick'");
+    view2131296593 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClick(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvTitleName = null;
+    target.btnRegisteredCoupon = null;
+    target.etCouponId = null;
+    target.layoutBindingCoupons = null;
+    target.viewPagerWithTitleView = null;
+
+    view2131296323.setOnClickListener(null);
+    view2131296323 = null;
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+    view2131296593.setOnClickListener(null);
+    view2131296593 = null;
+
+    this.target = null;
+  }
+}

@@ -1,0 +1,23 @@
+package www.qisu666.com.request;
+
+public class ShareSucRequest extends RequestBaseParams {
+
+    private String code = "share_returnback";
+    private int evaluateStar;
+
+    public int getEvaluateStar() {
+        return evaluateStar;
+    }
+
+    public void setEvaluateStar(int evaluateStar) {
+        this.evaluateStar = evaluateStar;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+}

@@ -1,0 +1,130 @@
+package com.baogang.bycx.adapter;
+
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.app.CarOrderState;
+import com.baogang.bycx.callback.OrderListResp;
+import com.baogang.bycx.callback.UserInfoResp;
+import com.baogang.bycx.constant.Config;
+import com.baogang.bycx.utils.CacheUtils;
+import com.baogang.bycx.utils.DateUtils;
+import com.baogang.bycx.utils.TVUtils;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * 订单列表
+ */
+public class OrderListAdapter extends BaseAdapter<OrderListResp> {
+
+    public OrderListAdapter(Context mContext, List<OrderListResp> carOrderItemList) {
+        super(mContext, carOrderItemList);
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        if (convertView == null) {
+            convertView = getV(R.layout.listitem_car_order);
+            holder = new ViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        OrderListResp orderInfo = getItem(position);
+        if (null != orderInfo) {
+            String timestamp = orderInfo.getMakeOrderTime();
+            if (!TextUtils.isEmpty(timestamp)) {
+                long timestampL = Long.valueOf(timestamp);
+                holder.tvStartTime.setText(DateUtils.getMonthTime(timestampL));
+            }
+
+            String carCost = "0.00";
+            String orderState = orderInfo.getStatus();
+            if (CarOrderState.Car_Order_Status_Cancel.equals(orderState)) {
+                carCost = "0.00";
+                holder.tvCarStartPosition.setText(orderInfo.getStartParkName());
+                holder.tvCarEndPosition.setText("——");
+
+                holder.tvCarOrderStatus.setText("已取消");
+                holder.tvCarOrderStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.color_blue_51E7D3));
+                holder.ivOrderArrow.setVisibility(View.INVISIBLE);
+            } else if (CarOrderState.Car_Order_Status_Finish.equals(orderState)) {
+                holder.ivOrderArrow.setVisibility(View.VISIBLE);
+                holder.tvCarStartPosition.setText(orderInfo.getStartParkName());
+                holder.tvCarEndPosition.setText(orderInfo.getEndParkName());
+
+                if (CarOrderState.Car_Order_Status_nopay.equals(orderInfo.getPayStatus())) {
+                    if (Config.ORDER_CATEGORY_LONG_RENT.equals(orderInfo.getOrderCategory())) {
+                        carCost = orderInfo.getPayMoney() + "";//短租
+                    } else {
+                        carCost = orderInfo.getOrderMoney() + "";
+                    }
+
+                    holder.tvCarOrderStatus.setText("待支付");
+                    holder.tvCarOrderStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.color_blue_51E7D3));
+                    holder.ivOrderArrow.setImageResource(R.mipmap.gr_14);
+                } else {
+                    if (Config.ORDER_CATEGORY_LONG_RENT.equals(orderInfo.getOrderCategory())) {
+                        carCost = orderInfo.getOrderMoney() + "";//短租
+                    } else {
+                        carCost = orderInfo.getPayMoney() + "";
+                    }
+                    holder.tvCarOrderStatus.setText("已完成");
+                    holder.tvCarOrderStatus.setTextColor(ContextCompat.getColor(getContext(), R.color.color_blue_51E7D3));
+                    holder.ivOrderArrow.setImageResource(R.mipmap.gr_14);
+                }
+            }
+            holder.tvCarCost.setText("¥" + TVUtils.toYuanString(carCost));
+
+            UserInfoResp userInfoResp = CacheUtils.getIn().getUserInfo();
+            if (null != userInfoResp) {
+                UserInfoResp.Company company = userInfoResp.getCompany();
+                if (null != company) {//企业用户
+                    String isCompanyOrder = orderInfo.getIsCompanyOrder();
+                    if ("true".equals(isCompanyOrder)) {
+                        //企业订单
+                        holder.tvDiscountCompany.setText("企业");
+                    } else {
+                        //个人订单
+                        holder.tvDiscountCompany.setText("个人");
+                    }
+                } else {//个人用户
+                    holder.tvDiscountCompany.setVisibility(View.GONE);
+                }
+            }
+        }
+        return convertView;
+    }
+
+    static class ViewHolder {
+        @BindView(R.id.tv_car_cost)
+        TextView tvCarCost;
+        @BindView(R.id.tv_car_order_status)
+        TextView tvCarOrderStatus;
+        @BindView(R.id.ivOrderArrow)
+        ImageView ivOrderArrow;
+        @BindView(R.id.tv_start_time)
+        TextView tvStartTime;
+        @BindView(R.id.tv_car_start_position)
+        TextView tvCarStartPosition;
+        @BindView(R.id.tv_car_end_position)
+        TextView tvCarEndPosition;
+        @BindView(R.id.tvDiscountCompany)
+        TextView tvDiscountCompany;//订单类型：个人，企业
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+}

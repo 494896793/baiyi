@@ -1,0 +1,134 @@
+package www.qisu666.com.sdk.stationMap.juhe;
+
+import android.Manifest;
+import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.maps.AMap;
+import com.amap.api.maps.AMapOptions;
+import com.amap.api.maps.AMapUtils;
+import com.amap.api.maps.CameraUpdateFactory;
+import com.amap.api.maps.LocationSource;
+import com.amap.api.maps.MapView;
+import com.amap.api.maps.Projection;
+import com.amap.api.maps.UiSettings;
+import com.amap.api.maps.model.BitmapDescriptor;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.CameraPosition;
+import com.amap.api.maps.model.LatLng;
+import com.amap.api.maps.model.Marker;
+import com.amap.api.maps.model.MarkerOptions;
+import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.maps.model.NaviPara;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeQuery;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
+
+import www.qisu666.com.R;
+import www.qisu666.com.activity.BaseActivity;
+import www.qisu666.com.activity.CaptureActivity;
+import www.qisu666.com.activity.ChargingActivity;
+import www.qisu666.com.activity.LoginActivity;
+import www.qisu666.com.activity.NaviActivity;
+import www.qisu666.com.activity.StationInfoActivity;
+import www.qisu666.com.adapter.StationListAdapter;
+import www.qisu666.com.anim.CloseEvarlutor;
+import www.qisu666.com.anim.OpenEvarlutor;
+import www.qisu666.com.app.MyApplication;
+import www.qisu666.com.droid.Activity_SelectCity;
+import www.qisu666.com.event.Message;
+import www.qisu666.com.request.MyNetwork;
+import www.qisu666.com.request.utils.FlatFunction;
+import www.qisu666.com.request.utils.MyMessageUtils;
+import www.qisu666.com.request.utils.ResultSubscriber;
+import www.qisu666.com.request.utils.RxNetHelper;
+import www.qisu666.com.sdk.stationMap.StationLocation;
+import www.qisu666.com.utils.CacheUtils;
+import www.qisu666.com.utils.ConstantCode;
+import www.qisu666.com.utils.DialogHelper;
+import www.qisu666.com.utils.Distance;
+import www.qisu666.com.utils.JsonUtils;
+import www.qisu666.com.utils.LogUtils;
+import www.qisu666.com.utils.MapUtils;
+import www.qisu666.com.utils.PermissionUtil;
+import www.qisu666.com.utils.StringUtil;
+import www.qisu666.com.utils.ToastUtil;
+import www.qisu666.com.widget.LoadingDialog;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.squareup.picasso.Picasso;
+import com.ta.utdid2.android.utils.NetworkUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xutils.DbManager;
+import org.xutils.common.util.LogUtil;
+import org.xutils.x;
+
+import java.io.File;
+import java.math.BigDecimal;
+import java.net.URISyntaxException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+//桩点列表
+public class PointAggregationAty extends BaseActivity {
+
+
+    @Override
+    public void setView() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

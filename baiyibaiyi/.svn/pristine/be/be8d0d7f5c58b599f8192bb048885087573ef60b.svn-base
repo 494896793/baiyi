@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/main_background"
+    android:orientation="vertical"
+    android:paddingRight="15dp">
+
+    <ImageView
+        android:id="@+id/ivTitleLeftMain"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:src="@mipmap/sy_1" />
+
+    <TextView
+        android:id="@+id/tvTitleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="中铁·奇速"
+        android:textSize="@dimen/dimen_18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/ivTitleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/title_main"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/llytTitleRight"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivTitleSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/dimen_5dp"
+            android:src="@mipmap/sy_2" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivTitleInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingLeft="10dp"
+                android:src="@mipmap/sy_3" />
+
+            <ImageView
+                android:id="@+id/ivTitleInfoUnread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/ivTitleInfo"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@id/ivTitleInfo"
+                android:src="@mipmap/red_message"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

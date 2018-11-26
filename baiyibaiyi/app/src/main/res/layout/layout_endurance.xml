@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llytPower"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@id/ivCarPic"
+    android:layout_alignRight="@id/ivCarPic"
+    android:layout_below="@id/ivCarPic"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="电量:"
+        android:textColor="@color/color_black_333333"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/ivBattery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:src="@mipmap/battery_green_high" />
+
+    <TextView
+        android:id="@+id/tvBatteryPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:text="--%"
+        android:textColor="@color/color_green_59d66f" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="续航约:"
+        android:textColor="@color/color_black_333333"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:id="@+id/rlytEnduranceBg"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_marginLeft="9dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_battery_gray">
+
+        <View
+            android:id="@+id/viewLeftEndurance"
+            android:layout_width="20dp"
+            android:layout_height="10dp"
+            android:background="@drawable/bg_battery_green" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvLeftEnduranceKM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:text="--KM"
+        android:textColor="@color/color_green_59d66f" />
+</LinearLayout>

@@ -1,0 +1,191 @@
+package www.qisu666.com.utils;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+
+import com.amap.api.maps.model.LatLng;
+import www.qisu666.com.R;
+import www.qisu666.com.app.MyApplication;
+import www.qisu666.com.view.CustomAlertDialog;
+import www.qisu666.com.view.PopupWindowWrap;
+
+public class NavigationUtils {
+    private static String AMAPG = "com.autonavi.minimap";
+    private static String AMAPBD = "com.baidu.BaiduMap";
+
+    /**
+     * @param mContext
+     * @param latLng
+     * @param type     t = 0（驾车）= 1（公交）= 2（步行）= 3（骑行）= 4（火车）= 5（长途客车）
+     *                 （骑行仅在V788以上版本支持）
+     */
+    public static void goNavigation(Activity mContext, LatLng latLng, int type) {
+        if (latLng == null) {
+            ToastUtil.show(mContext, "地址有误！");
+            return;
+        }
+        if (hasPackage(mContext.getApplicationContext(), AMAPG) && hasPackage(mContext.getApplicationContext(), AMAPBD)) {
+//            showNaviDialog(mContext, latLng, type);
+            showNavigationPPW(mContext, latLng, type);
+        } else if (hasPackage(mContext.getApplicationContext(), AMAPG)) {
+            openGaoDeMap(mContext, latLng, type);
+        } else if (hasPackage(mContext.getApplicationContext(), AMAPBD)) {
+            openBaiDuMap(mContext, latLng, type);
+        } else {
+            openBrowserToGuide(mContext, latLng);
+        }
+    }
+
+    private static void openBrowserToGuide(Context context, LatLng latLng) {
+        String url = "http://uri.amap.com/navigation?to=" + latLng.longitude + "," + latLng.latitude + "," + "&mode=walk&policy=1&src=佰壹出行&coordinate=gaode&callnative=0";
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        context.startActivity(intent);
+    }
+
+    private static boolean hasPackage(Context context, String packageName) {
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException var3) {
+            packageInfo = null;
+            return false;
+        }
+        return packageInfo != null;
+    }
+
+    private static void showNaviDialog(final Context context, final LatLng latLng, final int type) {
+        final CustomAlertDialog dialog = CustomAlertDialog.getAlertDialog(context, true, true);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_navi, null);
+        LinearLayout llytGaoDe = (LinearLayout) view.findViewById(R.id.llytGaoDe);
+        LinearLayout llytBaiDu = (LinearLayout) view.findViewById(R.id.llytBaiDu);
+        if (hasPackage(context.getApplicationContext(), AMAPG)) {
+            llytGaoDe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openGaoDeMap(context, latLng, type);
+                    dialog.dismiss();
+                }
+            });
+        }
+        if (hasPackage(context.getApplicationContext(), AMAPBD)) {
+            llytBaiDu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openBaiDuMap(context, latLng, type);
+                    dialog.dismiss();
+                }
+            });
+        }
+
+        dialog.setTitle("导航方式")
+                .setViewContainer(view)
+                .setOnNegativeClickListener("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+    private static void openGaoDeMap(Context context, LatLng latLng, int type) {
+        ToastUtil.show(context, "开始导航");
+        //        导航方式(0 速度快; 1 费用少; 2 路程短; 3 不走高速；4 躲避拥堵；5 不走高速且避免收费；6 不走高速且躲避拥堵；7 躲避收费和拥堵；8 不走高速躲避收费和拥堵)
+        String uri = "androidamap://openFeature?featureName=OnFootNavi&sourceApplication=佰壹出行&lat=" + latLng.latitude + "&lon=" + latLng.longitude + "&dev=0";
+        if (type == 0) {
+            uri = "androidamap://navi?sourceApplication=佰壹出行&lat=" + latLng.latitude + "&lon=" + latLng.longitude + "&dev=0&style=4";
+        }
+        //移动APP调起Android高德地图方式
+        Intent intentg = new Intent("android.intent.action.VIEW");
+        intentg.addCategory("android.intent.category.DEFAULT");
+        intentg.setData(android.net.Uri.parse(uri));
+        intentg.setPackage("com.autonavi.minimap");
+        Logger.i("高德导航==" + uri);
+        context.startActivity(intentg); // 启动调用
+    }
+
+    private static void openBaiDuMap(Context context, LatLng latLng, int type) {
+        ToastUtil.show(context, "开始导航");
+        try {
+            String startLng = MyApplication.getApplication().longitude;
+            String startLat = MyApplication.getApplication().latitude;
+
+            Intent i1 = new Intent();
+            String uri = "baidumap://map/walknavi?coord_type=gcj02&origin=" + startLat + "," + startLng +
+                    "&destination=" + latLng.latitude + "," + latLng.longitude + "&src=佰壹科技|佰壹出行";
+            Logger.i("百度导航==" + uri);
+            // 步行导航
+            i1.setData(Uri.parse(uri));
+
+            context.startActivity(i1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void showNavigationPPW(final Activity context, final LatLng latLng, final int type) {
+        final PopupWindowWrap popupWindowWrap = new PopupWindowWrap(context);
+        popupWindowWrap
+                .setContentView(R.layout.dialog_navi, new PopupWindowWrap.OnCreatedPPWListener() {
+                    @Override
+                    public void onCreatedPPW(View contentView) {
+                        LinearLayout llytGaoDe = (LinearLayout) contentView.findViewById(R.id.llytGaoDe);
+                        LinearLayout llytBaiDu = (LinearLayout) contentView.findViewById(R.id.llytBaiDu);
+                        LinearLayout llytCancel = (LinearLayout) contentView.findViewById(R.id.llytCancel);
+                        View viewBackground = contentView.findViewById(R.id.viewBackground);
+                        if (hasPackage(context.getApplicationContext(), AMAPG)) {
+                            llytGaoDe.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    openGaoDeMap(context, latLng, type);
+                                    popupWindowWrap.dismiss();
+                                }
+                            });
+                        }
+                        if (hasPackage(context.getApplicationContext(), AMAPBD)) {
+                            llytBaiDu.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    openBaiDuMap(context, latLng, type);
+                                    popupWindowWrap.dismiss();
+                                }
+                            });
+                        }
+                        llytCancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                popupWindowWrap.dismiss();
+                            }
+                        });
+                        viewBackground.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                popupWindowWrap.dismiss();
+                            }
+                        });
+                    }
+                })
+//                .setBackgroundColor(R.color.white)
+                .setWidth(ViewGroup.LayoutParams.MATCH_PARENT)
+                .setHeight(ViewGroup.LayoutParams.MATCH_PARENT)
+                .isChangeWindowBg(false);
+        popupWindowWrap.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                popupWindowWrap.dismiss();
+            }
+        });
+        popupWindowWrap.showAtLocation(context.getWindow().getDecorView().findViewById(android.R.id.content), Gravity.BOTTOM, 0, 0);
+
+    }
+}

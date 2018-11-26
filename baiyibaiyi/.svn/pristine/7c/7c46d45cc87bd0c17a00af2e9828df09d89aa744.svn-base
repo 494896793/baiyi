@@ -1,0 +1,36 @@
+package www.qisu666.com.utils.glideUtil;
+
+import android.content.Context;
+import android.os.Environment;
+
+import www.qisu666.com.utils.FileUtil2;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.GlideBuilder;
+import com.bumptech.glide.load.engine.cache.DiskLruCacheFactory;
+import com.bumptech.glide.module.GlideModule;
+
+import java.io.File;
+
+/**
+ * @author wujiancheng
+ *         自定义GlideModule:自定义图片缓存路径
+ */
+public class MyGlideModule implements GlideModule {
+    @Override
+    public void applyOptions(Context context, GlideBuilder builder) {
+        // Apply options to the builder here.
+        int diskCacheSize = 1024 * 1024 * 100;//最多可以缓存多少字节的数据 20M
+        //存放在外置文件浏览器
+//        builder.setDiskCache(new ExternalCacheDiskCacheFactory(context, diskCacheSize));
+        //存放在内置文件浏览器
+//        builder.setDiskCache(new InternalCacheDiskCacheFactory(context, diskCacheSize));
+        //存放在外置文件浏览器，指定路径
+        String imgCache = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + FileUtil2.IMG_GLIDE_CACHE_DIR;
+        builder.setDiskCache(new DiskLruCacheFactory(imgCache, diskCacheSize));
+    }
+
+    @Override
+    public void registerComponents(Context context, Glide glide) {
+        // register ModelLoaders here.
+    }
+}

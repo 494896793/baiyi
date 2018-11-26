@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_search" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCurrentAddrText"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_23dp"
+                android:textStyle="bold"
+                android:text="当前位置"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_17sp" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:id="@+id/llytCurrentAddrText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_shape"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/yc_4" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tvCurrentAddr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="16dp"
+                    android:textSize="@dimen/dimen_15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:id="@+id/llytNearParkList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvNearParkNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="常用网点"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_17sp" />
+
+                <www.qisu666.com.view.NestedListView
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:id="@+id/lvNearParkResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:dividerHeight="10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_marginLeft="@dimen/dimen_10dp">
+
+                </www.qisu666.com.view.NestedListView>
+
+                <TextView
+                    android:id="@+id/tvNoFrequentTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="30dp"
+                    android:text="暂无常用网点"
+                    android:textColor="@color/color_gray_999999"
+                    android:textSize="13sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <www.qisu666.com.view.NestedListView
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:id="@+id/lvSearchMapList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="@dimen/dimen_10dp"
+                android:visibility="gone">
+
+            </www.qisu666.com.view.NestedListView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

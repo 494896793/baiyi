@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_21dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:background="@drawable/linear_shape"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginLeft="@dimen/dimen_22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_18dp"
+                    android:lineSpacingExtra="10dp"
+                    android:text="1、请确定车辆已熄火，关闭所有车灯、车门、车窗、空调，并拉好脚刹！车辆要停入停车位哦。"
+                    android:textColor="@color/main_info_color"
+                    android:textSize="@dimen/dimen_14sp" />
+
+                <LinearLayout
+                    android:paddingLeft="@dimen/dimen_22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2、给车辆拍照"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="@dimen/dimen_14sp" />
+
+                    <TextView
+                        android:id="@+id/tvLookSample"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_17dp"
+                        android:text="查看示例"
+                        android:textColor="@color/new_primary"
+                        android:textSize="@dimen/dimen_14sp" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_marginLeft="@dimen/dimen_16dp"
+                    android:id="@+id/rvCarImgs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp" />
+
+                <LinearLayout
+                    android:paddingBottom="@dimen/dimen_50dp"
+                    android:paddingRight="@dimen/dimen_10dp"
+                    android:paddingLeft="@dimen/dimen_15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_marginRight="@dimen/dimen_9dp"
+                        android:layout_width="@dimen/dimen_16dp"
+                        android:layout_height="@dimen/dimen_16dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@mipmap/yc_51" />
+
+                    <TextView
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/tvInvoiceWarn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="3dp"
+                        android:text="拍照后即可联系客服还车，由此给您带来的困扰深感歉意"
+                        android:textColor="@color/main_info_color"
+                        android:textSize="@dimen/dimen_12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:background="@drawable/selector_primary_btn"
+                android:layout_marginRight="@dimen/dimen_37dp"
+                android:layout_marginLeft="@dimen/dimen_37dp"
+                android:id="@+id/tvConnect"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:gravity="center"
+                android:textColor="@color/main_background"
+                android:textSize="@dimen/dimen_18sp"
+                android:text="联系客服" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

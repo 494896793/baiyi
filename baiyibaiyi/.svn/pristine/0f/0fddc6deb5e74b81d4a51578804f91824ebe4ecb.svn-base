@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_gray_efeff4"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="退款银行卡信息"
+        android:textColor="@color/color_gray_999999"
+        android:textSize="14sp" />
+
+    <View style="@style/DivideLineStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="持卡人"
+            android:textColor="@color/color_black_333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etCardHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="请输入持卡人姓名"
+            android:textColor="@color/color_black_333333"
+            android:textColorHint="@color/color_gray_bcbbc4"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View style="@style/DivideLineStyle" />
+
+    <View
+        style="@style/DivideLineStyle"
+        android:layout_marginTop="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开户行"
+            android:textColor="@color/color_black_333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etOpenCardBank"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="请输入开户行"
+            android:singleLine="true"
+            android:textColor="@color/color_black_333333"
+            android:textColorHint="@color/color_gray_bcbbc4"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/ivDeleteOpenCardBank"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:src="@mipmap/delete_login_phone"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View
+        style="@style/DivideLineStyle"
+        android:layout_marginLeft="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卡号\u3000"
+            android:textColor="@color/color_black_333333"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etCardNumber"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="请输入卡号"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="@color/color_black_333333"
+            android:textColorHint="@color/color_gray_bcbbc4"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/ivDeleteCardNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:src="@mipmap/delete_login_phone"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <View style="@style/DivideLineStyle" />
+
+    <TextView
+        android:id="@+id/tvCommit"
+        style="@style/LoginButtonUnenableStyle"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="提交" />
+
+</LinearLayout>

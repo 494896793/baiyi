@@ -1,0 +1,12 @@
+package www.qisu666.com.event;
+
+/**
+ * 717219917@qq.com 2018/10/14 12:11.
+ */
+public class MapVisibleEvent {
+    public int visibleCode=1;
+
+    public MapVisibleEvent(int visibleCode) {
+        this.visibleCode = visibleCode;
+    }
+}

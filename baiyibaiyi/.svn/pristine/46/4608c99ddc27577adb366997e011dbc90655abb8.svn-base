@@ -1,0 +1,104 @@
+//package com.baogang.bycx.activity;
+//
+//import android.os.Bundle;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.view.ViewPager;
+//import android.view.View;
+//import android.widget.ImageView;
+//import android.widget.RadioGroup;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import www.qisu666.com.R;
+//import www.qisu666.com.adapter.CustomFragmentPagerAdapter;
+//import www.qisu666.com.fragment.ChargingRecordFragment;
+//import www.qisu666.com.fragment.ChargingStatisticsFragment;
+//import www.qisu666.com.widget.CustomViewPager;
+//
+////充电记录 与 充电统计
+//public class ChargingInfoActivity extends BaseActivity {
+//
+//    private ImageView img_title_left;
+//    private RadioGroup radio_group;
+//    private CustomViewPager view_pager;
+//    private CustomFragmentPagerAdapter adapter;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setView(R.layout.activity_charging_info);
+//        initViews();
+//        setAdapter();
+//        setListeners();
+//    }
+//
+//    /**
+//     * 初始化控件
+//     */
+//    private void initViews() {
+//        img_title_left = (ImageView) findViewById(R.id.img_title_left);
+//        radio_group = (RadioGroup) findViewById(R.id.radio_group);
+//        view_pager = (CustomViewPager) findViewById(R.id.view_pager);
+//        view_pager.setOverScrollMode(View.OVER_SCROLL_NEVER);
+//    }
+//
+//    /**
+//     * 设置适配器
+//     */
+//    private void setAdapter() {
+//        List<Fragment> fragments = new ArrayList<>();
+//        fragments.add(new ChargingRecordFragment());
+//        fragments.add(new ChargingStatisticsFragment());
+//        adapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(),fragments);
+//        view_pager.setAdapter(adapter);
+//    }
+//
+//    /**
+//     * 设置监听器
+//     */
+//    private void setListeners() {
+//        img_title_left.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
+//
+//        radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                if(checkedId == R.id.radio_charging_record){
+//                    view_pager.setCurrentItem(0);
+//                } else {
+//                    view_pager.setCurrentItem(1);
+//                }
+//            }
+//        });
+//
+//        view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                switch (position){
+//                    case 0:
+//                        radio_group.check(R.id.radio_charging_record);
+//                        break;
+//                    case 1:
+//                        radio_group.check(R.id.radio_charging_statistics);
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
+//    }
+//
+//}

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llytDayTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日间："
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvFeePerKM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/公里+"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvFeePerMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/分钟"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDayTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/llytDayTime"
+        android:layout_below="@id/llytDayTime"
+        android:text="(-- - --)"
+        android:textColor="@color/notice_color"
+        android:textSize="@dimen/dimen_13sp" />
+
+    <LinearLayout
+        android:id="@+id/llytNightTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvDayTime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="夜间："
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvFeePerKMNight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/公里+"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvFeePerMinNight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元/分钟"
+            android:textColor="@color/main_background"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvNightTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/llytNightTime"
+        android:layout_below="@id/llytNightTime"
+        android:text="(-- - --)"
+        android:textColor="@color/notice_color"
+        android:textSize="@dimen/dimen_13sp" />
+
+</RelativeLayout>

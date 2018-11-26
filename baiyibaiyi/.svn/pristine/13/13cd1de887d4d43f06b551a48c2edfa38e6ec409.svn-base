@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivEarPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/sy_10" />
+
+    <ImageView
+        android:id="@+id/ivKfUnread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/ivEarPhone"
+        android:layout_alignTop="@id/ivEarPhone"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
+        android:src="@mipmap/red_point"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_gray_efeff4"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/layoutTitle"
+        layout="@layout/title_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="20dp"
+                android:text="退款金额"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="14sp" />
+
+            <View style="@style/DivideLineStyle" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvPledgeRefund"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <View style="@style/DivideLineStyle" />
+
+            <LinearLayout
+                android:id="@+id/llytRefundThird"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="20dp"
+                    android:text="收款方式"
+                    android:textColor="@color/color_gray_999999"
+                    android:textSize="14sp" />
+
+                <www.qisu666.com.view.GetMoneyAccountView
+                    android:id="@+id/getMoneyAccountView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </www.qisu666.com.view.GetMoneyAccountView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvRefundOriginal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCommit"
+                style="@style/LoginButtonEnableStyle"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="确认退还" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

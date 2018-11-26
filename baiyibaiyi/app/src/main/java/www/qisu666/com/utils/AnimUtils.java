@@ -1,0 +1,141 @@
+package www.qisu666.com.utils;
+
+import android.content.Context;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
+
+import www.qisu666.com.R;
+
+public class AnimUtils {
+    /**
+     * 从左边消失
+     *
+     * @param screenWidth
+     * @param view
+     */
+    public static void leftToGone(float screenWidth, View view) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(0f,
+                -screenWidth, 0f, 0f);
+        setAnim(translateAnimation, view);
+        view.setVisibility(View.GONE);
+    }
+
+    /**
+     * 从右边消失
+     *
+     * @param screenWidth
+     * @param view
+     */
+    public static void rightToGone(float screenWidth, View view) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(0f, screenWidth, 0f, 0f);
+        setAnim(translateAnimation, view);
+        view.setVisibility(View.GONE);
+    }
+
+    /**
+     * 从左边进入屏幕，从左到右
+     *
+     * @param screenWidth
+     * @param view
+     */
+    public static void leftToRight(float screenWidth, View view) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(-screenWidth, 0f, 0f, 0f);
+        setAnim(translateAnimation, view);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 从右边进入屏幕，从右到左
+     *
+     * @param screenWidth
+     * @param view
+     */
+    public static void rightToLeft(float screenWidth, View view) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(screenWidth, 0f, 0f, 0f);
+        setAnim(translateAnimation, view);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 从下面进入屏幕，从下到上
+     *
+     * @param screenHeight
+     * @param view
+     */
+    public static void downToUp(float screenHeight, View view) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(0f, 0f, screenHeight, 0f);
+        setAnim(translateAnimation, view);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 从上面进入屏幕，从上到下
+     *
+     * @param screenHeight
+     * @param view
+     */
+    public static void upToFull(float screenHeight, View view) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(0f, 0f, -screenHeight, 0f);
+        setAnim(translateAnimation, view);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 从下面退出屏幕，从上到下
+     *
+     * @param screenHeight
+     * @param view
+     */
+    public static void uptodown(float screenHeight, View view) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(0f, 0f, 0f, screenHeight);
+        setAnim(translateAnimation, view);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 从上面退出屏幕，从下到上
+     *
+     * @param screenHeight
+     * @param view
+     */
+    public static void UpToMiss(float screenHeight, View view) {
+        TranslateAnimation translateAnimation = new TranslateAnimation(0f, 0f, 0f, -screenHeight);
+        setAnim(translateAnimation, view);
+        view.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 慢慢消失
+     *
+     * @param
+     * @param view
+     */
+    public static void dismiss(View view) {
+        AlphaAnimation alphaAnima = new AlphaAnimation(1, 0.5f);
+        alphaAnima.setDuration(1000);
+        alphaAnima.setFillEnabled(true);
+        view.startAnimation(alphaAnima);
+    }
+
+
+    /**
+     * 向左边旋转45度
+     *
+     * @param
+     * @param
+     */
+    public static Animation rotate(Context mCntext) {
+        Animation anim = AnimationUtils.loadAnimation(mCntext, R.anim.round_loading);
+        return anim;
+    }
+
+
+    private static void setAnim(TranslateAnimation translateAnimation, View view) {
+        translateAnimation.setDuration(1000);
+        translateAnimation.setFillAfter(false);
+        view.startAnimation(translateAnimation);
+    }
+}

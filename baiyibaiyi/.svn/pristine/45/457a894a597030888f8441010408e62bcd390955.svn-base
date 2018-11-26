@@ -1,0 +1,70 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\baiyi\\bycx\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh\\values-zh.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\lp\\.gradle\\caches\\transforms-1\\files-1.1\\pulltorefreshrecyclerview-1.0.9.aar\\0179932468f8b1d1fa68635db6ac9f44\\res\\values-zh\\values-zh.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,98,146,195,241,290,334",
+                        "endColumns": "42,47,48,45,48,43,50",
+                        "endOffsets": "93,141,190,236,285,329,380"
+                    },
+                    "to": {
+                        "startLines": "15,16,23,27,31,32,33",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "756,799,1190,1432,1644,1693,1737",
+                        "endColumns": "42,47,48,45,48,43,50",
+                        "endOffsets": "794,842,1234,1473,1688,1732,1783"
+                    }
+                },
+                {
+                    "source": "C:\\baiyi\\bycx\\PullRefreshLibrary-master\\build\\intermediates\\packaged_res\\debug\\values-zh\\values-zh.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,116,183",
+                        "endColumns": "60,66,64",
+                        "endOffsets": "111,178,243"
+                    },
+                    "to": {
+                        "startLines": "24,25,26",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "1239,1300,1367",
+                        "endColumns": "60,66,64",
+                        "endOffsets": "1295,1362,1427"
+                    }
+                },
+                {
+                    "source": "C:\\baiyi\\bycx\\PhotoPicker\\build\\intermediates\\packaged_res\\debug\\values-zh\\values-zh.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,107,154,215,262,323,368,435,490,549,621,667,712",
+                        "endColumns": "51,46,60,46,60,44,66,54,58,71,45,44,43",
+                        "endOffsets": "102,149,210,257,318,363,430,485,544,616,662,707,751"
+                    }
+                },
+                {
+                    "source": "C:\\baiyi\\bycx\\OpenSourceControl\\build\\intermediates\\packaged_res\\debug\\values-zh\\values-zh.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,120,173,231,287,342,398,455,509",
+                        "endColumns": "64,52,57,55,54,55,56,53,54",
+                        "endOffsets": "115,168,226,282,337,393,450,504,559"
+                    },
+                    "to": {
+                        "startLines": "17,18,19,20,21,22,28,29,30",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "847,912,965,1023,1079,1134,1478,1535,1589",
+                        "endColumns": "64,52,57,55,54,55,56,53,54",
+                        "endOffsets": "907,960,1018,1074,1129,1185,1530,1584,1639"
+                    }
+                }
+            ]
+        }
+    ]
+}

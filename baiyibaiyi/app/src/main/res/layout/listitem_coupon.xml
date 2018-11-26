@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlytCouponContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/gr_13copy2"
+        android:layout_marginTop="15dp">
+
+        <ImageView
+            android:id="@+id/ivCouponBg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_100dp"
+             />
+
+        <RelativeLayout
+            android:id="@+id/rlytCoupon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@id/ivCouponBg"
+            android:layout_alignTop="@id/ivCouponBg"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvCouponTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="--"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCouponTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/color_gray_666666"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvTimeStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="--"
+                        android:textColor="@color/color_yellow_fca800"
+                        android:textSize="12sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llytCouponAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvCouponAmountFlag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="¥"
+                    android:textColor="@color/color_blue_02b2e4"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvCouponAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:includeFontPadding="false"
+                    android:text="0"
+                    android:textColor="@color/color_blue_02b2e4"
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:id="@+id/tvCouponDiscountFlag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="折"
+                    android:textColor="@color/color_blue_02b2e4"
+                    android:textSize="15sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlytCondition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/llytCouponAmount">
+
+                <TextView
+                    android:id="@+id/tvCouponCondition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="7dp"
+                    android:paddingLeft="15dp"
+                    android:text="--"
+                    android:textColor="@color/color_blue_02b2e4"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/ivArrowDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="3dp"
+                    android:src="@mipmap/dl_2" />
+
+                <View
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/bg_dotted_line"
+                    android:layerType="software" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llytConditionDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlytCoupon"
+            android:orientation="vertical"
+            android:paddingBottom="4dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="4dp"
+            android:visibility="gone">
+
+        </LinearLayout>
+
+        <View
+            android:visibility="gone"
+            android:id="@+id/viewBottomLine"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_below="@id/llytConditionDetail"
+            android:background="@color/color_blue_02b2e4" />
+
+    </RelativeLayout>
+</LinearLayout>

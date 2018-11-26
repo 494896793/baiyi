@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/linear_shape"
+    android:layout_marginBottom="@dimen/dimen_10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_marginLeft="@dimen/dimen_15dp"
+            android:id="@+id/tvPositionIcon"
+            android:layout_width="@dimen/dimen_16dp"
+            android:layout_height="@dimen/dimen_20dp"
+            android:src="@mipmap/yc_34" />
+
+        <TextView
+            android:layout_marginLeft="@dimen/dimen_13dp"
+            android:id="@+id/tvSearchParkName"
+            style="@style/Ellipsize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="深圳大学"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimen_17sp" />
+
+        <TextView
+            android:id="@+id/tvSearchDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text="1KM"
+            android:textColor="@color/new_primary"
+            android:textSize="@dimen/dimen_15sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSearchParkDetail"
+        style="@style/Ellipsize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_13dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="10dp"
+        android:text="深圳大学"
+        android:textColor="@color/main_info_color"
+        android:textSize="@dimen/dimen_15sp" />
+
+</LinearLayout>

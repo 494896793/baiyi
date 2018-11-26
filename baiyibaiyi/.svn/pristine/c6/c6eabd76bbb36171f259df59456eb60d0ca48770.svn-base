@@ -1,0 +1,88 @@
+package www.qisu666.com.adapter
+
+import android.content.Context
+import android.support.v7.widget.RecyclerView
+import android.text.Html
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import www.qisu666.com.R
+import www.qisu666.com.callback.CheckRefundOriginalResp
+import www.qisu666.com.constant.Config
+import www.qisu666.com.utils.HighlightUtil
+
+/**
+ * Created by wujiancheng on 2017/10/24.
+ * 押金提交列表适配器
+ */
+class PledgeRefundCommitAdapter(var context: Context, var data: List<CheckRefundOriginalResp>) : RecyclerView.Adapter<PledgeRefundCommitAdapter.PledgeRefundCommitViewHolder>() {
+
+    private var onItemClickListener: OnItemClickListener? = null
+    private var currentPosition = 0//当前选择的位置
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PledgeRefundCommitViewHolder {
+        val layoutInflater = LayoutInflater.from(context)
+        val view = layoutInflater.inflate(R.layout.listitem_pledge_refund_commit, parent, false)
+        return PledgeRefundCommitViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: PledgeRefundCommitViewHolder?, position: Int) {
+        if (position in data.indices) {
+            val resp = data[position]
+            //要退还的金额
+            holder?.tvRefundMoney?.text = "${resp.deposit / 100}元"
+            //退还后剩余金额
+            val rest = resp.depositRest
+            holder?.tvRemainMoney?.text = "(剩余${rest / 100}元)"
+            //退还时间
+            val needDay = resp.repayDealTime
+            //退还提示
+            if (rest <= 0) {//退还全部
+                holder?.tvRefundTip?.text = Html.fromHtml(HighlightUtil.convertHightlightText(String.format(Config.REFUND_ALL_TIP, needDay),
+                        String.format(Config.REFUND_ALL_TIP_HIGH_LIGHT, needDay), "#02b2e4"))
+            } else {//退还部分
+                holder?.tvRefundTip?.text = Html.fromHtml(HighlightUtil.convertHightlightText(String.format(Config.REFUND_SOME_TIP, needDay),
+                        String.format(Config.REFUND_SOME_TIP_HIGH_LIGHT, needDay), "#02b2e4"))
+            }
+
+            holder?.llytRefund?.setOnClickListener {
+                onItemClickListener?.onItemClick(position)
+                currentPosition = position
+                notifyDataSetChanged()
+            }
+            //选择打钩
+            if (currentPosition == position) {
+                holder?.ivRefundCheck?.setImageResource(R.mipmap.pay_checked)
+            } else {
+                holder?.ivRefundCheck?.setImageResource(R.mipmap.pay_unchecked)
+            }
+            //最后一条分割线隐藏
+            if (position == data.size - 1) {
+                holder?.viewDivideLine?.visibility = View.GONE
+            } else {
+                holder?.viewDivideLine?.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun getItemCount(): Int = data.size
+
+    class PledgeRefundCommitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val llytRefund: LinearLayout = itemView.findViewById(R.id.llytRefund)
+        val tvRefundMoney: TextView = itemView.findViewById(R.id.tvRefundMoney)
+        val tvRemainMoney: TextView = itemView.findViewById(R.id.tvRemainMoney)
+        val ivRefundCheck: ImageView = itemView.findViewById(R.id.ivRefundCheck)
+        val tvRefundTip: TextView = itemView.findViewById(R.id.tvRefundTip)
+        val viewDivideLine: View = itemView.findViewById(R.id.viewDivideLine)
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.onItemClickListener = onItemClickListener
+    }
+}

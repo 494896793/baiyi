@@ -1,0 +1,83 @@
+package com.baogang.bycx.wxapi;
+
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
+import com.baogang.bycx.app.MyApplication;
+import com.baogang.bycx.rx.RxBus;
+import com.baogang.bycx.rx.RxBusEvent;
+import com.baogang.bycx.rx.RxEventCodes;
+import com.baogang.bycx.utils.Logger;
+import com.baogang.bycx.utils.ToastUtil;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
+import com.tencent.mm.opensdk.modelbase.BaseReq;
+import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
+
+    private static final String TAG = WXPayEntryActivity.class.getSimpleName();
+
+    private IWXAPI api;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Logger.i(TAG, "MyApplication.getApplication().getAPP_ID()==" + MyApplication.getApplication().getAPP_ID());
+        api = WXAPIFactory.createWXAPI(this, MyApplication.getApplication().getAPP_ID());
+        api.handleIntent(getIntent(), this);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        api.handleIntent(intent, this);
+    }
+
+    @Override
+    public void onResp(BaseResp resp) {
+        Logger.i(TAG, "resp.getType()=" + resp.getType());
+        if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+            RxBusEvent event = new RxBusEvent();
+            Logger.i(TAG, "resp.errCode=" + resp.errCode);
+            if (resp.errCode == 0) {//成功
+                int payFrom = MyApplication.getApplication().getPayFrom();
+                if (payFrom == RxEventCodes.CODE_RECHARGE_PAY_SUCCESS) {
+                    //通知余额充值成功
+                    event.setEventCode(RxEventCodes.CODE_RECHARGE_PAY_SUCCESS);
+                    ToastUtil.showImage(this, "充值成功");
+                } else if (payFrom == RxEventCodes.CODE_PLEDGE_PAY_SUCCESS) {
+                    //通知押金缴纳成功
+                    event.setEventCode(RxEventCodes.CODE_PLEDGE_PAY_SUCCESS);
+                    ToastUtil.showImage(this, "缴纳成功");
+                } else if (payFrom == RxEventCodes.CODE_ORDER_PAY_SUCCESS) {
+                    //订单支付成功
+                    event.setEventCode(RxEventCodes.CODE_ORDER_PAY_SUCCESS);
+                    ToastUtil.showImage(this, "支付成功");
+                } else if (payFrom == RxEventCodes.CODE_USE_CAR_PAY_SUCCESS) {
+                    //用车支付成功
+                    event.setEventCode(RxEventCodes.CODE_USE_CAR_PAY_SUCCESS);
+                    ToastUtil.showImage(this, "支付成功");
+                } else if (payFrom == RxEventCodes.CODE_LONG_USE_CAR_PAY_SUCCESS) {
+                    //短租用车支付成功
+                    event.setEventCode(RxEventCodes.CODE_LONG_USE_CAR_PAY_SUCCESS);
+                    ToastUtil.showImage(this, "支付成功");
+                }
+            } else {
+                ToastUtil.show(this, resp.errStr);
+                event.setEventCode(RxEventCodes.CODE_CLOSE_WX_CLIENT_TIP);
+            }
+            RxBus.getInstance().post(event);
+            finish();
+        }
+    }
+
+    @Override
+    public void onReq(BaseReq baseReq) {
+    }
+}

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_divide_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvComboName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(已支付)"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/tvComboDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时长:--"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvComboMileage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="里程:--"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvComboFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="费用:--"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            style="@style/DivideLineStyle"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:id="@+id/tvOverHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="3dp"
+            android:drawableRight="@mipmap/long_rent_over_time"
+            android:gravity="center"
+            android:text="分时租赁"
+            android:textColor="@color/color_black_333333"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/tvOverUseTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="时长:"
+                android:textColor="@color/color_black_333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvOverUseTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tvOverUseTimeText"
+                android:textColor="@color/color_blue_02b2e4"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvOverUseFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="--"
+                android:textColor="@color/color_blue_02b2e4"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/tvOverUseFee"
+                android:text="费用:"
+                android:textColor="@color/color_black_333333"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="里程:"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvOverMileage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_blue_02b2e4"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <include layout="@layout/layout_divide_line" />
+</LinearLayout>

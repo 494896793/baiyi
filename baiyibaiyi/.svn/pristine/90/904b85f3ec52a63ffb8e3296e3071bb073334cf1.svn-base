@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ge_12">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include android:visibility="gone" layout="@layout/title_back" />
+
+        <ImageView
+            android:layout_marginTop="@dimen/dimen_70dp"
+            android:src="@mipmap/ge_10"
+            android:layout_gravity="center"
+            android:layout_width="@dimen/dimen_237dp"
+            android:layout_height="@dimen/dimen_44dp" />
+
+            <TextView
+                android:layout_marginLeft="@dimen/dimen_30dp"
+                android:layout_marginTop="@dimen/dimen_50dp"
+                android:id="@+id/title_1"
+                android:textSize="@dimen/dimen_20sp"
+                android:text="手机号"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/ivLoginPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/login_icon_iphone" />
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:layout_marginRight="@dimen/dimen_30dp"
+            android:layout_below="@id/title_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_30dp">
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/tx_1"
+                android:textColor="@color/white"
+                android:text="+86"
+                android:textSize="@dimen/dimen_15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/tel_icon"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_toRightOf="@id/tx_1"
+                android:src="@mipmap/dl_2"
+                android:layout_width="@dimen/dimen_12dp"
+                android:layout_height="@dimen/dimen_7dp" />
+            <View
+                android:id="@+id/line_1"
+                android:layout_toRightOf="@id/tel_icon"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:background="@color/view_line"
+                android:layout_width="@dimen/dimen_1dp"
+                android:layout_centerVertical="true"
+                android:layout_height="@dimen/dimen_18dp"/>
+            <EditText
+                android:textCursorDrawable="@drawable/bg_et_cursor"
+                android:layout_toRightOf="@id/line_1"
+                android:id="@+id/etLoginPhone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/login_phone"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="@color/color_gray_bcbbc4"
+                android:textSize="15sp" />
+            <RelativeLayout
+                android:id="@+id/rlytDeletePhone"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_18dp"
+                    android:layout_height="@dimen/dimen_18dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/gr_11" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+        <View
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:layout_marginRight="@dimen/dimen_30dp"
+            android:background="@color/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"/>
+        <TextView
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:layout_marginTop="@dimen/dimen_47dp"
+            android:id="@+id/title_2"
+            android:textSize="@dimen/dimen_20sp"
+            android:text="验证码"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dimen_15dp"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <LinearLayout
+                android:id="@+id/llytGetVerifyCode"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <View
+                    android:visibility="gone"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/color_gray_e5e5e5"
+                    android:text="|" />
+
+                <TextView
+                    android:textSize="15sp"
+                    android:paddingBottom="@dimen/dimen_4dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/tvGetVerifyCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:text="获取验证码"
+                    android:background="@drawable/bg_btn_getcode"
+                    android:textColor="@color/new_primary" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/ivLoginPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/login_icon_pw" />
+
+            <RelativeLayout
+                android:id="@+id/rlytDeletePwd"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/llytGetVerifyCode"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_18dp"
+                    android:layout_height="@dimen/dimen_18dp"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/gr_11" />
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/etLoginPwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@id/rlytDeletePwd"
+                android:layout_toRightOf="@id/ivLoginPwd"
+                android:background="@android:color/transparent"
+                android:hint="请输入验证码"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textCursorDrawable="@drawable/bg_et_cursor"
+                android:textColorHint="@color/color_gray_bcbbc4"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"
+                android:background="@color/view_line"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    <TextView
+        android:gravity="center"
+        android:clickable="true"
+        android:textColor="@color/main_background"
+        android:textSize="18sp"
+        android:layout_above="@+id/llytProtocol"
+        android:layout_height="@dimen/dimen_45dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dimen_37dp"
+        android:layout_marginRight="@dimen/dimen_37dp"
+        android:id="@+id/btnLogin"
+        android:background="@drawable/selector_primary_btn"
+        android:layout_marginTop="30dp"
+        android:text="登录" />
+
+    <TextView
+        android:id="@+id/tvForgetPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="忘记密码？"
+        android:textColor="@color/color_blue_02b2e4"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_marginBottom="@dimen/dimen_67dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/llytProtocol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录即表示同意"
+            android:textColor="@color/color_gray_999999" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《奇速共享用户租赁协议》"
+            android:textColor="@color/new_primary" />
+    </LinearLayout>
+</RelativeLayout>

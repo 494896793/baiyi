@@ -1,0 +1,315 @@
+package com.baogang.bycx.activity;
+
+import android.content.Intent;
+import android.view.View;
+import android.widget.TextView;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.app.MyApplication;
+import com.baogang.bycx.callback.CouponListResp;
+import com.baogang.bycx.callback.SystemConfigResp;
+import com.baogang.bycx.callback.UserInfoResp;
+import com.baogang.bycx.constant.RequestUrls;
+import com.baogang.bycx.request.CouponListRequest;
+import com.baogang.bycx.request.SystemArgumentRequest;
+import com.baogang.bycx.request.UserInfoRequest;
+import com.baogang.bycx.rx.RxBus;
+import com.baogang.bycx.rx.RxBusEvent;
+import com.baogang.bycx.rx.RxEventCodes;
+import com.baogang.bycx.utils.CacheUtils;
+import com.baogang.bycx.utils.StringUtils;
+import com.baogang.bycx.utils.TVUtils;
+import com.baogang.bycx.utils.ToastUtil;
+import com.baogang.bycx.utils.UserUtils;
+import com.baogang.bycx.view.CustomAlertDialog2;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+import rx.functions.Action1;
+
+/**
+ * Created by baby on 2016/4/7.
+ * 我的钱包
+ */
+public class MyWalletActivity extends BaseActivity {
+    private static final String TAG = MyWalletActivity.class.getSimpleName();
+    private static final int QUERY_USER_INFO = 1;
+    private static final int QUERY_COUPON_LIST = 2;
+    private static final int QUERY_SYSTEM_PARAM = 3;
+    @BindView(R.id.tvTitleRight)
+    TextView tvTitleRight;
+    @BindView(R.id.tvTitleName)
+    TextView tvTitleName;
+    @BindView(R.id.tvBalance)
+    TextView tvBalance;
+    @BindView(R.id.tvRechargeBalance)
+    TextView tvRechargeBalance;
+    @BindView(R.id.tvGiftBalance)
+    TextView tvGiftBalance;
+    @BindView(R.id.tvDepositText)
+    TextView tvDepositText;
+    @BindView(R.id.tvDepositStatus)
+    TextView tvDepositStatus;
+    @BindView(R.id.tvCouponNumber)
+    TextView tvCouponNumber;
+
+    private UserInfoResp mUser;
+//    private String bankCategory;
+//    private int pledgeType = 1;//1未缴纳，2：退还，3：退还中，4：资金冻结
+
+    @Override
+    public void setView() {
+        setContentView(R.layout.activity_my_wallet);
+    }
+
+    @Override
+    public void initDatas() {
+        tvTitleName.setText("钱包");
+        tvTitleRight.setText("明细");
+
+        getSystemData();
+        initData();
+
+        observeEvent();
+    }
+
+    private void observeEvent() {
+        busSubscription = RxBus.getInstance()
+                .toObservable(RxBusEvent.class)
+                .subscribe(new Action1<RxBusEvent>() {
+                    @Override
+                    public void call(RxBusEvent rxBusEvent) {
+                        switch (rxBusEvent.getEventCode()) {
+                            case RxEventCodes.CODE_RECHARGE_PAY_SUCCESS:
+                                closeDialog();
+                                break;
+                            case RxEventCodes.CODE_BIND_COUPON_SUCCESS:
+                                getCouponsList();//绑定优惠券成功后，刷新数据
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+        if (isSuccess(result)) {
+            if (type == QUERY_USER_INFO) {
+                UserInfoResp userInfoResp = getBean(result, UserInfoResp.class);
+//                UserInfoResp memberInfo = CacheUtils.getApplication().getUserInfo();
+//                memberInfo.setPhone(userInfoResp.getPhone());
+                if (null != userInfoResp) {
+                    CacheUtils.getIn().save(userInfoResp);
+                }
+                initData();
+            } else if (type == QUERY_COUPON_LIST) {
+                CouponListResp data = getBean(result, CouponListResp.class);
+                if (data != null) {
+                    tvCouponNumber.setText(data.getCanUseNumber() + "张");
+                }
+            } else if (type == QUERY_SYSTEM_PARAM) {
+                SystemConfigResp systemConfigResp = getBean(result, SystemConfigResp.class);
+                if (systemConfigResp != null) {
+                    CacheUtils.getIn().save(systemConfigResp);
+                }
+            }
+        } else {
+            if (type == QUERY_COUPON_LIST) {
+                tvCouponNumber.setText("0张");
+            } else {
+                ToastUtil.show(mContext, getMsg(result));
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+    }
+
+    @OnClick({R.id.ivTitleLeft, R.id.llytTitleRight, R.id.rlytDeposit, R.id.rlytCoupon, R.id.tvToRecharge})
+    public void onViewClick(View view) {
+        switch (view.getId()) {
+            case R.id.ivTitleLeft://返回
+                finish();
+                break;
+            case R.id.llytTitleRight://明细
+                moneyDetail();
+                break;
+            case R.id.rlytDeposit://押金
+//                if (pledgeType == 1) {//未缴纳
+//                    payPledgeDialog();
+//                } else if (pledgeType == 2) {
+//                    showFailureDialog(1, "退还用车保证金", "退款到账时间为22个工作日，退回押金将无法用车，确认退回吗？", "残忍拒绝", "赏脸留下");
+//                } else if (pledgeType == 3) {
+//                    ToastUtil.show(mContext, "正在审核中...");
+//                } else if (pledgeType == 4) {
+//                    ToastUtil.show(mContext, "您的资金被冻结...");
+//                }
+                startActivity(new Intent(mContext, PledgeActivity.class));
+
+                break;
+            case R.id.rlytCoupon://优惠券
+                activityUtil.jumpTo(CouponActivity.class);
+                break;
+            case R.id.tvToRecharge://充值余额
+                activityUtil.jumpTo(RechargeBalanceActivity.class);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+//    /**
+//     * 充值押金
+//     */
+//    private void payPledgeDialog() {
+//        final CustomAlertDialogPay dialogPay = CustomAlertDialogPay.getAlertDialog(mContext, true, true);
+//        dialogPay.setOnPositiveClickListener("缴纳", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //微信或支付宝充值
+//
+//                ChargeRequest data = new ChargeRequest();
+//                data.setBankType(bankCategory);
+//                data.setRechargeType(Config.DEPOSIT_TYPE);
+//                data.setRechargeMoney("" + 50000);//500块押金
+////                data.setRechargeMoney("" + 1);//500块押金
+//                data.setCustomerId(UserUtils.getCustomerId());
+//                data.setMethod(RequestUrls.PRE_RECHARGE);
+//                doGet(data, pledgeRecharge, "请稍后...", true);
+//                dialogPay.dismiss();
+//
+//            }
+//        }).setOnPayTypeClickListener(new CustomAlertDialogPay.OnPayTypeClickListener() {
+//            @Override
+//            public void onPayTypeClick(String payType) {
+//                Logger.i(TAG, "默认交押金方式==" + payType);
+//                bankCategory = payType;
+//            }
+//        }).show();
+//    }
+
+    /**
+     * 明细
+     */
+    private void moneyDetail() {
+        activityUtil.jumpTo(MoneyLogsActivity.class);
+    }
+
+    public void getCouponsList() {
+        CouponListRequest data = new CouponListRequest();
+        data.setCustomerId(UserUtils.getCustomerId());
+        data.setMethod(RequestUrls.QUERY_USER_BINDING_COUPON);
+        doGet(data, QUERY_COUPON_LIST, "", false);
+    }
+
+    /**
+     * 从服务器获取系统信息
+     */
+    public void getSystemData() {
+        SystemArgumentRequest data = new SystemArgumentRequest();
+        data.setAddressType(RequestUrls.url);
+        data.setMethod(RequestUrls.QUERY_SYSTEM_PARAM);
+        doGet(data, QUERY_SYSTEM_PARAM, null, false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (MyApplication.isLoginSuccess) {
+            getCouponsList();
+            UserInfoRequest data = new UserInfoRequest();
+
+            UserInfoResp userInfoResp = CacheUtils.getIn().getUserInfo();
+            if (userInfoResp != null) {
+                data.setCustomerPhone(userInfoResp.getPhone());
+//                data.setCustomerToken(userInfoResp.getToken());
+                data.setMethod(RequestUrls.QUERY_USER_INFO);
+                doGet(data, QUERY_USER_INFO, "", false);
+            }
+        }
+    }
+
+    private void initData() {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            String balance = TVUtils.toYuanString(mUser.getBalance());
+            tvBalance.setText(balance);
+            String rechargeBalance = "充值余额" + TVUtils.toYuanString(mUser.getMoney());
+            tvRechargeBalance.setText(rechargeBalance);
+            String giftBalance = "赠送余额" + TVUtils.toYuanString(mUser.getGiftMoney());
+            tvGiftBalance.setText(giftBalance);
+
+            String deposit = mUser.getDeposit();
+            if (!StringUtils.isEmpty(deposit) && !"0".equals(deposit)) {
+                tvDepositText.setText("用车保证金(" + (Integer.parseInt(deposit) / 100) + ")");
+                if ("1".equals(mUser.getLastRefundStatus())) {
+                    tvDepositStatus.setText("审核中");
+                } else {
+                    tvDepositStatus.setText("");
+                }
+            } else {
+                tvDepositText.setText("用车保证金");
+                tvDepositStatus.setText("未缴纳");
+            }
+//            if (!TextUtils.isEmpty(deposit) && StringUtils.isIntOrFloat(deposit)) {
+//                float depositF = Float.parseFloat(deposit);
+////                0正常，1申请退款，5平台冻结
+//                String accountStatus = mUser.getMoneyStatus();
+//                Logger.i(TAG, "accountStatus==" + accountStatus);
+//                if ("1".equals(accountStatus)) {
+//                    tvNumber.setText("");
+//                    pledgeType = 3;
+//                } else if ("0".equals(accountStatus)) {
+//                    if (depositF > 0) {
+////                    tvNumber.setText(TVUtils.toYuanString(deposit));
+//                        tvNumber.setText("退还");
+//                        pledgeType = 2;
+//                    } else {
+//                        tvNumber.setText("未缴纳");
+//                        pledgeType = 1;
+////                        //预约车辆之前没有交押金，直接弹框
+////                        boolean noDeposit = getIntent().getBooleanExtra("noDeposit", false);
+////                        if (noDeposit) {
+////                            payPledgeDialog();
+////                        }
+//                    }
+//                } else if ("5".equals(accountStatus)) {
+////                    tvNumber.setText("资金已冻结");
+//                    tvNumber.setText("");
+//                    pledgeType = 4;
+//                }
+//            }
+        }
+    }
+
+    /**
+     * 显示失败对话框
+     */
+    private void showFailureDialog(final int type, String title, String message, String negativeText, String positiveText) {
+        final CustomAlertDialog2 dialog2 = CustomAlertDialog2.getAlertDialog(mContext, true, true);
+        dialog2.setTitle(title);
+        dialog2.setBackgroundImg(R.mipmap.dialog_failure_bg);
+        dialog2.setMessage(message)
+                .setOnPositiveClickListener(positiveText, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog2.dismiss();
+                    }
+                })
+                .setOnNegativeClickListener(negativeText, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent();
+                        intent.setClass(mContext, DepositRefundActivity.class);
+                        startActivity(intent);
+                        dialog2.dismiss();
+                    }
+                })
+                .show();
+    }
+}

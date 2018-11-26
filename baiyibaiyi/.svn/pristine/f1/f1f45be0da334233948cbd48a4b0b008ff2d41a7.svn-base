@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layout_update_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/register_un">
+
+    <RelativeLayout
+        android:id="@+id/layout_chose_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp">
+
+        <TextView
+            android:id="@+id/tv_update_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="正在下载佰壹出行"
+            android:textColor="@color/white"
+            android:textSize="30sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_download_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+
+        <TextView
+            android:id="@+id/tv_dowloading_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="00%"
+            android:textColor="@color/white"
+            android:textSize="10sp"/>
+
+        <ProgressBar
+            android:id="@+id/progress_dowload_precent"
+            style="@style/ProgressBar_Update"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_below="@+id/tv_dowloading_progress"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="3dp"
+            android:background="@color/update_progress_back"
+            android:progress="20"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

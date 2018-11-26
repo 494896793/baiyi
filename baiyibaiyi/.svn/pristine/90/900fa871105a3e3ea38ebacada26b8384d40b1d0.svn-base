@@ -1,0 +1,277 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.activity;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.amap.api.maps.MapView;
+import com.baogang.bycx.R;
+import com.baogang.bycx.view.CircleImageView;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class CarPositionActivity_ViewBinding<T extends CarPositionActivity> implements Unbinder {
+  protected T target;
+
+  private View view2131296578;
+
+  private View view2131296598;
+
+  private View view2131296608;
+
+  private View view2131297019;
+
+  private View view2131296510;
+
+  private View view2131296837;
+
+  private View view2131296856;
+
+  private View view2131296988;
+
+  private View view2131297546;
+
+  private View view2131296368;
+
+  private View view2131296866;
+
+  private View view2131297506;
+
+  private View view2131296611;
+
+  private View view2131296610;
+
+  private View view2131296789;
+
+  private View view2131296615;
+
+  @UiThread
+  public CarPositionActivity_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.titleBack = Utils.findRequiredViewAsType(source, R.id.titleBack, "field 'titleBack'", RelativeLayout.class);
+    target.titleMain = Utils.findRequiredViewAsType(source, R.id.titleMain, "field 'titleMain'", RelativeLayout.class);
+    target.tvTitleRight = Utils.findRequiredViewAsType(source, R.id.tvTitleRight, "field 'tvTitleRight'", TextView.class);
+    target.tvTitleName = Utils.findRequiredViewAsType(source, R.id.tvTitleName, "field 'tvTitleName'", TextView.class);
+    target.ivTitleName = Utils.findRequiredViewAsType(source, R.id.ivTitleName, "field 'ivTitleName'", ImageView.class);
+    target.mapView = Utils.findRequiredViewAsType(source, R.id.mapView, "field 'mapView'", MapView.class);
+    view = Utils.findRequiredView(source, R.id.ivLocateMyPosition, "field 'ivLocateMyPosition' and method 'onViewClicked'");
+    target.ivLocateMyPosition = Utils.castView(view, R.id.ivLocateMyPosition, "field 'ivLocateMyPosition'", ImageView.class);
+    view2131296578 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivRefreshMap, "field 'ivRefreshMap' and method 'onViewClicked'");
+    target.ivRefreshMap = Utils.castView(view, R.id.ivRefreshMap, "field 'ivRefreshMap'", ImageView.class);
+    view2131296598 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivTitleInfo, "field 'ivTitleInfo' and method 'onViewClicked'");
+    target.ivTitleInfo = Utils.castView(view, R.id.ivTitleInfo, "field 'ivTitleInfo'", ImageView.class);
+    view2131296608 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    target.ivTitleInfoUnread = Utils.findRequiredViewAsType(source, R.id.ivTitleInfoUnread, "field 'ivTitleInfoUnread'", ImageView.class);
+    target.drawerLayout = Utils.findRequiredViewAsType(source, R.id.drawerLayout, "field 'drawerLayout'", DrawerLayout.class);
+    target.left_layout = Utils.findRequiredViewAsType(source, R.id.left_layout, "field 'left_layout'", LinearLayout.class);
+    view = Utils.findRequiredView(source, R.id.setting_linear, "field 'setting_linear' and method 'onViewClicked'");
+    target.setting_linear = Utils.castView(view, R.id.setting_linear, "field 'setting_linear'", LinearLayout.class);
+    view2131297019 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.goods_linear, "field 'goods_linear' and method 'onViewClicked'");
+    target.goods_linear = Utils.castView(view, R.id.goods_linear, "field 'goods_linear'", LinearLayout.class);
+    view2131296510 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.money_backage_linear, "field 'money_backage_linear' and method 'onViewClicked'");
+    target.money_backage_linear = Utils.castView(view, R.id.money_backage_linear, "field 'money_backage_linear'", LinearLayout.class);
+    view2131296837 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.order_linear, "field 'order_linear' and method 'onViewClicked'");
+    target.order_linear = Utils.castView(view, R.id.order_linear, "field 'order_linear'", LinearLayout.class);
+    view2131296856 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.rz_linear, "field 'rz_linear' and method 'onViewClicked'");
+    target.rz_linear = Utils.castView(view, R.id.rz_linear, "field 'rz_linear'", LinearLayout.class);
+    view2131296988 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.wz_linear, "field 'wz_linear' and method 'onViewClicked'");
+    target.wz_linear = Utils.castView(view, R.id.wz_linear, "field 'wz_linear'", LinearLayout.class);
+    view2131297546 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.companny_linear, "field 'companny_linear' and method 'onViewClicked'");
+    target.companny_linear = Utils.castView(view, R.id.companny_linear, "field 'companny_linear'", LinearLayout.class);
+    view2131296368 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.person_re, "field 'person_re' and method 'onViewClicked'");
+    target.person_re = Utils.castView(view, R.id.person_re, "field 'person_re'", RelativeLayout.class);
+    view2131296866 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    target.tvUserName = Utils.findRequiredViewAsType(source, R.id.tvUserName, "field 'tvUserName'", TextView.class);
+    target.iv_myhead_logo = Utils.findRequiredViewAsType(source, R.id.iv_myhead_logo, "field 'iv_myhead_logo'", CircleImageView.class);
+    view = Utils.findRequiredView(source, R.id.useCarGuide, "method 'onViewClicked'");
+    view2131297506 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivTitleLeftMain, "method 'onViewClicked'");
+    view2131296611 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivTitleLeft, "method 'onViewClicked'");
+    view2131296610 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytTitleRight, "method 'onViewClicked'");
+    view2131296789 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.ivTitleSearch, "method 'onViewClicked'");
+    view2131296615 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onViewClicked(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.titleBack = null;
+    target.titleMain = null;
+    target.tvTitleRight = null;
+    target.tvTitleName = null;
+    target.ivTitleName = null;
+    target.mapView = null;
+    target.ivLocateMyPosition = null;
+    target.ivRefreshMap = null;
+    target.ivTitleInfo = null;
+    target.ivTitleInfoUnread = null;
+    target.drawerLayout = null;
+    target.left_layout = null;
+    target.setting_linear = null;
+    target.goods_linear = null;
+    target.money_backage_linear = null;
+    target.order_linear = null;
+    target.rz_linear = null;
+    target.wz_linear = null;
+    target.companny_linear = null;
+    target.person_re = null;
+    target.tvUserName = null;
+    target.iv_myhead_logo = null;
+
+    view2131296578.setOnClickListener(null);
+    view2131296578 = null;
+    view2131296598.setOnClickListener(null);
+    view2131296598 = null;
+    view2131296608.setOnClickListener(null);
+    view2131296608 = null;
+    view2131297019.setOnClickListener(null);
+    view2131297019 = null;
+    view2131296510.setOnClickListener(null);
+    view2131296510 = null;
+    view2131296837.setOnClickListener(null);
+    view2131296837 = null;
+    view2131296856.setOnClickListener(null);
+    view2131296856 = null;
+    view2131296988.setOnClickListener(null);
+    view2131296988 = null;
+    view2131297546.setOnClickListener(null);
+    view2131297546 = null;
+    view2131296368.setOnClickListener(null);
+    view2131296368 = null;
+    view2131296866.setOnClickListener(null);
+    view2131296866 = null;
+    view2131297506.setOnClickListener(null);
+    view2131297506 = null;
+    view2131296611.setOnClickListener(null);
+    view2131296611 = null;
+    view2131296610.setOnClickListener(null);
+    view2131296610 = null;
+    view2131296789.setOnClickListener(null);
+    view2131296789 = null;
+    view2131296615.setOnClickListener(null);
+    view2131296615 = null;
+
+    this.target = null;
+  }
+}

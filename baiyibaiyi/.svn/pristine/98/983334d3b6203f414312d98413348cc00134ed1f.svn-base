@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/color_gray_efeff4"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <TextView
+        android:id="@+id/tvUseTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="时长:"
+        android:textColor="@color/color_black_333333"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvUseTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/tvUseTimeText"
+        android:textColor="@color/color_blue_02b2e4"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvUseFee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="0.00"
+        android:textColor="@color/color_blue_02b2e4"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/tvUseFee"
+        android:text="费用:"
+        android:textColor="@color/color_black_333333"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="里程:"
+            android:textColor="@color/color_black_333333"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvMileage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_blue_02b2e4"
+            android:textSize="12sp" />
+    </LinearLayout>
+</RelativeLayout>

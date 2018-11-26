@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/titleBack"
+        layout="@layout/title_back" />
+
+    <RelativeLayout
+        android:id="@+id/rlytContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleBack"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/rlytMapContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.amap.api.maps.TextureMapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/ivRecommendPark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/gr_49" />
+
+            <ImageView
+                android:layout_above="@+id/recommendParkView"
+                android:id="@+id/ivToMyPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_5dp"
+                android:layout_marginLeft="15dp"
+                android:src="@mipmap/sy_9" />
+
+            <LinearLayout
+                android:id="@+id/llytBg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_50"
+                android:orientation="vertical"
+                android:visibility="gone" />
+            <com.baogang.bycx.view.RecommendParkView
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:id="@+id/recommendParkView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_shape"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llytSearch"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_below="@id/titleBack"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_white_corners"
+        android:elevation="3dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="8dp"
+            android:src="@mipmap/search_icon" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="搜索推荐建点地点"
+            android:textColor="@color/color_gray_999999"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>

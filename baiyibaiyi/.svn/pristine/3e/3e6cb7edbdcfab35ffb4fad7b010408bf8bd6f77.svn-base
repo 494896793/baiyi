@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_update_all_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#5027282d"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/background_update_back">
+
+        <TextView
+            android:id="@+id/tv_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="发现新版本"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_tip"
+            android:layout_below="@+id/tv_tip"
+            android:layout_marginTop="10dp"
+            android:text="最新版本:"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_app_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_app_version"
+            android:layout_below="@+id/tv_app_version"
+            android:paddingTop="5dp"
+            android:text="更新时间:"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_app_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_app_time"
+            android:layout_below="@+id/tv_app_time"
+            android:paddingTop="10dp"
+            android:text="更新内容:"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ListView
+            android:id="@+id/lv_bug_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_app_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"></ListView>
+
+        <View
+            android:id="@+id/view"
+            style="@style/DivideLineStyle"
+            android:layout_below="@+id/lv_bug_list"
+            android:layout_marginTop="15dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_update_tip"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_below="@+id/view"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_update_tips_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="以后再说"
+                android:textColor="@color/register_un" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="44dp"
+                android:background="@color/color_gray_e5e5e5" />
+
+            <TextView
+                android:id="@+id/tv_update_tips_ok"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="立即更新"
+                android:textColor="@color/register_un" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_app_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_app_version"
+            android:layout_alignBottom="@+id/tv_app_version"
+            android:layout_toEndOf="@+id/tv_app_version"
+            android:layout_toRightOf="@+id/tv_app_version"
+            android:paddingLeft="20dp"
+            android:text="大小:"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

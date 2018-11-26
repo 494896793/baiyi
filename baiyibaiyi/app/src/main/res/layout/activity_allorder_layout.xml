@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/main_background"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="@color/content_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_48dp">
+        <ImageView
+            android:id="@+id/ivTitleLeft"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+            android:src="@mipmap/yc_14" />
+
+        <LinearLayout
+            android:paddingTop="@dimen/dimen_9dp"
+            android:id="@+id/llytTitleRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/car_re"
+                android:layout_marginRight="@dimen/dimen_70dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="用车订单"
+                    android:id="@+id/car_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+                <View
+                    android:id="@+id/car_view_line"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/white_drawable"
+                    android:layout_width="@dimen/dimen_30dp"
+                    android:layout_height="@dimen/dimen_4dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/elect_re"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="充电订单"
+                    android:id="@+id/elect_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+                <View
+                    android:id="@+id/elect_view_line"
+                    android:visibility="invisible"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/white_drawable"
+                    android:layout_width="@dimen/dimen_30dp"
+                    android:layout_height="@dimen/dimen_4dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/framelayout"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+</LinearLayout>

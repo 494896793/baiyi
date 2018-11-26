@@ -1,0 +1,127 @@
+package com.baogang.bycx.callback;
+
+import java.io.Serializable;
+
+/**
+ * Created by wujiancheng on 2017/7/25.
+ */
+
+public class EvaluateInfoResp implements Serializable {
+    private String id;//":428,"
+    private String orderId;//":"441900-TS-A4QR04-1494181183084","
+    private String carNumber;//
+    private String customerId;//":259,"
+    private int starLevel;//":5,"
+    private String content;//":"很好开","
+    private String category;//":"
+    private String createTime;//":"1500955400000","
+    private String label;//":"好用,很开心,整洁,哈哈,爽,干净,很棒"
+    private String isEvaluate;//":null,
+    private String checkStatus;//":null,
+    private String checkId;//":null,
+    private String checkTime;//":null
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public int getStarLevel() {
+        return starLevel;
+    }
+
+    public void setStarLevel(int starLevel) {
+        this.starLevel = starLevel;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getIsEvaluate() {
+        return isEvaluate;
+    }
+
+    public void setIsEvaluate(String isEvaluate) {
+        this.isEvaluate = isEvaluate;
+    }
+
+    public String getCheckStatus() {
+        return checkStatus;
+    }
+
+    public void setCheckStatus(String checkStatus) {
+        this.checkStatus = checkStatus;
+    }
+
+    public String getCheckId() {
+        return checkId;
+    }
+
+    public void setCheckId(String checkId) {
+        this.checkId = checkId;
+    }
+
+    public String getCheckTime() {
+        return checkTime;
+    }
+
+    public void setCheckTime(String checkTime) {
+        this.checkTime = checkTime;
+    }
+}

@@ -1,0 +1,5 @@
+package com.baogang.bycx.service;
+
+public interface CIdHaveObserver {
+    void afterCid();
+}

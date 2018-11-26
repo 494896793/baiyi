@@ -1,0 +1,135 @@
+package www.qisu666.com.utils;
+
+import android.text.TextUtils;
+
+import www.qisu666.com.constant.Config;
+
+import java.text.SimpleDateFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class StringUtils {
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd HH:mm");
+
+    public static boolean isEmpty(String str) {
+        return TextUtils.isEmpty(str) || "null".equals(str);
+    }
+
+    /**
+     * 是否是浮点数
+     *
+     * @param str
+     * @return ^\d+\.\d+$
+     */
+    public static boolean isFloat(String str) {
+        if (str == null || str.trim().equals("") || str.endsWith(".")) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile("^\\d+\\.\\d+$");
+        Matcher isNum = pattern.matcher(str);
+        return isNum.matches();
+    }
+
+    /**
+     * 是否是整数
+     *
+     * @param str
+     * @return "[0-9]*"
+     */
+    public static boolean isInt(String str) {
+        if (str == null || str.trim().equals("")) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher isNum = pattern.matcher(str);
+        return isNum.matches();
+    }
+
+    /**
+     * 是否是数字(包括小数,正负)
+     *
+     * @param str
+     * @return "[0-9]*"
+     */
+    public static boolean isIntOrFloat(String str) {
+        if (str == null || str.trim().equals("") || str.endsWith(".")) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile("^[-+]?\\d*\\.?\\d*$");
+        Matcher isNum = pattern.matcher(str);
+        return isNum.matches();
+    }
+
+    /**
+     * 是否需要格式化
+     *
+     * @param str
+     * @return "[0-9]*"
+     */
+    public static boolean isNeedFormat(int endLen, String str) {
+        if (str == null || str.trim().equals("")) {
+            return false;
+        }
+        if (str.contains(".")) {
+            return !((str.length() - str.lastIndexOf(".")) <= (endLen + 1));
+        } else if (!str.contains(".")) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 是否为字母数字或中文
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isLetterDigitOrChinese(String str) {
+        String regex = "^[a-z0-9A-Z\u4e00-\u9fa5]+$";//其他需要，直接修改正则表达式就好
+        return str.matches(regex);
+    }
+
+    /**
+     * 是否为字母或中文
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isLetterOrChinese(String str) {
+        String regex = "^[a-zA-Z\u4e00-\u9fa5]+$";//其他需要，直接修改正则表达式就好
+        return str.matches(regex);
+    }
+
+    /**
+     * 是否为字母数字
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isLetterDigit(String str) {
+        String regex = "^[a-z0-9A-Z]+$";//其他需要，直接修改正则表达式就好
+        return str.matches(regex);
+    }
+
+    /**
+     * 是否为电话号码
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isTel(String str) {
+        String regex = Config.PHONE_MATCH;
+        return str.matches(regex);
+    }
+
+    /**
+     * 是否为邮箱
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isEMail(String str) {
+        String regex = Config.EMAIL_MATCH;
+        return str.matches(regex);
+    }
+}

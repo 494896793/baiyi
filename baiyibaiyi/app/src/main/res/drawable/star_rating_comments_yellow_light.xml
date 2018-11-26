@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景色 -->
+    <item android:id="@android:id/background"
+        android:drawable="@mipmap/commentary_star_empty"
+        android:layout_height="wrap_content"  />
+    <!-- 没选中状态 -->
+    <item android:id="@android:id/secondaryProgress"
+        android:drawable="@mipmap/commentary_star_empty" android:layout_height="wrap_content"  />
+    <!-- 选中状态 -->
+    <item android:id="@android:id/progress"
+        android:drawable="@mipmap/commentary_star_full" android:layout_height="wrap_content"  />
+</layer-list>

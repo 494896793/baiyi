@@ -1,0 +1,465 @@
+package com.baogang.bycx.activity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.adapter.ShareAdapter;
+import com.baogang.bycx.event.FinishActivityEvent;
+import com.baogang.bycx.event.Message;
+import com.baogang.bycx.request.MyNetwork;
+import com.baogang.bycx.request.utils.FlatFunction;
+import com.baogang.bycx.request.utils.MyMessageUtils;
+import com.baogang.bycx.request.utils.ResultSubscriber;
+import com.baogang.bycx.request.utils.RxNetHelper;
+import com.baogang.bycx.security.Base64Utils;
+import com.baogang.bycx.utils.CacheUtils;
+import com.baogang.bycx.utils.JsonUtils;
+import com.baogang.bycx.utils.LogUtils;
+import com.baogang.bycx.utils.NumberUtils;
+import com.baogang.bycx.utils.ToastUtil;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMImage;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+
+//充电结束页面
+public class FinishChargingActivity extends BaseActivity implements View.OnClickListener {
+
+    private LinearLayout layout_home, layout_comment;
+
+    private LinearLayout layout_prompt;
+    private TextView btn_share;
+
+    private PopupWindow sharePopupWindow;
+
+    private TextView tv_charge_fee, tv_charge_total, tv_charge_duration, tv_reback_money, tv_charge_finish_time, tv_charge_soc, tv_gift_money;
+    private TextView tv_charging_fee, tv_service_fee, tv_terminal_no;
+    private TextView tv_gasoline, tv_co2;
+
+    private boolean isOnCreate = true;
+
+    private String charge_order_id;
+    private String text;
+    private UMImage image;
+    private String url;
+    private String title;
+
+    private String elec_quality, ele_price;
+
+    private UMShareListener umShareListener = new UMShareListener() {
+
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            ToastUtil.showToast(platform + "分享成功");
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            ToastUtil.showToast(platform + "分享失败");
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+//            ToastUtil.showToast(platform + " 分享取消了");
+        }
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e("aaaaa", "FinishChargingActivityFinishChargingActivityFinishChargingActivityFinishChargingActivity");
+        setContentView(R.layout.activity_finish_charging);
+        initViews();
+        initData();
+        initSharePopupWindow();
+        coonToServer();
+    }
+
+    private void coonToServer() {
+
+        String url = "api/charge/order/result/query";
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userId", CacheUtils.getIn().getUserInfo().getId());
+        map.put("outTradeNo", CacheUtils.getIn().getUserInfo().getOut_trade_no());
+
+        MyNetwork.getMyApi()
+                .carRequest(url, MyMessageUtils.addBody(map))
+                .map(new FlatFunction<>(Object.class))
+                .compose(RxNetHelper.<Object>io_main())
+                .subscribe(new ResultSubscriber<Object>() {
+                    @Override
+                    public void onSuccessCode(com.baogang.bycx.event.Message object) {
+
+                    }
+
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    @SuppressWarnings("unchecked")
+                    public void onSuccess(Object bean) {
+                        // 对象转json
+                        String s = JsonUtils.objectToJson(bean);
+                        // json转 map
+                        Map jsonToMap = JsonUtils.jsonToMap(s);
+
+                        elec_quality = jsonToMap.get("totalChargeQuantity").toString();
+                        ele_price = NumberUtils.getRoundNumber(String.valueOf(Double.valueOf(jsonToMap.get("eleFee").toString())
+                                + Double.valueOf(jsonToMap.get("serviceFee").toString())), 2);
+
+                        tv_charge_fee.setText(jsonToMap.get("totalChargeMoney").toString());
+                        tv_charge_total.setText(jsonToMap.get("totalChargeQuantity").toString() + "度");
+                        String total_charge_times = jsonToMap.get("totalChargeTimes").toString();
+                        tv_charge_duration.setText(total_charge_times.substring(0, 2) + ":" +
+                                total_charge_times.substring(2, 4) + ":" + total_charge_times.substring(4, 6));
+                        tv_reback_money.setText(NumberUtils.getRoundNumber(String.valueOf(Float.valueOf(jsonToMap.get("payMoney").toString())
+                                - Float.valueOf(jsonToMap.get("totalChargeMoney").toString())), 2) + "元");
+
+                        tv_charge_finish_time.setText(timePlusTime(jsonToMap.get("totalChargeTimes").toString().
+                                        substring(jsonToMap.get("totalChargeTimes").toString().length() - 6,
+                                                jsonToMap.get("totalChargeTimes").toString().length()),
+                                jsonToMap.get("totalChargeTimes").toString()));
+
+                        tv_gift_money.setText(NumberUtils.getRoundNumber(String.valueOf(Float.valueOf(jsonToMap.get("serviceDiscountMoney").
+                                toString())
+                                + Float.valueOf(jsonToMap.get("chargeDiscountMoney").toString())), 2) + "元");
+                        
+                        if (!jsonToMap.get("chargeSoc").toString().equals("-1")) {
+                            tv_charge_soc.setText(jsonToMap.get("chargeSoc").toString() + "%");
+                        }
+//                else{
+//                    tr_soc.setVisibility(View.GONE);
+//                }
+
+                        tv_charging_fee.setText(jsonToMap.get("eleFee").toString() + "元/度");
+                        tv_service_fee.setText(jsonToMap.get("serviceFee").toString() + "元/度");
+
+                        double d_charge_total = Double.valueOf(jsonToMap.get("totalChargeQuantity").toString());
+                        double d_gasoline = NumberUtils.getRoundNumber(d_charge_total * 0.5, 2);
+                        double d_co2 = NumberUtils.getRoundNumber(d_charge_total * 1.11, 2);
+
+                        tv_gasoline.setText(String.valueOf(d_gasoline) + "L");
+                        tv_co2.setText(String.valueOf(d_co2) + "kg");
+
+                        tv_terminal_no.setText(jsonToMap.get("chargePileNum").toString());
+//                tv_charging_fee.setText(map.get(""));
+                        setShareContent();
+                    }
+
+                    @Override
+                    public void onFail(com.baogang.bycx.event.Message<Object> bean) {
+                        Log.e("aaaa", "获取失败：" + bean.toString());
+                    }
+
+                });
+
+
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("req_code", "E102");
+//            jsonObject.put("out_trade_no", charge_order_id);
+//            jsonObject.put("user_id", UserParams.INSTANCE.getUser_id());
+//            jsonObject.put("s_token", UserParams.INSTANCE.getS_token());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        new HttpLogic(this).sendRequest(Config.REQUEST_URL, jsonObject, true, true, LoadingDialog.TYPE_ROTATE, new AbstractResponseCallBack() {
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            public void onResponse(Map<String, Object> map, String tag) {
+//
+//                elec_quality = map.get("total_charge_quantity").toString();
+//                ele_price = NumberUtils.getRoundNumber(String.valueOf(Double.valueOf(map.get("ele_fee").toString()) + Double.valueOf(map.get("service_fee").toString())), 2);
+//
+//                tv_charge_fee.setText(map.get("total_charge_money").toString() + "元");
+//                tv_charge_total.setText(map.get("total_charge_quantity").toString() + "度");
+//                String total_charge_times = map.get("total_charge_times").toString();
+//                tv_charge_duration.setText(total_charge_times.substring(0, 2) + ":" + total_charge_times.substring(2, 4) + ":" + total_charge_times.substring(4, 6));
+//                tv_reback_money.setText(NumberUtils.getRoundNumber(String.valueOf(Float.valueOf(map.get("pay_money").toString()) - Float.valueOf(map.get("total_charge_money").toString())), 2) + "元");
+//                tv_charge_finish_time.setText(timePlusTime(map.get("start_charge_time").toString().substring(map.get("start_charge_time").toString().length() - 6, map.get("start_charge_time").toString().length()), map.get("total_charge_times").toString()));
+//                tv_gift_money.setText(NumberUtils.getRoundNumber(String.valueOf(Float.valueOf(map.get("service_discount_money").toString()) + Float.valueOf(map.get("charge_discount_money").toString())), 2) + "元");
+//                if (!map.get("charge_soc").toString().equals("-1")) {
+//                    tv_charge_soc.setText(map.get("charge_soc").toString() + "%");
+//                }
+////                else{
+////                    tr_soc.setVisibility(View.GONE);
+////                }
+//
+//                tv_charging_fee.setText(map.get("ele_fee").toString() + "元/度");
+//                tv_service_fee.setText(map.get("service_fee").toString() + "元/度");
+//
+//                double d_charge_total = Double.valueOf(map.get("total_charge_quantity").toString());
+//                double d_gasoline = NumberUtils.getRoundNumber(d_charge_total * 0.5, 2);
+//                double d_co2 = NumberUtils.getRoundNumber(d_charge_total * 1.11, 2);
+//
+//                tv_gasoline.setText(String.valueOf(d_gasoline) + "L");
+//                tv_co2.setText(String.valueOf(d_co2) + "kg");
+//
+//                tv_terminal_no.setText(map.get("charge_pile_num").toString());
+////                tv_charging_fee.setText(map.get(""));
+//                setShareContent();
+//            }
+//        });
+    }
+
+    /**
+     * 6位时间戳加减法，时满24进1
+     *
+     * @param time1
+     * @param time2
+     * @return
+     */
+    private String timePlusTime(String time1, String time2) {
+        int h1 = Integer.parseInt(time1.substring(0, 2));
+        int m1 = Integer.parseInt(time1.substring(2, 4));
+        int s1 = Integer.parseInt(time1.substring(4, 6));
+
+        int h2 = Integer.parseInt(time2.substring(0, 2));
+        int m2 = Integer.parseInt(time2.substring(2, 4));
+        int s2 = Integer.parseInt(time2.substring(4, 6));
+
+        int h_ = 0;
+        int m_ = 0;
+
+        int s = s1 + s2;
+        if (s >= 60) {
+            m_++;
+            s = s % 60;
+        }
+        int m = m1 + m2 + m_;
+        if (m >= 60) {
+            h_++;
+            m = m % 60;
+        }
+        int h = (h1 + h2 + h_) % 24;
+
+        String s_h = String.valueOf(h).length() == 2 ? String.valueOf(h) : "0" + String.valueOf(h);
+        String s_m = String.valueOf(m).length() == 2 ? String.valueOf(m) : "0" + String.valueOf(m);
+        String s_s = String.valueOf(s).length() == 2 ? String.valueOf(s) : "0" + String.valueOf(s);
+
+        return s_h + ":" + s_m + ":" + s_s;
+    }
+
+    private void initData() {
+        charge_order_id = getIntent().getStringExtra("charge_order_id");
+    }
+
+
+    private void initViews() {
+        layout_home = (LinearLayout) findViewById(R.id.layout_home);
+        layout_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        layout_comment = (LinearLayout) findViewById(R.id.layout_comment);
+        layout_comment.setOnClickListener(this);
+
+        btn_share = (TextView) findViewById(R.id.btn_share);
+        btn_share.setOnClickListener(this);
+
+
+        tv_charge_fee = (TextView) findViewById(R.id.tv_charge_fee);
+        tv_charge_total = (TextView) findViewById(R.id.tv_charge_total);
+        tv_charge_duration = (TextView) findViewById(R.id.tv_charge_duration);
+        tv_reback_money = (TextView) findViewById(R.id.tv_reback_money);
+        tv_charge_finish_time = (TextView) findViewById(R.id.tv_charge_finish_time);
+        tv_charge_soc = (TextView) findViewById(R.id.tv_charge_soc);
+        tv_gift_money = (TextView) findViewById(R.id.tv_gift_money);
+
+        tv_charging_fee = (TextView) findViewById(R.id.tv_charging_fee);
+        tv_service_fee = (TextView) findViewById(R.id.tv_service_fee);
+        tv_terminal_no = (TextView) findViewById(R.id.tv_terminal_no);
+
+        tv_gasoline = (TextView) findViewById(R.id.tv_gasoline);
+        tv_co2 = (TextView) findViewById(R.id.tv_co2);
+
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        if (hasFocus) {
+            EventBus.getDefault().post(new FinishActivityEvent());
+//            phone_head.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int)(layout_phone.getHeight()/10*2.9)));
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.layout_comment:
+                Intent i = new Intent(FinishChargingActivity.this, CommentActivity.class);
+                i.putExtra("charge_order_id", charge_order_id);
+                i.putExtra("station_id", getIntent().getStringExtra("station_id"));
+                startActivity(i);
+                break;
+            case R.id.btn_share:
+                sharePopupWindow.showAtLocation(findViewById(R.id.layout_main), Gravity.BOTTOM, 0, 0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 分享PopupWindow
+     */
+    private void initSharePopupWindow() {
+
+        // 一个自定义的布局，作为显示的内容
+        View contentView = LayoutInflater.from(this).inflate(
+                R.layout.popup_share, null);
+
+        GridView gridView = (GridView) contentView.findViewById(R.id.gridView);
+        gridView.setAdapter(new ShareAdapter(this));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LogUtils.d("onItemClick");
+                switch (position) {
+                    case 0:
+                        new ShareAction(FinishChargingActivity.this).setPlatform(SHARE_MEDIA.WEIXIN).setCallback(umShareListener)
+                                .withText(text)
+                                .withMedia(image)
+                                .withTargetUrl(url)
+                                .withTitle(title)
+                                //.withMedia(new UMEmoji(ShareActivity.this,"http://img.newyx.net/news_img/201306/20/1371714170_1812223777.gif"))
+                                .share();
+                        break;
+                    case 1:
+                        new ShareAction(FinishChargingActivity.this).setPlatform(SHARE_MEDIA.QQ).setCallback(umShareListener)
+                                .withText(text)
+                                .withMedia(image)
+                                .withTitle(title)
+                                .withTargetUrl(url)
+                                .share();
+                        break;
+                    case 2:
+                        /** shareaction need setplatform , callbacklistener,and content(text,image).then share it **/
+                        new ShareAction(FinishChargingActivity.this).setPlatform(SHARE_MEDIA.QZONE).setCallback(umShareListener)
+                                .withText(text)
+                                .withMedia(image)
+                                .withTargetUrl(url)
+                                .withTitle(title)
+                                .share();
+                        break;
+                    case 3:
+                        /** shareaction need setplatform , callbacklistener,and content(text,image).then share it **/
+                        new ShareAction(FinishChargingActivity.this).setPlatform(SHARE_MEDIA.SINA).setCallback(umShareListener)
+                                .withText(text)
+                                .withMedia(image)
+                                .withTargetUrl(url)
+                                .share();
+                        break;
+                    case 4:
+                        new ShareAction(FinishChargingActivity.this).setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener)
+                                .withText(text)
+                                .withMedia(image)
+                                .withTargetUrl(url)
+                                .withTitle(title)
+                                .share();
+                        break;
+                    default:
+                        break;
+
+                }
+                sharePopupWindow.dismiss();
+            }
+        });
+
+        sharePopupWindow = new PopupWindow(contentView,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+        sharePopupWindow.setTouchable(true);
+        sharePopupWindow.setTouchInterceptor(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+
+        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
+        // 我觉得这里是API的一个bug
+        sharePopupWindow.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.white_drawable));
+        sharePopupWindow.setAnimationStyle(R.style.Popup_Anim_Bottom);
+    }
+
+    /**
+     * 设置分享的内容
+     */
+    private void setShareContent() {
+        title = "新能源风暴来袭，一大波二氧化碳嗖嗖地就被卷走了！";
+        text = "点击查看详情。";
+//        image = new UMImage(this, "http://www.umeng.com/images/pic/social/integrated_3.png");
+        image = new UMImage(this, R.mipmap.ic_share_logo);
+
+//        if(getSharedPreferences(SPParams.CONFIG_INFO, Context.MODE_PRIVATE).getString("station_id",null)!=null){
+        try {
+            url = "http://wx.qisu666.com/idn/chat/share/show?ele_quality=" + Base64Utils.encoded(elec_quality).trim() + "&ele_price=" + Base64Utils.encoded(ele_price).trim();
+        } catch (Exception e) {
+            url = "http://www.qisu666.com/";
+        }
+//        } else {
+//            url = "http://www.idianniu.com/";
+//        }
+
+//        UMImage image = new UMImage(ShareActivity.this, "http://blog.thegmic.com/wp-content/uploads/2012/05/umeng.jpg");
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.info_icon_1);
+//
+//        UMImage image = new UMImage(ShareActivity.this, bitmap);
+        //UMImage image1 = new UMImage(ShareActivity.this,new File("/storage/emulated/0/umeng_cache/0EADEEDFC79B32EB58E871D44E6DAA91"));
+
+        // two line below are for testing on nexus 5 only, don't use it on other phones
+        //UMImage image = new UMImage(ShareActivity.this,new File("/storage/emulated/0/DCIM/1453176647573.jpg"));
+        //UMVideo video2 = new UMVideo("/storage/emulated/0/DCIM/test.mp4");
+
+//        music = new UMusic("http://music.huoxing.com/upload/20130330/1364651263157_1085.mp3");
+//        music.setTitle("This is music title");
+//        music.setThumb(new UMImage(this, "http://www.umeng.com/images/pic/social/chart_1.png"));
+//        video = new UMVideo("http://video.sina.com.cn/p/sports/cba/v/2013-10-22/144463050817.html");
+
+    }
+
+    @Override
+    public void setView() {
+
+    }
+
+    @Override
+    public void initDatas() {
+
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

@@ -1,0 +1,161 @@
+package com.baogang.bycx.utils;
+
+import android.text.TextUtils;
+
+import com.amap.api.maps.model.LatLng;
+import com.baogang.bycx.app.MyApplication;
+import com.baogang.bycx.callback.CouponListResp;
+import com.baogang.bycx.callback.UserInfoResp;
+import com.baogang.bycx.constant.Config;
+
+import java.util.List;
+
+/**
+ * Created by jimmy on 2016/10/21.
+ */
+
+public class UserUtils {
+
+    public static int getIntCoupon(double money, List<CouponListResp> data) {
+//        money = money * 100;
+//        int size = data.size();
+//        if (size == 1) {
+//            return 0;
+//        } else {
+//            double smallest = 0;
+//            int position = 0;
+//            int balance;
+//            double small;
+//            Date endTime = null;
+//            for (int i = 0; i < data.size(); i++) {
+//                CouponListResp c = data.get(i);
+//                balance = DataUtils.toInt(c.getMoney());
+//                small = Math.abs(money - balance);
+//                if (i == 0) {
+//                    smallest = small;
+//                    endTime = new Date(Long.valueOf(data.get(i).getEndTime()));
+//                } else {
+//                    if (small < smallest) {
+//                        smallest = small;
+//                        position = i;
+//                        endTime = new Date(Long.valueOf(data.get(i).getEndTime()));
+//                    } else if (small == smallest) {
+//                        int n = endTime.compareTo(new Date(Long.valueOf(data.get(i).getEndTime())));
+//                        if (n <= 0) {
+//                            smallest = small;
+//                            position = i;
+////                        } else {
+////                            position = i;
+//                        }
+//                    }
+//                }
+//            }
+//            return position;
+//        }
+        return 0;
+    }
+
+    public static LatLng getLatLng() {
+        return new LatLng(Double.valueOf(getLatitude()),
+                Double.valueOf(getLongitude()));
+    }
+
+    public static String getCityCode() {
+        String cityCode = CacheUtils.getIn().getStr(CacheUtils.cityCode);
+        if (!TextUtils.isEmpty(cityCode)) {
+            return cityCode;
+        }
+        return Config.DEFAULT_CITY_CODE;
+    }
+
+    public static String getLatitude() {
+        String latitude = MyApplication.getApplication().latitude;
+        if (!TextUtils.isEmpty(latitude)) {
+            return latitude;
+        }
+        return "0.0";
+    }
+
+    public static String getLongitude() {
+        String longitude = MyApplication.getApplication().longitude;
+        if (!TextUtils.isEmpty(longitude)) {
+            return longitude;
+        }
+        return "0.0";
+    }
+
+    public static String setBalance() {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            return "余额(" + TVUtils.toYuanStringInt(mUser.getBalance()) + ")";
+        }
+        return "余额(0.00)";
+    }
+
+    public static int getBInt() {
+        UserInfoResp mUser = getUser();
+        if (mUser != null) {
+            return DataUtils.toInt(mUser.getBalance());
+        }
+        return 0;
+    }
+
+    public static void updateStatus(String status) {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            mUser.setStatus(status);
+            CacheUtils.getIn().save(mUser);
+        }
+    }
+
+    public static String getCustomerId() {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            return mUser.getId();
+        }
+        return "";
+    }
+
+    public static String getPhone() {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            return mUser.getPhone();
+        }
+        return "";
+    }
+
+    public static String getStatus() {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            return mUser.getStatus();
+        }
+        return "";
+    }
+
+    public static String getToken() {
+        UserInfoResp mUser = CacheUtils.getIn().getUserInfo();
+        if (mUser != null) {
+            return mUser.getToken();
+        }
+        return "";
+    }
+
+    public static double getBalance() {
+        return Double.parseDouble(TVUtils.toYuanStringInt
+                (CacheUtils.getIn().getUserInfo().getBalance()));
+    }
+
+    private static UserInfoResp getUser() {
+        return CacheUtils.getIn().getUserInfo();
+    }
+
+    /**
+     * 驾驶证是否需要更新
+     *
+     * @param driverCardStatus 驾驶证状态码  2,3：需要更新
+     * @return
+     */
+    public static boolean isNeedUpdateDriverCard(int driverCardStatus) {
+        return driverCardStatus == 2 || driverCardStatus == 3;
+    }
+}

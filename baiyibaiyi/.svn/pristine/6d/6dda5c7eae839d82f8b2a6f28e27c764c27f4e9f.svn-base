@@ -1,0 +1,7 @@
+package www.qisu666.com.request
+
+/**
+ * Created by wujiancheng on 2017/11/23.
+ * 红包车赠送
+ */
+data class RedPacketRequest(var customerId: String, var orderId: String, var orderCategory: String) : RequestBaseParams()

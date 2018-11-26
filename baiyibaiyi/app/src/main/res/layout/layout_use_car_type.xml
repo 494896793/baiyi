@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llytUseCarType"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="15dp">
+
+    <LinearLayout
+        android:id="@+id/llytUseCarPerson"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="个人用车"
+            android:textColor="@color/color_black_333333"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/ivSelectPerson"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/pay_unchecked" />
+    </LinearLayout>
+
+
+    <View style="@style/DivideLineStyle" />
+
+    <RelativeLayout
+        android:id="@+id/rlytUseCarCompany"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvUseCarCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="企业用车"
+            android:textColor="@color/color_black_333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvCompanyLeftAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tvUseCarCompany"
+            android:text="(剩余¥--)"
+            android:textColor="@color/color_gray_666666"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ivSelectCompany"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/pay_checked" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@id/ivSelectCompany"
+            android:layout_toRightOf="@id/tvCompanyLeftAmount">
+
+            <TextView
+                android:id="@+id/tvDiscountCompany"
+                style="@style/CompanyDiscountStyle" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

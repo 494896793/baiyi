@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="25dp"
+                    android:text="故障车辆"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/main_info_color"
+                    android:text="(必填)"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/linear_shape"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="20dp"
+                    android:text="粤BD"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/etProblemCarNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="车牌号"
+                    android:maxLength="11"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/main_info_color"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:text="故障类型"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+                <TextView
+                    android:textColor="@color/main_info_color"
+                    android:text="(必填，可多选)"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            
+
+            <com.baogang.bycx.view.RecyclerViewWithContentView
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:id="@+id/recyclerViewWithContentView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_shape" />
+
+
+
+            <LinearLayout
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15dp"
+                    android:text="车况照片"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/tvPhotoCount"
+                    android:textColor="@color/main_info_color"
+                    android:textSize="@dimen/dimen_14sp"
+                    android:text="(0/5)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:id="@+id/rvPhotos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/linear_shape"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvCommit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:background="@drawable/selector_primary_btn"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:textSize="@dimen/dimen_18sp"
+                android:layout_marginLeft="@dimen/dimen_37dp"
+                android:layout_marginRight="@dimen/dimen_37dp"
+                android:textColor="@color/main_background"
+                android:text="提交" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

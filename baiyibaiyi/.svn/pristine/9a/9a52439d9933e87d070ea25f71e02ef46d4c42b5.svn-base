@@ -1,0 +1,48 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.view;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class FeeUnitMoneyView$FeeViewHolder_ViewBinding<T extends FeeUnitMoneyView.FeeViewHolder> implements Unbinder {
+  protected T target;
+
+  @UiThread
+  public FeeUnitMoneyView$FeeViewHolder_ViewBinding(T target, View source) {
+    this.target = target;
+
+    target.tvDayTime = Utils.findRequiredViewAsType(source, R.id.tvDayTime, "field 'tvDayTime'", TextView.class);
+    target.tvFeePerKM = Utils.findRequiredViewAsType(source, R.id.tvFeePerKM, "field 'tvFeePerKM'", TextView.class);
+    target.tvFeePerMin = Utils.findRequiredViewAsType(source, R.id.tvFeePerMin, "field 'tvFeePerMin'", TextView.class);
+    target.tvNightTime = Utils.findRequiredViewAsType(source, R.id.tvNightTime, "field 'tvNightTime'", TextView.class);
+    target.tvFeePerKMNight = Utils.findRequiredViewAsType(source, R.id.tvFeePerKMNight, "field 'tvFeePerKMNight'", TextView.class);
+    target.tvFeePerMinNight = Utils.findRequiredViewAsType(source, R.id.tvFeePerMinNight, "field 'tvFeePerMinNight'", TextView.class);
+    target.tvFeePerKMs = Utils.findRequiredViewAsType(source, R.id.tvFeePerKMs, "field 'tvFeePerKMs'", TextView.class);
+    target.tvElectricityMoney = Utils.findRequiredViewAsType(source, R.id.tvElectricityMoney, "field 'tvElectricityMoney'", TextView.class);
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.tvDayTime = null;
+    target.tvFeePerKM = null;
+    target.tvFeePerMin = null;
+    target.tvNightTime = null;
+    target.tvFeePerKMNight = null;
+    target.tvFeePerMinNight = null;
+    target.tvFeePerKMs = null;
+    target.tvElectricityMoney = null;
+
+    this.target = null;
+  }
+}

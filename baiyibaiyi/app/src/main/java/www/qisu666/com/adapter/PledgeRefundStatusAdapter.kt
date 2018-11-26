@@ -1,0 +1,100 @@
+package www.qisu666.com.adapter
+
+import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import www.qisu666.com.R
+import www.qisu666.com.callback.PledgeTimeLine
+import www.qisu666.com.utils.DateUtils
+import www.qisu666.com.utils.StringUtils
+
+/**
+ * Created by wujiancheng on 17-10-17.
+ * 押金退还审核进度
+ */
+class PledgeRefundStatusAdapter(val context: Context, var data: List<PledgeTimeLine>) : RecyclerView.Adapter<PledgeRefundStatusAdapter.PledgeRefundStatusViewHolder>() {
+    override fun onBindViewHolder(holder: PledgeRefundStatusViewHolder?, position: Int) {
+        if (position in data.indices) {
+            val list = data[position]
+            val createTime = list.handleDate
+            if (!StringUtils.isEmpty(createTime)) {
+                val month = DateUtils.timestampToString(createTime, "MM月dd")
+                val minute = DateUtils.timestampToString(createTime, "HH:mm")
+
+                holder?.tvTimeMonth?.text = month
+                holder?.tvTimeMinute?.text = minute
+                holder?.tvTimeMonth?.visibility = View.VISIBLE
+                holder?.tvTimeMinute?.visibility = View.VISIBLE
+
+            } else {
+                holder?.tvTimeMonth?.visibility = View.INVISIBLE
+                holder?.tvTimeMinute?.visibility = View.INVISIBLE
+            }
+
+            //是否已经处理(0:未处理 1:已成功处理 -1:处理失败(退款失败,退款驳回))
+            val isHandled = list.isHandled
+            if ("-1" == isHandled) {
+                holder?.ivStatus?.setImageResource(R.mipmap.receipt_no_pass)
+                holder?.tvStatus?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+                holder?.tvStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+
+                holder?.tvTimeMonth?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+                holder?.tvTimeMinute?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+
+            } else if ("1" == isHandled) {
+                holder?.ivStatus?.setImageResource(R.mipmap.receipt_has_blue)
+                holder?.tvStatus?.setTextColor(ContextCompat.getColor(context, R.color.new_primary))
+                holder?.tvStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.new_primary))
+
+                holder?.tvTimeMonth?.setTextColor(ContextCompat.getColor(context, R.color.color_blue_02b2e4))
+                holder?.tvTimeMinute?.setTextColor(ContextCompat.getColor(context, R.color.color_blue_02b2e4))
+            } else {
+                holder?.ivStatus?.setImageResource(R.mipmap.receipt_no_gray)
+                holder?.tvStatus?.setTextColor(ContextCompat.getColor(context, R.color.new_primary))
+                holder?.tvStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.new_primary))
+            }
+
+            // 取消状态 , 用户端取消的状态 (0: 未取消 1 : 已取消)
+            if (list.cancelStatus == "1") {
+                holder?.ivStatus?.setImageResource(R.mipmap.receipt_no_pass)
+                holder?.tvStatus?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+                holder?.tvStatusDesc?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+
+                holder?.tvTimeMonth?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+                holder?.tvTimeMinute?.setTextColor(ContextCompat.getColor(context, R.color.color_yellow_fec200))
+            }
+
+            //状态和状态说明
+            holder?.tvStatus?.text = list.statusDesc
+            holder?.tvStatusDesc?.text = list.detailDesc
+
+            if (position == data.size - 1) {
+                holder?.viewDivideLine?.visibility = View.GONE
+            } else {
+                holder?.viewDivideLine?.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PledgeRefundStatusViewHolder {
+        val inflater = LayoutInflater.from(context)
+        val view = inflater.inflate(R.layout.listitem_parking_fee_status, parent, false)
+        return PledgeRefundStatusViewHolder(view)
+    }
+
+    override fun getItemCount(): Int = data.size
+
+    class PledgeRefundStatusViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var tvTimeMonth: TextView = view.findViewById(R.id.tvTimeMonth)
+        var tvTimeMinute: TextView = view.findViewById(R.id.tvTimeMinute)
+        var ivStatus: ImageView = view.findViewById(R.id.ivStatus)
+        var tvStatus: TextView = view.findViewById(R.id.tvStatus)
+        var tvStatusDesc: TextView = view.findViewById(R.id.tvStatusDesc)
+        var viewDivideLine: View = view.findViewById(R.id.viewDivideLine)
+    }
+}

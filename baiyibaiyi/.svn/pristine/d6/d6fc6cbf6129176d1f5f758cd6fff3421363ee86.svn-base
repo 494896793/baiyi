@@ -1,0 +1,54 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.view;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class GetMoneyAccountView$ViewHolder_ViewBinding<T extends GetMoneyAccountView.ViewHolder> implements Unbinder {
+  protected T target;
+
+  @UiThread
+  public GetMoneyAccountView$ViewHolder_ViewBinding(T target, View source) {
+    this.target = target;
+
+    target.llytContainer = Utils.findRequiredViewAsType(source, R.id.llytContainer, "field 'llytContainer'", LinearLayout.class);
+    target.llytSwitchAccount = Utils.findRequiredViewAsType(source, R.id.llytSwitchAccount, "field 'llytSwitchAccount'", LinearLayout.class);
+    target.tvAccountType = Utils.findRequiredViewAsType(source, R.id.tvAccountType, "field 'tvAccountType'", TextView.class);
+    target.tvSwitchAccount = Utils.findRequiredViewAsType(source, R.id.tvSwitchAccount, "field 'tvSwitchAccount'", TextView.class);
+    target.etAccountName = Utils.findRequiredViewAsType(source, R.id.etAccountName, "field 'etAccountName'", EditText.class);
+    target.llytNickName = Utils.findRequiredViewAsType(source, R.id.llytNickName, "field 'llytNickName'", LinearLayout.class);
+    target.tvAccountName = Utils.findRequiredViewAsType(source, R.id.tvAccountName, "field 'tvAccountName'", TextView.class);
+    target.tvNickName = Utils.findRequiredViewAsType(source, R.id.tvNickName, "field 'tvNickName'", TextView.class);
+    target.etAccountNo = Utils.findRequiredViewAsType(source, R.id.etAccountNo, "field 'etAccountNo'", EditText.class);
+    target.viewDivideLine = Utils.findRequiredView(source, R.id.viewDivideLine, "field 'viewDivideLine'");
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.llytContainer = null;
+    target.llytSwitchAccount = null;
+    target.tvAccountType = null;
+    target.tvSwitchAccount = null;
+    target.etAccountName = null;
+    target.llytNickName = null;
+    target.tvAccountName = null;
+    target.tvNickName = null;
+    target.etAccountNo = null;
+    target.viewDivideLine = null;
+
+    this.target = null;
+  }
+}

@@ -1,0 +1,191 @@
+package com.baogang.bycx.view;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.app.PayMode;
+import com.baogang.bycx.utils.Logger;
+
+/**
+ * 自定义提示框 <br/>
+ * 2015-9-18-下午12:05:17
+ *
+ * @author Wu Jiancheng
+ */
+public class CustomAlertDialogPay extends Dialog {
+
+    private static final String TAG = CustomAlertDialogPay.class.getSimpleName();
+    private Context mContext;
+    private static CustomAlertDialogPay mAlertDialog = null;
+    private TextView tvDialogConfirm;
+    private RelativeLayout rlytChooseWxContainer;
+    private TextView tvChooseWx;
+    private ImageView ivChooseWeixin;
+    private RelativeLayout rlytChooseAliContainer;
+    private TextView tvChooseAli;
+    private ImageView ivChooseAli;
+
+    private String wxDesc = "微信";
+    private String aliDesc = "支付宝";
+    private String confirmText = "";
+    /**
+     * 确定按钮监听
+     */
+    private View.OnClickListener onPositiveClickListener;
+    private OnPayTypeClickListener onPayTypeClickListener;
+
+    private CustomAlertDialogPay(Context context) {
+        super(context);
+        setOwnerActivity((Activity) context);
+        mContext = context;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Logger.i(TAG, "onCreate CustomAlertDialog");
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.dialog_alert_content_pay);
+        initView();
+        initData();
+
+        if (mAlertDialog != null) {
+            // 位置
+            Window window = mAlertDialog.getWindow();
+            window.setGravity(Gravity.CENTER); // dialog显示的位置
+//            window.setWindowAnimations(R.style.AnimBottom); // 添加动画
+            window.setBackgroundDrawableResource(android.R.color.transparent);
+        }
+    }
+
+    /**
+     * @param context
+     * @return
+     */
+    public static CustomAlertDialogPay getAlertDialog(Context context) {
+        if (mAlertDialog != null) {
+            mAlertDialog.dismiss();
+        }
+        mAlertDialog = new CustomAlertDialogPay(context);
+        mAlertDialog.setCancelable(false);
+        mAlertDialog.setCanceledOnTouchOutside(false);
+
+        return mAlertDialog;
+    }
+
+    /**
+     * @param context
+     * @param cancelable
+     * @param canceledOnTouchOutside
+     * @return
+     */
+    public static CustomAlertDialogPay getAlertDialog(Context context, boolean cancelable, boolean canceledOnTouchOutside) {
+        if (mAlertDialog != null) {
+            mAlertDialog.dismiss();
+        }
+        mAlertDialog = new CustomAlertDialogPay(context);
+        mAlertDialog.setCancelable(cancelable);
+        mAlertDialog.setCanceledOnTouchOutside(canceledOnTouchOutside);
+
+        return mAlertDialog;
+    }
+
+    private void initView() {
+        //支付
+        rlytChooseWxContainer = (RelativeLayout) findViewById(R.id.rlytChooseWxContainer);
+        tvChooseWx = (TextView) findViewById(R.id.tvChooseWx);
+        ivChooseWeixin = (ImageView) findViewById(R.id.ivChooseWeixin);
+        rlytChooseAliContainer = (RelativeLayout) findViewById(R.id.rlytChooseAliContainer);
+        tvChooseAli = (TextView) findViewById(R.id.tvChooseAli);
+        ivChooseAli = (ImageView) findViewById(R.id.ivChooseAli);
+
+        tvDialogConfirm = (TextView) findViewById(R.id.tv_dialog_confirm);
+    }
+
+    private void initData() {
+        // 各个控件如果没有设置就将他们隐藏
+
+        if (onPositiveClickListener == null) {
+            tvDialogConfirm.setVisibility(View.GONE);
+        } else {
+            tvDialogConfirm.setText(confirmText);
+            tvDialogConfirm.setOnClickListener(onPositiveClickListener);
+        }
+
+        rlytChooseWxContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ivChooseWeixin.setImageResource(R.mipmap.yc_43);
+                ivChooseAli.setImageResource(R.mipmap.yc_42);
+                if (onPayTypeClickListener != null) {
+                    onPayTypeClickListener.onPayTypeClick(PayMode.WEIXIN_PAY_TYPE);
+                }
+            }
+        });
+        rlytChooseAliContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ivChooseWeixin.setImageResource(R.mipmap.yc_42);
+                ivChooseAli.setImageResource(R.mipmap.yc_43);
+                if (onPayTypeClickListener != null) {
+                    onPayTypeClickListener.onPayTypeClick(PayMode.ALI_PAY_TYPE);
+                }
+            }
+        });
+        tvChooseWx.setText(wxDesc);
+        tvChooseAli.setText(aliDesc);
+    }
+
+    /**
+     * 确定按钮
+     *
+     * @param character
+     * @param onPositiveClickListener
+     */
+    public CustomAlertDialogPay setOnPositiveClickListener(String character, View.OnClickListener onPositiveClickListener) {
+        confirmText = character;
+        this.onPositiveClickListener = onPositiveClickListener;
+        return mAlertDialog;
+    }
+
+    public interface OnPayTypeClickListener {
+        void onPayTypeClick(String payType);
+    }
+
+    public CustomAlertDialogPay setOnPayTypeClickListener(OnPayTypeClickListener onPayTypeClickListener) {
+        this.onPayTypeClickListener = onPayTypeClickListener;
+        //默认微信支付
+        this.onPayTypeClickListener.onPayTypeClick(PayMode.WEIXIN_PAY_TYPE);
+        return mAlertDialog;
+    }
+
+    /**
+     * 微信支付描述
+     *
+     * @return
+     */
+    public CustomAlertDialogPay setWxDesc(String wxDesc) {
+        this.wxDesc = wxDesc;
+        return mAlertDialog;
+    }
+
+    /**
+     * 微信支付描述
+     *
+     * @return
+     */
+    public CustomAlertDialogPay setAliDesc(String aliDesc) {
+        this.aliDesc = aliDesc;
+        return mAlertDialog;
+    }
+
+}

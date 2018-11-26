@@ -1,0 +1,129 @@
+package www.qisu666.com.utils;
+
+import android.os.AsyncTask;
+import android.text.TextUtils;
+
+import com.alibaba.fastjson.JSON;
+import www.qisu666.com.app.MyApplication;
+import www.qisu666.com.callback.SecData;
+import www.qisu666.com.callback.UserInfoResp;
+import www.qisu666.com.constant.Config;
+import www.qisu666.com.constant.RequestUrls;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+public class UploadFile {
+    private UpLoadPhotoTask mUpLoadPhotoTask = null;
+    private UploadImgListener listener;
+    private MyApplication application;
+    private String method;
+    private String fileFormat;
+    private Map<String, File> files = new HashMap<>();
+    private Map<String, String> paramsMap = new HashMap<>();
+
+    public String getFileFormat() {
+        return fileFormat;
+    }
+
+    public void setFileFormat(String fileFormat) {
+        this.fileFormat = fileFormat;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public void setFiles(Map<String, File> files) {
+        this.files = files;
+    }
+
+    public void setParams(Map<String, String> params) {
+        this.paramsMap = params;
+    }
+
+    public UploadFile(UploadImgListener listener, MyApplication application) {
+        this.application = application;
+        this.listener = listener;
+    }
+
+    public void upLoad(Object data) {
+        if (mUpLoadPhotoTask != null) {
+            mUpLoadPhotoTask.cancel(true);
+            mUpLoadPhotoTask = null;
+        }
+        mUpLoadPhotoTask = new UpLoadPhotoTask(data);
+        mUpLoadPhotoTask.execute();
+    }
+
+    private class UpLoadPhotoTask extends AsyncTask<Void, Void, SecData> {
+        private String mReturnJsonData;
+        private Object data;
+
+        public UpLoadPhotoTask(Object data) {
+            this.data = data;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            listener.before();
+        }
+
+        @Override
+        protected SecData doInBackground(Void... params) {
+            UserInfoResp userInfoResp = CacheUtils.getIn().getUserInfo();
+            paramsMap.put("customerId", userInfoResp == null ? "" : userInfoResp.getId());
+            paramsMap.put("customerPhone", userInfoResp == null ? "" : userInfoResp.getPhone());
+            paramsMap.put("method", method);
+            paramsMap.put("type", "Android");
+            String loginToken = SharedPreferencesUtils.getString(MyApplication.getApplication(), Config.LOGIN_TOKEN, "");
+            if (!TextUtils.isEmpty(loginToken)) {
+                paramsMap.put("customerToken", loginToken);
+            }
+
+            String urlPath = RequestUrls.url;
+
+            try {
+                mReturnJsonData = AbFileUtil.postFile(urlPath, paramsMap, files, UserUtils.getToken());//urlPath,
+                Logger.e("上传返回的信息=" + mReturnJsonData);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            try {
+                SecData response = JSON.parseObject(mReturnJsonData, SecData.class);
+                if (null != response) {
+                    Logger.e("response.getCode=" + response.getCode());
+                } else {
+                    Logger.e("response == null");
+                }
+
+                if (response != null && Config.REQUEST_SUCCESS.equals(response.getCode())) {
+                    UserInfoResp userInfo = response.getResult();
+                    if (null != userInfo && null != userInfoResp) {
+                        if (TextUtils.isEmpty(userInfo.getToken())) {
+                            String token = userInfoResp.getToken();
+                            userInfo.setToken(token);
+                        }
+                        CacheUtils.getIn().save(userInfo);
+                    }
+                }
+                return response;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(SecData result) {
+            listener.after(result);
+        }
+    }
+
+    public interface UploadImgListener {
+        void before();
+
+        void after(SecData response);
+    }
+}

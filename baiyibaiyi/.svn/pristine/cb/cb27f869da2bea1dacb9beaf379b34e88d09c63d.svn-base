@@ -1,0 +1,196 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+
+android {
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    compileSdkVersion rootProject.ext.compileSdkVersion as Integer
+    buildToolsVersion rootProject.ext.buildToolsVersion as String
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    defaultConfig {
+        applicationId "www.qisu666.com"
+        minSdkVersion rootProject.ext.minSdkVersion as Integer
+        targetSdkVersion rootProject.ext.targetSdkVersion as Integer
+        versionCode rootProject.ext.versionCode as Integer
+        versionName rootProject.ext.versionName as String
+        multiDexEnabled true
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "yK9baM45Lf90tVYvXFCSt2",
+                GETUI_APP_KEY   : "7Wm6oVS9voATA6V7QRthg2",
+                GETUI_APP_SECRET: "z9rQt2E8yX6vdlm516OId7",
+                PACKAGE_NAME    : applicationId
+        ]
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'arm64-v8a'
+        }
+    }
+
+    //配置keystore签名
+    signingConfigs {
+        release {
+            storeFile file("./idianniu_key.jks")
+            storePassword "lwk652_wow"
+            keyAlias "idianniu_key"
+            keyPassword "lwk652_wow"
+        }
+        debug {
+            storeFile file("./idianniu_key.jks")
+            storePassword "lwk652_wow"
+            keyAlias "idianniu_key"
+            keyPassword "lwk652_wow"
+        }
+    }
+
+    //配置keystore签名
+//    signingConfigs {
+//        release {
+//            storeFile file("C:\\baiyi\\bycx.jks")
+//            storePassword "baogang*bycx"
+//            keyAlias "bycx"
+//            keyPassword "baogang*bycx"
+//        }
+//        debug {
+//            storeFile file("C:\\baiyi\\bycx.jks")
+//            storePassword "baogang*bycx"
+//            keyAlias "bycx"
+//            keyPassword "baogang*bycx"
+//        }
+//    }
+
+    buildTypes {
+//        release {
+//            signingConfig signingConfigs.release
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//
+//            //移除无用的resource文件
+//            shrinkResources true
+//            zipAlignEnabled true
+//        }
+//        debug {
+//            signingConfig signingConfigs.debug
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//
+//            //移除无用的resource文件
+//            shrinkResources true
+//            zipAlignEnabled true
+//        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    productFlavors {
+    }
+    buildToolsVersion '27.0.3'
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "zhongtieqisu_${defaultConfig.versionName}_${releaseTime()}.apk"
+        }
+    }
+    
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+//            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+
+
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    implementation project(':volley')
+    implementation project(':OpenSourceControl')
+    implementation project(':PullRefreshLibrary-master')
+    implementation project(':library')
+    implementation project(':PhotoPicker')
+    implementation project(path: ':zxing')
+    implementation project(':scrolllayout')
+    compile "com.android.support:support-v4:${rootProject.supportLibsVersion}"
+    compile "com.android.support:appcompat-v7:${rootProject.supportLibsVersion}"
+    compile 'org.xutils:xutils:3.3.34'
+    compile 'com.alibaba:fastjson:1.2.28'
+    compile 'com.getui:sdk:2.9.0.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor  'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.tencent.bugly:crashreport:2.1.3'
+    compile 'cn.lankton:flowlayout:3.1.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.umeng.analytics:analytics:6.1.2'
+    compile 'com.liaoinstan.springview:library:1.3.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    // 友盟
+    implementation 'com.umeng.analytics:analytics:latest.integration'
+    implementation 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    // 照片 View
+    implementation 'com.github.chrisbanes:PhotoView:1.3.0'
+    // ViewPager 变换
+    implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    // EventBus 事件分发
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    // RxJava 2.x
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    // TypeBuilder
+    implementation 'com.github.ikidou:TypeBuilder:1.0'
+    // 花式 Log 库
+    implementation 'com.orhanobut:logger:2.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    // Stetho
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    // Gif
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
+    // 图片类
+    // Picaso 图片加载库
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation files('src/main/jniLibs/locSDK_3.1.jar')
+
+    // 导航
+    implementation 'com.amap.api:navi-3dmap:6.2.0_3dmap6.3.0'
+    // 搜索
+    implementation 'com.amap.api:search:6.1.0'
+    // 定位
+    implementation 'com.amap.api:location:4.1.0'
+
+    // 下拉刷新
+    implementation 'com.androidkun:pulltorefreshrecyclerview:1.0.9'
+    // 拼音库
+    implementation files('libs/pinyin4android1.0.jar')
+    implementation files('libs/pinyin4j-2.5.0.jar')
+
+    implementation files('libs/umeng_social_sdk.jar')
+    implementation files('libs/Msc.jar')
+}

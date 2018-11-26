@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_car_order_detail_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layoutTitle"
+            layout="@layout/title_back" />
+
+        <TextView
+            android:id="@+id/tvToPay"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/dimen_38dp"
+            android:layout_marginRight="@dimen/dimen_38dp"
+            android:background="@drawable/selector_primary_btn"
+            android:gravity="center"
+            android:text="确认支付"
+            android:textColor="@color/main_background"
+            android:textSize="18sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/tvToPay"
+            android:layout_below="@id/layoutTitle"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/layout_order_detail_car" />
+
+                <TextView
+                    android:layout_marginTop="@dimen/dimen_21dp"
+                    android:layout_marginBottom="@dimen/dimen_12dp"
+                    android:text="用车详情"
+                    android:textSize="@dimen/dimen_17sp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/dimen_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    android:id="@+id/layoutBillDetail"
+                    layout="@layout/layout_order_detail_addr"
+                     />
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dimen_24dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:layout_marginBottom="@dimen/dimen_12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="账单明细"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+
+                <!--<include layout="@layout/layout_car_order_detail" />-->
+
+
+
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:background="@drawable/linear_shape"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <www.qisu666.com.view.LongRentBillView
+                        android:id="@+id/longRentBillView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <www.qisu666.com.view.OrderDiscountView
+                        android:id="@+id/orderDiscountView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:layout_marginTop="@dimen/dimen_20dp"
+                        android:layout_marginLeft="@dimen/dimen_15dp"
+                        android:layout_marginRight="@dimen/dimen_15dp"
+                        android:background="@color/view_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_0.5dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:visibility="gone"
+                                android:layout_toLeftOf="@+id/tx_zj"
+                                android:layout_marginRight="@dimen/dimen_6dp"
+                                android:id="@+id/tvDiscountCompany"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/tx_maincolor_radio"
+                                android:gravity="center"
+                                android:paddingBottom="3dp"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="6dp"
+                                android:paddingTop="3dp"
+                                android:text="--"
+                                android:textColor="@color/new_primary"
+                                android:textSize="11sp" />
+                            <TextView
+                                android:id="@+id/tx_zj"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/dimen_11dp"
+                                android:layout_toLeftOf="@id/tvTotalPay"
+                                android:textColor="@color/main_info_color"
+                                android:text="总计"
+                                android:textSize="@dimen/dimen_13sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/tvTotalPay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="总计"
+                                android:textColor="@color/warn_notice_color"
+                                android:textSize="@dimen/dimen_18sp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:id="@+id/llytPayContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    
+
+                    <www.qisu666.com.view.ChooseCouponView
+                        android:id="@+id/chooseCouponView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <www.qisu666.com.view.ChoosePayTypeView
+                        android:id="@+id/choosePayTypeView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+                <include layout="@layout/layout_to_refund_park_fee" />
+                <!--显示评价内容-->
+                <LinearLayout
+                    android:id="@+id/llytEvaluateContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/tv_carorder_evaluate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:text="超级满意"
+                        android:textColor="@color/color_yellow_fec200"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="18dp"
+                        android:orientation="horizontal">
+
+                        <RatingBar
+                            android:id="@+id/rating_comment_order"
+                            style="@style/RatingBarStyleMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:rating="5"
+                            android:stepSize="1" />
+
+                        <TextView
+                            android:id="@+id/tv_car_order_star"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="5.0"
+                            android:textSize="11sp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                    <!--<www.qisu666.com.view.OrderLableViewGroup-->
+                    <!--android:id="@+id/order_lable_group"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginLeft="30dp"-->
+                    <!--android:layout_marginTop="15dp" />-->
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <cn.lankton.flowlayout.FlowLayout
+                            android:id="@+id/flowLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="5dp"
+                            app:lineSpacing="10dp"
+                            app:maxLine="3">
+
+                        </cn.lankton.flowlayout.FlowLayout>
+                    </ScrollView>
+
+                    <TextView
+                        android:id="@+id/tv_evaluate_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:text=""
+                        android:textColor="@color/color_gray_cccccc"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvToEvaluate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_47dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:textSize="@dimen/dimen_18sp"
+                    android:background="@drawable/selector_primary_btn"
+                    android:layout_marginRight="@dimen/dimen_38dp"
+                    android:layout_marginLeft="@dimen/dimen_38dp"
+                    android:text="评价" />
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

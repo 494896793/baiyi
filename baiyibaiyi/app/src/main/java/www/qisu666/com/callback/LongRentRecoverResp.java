@@ -1,0 +1,56 @@
+package www.qisu666.com.callback;
+
+import java.io.Serializable;
+
+/**
+ * Created by wujiancheng on 2017/9/26.
+ * 短租恢复数据信息
+ */
+
+public class LongRentRecoverResp implements Serializable{
+    private String orderPrePayMoney;//":null,
+    private String beginTime;//":1506391140000,
+    private String endTime;//":null,
+    private String orderPrePayStatus;//":null,
+    private String isInsurance;//":"1"
+
+    public String getOrderPrePayMoney() {
+        return orderPrePayMoney;
+    }
+
+    public void setOrderPrePayMoney(String orderPrePayMoney) {
+        this.orderPrePayMoney = orderPrePayMoney;
+    }
+
+    public String getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(String beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getOrderPrePayStatus() {
+        return orderPrePayStatus;
+    }
+
+    public void setOrderPrePayStatus(String orderPrePayStatus) {
+        this.orderPrePayStatus = orderPrePayStatus;
+    }
+
+    public String getIsInsurance() {
+        return isInsurance;
+    }
+
+    public void setIsInsurance(String isInsurance) {
+        this.isInsurance = isInsurance;
+    }
+}

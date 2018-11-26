@@ -1,0 +1,119 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+	package
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:2:5-32
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:1-117:12
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:1:11-69
+application
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:4:5-115:19
+	android:supportsRtl
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:7:9-35
+	android:label
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:6:9-41
+	android:allowBackup
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:5:9-35
+activity#com.baogang.zxing.PreferencesActivity
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:69:9-72:45
+	android:stateNotNeeded
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:72:13-42
+	android:label
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:71:13-53
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:70:13-48
+activity#com.baogang.zxing.encode.EncodeActivity
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:73:9-92:20
+	android:stateNotNeeded
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:75:13-42
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:74:13-50
+intent-filter#action:name:com.google.zxing.client.android.ENCODE+category:name:android.intent.category.DEFAULT
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:76:13-79:29
+action#com.google.zxing.client.android.ENCODE
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:77:17-81
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:77:25-78
+category#android.intent.category.DEFAULT
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:78:17-76
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:78:27-73
+intent-filter#action:name:android.intent.action.SEND+category:name:android.intent.category.DEFAULT+data:mimeType:text/x-vcard
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:81:13-85:29
+action#android.intent.action.SEND
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:82:17-69
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:82:25-66
+data
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:84:17-57
+	android:mimeType
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:84:23-54
+intent-filter#action:name:android.intent.action.SEND+category:name:android.intent.category.DEFAULT+data:mimeType:text/plain
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:87:13-91:29
+activity#com.baogang.zxing.share.ShareActivity
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:94:9-102:20
+	android:screenOrientation
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:96:13-45
+	android:stateNotNeeded
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:97:13-42
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:95:13-48
+intent-filter#action:name:com.google.zxing.client.android.SHARE+category:name:android.intent.category.DEFAULT
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:98:13-101:29
+action#com.google.zxing.client.android.SHARE
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:99:17-80
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:99:25-77
+activity#com.baogang.zxing.history.HistoryActivity
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:103:9-106:45
+	android:stateNotNeeded
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:106:13-42
+	android:label
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:105:13-50
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:104:13-52
+activity#com.baogang.zxing.share.BookmarkPickerActivity
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:107:9-110:45
+	android:stateNotNeeded
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:110:13-42
+	android:label
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:109:13-57
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:108:13-57
+activity#com.baogang.zxing.share.AppPickerActivity
+ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:111:9-114:45
+	android:stateNotNeeded
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:114:13-42
+	android:label
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:113:13-52
+	android:name
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml:112:13-52
+uses-sdk
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+		ADDED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml
+		INJECTED from C:\baiyizuixin\baiyibaiyi\zxing\src\main\AndroidManifest.xml

@@ -1,0 +1,76 @@
+package com.baogang.bycx.utils;
+
+import android.content.Context;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.app.MyApplication;
+
+
+/**
+ * 功能描述:信息提示
+ * Created by YouHaijiang on 2017/4/06.
+ */
+
+public class ToastUtil {
+    private static Context context = MyApplication.getApplication();
+    private static Toast toast = null;
+
+    public static void show(Context context, String content) {
+        try {
+            if (null == context || null == content)
+                return;
+            if (null == toast)
+                toast = Toast.makeText(context, content, Toast.LENGTH_SHORT);
+            else {
+                toast.setText(content);
+                toast.setDuration(Toast.LENGTH_SHORT);
+            }
+            toast.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 显示消息
+     *
+     * @param msg
+     *
+     */
+    public static void showToast(String msg) {
+        Toast toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        TextView textView=toast.getView().findViewById(android.R.id.message);
+        textView.setTextSize(18);
+        toast.show();
+    }
+
+    public static void showToast(int resId) {
+        Toast.makeText(context, context.getString(resId), Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showImage(Context context, String content) {
+        try {
+            if (null == context || null == content)
+                return;
+
+            Toast toast = new Toast(context.getApplicationContext());
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            View view = LayoutInflater.from(context).inflate(R.layout.view_success_hook, null);
+            TextView tvToastContent = view.findViewById(R.id.tvToastContent);
+            tvToastContent.setText(content);
+            toast.setView(view);
+            toast.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+}

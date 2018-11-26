@@ -1,0 +1,4 @@
+package com.baogang.bycx.request;
+
+public class HeadPicRequest extends RequestBaseParams {
+}

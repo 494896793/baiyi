@@ -1,0 +1,128 @@
+package www.qisu666.com.adapter;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.utils.Logger;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by wujiancheng on 2017/10/12.
+ */
+
+public class InvoiceNosAdapter extends RecyclerView.Adapter<InvoiceNosAdapter.InvoiceNosViewHolder> {
+    private static final String TAG = InvoiceNosAdapter.class.getSimpleName();
+    private static final int MAX_SIZE = 20;
+
+    private Context context;
+    private ArrayList<String> invoiceNos;
+    private LayoutInflater inflater;
+
+    public InvoiceNosAdapter(Context context, ArrayList<String> invoiceNos) {
+        this.context = context;
+        this.invoiceNos = invoiceNos;
+        inflater = LayoutInflater.from(context);
+    }
+
+    @Override
+    public InvoiceNosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new InvoiceNosViewHolder(inflater.inflate(R.layout.listitem_invoice_nos, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(InvoiceNosViewHolder viewHolder, final int position) {
+        if (position >= 0 && position < invoiceNos.size()) {
+            String invoiceNo = invoiceNos.get(position);
+            viewHolder.etInvoiceNo.setText(invoiceNo);
+            viewHolder.etInvoiceNo.setTag(position);
+            if (position == 0) {
+                viewHolder.ivInvoiceEdit.setImageResource(R.mipmap.edit_add);
+                //超过最大数目，隐藏添加按钮
+                if (invoiceNos.size() >= MAX_SIZE) {
+                    viewHolder.ivInvoiceEdit.setVisibility(View.GONE);
+                } else {
+                    viewHolder.ivInvoiceEdit.setVisibility(View.VISIBLE);
+                }
+            } else {
+                viewHolder.ivInvoiceEdit.setImageResource(R.mipmap.edit_delete);
+            }
+
+            //最后一行分割线隐藏
+//            if (position == invoiceNos.size() - 1) {
+//                viewHolder.divideLine.setVisibility(View.GONE);
+//            } else {
+//                viewHolder.divideLine.setVisibility(View.VISIBLE);
+//            }
+
+            viewHolder.ivInvoiceEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (position == 0 && invoiceNos.size() < MAX_SIZE) {
+                        invoiceNos.add("");
+                        Logger.i("增加一行后invoiceNos=" + invoiceNos);
+                    } else {
+                        if (position >= 0 && position < invoiceNos.size()) {
+                            invoiceNos.remove(position);
+                        }
+                    }
+                    notifyDataSetChanged();
+                }
+            });
+
+            viewHolder.etInvoiceNo.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    Logger.i("beforeTextChanged");
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Logger.i("onTextChanged");
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    Logger.i("afterTextChanged position=" + position);
+                    if (position >= 0 && position < invoiceNos.size()) {
+                        invoiceNos.set(position, s.toString());
+                    }
+                    Logger.i("afterTextChanged invoiceNos=" + invoiceNos);
+                }
+            });
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        if (null == invoiceNos) {
+            return 0;
+        }
+        return invoiceNos.size();
+    }
+
+    static class InvoiceNosViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.etInvoiceNo)
+        EditText etInvoiceNo;
+        @BindView(R.id.ivInvoiceEdit)
+        ImageView ivInvoiceEdit;
+//        @BindView(R.id.divideLine)
+//        View divideLine;
+
+        InvoiceNosViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+}

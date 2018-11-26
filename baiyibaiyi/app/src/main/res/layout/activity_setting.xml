@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlytSettingContainer"
+    android:background="@color/main_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/title_back" />
+
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/linear_shape"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:id="@+id/llytAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/setting_about" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="关于中铁奇速"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_15sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/gray_arrow" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_marginRight="@dimen/dimen_20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_0.5dp"
+                    android:background="@color/view_line"
+                    android:layout_marginLeft="@dimen/dimen_20dp" />
+
+                <LinearLayout
+                    android:id="@+id/llytCheckUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/setting_check_update" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_10dp"
+                        android:layout_weight="1"
+                        android:text="检查新版本"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_15sp" />
+
+                    <TextView
+                        android:id="@+id/tvVersionName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="V1.0"
+                        android:textColor="@color/color_gray_999999"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:src="@mipmap/gray_arrow" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:layout_marginLeft="@dimen/dimen_38dp"
+            android:layout_marginRight="@dimen/dimen_38dp"
+            android:layout_marginTop="@dimen/dimen_90dp"
+            android:id="@+id/tvLogout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_45dp"
+            android:background="@drawable/selector_primary_btn"
+            android:gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/color_black_333333"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

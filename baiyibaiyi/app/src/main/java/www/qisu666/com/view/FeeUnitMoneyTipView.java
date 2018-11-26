@@ -1,0 +1,109 @@
+package www.qisu666.com.view;
+
+import android.content.Context;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.callback.CarResp;
+import www.qisu666.com.utils.DateUtils;
+import www.qisu666.com.utils.TVUtils;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by wujiancheng on 2017/9/27.
+ * 日间、夜间计费
+ */
+
+public class FeeUnitMoneyTipView extends LinearLayout {
+    private FeeViewHolder feeViewHolder;
+
+    public FeeUnitMoneyTipView(Context context) {
+        super(context);
+        init();
+    }
+
+    public FeeUnitMoneyTipView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    public FeeUnitMoneyTipView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_fee_unit_money_tip, this);
+        feeViewHolder = new FeeViewHolder(view);
+    }
+
+    public void setData(String title, CarResp carResp) {
+        if (null == carResp) {
+            return;
+        }
+        feeViewHolder.tvTitle.setText(title);
+        //日间
+        String dayRateHour = DateUtils.getDayTimeSection(carResp.getNightBeginRateHour(), carResp.getNightEndRateHour());
+        if (!TextUtils.isEmpty(dayRateHour)) {
+            feeViewHolder.tvDayTime.setText("日间(" + dayRateHour + ")：");
+        }
+        //日间单价
+        String dayTimeUnit = carResp.getTimeMoney();
+        if (!TextUtils.isEmpty(dayTimeUnit)) {
+            feeViewHolder.tvFeePerMin.setText(TVUtils.toString(Integer.parseInt(dayTimeUnit) / 100.00));
+        }
+
+        //夜间
+        String nightRateHour = DateUtils.getNightTimeSection(carResp.getNightBeginRateHour(), carResp.getNightEndRateHour());
+        if (!TextUtils.isEmpty(nightRateHour)) {
+            feeViewHolder.tvNightTime.setText("夜间(" + nightRateHour + ")：");
+        }
+        //夜间单价
+        int nightTimeUnit = carResp.getNightTimeUnit();
+        feeViewHolder.tvFeePerMinNight.setText(TVUtils.toString(nightTimeUnit / 100.00));
+        //里程费
+        boolean isNightTimeSection = DateUtils.isNightTimeSection(carResp.getNightBeginRateHour(), carResp.getNightEndRateHour());
+        int milesUnit = 0;
+        if (!isNightTimeSection) {
+            if (!TextUtils.isEmpty(carResp.getMilesMoney())) {
+                milesUnit = Integer.parseInt(carResp.getMilesMoney());
+            }
+        } else {
+            milesUnit = carResp.getNightMilesUnit();
+        }
+        feeViewHolder.tvFeePerKM.setText("里程费：" + TVUtils.toString(milesUnit / 100.00) + "元/公里");
+
+
+        //电费
+        int dianFei = carResp.getElectricityMoney();
+        feeViewHolder.tvDianFei.setText("电度费：" + TVUtils.toString(dianFei / 100.00) + "元/公里");
+    }
+
+    static class FeeViewHolder {
+        @BindView(R.id.tvTitle)
+        TextView tvTitle;
+        @BindView(R.id.tvFeePerKM)
+        TextView tvFeePerKM;
+        @BindView(R.id.tvDianFei)
+        TextView tvDianFei;
+        @BindView(R.id.tvDayTime)
+        TextView tvDayTime;
+        @BindView(R.id.tvFeePerMin)
+        TextView tvFeePerMin;
+        @BindView(R.id.tvNightTime)
+        TextView tvNightTime;
+        @BindView(R.id.tvFeePerMinNight)
+        TextView tvFeePerMinNight;
+
+        FeeViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
+    }
+}

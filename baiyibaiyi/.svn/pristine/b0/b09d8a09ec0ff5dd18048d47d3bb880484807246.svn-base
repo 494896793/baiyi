@@ -1,0 +1,89 @@
+package www.qisu666.com.adapter;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.bean.ChongdianTongji;
+import www.qisu666.com.utils.StringUtil;
+
+import java.util.List;
+
+
+//充电统计 适配器
+public class ChargingStatisticsAdapter extends BaseAdapter {
+    private Context context;
+    private List<ChongdianTongji.MyOrderList> list;
+
+    public ChargingStatisticsAdapter(Context context, List<ChongdianTongji.MyOrderList> list) {
+        this.context = context;
+        this.list = list;
+    }
+
+    //更新数据
+    public void setList(List<ChongdianTongji.MyOrderList> lists) {
+        list = lists;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getCount() {
+        return list == null ? 0 : list.size();
+    }
+
+    @Override
+    public ChongdianTongji.MyOrderList getItem(int i) {
+        return list == null ? null : list.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        final ChargingStatisticsAdapter.MyViewHolder holder;
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_rv_charging_statistics, parent, false);
+            holder = new ChargingStatisticsAdapter.MyViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ChargingStatisticsAdapter.MyViewHolder) convertView.getTag();
+        }
+        final int posi = position;
+        String month = list.get(position).getChargeMonth().substring(4, 6);
+        if (month.startsWith("0")) {
+            month = month.substring(0, 1);
+        }
+        holder.tv_month.setText(month);
+        holder.tv_year.setText(list.get(position).getChargeMonth().substring(0, 4));
+        holder.tv_charging_total.setText(list.get(position).getChargeTotal());
+        holder.tv_charging_times.setText(list.get(position).getChargeTimes() + "");
+        holder.tv_charging_average.setText(StringUtil.formatDecimal(Float.valueOf(list.get(position).getChargeTotal()) / list.get(position).getChargeTimes()));
+        return convertView;
+    }
+
+    static class MyViewHolder {
+        TextView tv_month;
+        TextView tv_year;
+        TextView tv_charging_total;
+        TextView tv_charging_times;
+        TextView tv_charging_average;
+
+        public MyViewHolder(View itemView) {
+            tv_month = (TextView) itemView.findViewById(R.id.tv_month);
+            tv_year = (TextView) itemView.findViewById(R.id.tv_year);
+            tv_charging_total = (TextView) itemView.findViewById(R.id.tv_charging_total);
+            tv_charging_times = (TextView) itemView.findViewById(R.id.tv_charging_times);
+            tv_charging_average = (TextView) itemView.findViewById(R.id.tv_charging_average);
+        }
+    }
+}

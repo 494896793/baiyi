@@ -1,0 +1,301 @@
+package www.qisu666.com.activity
+
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Point
+import android.os.Bundle
+import android.view.View
+import android.view.Window
+import android.view.inputmethod.InputMethodManager
+import com.amap.api.maps.AMap
+import com.amap.api.maps.CameraUpdateFactory
+import com.amap.api.maps.model.CameraPosition
+import com.amap.api.maps.model.LatLng
+import com.amap.api.maps.model.Marker
+import www.qisu666.com.R
+import www.qisu666.com.adapter.ParkInfoWindowAdapter
+import www.qisu666.com.constant.Config
+import www.qisu666.com.constant.RequestUrls
+import www.qisu666.com.map.search.GeoCoderManager
+import www.qisu666.com.request.RecommendParkRequest
+import www.qisu666.com.rx.RxBus
+import www.qisu666.com.rx.RxBusEvent
+import www.qisu666.com.rx.RxEventCodes
+import www.qisu666.com.utils.CacheUtils
+import www.qisu666.com.utils.DataUtils
+import www.qisu666.com.utils.ToastUtil
+import www.qisu666.com.utils.UserUtils
+import www.qisu666.com.view.RecommendParkView
+import www.qisu666.com.view.ViewShowUtil
+import kotlinx.android.synthetic.main.activity_recommend_park.*
+import kotlinx.android.synthetic.main.title_back.*
+
+/**
+ * Created by wujiancheng on 2018/1/24.
+ * 推荐建点
+ */
+class RecommendParkActivity : BaseActivity() {
+    private val commitRecommendParkInfo = 1
+
+    private val activityRequestCode = 1
+
+    private var aMap: AMap? = null
+    private var myMarker: Marker? = null
+    private var myLatLng: LatLng? = null
+    private var recommendParkName = ""
+    private var recommendLatLng: LatLng? = null
+    private var geoCoderManager: GeoCoderManager? = null
+    private var inputMethodManager: InputMethodManager? = null
+
+    override fun setView() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(R.layout.activity_recommend_park)
+    }
+
+    override fun initDatas() {
+        ivTitleLeft.setOnClickListener { finish() }
+        tvTitleName.text = "推荐建点"
+
+        inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        initMap()
+        setMyPosition()
+        moveToLatLng(myLatLng)
+        observeRxEventCode()
+
+        recommendParkName = CacheUtils.getIn().getStr(CacheUtils.curLocationSite)
+        recommendLatLng = UserUtils.getLatLng()
+
+        recommendParkView.background.alpha=235
+        recommendParkView.setData(recommendParkName)
+        //提交推荐信息
+        recommendParkView.setOnRecommendParkClickListener(object : RecommendParkView.OnRecommendParkClickListener {
+            override fun onRecommendParkClick(remark: String) {
+                commitRecommendParkInfo(remark)
+            }
+
+        })
+
+        controlKeyboardLayout(rlytContainer, recommendParkView)
+        //监听键盘的打开关闭状态
+        setOnKeyboardStatusListener {
+            recommendParkView.setCommitBtnVisibility(!it)
+            recommendParkView.setRecommendContentHeight(it)
+
+            isHideSearchChangeBg(it)
+        }
+
+        //搜索推荐建点页面
+        llytSearch.setOnClickListener {
+            startActivityForResult(Intent(mContext, RecommendParkSearchActivity::class.java), activityRequestCode)
+        }
+
+        //移动到当前位置
+        ivToMyPosition.setOnClickListener {
+            moveToLatLng(myLatLng)
+        }
+
+        llytBg.setOnClickListener {
+            //关闭键盘
+            inputMethodManager?.hideSoftInputFromWindow(currentFocus.windowToken, 0)
+        }
+    }
+
+    /**
+     * 隐藏搜索按钮和更改背景
+     */
+    private fun isHideSearchChangeBg(status: Boolean) {
+        when (status) {
+            true -> {
+                llytSearch.visibility = View.GONE
+                ivToMyPosition.visibility = View.GONE
+                llytBg.visibility = View.VISIBLE
+            }
+            else -> {
+                llytSearch.visibility = View.VISIBLE
+                ivToMyPosition.visibility = View.VISIBLE
+                llytBg.visibility = View.GONE
+            }
+        }
+    }
+
+    /**
+     * 获取地图中心点的位置
+     */
+    private fun getRecommendPoint(): Point {
+        val x = mapView.measuredWidth.div(2)
+        val y = mapView.measuredHeight.div(2)
+        return Point(x, y)
+    }
+
+    override fun onComplete(result: String?, type: Int) {
+        if (isSuccess(result)) {
+            when (type) {
+                commitRecommendParkInfo -> {
+                    ToastUtil.show(mContext, getMsg(result))
+                    finish()
+                }
+            }
+        } else {
+            when (type) {
+                commitRecommendParkInfo -> {
+                    ToastUtil.show(mContext, getMsg(result))
+                }
+            }
+        }
+    }
+
+    override fun onFailure(msg: String?, type: Int) {
+        when (type) {
+            commitRecommendParkInfo -> {
+                ToastUtil.show(mContext, "推荐失败")
+            }
+        }
+    }
+
+    private fun observeRxEventCode() {
+        busSubscription = RxBus.getInstance()
+                .toObservable(RxBusEvent::class.java)
+                .subscribe { rxBusEvent ->
+                    val eventCode = rxBusEvent.eventCode
+                    when (eventCode) {
+                        RxEventCodes.CODE_LOCATE_STATUS//定位结果
+                        -> {
+                            val code: Int = rxBusEvent.content as Int
+                            locateResult(code)
+                        }
+                    }
+                }
+    }
+
+    /**
+     * 定位结果
+     *
+     * @param code
+     */
+    private fun locateResult(code: Int) {
+        //定位结束后
+        if (code == 12) {//定位错误
+            DataUtils.permissLoca(this)
+        }
+
+        setMyPosition()
+    }
+
+    /**
+     * 设置当前位置，并移动到当前位置
+     */
+    private fun setMyPosition() {
+        myLatLng = LatLng(application.latitude.toDouble(), application.longitude.toDouble())
+        myMarker?.remove()
+        myMarker?.position = myLatLng
+        myMarker = ViewShowUtil.setMyMarker(aMap)
+    }
+
+    /**
+     * 移动到指定的经纬度
+     */
+    private fun moveToLatLng(latLng: LatLng?) {
+        aMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, Config.MAP_ZOOM_18.toFloat()))
+    }
+
+    /**
+     * 移动到推荐的经纬度
+     */
+    private fun moveToRecommendLatLng() {
+        aMap?.animateCamera(CameraUpdateFactory.changeLatLng(recommendLatLng))
+    }
+
+    /**
+     * 地图相关方法
+     */
+    private fun initMap() {
+        mapView.onCreate(savedInstanceState)
+        if (aMap == null) {
+            aMap = mapView.map
+        }
+
+        val uiSettings = aMap?.uiSettings
+        //去掉缩放按钮
+        uiSettings?.isZoomControlsEnabled = false//去掉放大缩小按钮
+        uiSettings?.isMyLocationButtonEnabled = false// 设置默认定位按钮是否显示
+
+        aMap?.setInfoWindowAdapter(ParkInfoWindowAdapter(this))
+        aMap?.setOnCameraChangeListener(object : AMap.OnCameraChangeListener {
+            override fun onCameraChangeFinish(p0: CameraPosition?) {
+                //获取地图中心点的位置
+                val recommendPoint: Point = getRecommendPoint()
+                recommendLatLng = aMap?.projection?.fromScreenLocation(recommendPoint)
+                //反地理编码搜索
+                geoCoderManager?.getAddress(recommendLatLng)
+            }
+
+            override fun onCameraChange(p0: CameraPosition?) {
+            }
+
+        })
+
+        aMap?.isMyLocationEnabled = true// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+        // 设置定位的类型为定位模式 ，可以由定位、跟随或地图根据面向方向旋转几种
+        aMap?.setMyLocationType(AMap.LOCATION_TYPE_LOCATE)
+
+        setReGeoCoderListener()
+    }
+
+    /**
+     * 设置反地理编码搜索监听
+     */
+    private fun setReGeoCoderListener() {
+        geoCoderManager = GeoCoderManager(mContext)
+        geoCoderManager?.setOnReGeoCodeSearchListener {
+            recommendParkName = it
+            recommendParkView.setData(it)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
+    }
+
+    /**
+     * 提交推荐信息
+     */
+    private fun commitRecommendParkInfo(remark: String) {
+        val request = RecommendParkRequest(recommendParkName, recommendLatLng?.latitude.toString(), recommendLatLng?.longitude.toString(), remark)
+        request.method = RequestUrls.QUERY_RECOMMEND_PARK
+        doGet(request, commitRecommendParkInfo, Config.LOADING_STRING, true)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            activityRequestCode -> {
+                when (resultCode) {
+                    Activity.RESULT_OK -> {
+                        recommendLatLng = data?.getParcelableExtra("latLng")
+                        //移到选择的位置
+                        moveToRecommendLatLng()
+                        //反地理编码搜索
+                        geoCoderManager?.getAddress(recommendLatLng)
+                    }
+                }
+            }
+        }
+    }
+}

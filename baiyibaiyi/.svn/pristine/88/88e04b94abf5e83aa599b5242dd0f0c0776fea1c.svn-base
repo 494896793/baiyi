@@ -1,0 +1,189 @@
+package com.baogang.bycx.activity
+
+import android.content.Intent
+import android.net.Uri
+import android.support.v4.content.ContextCompat
+import android.text.Html
+import android.view.View
+import com.baogang.bycx.R
+import com.baogang.bycx.callback.UserInfoResp
+import com.baogang.bycx.constant.RequestUrls
+import com.baogang.bycx.request.UserInfoRequest
+import com.baogang.bycx.utils.CacheUtils
+import com.baogang.bycx.utils.HighlightUtil
+import com.baogang.bycx.utils.StringUtils
+import com.baogang.bycx.utils.UserUtils
+import com.baogang.bycx.view.CustomAlertDialog
+import com.tencent.connect.UserInfo
+import kotlinx.android.synthetic.main.activity_id_verify_status.*
+import kotlinx.android.synthetic.main.title_back.*
+
+/**
+ * Created by wujiancheng on 2017/10/30.
+ * 资质认证状态
+ */
+class IdVerifyStatusActivity : BaseActivity() {
+    private val QUERY_USER_INFO = 1//用户信息
+    var verifyStatus: Int? = 3//身份证和驾照 1：已认证，2：审核中，3：未认证
+    var deposit: Int? = 0
+    var shouldDeposit: Int? = 0
+    var driverNumberStatus: Int = 0//驾照认证状态 1:驳回，2，3:过期
+    var verifyText: String? = ""
+    var showDialog: Int? = 0
+
+    override fun setView() {
+        setContentView(R.layout.activity_id_verify_status)
+    }
+
+    override fun initDatas() {
+        verifyStatus = intent.getIntExtra("verifyStatus", 3)//身份证和驾照 1：已认证，2：审核中，3：未认证
+        deposit = intent.getIntExtra("deposit", 0)
+        shouldDeposit = intent.getIntExtra("shouldDeposit", 0)
+        driverNumberStatus = intent.getIntExtra("driverNumberStatus", 0)
+//        verifyText = intent.getStringExtra("verifyText")
+
+        init()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        queryUserInfo()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        showDialog = intent?.getIntExtra("showDialog", 0)
+        if (showDialog == 1) {
+            showTipDialog("您的身份已提交，我们将在24小时内完成审核")
+        }
+    }
+
+    override fun onComplete(result: String?, type: Int) {
+        if (isSuccess(result)) {
+            when (type) {
+                QUERY_USER_INFO -> {
+                    val userInfo = getBean(result, UserInfoResp::class.java)
+                    CacheUtils.getIn().save(userInfo)
+                    driverNumberStatus = userInfo.driverNumberUpdate
+                    init()
+                }
+            }
+        }
+    }
+
+    override fun onFailure(msg: String?, type: Int) {
+
+    }
+
+    private fun setData() {
+        tvTitleName.text = "资质认证(${verifyText ?: "未认证"})"
+        ivTitleLeft.setOnClickListener { finish() }
+        if (verifyStatus == 2 || verifyStatus == 3) {
+            //身份审核中，未认证
+            var status = ""
+            if (verifyStatus == 2) {
+                status = "审核中"
+                ivVerifyIdArrow.visibility = View.GONE
+                rlytVerifyId.setOnClickListener { }
+            } else if (verifyStatus == 3) {
+                status = "未认证"
+                rlytVerifyId.setOnClickListener {
+                    val intent = Intent(mContext, VerifyIDCardActivity::class.java)
+                    intent.putExtra("driverNumberStatus", driverNumberStatus)
+                    startActivity(intent)
+                }
+                ivVerifyIdArrow.visibility = View.VISIBLE
+            }
+            idverify_statu_tx.text=status
+//            tvVerifyIdDesc.text = Html.fromHtml(HighlightUtil.convertHightlightText("包含身份证、驾驶证，" + status, status, "#fca800"))
+        } else {
+            idverify_statu_tx.text="已认证"
+            ivVerifyIdArrow.visibility = View.GONE
+//            tvVerifyIdDesc.text = Html.fromHtml(HighlightUtil.convertHightlightText("包含身份证、驾驶证，已认证", "已认证", "#59d66f"))
+        }
+
+        rlytVerifyPledge.setOnClickListener { startActivity(Intent(mContext, PledgeActivity::class.java)) }
+        if (deposit == 0 || deposit ?: 0 < shouldDeposit ?: 0) {
+            //未交纳或未交纳全部保证金
+            if (deposit == 0) {//未交纳保证金
+                tvVerifyPledgeDesc.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color))
+                tvVerifyPledgeDesc.text = "需交${shouldDeposit?.div(100)}"
+            } else {//未交纳全部保证金
+                tvVerifyPledgeDesc.text = Html.fromHtml(HighlightUtil.convertHightlightText("已交${deposit?.div(100)},还需${(shouldDeposit?.minus(deposit ?: 0))?.div(100)}", "还需${(shouldDeposit?.minus(deposit ?: 0)?.div(100))}", "#main_info_color"))
+            }
+            money_statu_tx.text="未交纳"
+        } else {//已交纳保证金
+            tvVerifyPledgeDesc.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color))
+            tvVerifyPledgeDesc.text = "已交${deposit?.div(100)}"
+            money_statu_tx.text="已交纳"
+        }
+    }
+
+    private fun queryUserInfo() {
+        val data = UserInfoRequest()
+        val userInfoResp = CacheUtils.getIn().userInfo
+        if (userInfoResp != null) {
+            data.customerPhone = userInfoResp.phone
+            data.method = RequestUrls.QUERY_USER_INFO
+            doGet(data, QUERY_USER_INFO, "", false)
+        }
+    }
+
+    private fun init() {
+        val mUser = CacheUtils.getIn().userInfo
+        //用户状态判断
+        val status = mUser.status
+        if ("experience" == status) {
+            if (StringUtils.isEmpty(mUser.idcardUrl) || StringUtils.isEmpty(mUser.handCardUrl) || StringUtils.isEmpty(mUser.driverNumberurl)
+                    || UserUtils.isNeedUpdateDriverCard(driverNumberStatus)) {
+                verifyStatus = 3
+            } else if ("" != mUser.description && "null" != mUser.description && null != mUser.description) {
+                verifyStatus = 3
+            } else if (mUser.idcardUrl.isNotEmpty() && mUser.handCardUrl.isNotEmpty() && mUser.driverNumberurl.isNotEmpty()) {
+                verifyStatus = 2
+            }
+
+        } else {
+            if (mUser.driverNumberUpdate == 1) {
+                verifyStatus = 3
+            } else {
+                verifyStatus = 1
+            }
+        }
+
+        //押金交纳状态
+        if (!StringUtils.isEmpty(mUser.deposit)) {
+            deposit = Integer.parseInt(mUser.deposit)
+        }
+        if (!StringUtils.isEmpty(mUser.shouldDeposit)) {
+            shouldDeposit = Integer.parseInt(mUser.shouldDeposit)
+        }
+
+        //资质认证状态
+        if (verifyStatus == 1 && deposit != 0 && deposit ?: 0 >= shouldDeposit ?: 0) {//已认证
+            verifyText = "已认证"
+        } else if (verifyStatus == 3 && deposit == 0) {//未认证
+            verifyText = "未认证"
+        } else {//未完成
+            verifyText = "未完成"
+        }
+
+        setData()
+    }
+
+    private fun showTipDialog(msg: String) {
+        val alertDialog = CustomAlertDialog.getAlertDialog(mContext, true, true)
+        alertDialog.setMessage(msg)
+                .setBtnConfirmColor(R.color.new_primary)
+                .setOnPositiveClickListener("知道了") { alertDialog.dismiss() }
+                .setBtnCancelColor(R.color.color_gray_999999)
+                .setOnNegativeClickListener("联系客服") {
+                    val info = CacheUtils.getIn().system_Info
+                    val uri = Uri.parse("tel:" + info?.kfphone)
+                    val intent = Intent(Intent.ACTION_DIAL, uri)
+                    startActivity(intent)
+                    alertDialog.dismiss()
+                }
+                .show()
+    }
+}

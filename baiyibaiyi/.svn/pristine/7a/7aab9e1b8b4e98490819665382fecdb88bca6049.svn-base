@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_back" />
+
+    <RelativeLayout
+        android:id="@+id/layout_binding_coupons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/content_bg"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="15dp">
+
+        <ImageView
+            android:id="@+id/ivQrCode"
+            android:layout_width="33dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/gr_28" />
+
+        <Button
+            android:id="@+id/btn_registered_coupon"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/ivQrCode"
+            android:background="@drawable/main_color_radio"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="兑换"
+            android:textStyle="bold"
+            android:textColor="@color/main_background"
+            android:textSize="@dimen/dimen_17sp" />
+
+        <EditText
+            android:id="@+id/et_coupon_id"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="-1dp"
+            android:layout_toLeftOf="@+id/btn_registered_coupon"
+            android:background="@drawable/white_drawable"
+            android:hint="请输入优惠券编码"
+            android:inputType="textVisiblePassword"
+            android:maxLines="1"
+            android:paddingLeft="20dp"
+            android:textColor="@color/color_black_333333"
+            android:textColorHint="@color/color_gray_bcbbc4"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+
+    <www.qisu666.com.view.CouponViewPagerWithTitleView
+        android:id="@+id/viewPagerWithTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

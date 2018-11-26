@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\baiyi\bycx\PullRefreshLibrary-master\assets"/><source path="C:\baiyi\bycx\PullRefreshLibrary-master\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="C:\baiyi\bycx\PullRefreshLibrary-master\build-types\debug\assets"/></dataSet></merger>

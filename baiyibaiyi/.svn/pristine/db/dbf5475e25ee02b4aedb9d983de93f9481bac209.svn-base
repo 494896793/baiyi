@@ -1,0 +1,262 @@
+package www.qisu666.com.fragment;
+
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.adapter.StationCommentAdapter;
+import www.qisu666.com.event.Message;
+import www.qisu666.com.request.MyNetwork;
+import www.qisu666.com.request.utils.FlatFunction;
+import www.qisu666.com.request.utils.MyMessageUtils;
+import www.qisu666.com.request.utils.ResultSubscriber;
+import www.qisu666.com.request.utils.RxNetHelper;
+import www.qisu666.com.utils.CacheUtils;
+import www.qisu666.com.utils.JsonUtils;
+import www.qisu666.com.utils.ToastUtil;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.linfaxin.recyclerview.headfoot.LoadMoreView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class StationCommentFragment extends Fragment {
+
+    private StationCommentAdapter adapter;
+
+    private LoadMoreView loadMoreView;
+
+    //当前数据分页
+    private int currentPage = 1;
+    //每页数据条数
+    private static final int PAGE_NUM = 10;
+
+    private String station_id;
+
+    private List dataList;
+
+    private PullToRefreshListView rv_comment;
+
+    public StationCommentFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        station_id=getArguments().get("station_id").toString();
+    }
+
+    public static Fragment newInstance(Bundle bundle){
+        StationCommentFragment fragment = new StationCommentFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_comment_detail, container, false);
+        rv_comment = (PullToRefreshListView) view.findViewById(R.id.rv_comment);
+        rv_comment.setFocusable(false);
+        dataList = (List<Map<String, Object>>) getArguments().getSerializable("data_list");
+
+        rv_comment.setMode(PullToRefreshBase.Mode.BOTH);
+        rv_comment.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+
+            //下拉刷新时会回调的方法
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
+                currentPage = 1;
+                connForComment();
+            }
+
+            //上啦加载时执行的方法
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> pullToRefreshBase) {
+                currentPage++;
+                connForComment();
+            }
+        });
+
+        if(adapter==null){
+            adapter=new StationCommentAdapter(getActivity(),dataList);
+        }
+        rv_comment.setAdapter(adapter);
+        return view;
+    }
+
+    // 桩点评论
+    private void connForComment() {
+        String url = "api/comment/page/list/query";
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("stationId", station_id);
+        map.put("userId", CacheUtils.getIn().getUserInfo().getId());
+        map.put("pageIndex", "1");
+        map.put("pageNum", "10");
+
+        MyNetwork.getMyApi()
+                .carRequest(url, MyMessageUtils.addBody(map))
+                .map(new FlatFunction<>(Object.class))
+                .compose(RxNetHelper.<Object>io_main())
+                .subscribe(new ResultSubscriber<Object>() {
+                    @Override
+                    public void onSuccessCode(www.qisu666.com.event.Message object) {
+
+                    }
+
+                    @Override
+                    @SuppressWarnings("unchecked")
+                    public void onSuccess(Object bean) {
+                        rv_comment.onRefreshComplete();
+                        if(bean!=null) {
+                            // 对象转json
+                            String s = JsonUtils.objectToJson(bean);
+                            // json转 map
+                            Map jsonToMap = JsonUtils.jsonToMap(s);
+                            if(jsonToMap!=null) {
+                                List dataList = new ArrayList();
+                                try {
+                                    JSONArray array = new JSONArray(jsonToMap.get("commentList").toString());
+                                    int count = array.length();
+                                    if(array!=null) {
+                                        if(array.length()>0) {
+                                            for (int i = 0; i < count; i++) {
+                                                JSONObject object = array.getJSONObject(i);
+                                                dataList.add(JsonUtils.jsonToMap(object.optString("nameValuePairs")));
+                                            }
+                                            if(adapter==null){
+                                                adapter=new StationCommentAdapter(getActivity(),dataList);
+                                                rv_comment.setAdapter(adapter);
+                                            }else{
+                                                if(currentPage==1){
+                                                    adapter.refreshData(dataList);
+                                                }else{
+                                                    adapter.loadData(dataList);
+                                                }
+                                            }
+                                        }else{
+                                            if(currentPage==1){
+                                                ToastUtil.showToast("暂无数据");
+                                            }else{
+                                                ToastUtil.showToast("没有更多了");
+                                            }
+                                        }
+                                    }else{
+                                        ToastUtil.showToast("暂无数据");
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFail(www.qisu666.com.event.Message<Object> bean) {
+                        rv_comment.onRefreshComplete();
+                        Log.e("aaaa", "获取失败：" + bean.toString());
+                    }
+
+                });
+
+
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            jsonObject.put("req_code", "I102");
+//            jsonObject.put("station_id", station_id);
+//            jsonObject.put("user_id", UserParams.INSTANCE.getUser_id());
+//            jsonObject.put("cur_page_no", "1");
+//            jsonObject.put("page_size", "10");
+//            jsonObject.put("s_token", UserParams.INSTANCE.getS_token());
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        new HttpLogic(StationInfoActivity.this).sendRequest(Config.REQUEST_URL, jsonObject, true, true, LoadingDialog.TYPE_ROTATE, new AbstractResponseCallBack() {
+//            @Override
+//            public void onResponse(Map<String, Object> map, String tag) {
+//                try {
+//                    radio_comment.setText("评论(" + map.get("total_records").toString() + ")");
+//                } catch (Throwable t) {
+//                    t.printStackTrace();
+//                }
+//                commentBundle = new Bundle();
+//                List dataList = new ArrayList();
+//                try {
+//                    JSONArray array = new JSONArray(map.get("data_list").toString());
+//                    int count = array.length();
+//                    for (int i = 0; i < count; i++) {
+//                        JSONObject object = array.getJSONObject(i);
+//                        dataList.add(JsonUtils.jsonToMap(object.toString()));
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                commentBundle.putSerializable("data_list", (ArrayList) dataList);
+//                commentBundle.putString("station_id", station_id);
+//                setAdapter();
+//                setListeners();
+//                if (isRefresh) {
+//                    viewPager.setCurrentItem(curPage);
+//                    isRefresh = false;
+//                }
+//            }
+//        });
+    }
+
+    private void connToServer() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("req_code", "I102");
+            jsonObject.put("station_id", getArguments().get("station_id"));
+            jsonObject.put("user_id", CacheUtils.getIn().getUserInfo().getId());
+            jsonObject.put("cur_page_no", currentPage);
+            jsonObject.put("page_size", "10");
+            jsonObject.put("s_token", CacheUtils.getIn().getUserInfo().getToken());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //new HttpLogic(getActivity()).sendRequest(Config.REQUEST_URL, jsonObject, false, new PageLoadResponseCallBack(currentPage, PAGE_NUM, rv_comment, loadMoreView, adapter, dataList, "data_list"));
+    }
+
+    //调整listview全部显示  setAdapter后调用
+    public   void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
+
+}

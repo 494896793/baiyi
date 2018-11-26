@@ -1,0 +1,90 @@
+package www.qisu666.com.callback;
+
+import java.io.Serializable;
+
+public class PreRechargeResp implements Serializable {
+    private String customerRechargeId;//充值订单号
+    private int customerRechargeMoney;//充值金额（单位分）
+    private String customerRechargeRequestData;
+    private CustomerRechargeDetail customerRechargeDetail;
+
+    public String getCustomerRechargeId() {
+        return customerRechargeId;
+    }
+
+    public void setCustomerRechargeId(String customerRechargeId) {
+        this.customerRechargeId = customerRechargeId;
+    }
+
+    public int getCustomerRechargeMoney() {
+        return customerRechargeMoney;
+    }
+
+    public void setCustomerRechargeMoney(int customerRechargeMoney) {
+        this.customerRechargeMoney = customerRechargeMoney;
+    }
+
+    public String getCustomerRechargeRequestData() {
+        return customerRechargeRequestData;
+    }
+
+    public void setCustomerRechargeRequestData(String customerRechargeRequestData) {
+        this.customerRechargeRequestData = customerRechargeRequestData;
+    }
+
+    public CustomerRechargeDetail getCustomerRechargeDetail() {
+        return customerRechargeDetail;
+    }
+
+    public void setCustomerRechargeDetail(CustomerRechargeDetail customerRechargeDetail) {
+        this.customerRechargeDetail = customerRechargeDetail;
+    }
+
+    public static class CustomerRechargeDetail implements Serializable {
+        private String money;//基础金额
+        private String commonMoney;//普通赠送
+        private String firstMoney;//首充赠送
+        private String redpackMoney;//红包赠送
+        private String allMoney;//总金额
+
+        public String getMoney() {
+            return money;
+        }
+
+        public void setMoney(String money) {
+            this.money = money;
+        }
+
+        public String getCommonMoney() {
+            return commonMoney;
+        }
+
+        public void setCommonMoney(String commonMoney) {
+            this.commonMoney = commonMoney;
+        }
+
+        public String getFirstMoney() {
+            return firstMoney;
+        }
+
+        public void setFirstMoney(String firstMoney) {
+            this.firstMoney = firstMoney;
+        }
+
+        public String getRedpackMoney() {
+            return redpackMoney;
+        }
+
+        public void setRedpackMoney(String redpackMoney) {
+            this.redpackMoney = redpackMoney;
+        }
+
+        public String getAllMoney() {
+            return allMoney;
+        }
+
+        public void setAllMoney(String allMoney) {
+            this.allMoney = allMoney;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+package www.qisu666.com.event;
+
+/**
+ * Created by Administrator on 2016/8/20.
+ */
+public class FinishActivityEvent  {
+}

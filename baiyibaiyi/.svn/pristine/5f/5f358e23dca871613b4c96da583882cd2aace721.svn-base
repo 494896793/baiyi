@@ -1,0 +1,53 @@
+package com.baogang.bycx.utils;
+
+/**
+ * Created by zsd on 2016/6/1.
+ * 管理activity交互码的类
+ */
+public class ConstantCode {
+
+    //Activity请求码，表示从某个Activity发起跳转请求
+    public static final int REQ_LOGIN = 1001;
+    public static final int REQ_INDEX = 1002;
+    public static final int REQ_CHOOSE_BRAND_TYPE = 1003;
+    public static final int REQ_ADD_CAR_INFO = 1004;
+    public static final int REQ_MODIFY_ALIAS = 1005;
+    public static final int REQ_POI_SEARCH = 1006;
+    public static final int REQ_FILTER = 1007;
+    public static final int REQ_OPEN_STATION_INFO = 1008;
+    public static final int REQ_PAY = 1009;
+    public static final int REQ_ZOOM_IMG = 1010;
+    public static final int REQ_MODIFY_PORTRAIT = 1011;
+    public static final int REQ_ADD_BE_PAYING_AGENT = 1012;
+
+    //Activity结果码，表示从某Activity退出
+    public static final int RES_LOGIN = 2001;
+    public static final int RES_REGISTER = 2002;
+    public static final int RES_UNLOGIN = 2003;
+    public static final int RES_CHARGING = 2004;
+    public static final int RES_CHOOSE_BRAND_TYPE = 2005;
+    public static final int RES_ADD_CAR_INFO = 2006;
+    public static final int RES_MODIFY_ALIAS = 2007;
+    public static final int RES_POI_SEARCH = 2008;
+    public static final int RES_FILTER = 2009;
+    public static final int RES_OPEN_STATION_INFO = 2010;
+    public static final int RES_PAY = 2011;
+    public static final int RES_STATION_INFO = 2012;
+    public static final int RES_MODIFY_PORTRAIT = 2013;
+    public static final int RES_ADD_BE_PAYING_AGENT = 2014;
+
+    //权限访问code
+    public static final int READ_PHONE_STATE = 100;
+    public static final int CAMERA = 101;
+    public static final int LOCATION = 102;
+    public static final int LOCATION_MAP = 112;
+    public static final int LOCATION_NEARBY = 122;
+    public static final int LOCATION_COLL = 132;
+    public static final int CALL_PHONE = 103;
+    public static final int SEND_SMS = 104;
+
+
+    //选择城市
+    public static final int SELECT_CITY =105;
+
+}

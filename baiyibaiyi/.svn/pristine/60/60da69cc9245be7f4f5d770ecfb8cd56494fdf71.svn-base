@@ -1,0 +1,43 @@
+package www.qisu666.com.request;
+
+/**
+ * 短租预约
+ */
+public class LongRentOrderCarRequest extends RequestBaseParams {
+    private String customerId;
+    private String carNumber;
+    private String rentThePackageId = "";//短租套餐Id
+    private String isInsurance;//是否不计免赔订单 (是:1  否:0)
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public String getRentThePackageId() {
+        return rentThePackageId;
+    }
+
+    public void setRentThePackageId(String rentThePackageId) {
+        this.rentThePackageId = rentThePackageId;
+    }
+
+    public String getIsInsurance() {
+        return isInsurance;
+    }
+
+    public void setIsInsurance(String isInsurance) {
+        this.isInsurance = isInsurance;
+    }
+}

@@ -1,0 +1,205 @@
+package www.qisu666.com.adapter;
+
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.callback.RechargeItem;
+import www.qisu666.com.utils.Logger;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+/**
+ * Created by Administrator on 2017/4/14.
+ * 充值
+ */
+
+public class RechargeAdapter extends RecyclerView.Adapter<RechargeAdapter.ViewHolder> {
+    private static final String TAG = RechargeAdapter.class.getSimpleName();
+    private Context mContext;
+    private List<RechargeItem> mData;
+    private OnItemClickListener mOnItemClickListener;
+    private int choosePosition = -1;
+
+    private int isFirstTimeRecharge = 1, isFridayRecharge = 1;
+
+    public RechargeAdapter(Context context, List<RechargeItem> data) {
+        this.mContext = context;
+        mData = data;
+    }
+
+    public void setData(List<RechargeItem> data) {
+        if (null != mData) {
+            mData.clear();
+            mData.addAll(data);
+        }
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.listitem_recharge_balance, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        if (mData == null) {
+            return;
+        }
+        final RechargeItem data = mData.get(position);
+        if (data == null) {
+            return;
+        }
+
+        String money = "充" + data.getMoney() / 100;
+        holder.tvRechargeMoney.setText(money);
+        //常规赠送开启状态(0 : 开启 1 : 未开启)
+        int commonGiftStatus = data.getCommonGiftStatus();
+        int commonGiftMoney = data.getCommonGiftMoney() / 100;
+        //首充赠送状态(0 : 开启 1 : 未开启)
+        int firstTimeGiftStatus = data.getFirstTimeGiftStatus();
+        int firstTimeGiftMoney = data.getFirstTimeGiftMoney() / 100;
+        //红包赠送状态(0 : 开启 1 : 未开启)
+        int redpackGiftStatus = data.getRedpackGiftStatus();
+
+        if (isFirstTimeRecharge == 1 && isFridayRecharge == 1) {//没有首充且没有星期五充
+            if (commonGiftStatus == 0 && commonGiftMoney != 0) {//有常规送
+                String arriveMoney = "到账" + (data.getMoney() / 100 + commonGiftMoney);
+                holder.tvPresentMoney.setText(arriveMoney);
+                holder.llytGift.setVisibility(View.VISIBLE);
+                holder.tvPresentMoney.setVisibility(View.VISIBLE);
+                holder.ivRedPackage.setVisibility(View.GONE);
+            } else {//没有常规送
+                holder.llytGift.setVisibility(View.GONE);
+            }
+        } else {
+            holder.llytGift.setVisibility(View.VISIBLE);
+            String arriveMoney = "送";
+            boolean hasCommonGift = false, hasFirstRecharge = false, hasFridayRecharge = false;
+            if (commonGiftStatus == 0 && commonGiftMoney != 0) {
+                arriveMoney += (commonGiftMoney + " +");
+                hasCommonGift = true;
+            }
+            if (isFirstTimeRecharge == 0 && firstTimeGiftStatus == 0 && firstTimeGiftMoney != 0) {
+                if (hasCommonGift) {
+                    arriveMoney += (" " + firstTimeGiftMoney + " +");
+                } else {
+                    arriveMoney += (firstTimeGiftMoney + " +");
+                }
+                hasFirstRecharge = true;
+            }
+            if (isFridayRecharge == 0 && redpackGiftStatus == 0) {
+                hasFridayRecharge = true;
+                holder.ivRedPackage.setImageResource(R.mipmap.red_packege_normal);
+//                holder.ivRedPackage.setVisibility(View.VISIBLE);
+                arriveMoney = arriveMoney.substring(0, arriveMoney.length() - 1);
+            } else {
+                holder.ivRedPackage.setVisibility(View.GONE);
+                //去掉连接红包的+
+                arriveMoney = arriveMoney.substring(0, arriveMoney.length() - 1);
+            }
+
+            if (hasCommonGift || hasFirstRecharge || hasFridayRecharge) {
+                holder.tvPresentMoney.setText(arriveMoney);
+                holder.tvPresentMoney.setVisibility(View.VISIBLE);
+                if(arriveMoney==null||arriveMoney.equals("")){
+                    holder.llytGift.setVisibility(View.GONE);
+                }
+            } else {
+                holder.llytGift.setVisibility(View.GONE);
+            }
+        }
+
+        holder.llytRechargeBg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClick(v, data, position);
+                    Logger.i(TAG, "当前点击的position ==" + position);
+                }
+            }
+        });
+        //选中
+        if (position == choosePosition) {
+            holder.llytRechargeBg.setBackground(mContext.getResources().getDrawable(R.drawable.item_main_strock));
+            holder.tvRechargeMoney.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+            holder.tvPresentMoney.setTextColor(ContextCompat.getColor(mContext, R.color.warn_notice_color));
+            holder.ivRedPackage.setImageResource(R.mipmap.red_packege_selected);
+        } else {
+            holder.llytRechargeBg.setBackground(mContext.getResources().getDrawable(R.drawable.item_strock_gray));
+            holder.tvRechargeMoney.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+            holder.tvPresentMoney.setTextColor(ContextCompat.getColor(mContext, R.color.main_info_color));
+            holder.ivRedPackage.setImageResource(R.mipmap.red_packege_normal);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        if (mData == null) {
+            return 0;
+        }
+        return mData.size();
+    }
+
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tvRechargeMoney)
+        TextView tvRechargeMoney;
+        @BindView(R.id.llytRechargeBg)
+        LinearLayout llytRechargeBg;
+        @BindView(R.id.llytGift)
+        LinearLayout llytGift;
+        @BindView(R.id.tvPresentMoney)
+        TextView tvPresentMoney;
+        @BindView(R.id.ivRedPackage)
+        ImageView ivRedPackage;
+
+        ViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View v, RechargeItem amount, int position);
+    }
+
+    public void setOnItemClickListner(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
+    }
+
+    public void chooseItem(int choosePosition) {
+        this.choosePosition = choosePosition;
+        notifyDataSetChanged();
+    }
+
+    /**
+     * 是否首充总开关
+     *
+     * @param isFirstTimeRecharge
+     */
+    public void setIsFirstTimeRecharge(int isFirstTimeRecharge) {
+        this.isFirstTimeRecharge = isFirstTimeRecharge;
+    }
+
+    /**
+     * 是否星期五送红包总开关
+     *
+     * @param isFridayRecharge
+     */
+    public void setIsFridayRecharge(int isFridayRecharge) {
+        this.isFridayRecharge = isFridayRecharge;
+    }
+
+
+}

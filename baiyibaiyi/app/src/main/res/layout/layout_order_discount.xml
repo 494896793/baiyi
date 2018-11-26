@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/linear_shape"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <View
+        android:id="@+id/viewDiscountLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1dp"
+        />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:id="@+id/llytNightDiscount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="夜间优惠"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvNightDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--元"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:background="@color/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_0.5dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:id="@+id/llytParkDiscount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网点折扣"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvParkDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(--折)"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvParkDiscountMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--元"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:background="@color/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_0.5dp"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:id="@+id/llytCompanyDiscount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企业折扣"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvCompanyDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(--折)"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvCompanyDiscountMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--元"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <View
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:background="@color/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_0.5dp"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:id="@+id/llytCouponDiscount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="优惠券抵用"
+            android:textColor="@color/notice_color"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvCouponDiscountMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--元"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:background="@color/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_0.5dp"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:paddingTop="@dimen/dimen_10dp"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:id="@+id/llytInsurance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="不计免赔"
+                android:textColor="@color/notice_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvInsuranceRemark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(不能用优惠券抵扣)"
+                android:textColor="@color/notice_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvInsuranceAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="--元"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

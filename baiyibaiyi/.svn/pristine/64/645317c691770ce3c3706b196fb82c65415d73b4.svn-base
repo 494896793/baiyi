@@ -1,0 +1,7 @@
+package www.qisu666.com.callback
+
+/**
+ * Created by wujiancheng on 2018/1/23.
+ * 故障类型
+ */
+data class ProblemTypesResp(var typeName: String = "", var selectedStatus: Boolean = false)

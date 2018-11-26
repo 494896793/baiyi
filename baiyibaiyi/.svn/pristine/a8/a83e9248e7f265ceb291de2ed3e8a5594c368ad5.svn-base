@@ -1,0 +1,16 @@
+package www.qisu666.com.event;
+
+import java.io.Serializable;
+
+/**
+ * Created by admin on 2018/1/12.
+ */
+
+public class Message<T> implements Serializable
+{
+    public String msg;
+    public int code;
+    public T data;
+    public String token;
+    public String key;
+}

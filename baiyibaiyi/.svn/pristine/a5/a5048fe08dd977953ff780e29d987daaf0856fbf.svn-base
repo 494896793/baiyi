@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_update_bug"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:descendantFocusability="blocksDescendants"
+    android:text="修复bug"
+    android:textColor="@color/color_black_262930"
+    android:textSize="12sp">
+
+</TextView>

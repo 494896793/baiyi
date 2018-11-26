@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/p_station_window"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_marginBottom="@dimen/dimen_14dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_220dp">
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:background="@drawable/linear_shape"
+            android:paddingBottom="@dimen/dimen_15dp"
+            android:paddingTop="@dimen/dimen_15dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="@dimen/dimen_205dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:paddingRight="@dimen/dimen_15dp">
+
+                <TextView
+                    android:id="@+id/tv_map_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="123"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_18sp" />
+
+                <ImageView
+                    android:id="@+id/iv_collection"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_collection_gray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:layout_marginLeft="@dimen/dimen_9dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:paddingLeft="@dimen/dimen_4dp"
+                        android:layout_marginRight="@dimen/dimen_12dp"
+                        android:layout_width="@dimen/dimen_160dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/tx_radio2"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="@dimen/dimen_7dp"
+                            android:layout_height="@dimen/dimen_12dp"
+                            android:src="@mipmap/yd_28" />
+
+                        <TextView
+                            android:textColor="@color/new_text_gray"
+                            android:textSize="@dimen/dimen_13sp"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/station_info_charging_fee" />
+
+                        <TextView
+                            android:textColor="@color/new_text_gray"
+                            android:textSize="@dimen/dimen_13sp"
+                            android:id="@+id/tv_charging_fee"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:text="0.00" />
+
+                        <TextView
+                            android:textColor="@color/new_text_gray"
+                            android:textSize="@dimen/dimen_13sp"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:text="元/度" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:paddingLeft="@dimen/dimen_4dp"
+                        android:background="@drawable/tx_radio2"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingRight="@dimen/dimen_8dp"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_width="@dimen/dimen_12dp"
+                            android:layout_height="@dimen/dimen_15dp"
+                            android:src="@mipmap/yd_26" />
+
+                        <TextView
+                            android:textColor="@color/new_text_gray"
+                            android:textSize="@dimen/dimen_13sp"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:layout_marginLeft="5dp"
+                            android:text="@string/station_info_service_fee" />
+
+                        <TextView
+                            android:textColor="@color/new_text_gray"
+                            android:textSize="@dimen/dimen_13sp"
+                            android:id="@+id/tv_service_fee"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:text="0.00" />
+
+                        <TextView
+                            android:textColor="@color/new_text_gray"
+                            android:textSize="@dimen/dimen_13sp"
+                            style="@style/TextView_Subtitle_Gray"
+                            android:text="元/度" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:paddingLeft="@dimen/dimen_4dp"
+                    android:background="@drawable/tx_radio2"
+                    android:paddingTop="@dimen/dimen_1dp"
+                    android:paddingBottom="@dimen/dimen_1dp"
+                    android:layout_width="@dimen/dimen_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_tnb"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_13dp"
+                        android:layout_height="@dimen/dimen_10dp"
+                        android:src="@mipmap/yd_27" />
+
+                    <TextView
+                        android:textColor="@color/new_text_gray"
+                        android:textSize="@dimen/dimen_13sp"
+                        style="@style/TextView_Subtitle_Gray"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/station_info_parking_fee" />
+
+                    <TextView
+                        android:textColor="@color/new_text_gray"
+                        android:textSize="@dimen/dimen_13sp"
+                        android:id="@+id/tv_station_parking_fee"
+                        style="@style/TextView_Subtitle_Gray"
+                        android:text="0.00" />
+
+                    <TextView
+                        android:textColor="@color/new_text_gray"
+                        android:textSize="@dimen/dimen_13sp"
+                        style="@style/TextView_Subtitle_Gray"
+                        android:text="" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_15dp"
+                android:paddingRight="@dimen/dimen_15dp">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_13dp"
+                    android:layout_height="@dimen/dimen_16dp"
+                    android:src="@mipmap/yd_22" />
+
+                <TextView
+                    android:id="@+id/tv_map_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:textColor="@color/text_dark_gray"
+                    android:textSize="@dimen/dimen_14dp" />
+
+                <TextView
+                    android:id="@+id/tv_map_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/text_dark_gray"
+                    android:textSize="@dimen/dimen_14dp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_15dp"
+                android:paddingRight="@dimen/dimen_15dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@mipmap/yd_16" />
+
+                    <TextView
+                        android:id="@+id/tv_free_fast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="空闲0"
+                        android:textColor="@color/text_dark_gray"
+                        android:textSize="@dimen/dimen_14dp" />
+                </LinearLayout>
+
+               <LinearLayout
+                   android:layout_centerInParent="true"
+                   android:layout_width="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_height="wrap_content">
+                   <ImageView
+                       android:layout_width="18dp"
+                       android:layout_height="18dp"
+                       android:layout_marginLeft="20dp"
+                       android:src="@mipmap/yd_17" />
+
+                   <TextView
+                       android:id="@+id/tv_free_slow"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginLeft="5dp"
+                       android:text="空闲0"
+                       android:textColor="@color/text_dark_gray"
+                       android:textSize="@dimen/dimen_14dp" />
+               </LinearLayout>
+
+                <LinearLayout
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginLeft="20dp"
+                        android:src="@mipmap/yd_18" />
+
+                    <TextView
+                        android:id="@+id/tv_elec_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="直流"
+                        android:textColor="@color/text_dark_gray"
+                        android:textSize="@dimen/dimen_14dp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            
+        </LinearLayout>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btn_map_charging"
+            android:layout_width="185dp"
+            android:layout_height="@dimen/dimen_33dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_primary_btn"
+            android:gravity="center"
+            android:paddingBottom="6dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="6dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@mipmap/yd_44" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="前往充电"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/default_padding_lnr"
+        android:paddingRight="@dimen/default_padding_lnr"
+        android:layout_marginTop="@dimen/default_margin_tnb">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_price"/>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_content_title"
+            android:textColor="@color/text_dark_gray"
+            android:text="0.00"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_content_title"
+            android:textColor="@color/text_dark_gray"
+            android:text="元/度" />
+
+    </LinearLayout>-->
+
+
+
+</LinearLayout>

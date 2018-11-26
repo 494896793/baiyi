@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_activity_recharge_balance"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background">
+
+    <include
+        android:id="@+id/layoutTitle"
+        layout="@layout/title_back" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutTitle"
+        android:paddingLeft="@dimen/dimen_10dp"
+        android:paddingRight="@dimen/dimen_10dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_11dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/rlytTip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvFirstRechargeTip"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40dp"
+                    android:background="@drawable/main_linear"
+                    android:drawableLeft="@mipmap/ge_23"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/text_default"
+                    android:textColor="@color/main_background"
+                    android:textSize="@dimen/dimen_14sp" />
+
+                <TextView
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:id="@+id/tvFridayTip"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40dp"
+                    android:layout_below="@id/tvFirstRechargeTip"
+                    android:background="@drawable/main_linear"
+                    android:drawableLeft="@mipmap/ge_23"
+                    android:drawablePadding="15dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/text_default"
+                    android:textColor="@color/main_background"
+                    android:textSize="@dimen/dimen_14sp"  />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_marginTop="@dimen/dimen_14dp"
+                android:layout_marginBottom="@dimen/dimen_17dp"
+                android:textSize="@dimen/dimen_17sp"
+                android:textColor="@color/white"
+                android:text="选择充值金额"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvRecharge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/linear_shape"
+                android:overScrollMode="never"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:scrollbars="none">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_recharge_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="充值金额(元)"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/etRechargeMoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="输入充值金额"
+                    android:inputType="number"
+                    android:maxLength="18"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/color_blue_02b2e4"
+                    android:textColorHint="@color/color_gray_bcbbc4"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llytPresentMoney"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvPresentMoneyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="赠送金额(元)"
+                    android:textColor="@color/color_gray_7a7e83"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvPresentMoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/tvPresentMoneyText"
+                    android:maxLines="1"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/color_orange_ff811b"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="@dimen/dimen_26dp"
+                android:layout_marginBottom="@dimen/dimen_20dp"
+                android:text="支付方式"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_17sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:background="@drawable/linear_shape"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginBottom="@dimen/dimen_10dp"
+                    android:id="@+id/llytWxPay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="11dp"
+                    android:paddingTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivWxPic"
+                        android:layout_width="@dimen/dimen_25dp"
+                        android:layout_height="@dimen/dimen_22dp"
+                        android:layout_marginLeft="@dimen/dimen_15dp"
+                        android:src="@mipmap/gr_26" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="微信"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_15sp" />
+
+                    <ImageView
+                        android:id="@+id/ivWxCheck"
+                        android:layout_width="@dimen/dimen_24dp"
+                        android:layout_height="@dimen/dimen_24dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@mipmap/gr_24" />
+                </LinearLayout>
+
+                <View
+                    android:layout_marginBottom="@dimen/dimen_10dp"
+                    android:layout_marginLeft="@dimen/dimen_15dp"
+                    android:layout_marginRight="@dimen/dimen_15dp"
+                    android:background="@color/view_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"/>
+
+                <LinearLayout
+                    android:id="@+id/llytAliPay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="11dp">
+
+                    <ImageView
+                        android:id="@+id/iv_pay_treasure"
+                        android:layout_width="@dimen/dimen_25dp"
+                        android:layout_height="@dimen/dimen_22dp"
+                        android:layout_marginLeft="@dimen/dimen_15dp"
+                        android:src="@mipmap/gr_27" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="支付宝"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dimen_15sp" />
+
+                    <ImageView
+                        android:id="@+id/ivAliCheck"
+                        android:layout_width="@dimen/dimen_24dp"
+                        android:layout_height="@dimen/dimen_24dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@mipmap/gr_25" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvToRecharge"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_45dp"
+                android:background="@drawable/selector_primary_btn"
+                android:layout_marginLeft="@dimen/dimen_38dp"
+                android:layout_marginRight="@dimen/dimen_38dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:gravity="center"
+                android:text="充值" />
+
+            <LinearLayout
+                android:id="@+id/llytRechargeProtocol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点击充值即代表同意"
+                    android:textColor="@color/color_gray_999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="《充值协议》"
+                    android:textColor="@color/new_primary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

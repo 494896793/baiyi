@@ -1,0 +1,220 @@
+package com.baogang.bycx.request.utils;
+
+
+import android.text.TextUtils;
+
+import com.baogang.bycx.bean.HttpResult;
+import com.baogang.bycx.event.Message;
+import com.baogang.bycx.utils.DesTool;
+import com.baogang.bycx.utils.L;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+import com.orhanobut.logger.Logger;
+
+import org.json.JSONObject;
+import org.xutils.common.util.LogUtil;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.List;
+
+import ikidou.reflect.TypeBuilder;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+
+
+/**
+ * 请求加解密相关类
+ * Created by admin on 2018/1/15.
+ */
+
+public class MyMessageUtils {
+
+    /**
+     * DES 密钥
+     */
+    private static final String ENCRYPT_KEY = "HL1HBF6lLND721";
+
+    public static <T> String writeMessage(T data, String word) {
+        Gson g = new Gson();
+        String dataStr = g.toJson(data);
+        LogUtil.e("  请求参数:" + dataStr);
+        String result = "";
+        if ((word != null) && (word.length() > 0)) {
+            try {
+                DesTool des = new DesTool(word);
+                result = des.encrypt(dataStr);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        LogUtil.e("  请求参数:" + result);
+        return dataStr;
+//        return result;
+    }
+
+
+    public static <T> Message<List<T>> readMessageList(String data, Class<T> clazz) {
+        return readMessageList(data, ENCRYPT_KEY, clazz);
+    }
+
+
+    public static <T> Message<List<T>> readMessageList(String data, String word, Class<T> clazz) {
+        // Gson g = new Gson();
+        Gson g = new GsonBuilder()
+                // .excludeFieldsWithModifiers()
+                // 支持Map的key为复杂对象的形式
+                // .enableComplexMapKeySerialization()
+                .serializeNulls()
+                // 时间转化为特定格式
+                // .setDateFormat("yyyy-MM-dd HH:mm:ss:SSS")
+                // 会把字段首字母大写,注:对于实体上使用了@SerializedName注解的不会生效.
+                // .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                // 对json结果格式化.
+                .setPrettyPrinting()
+                // 有的字段不是一开始就有的,会随着版本的升级添加进来,那么在进行序列化和返序列化的时候就会根据版本号来选择是否要序列化.
+                //@Since(版本号)能完美地实现这个功能.还的字段可能,随着版本的升级而删除,那么
+                //@Until(版本号)也能实现这个功能,GsonBuilder.setVersion(double)方法需要调用.
+                .setVersion(2.0)
+                .create();
+        String dataStr = data;
+        if ((word != null) && (word.length() > 0) && (dataStr != null)) {
+            try {
+//                DesTool des = new DesTool(word);
+//                dataStr = des.decrypt(data);
+                L.e("guanglog 请求 结果:" + dataStr);
+                Logger.json(dataStr);
+                Type type = TypeBuilder
+                        .newInstance(Message.class)
+                        .beginSubType(List.class)
+                        .addTypeParam(clazz)
+                        .endSubType()
+                        .build();
+                return g.fromJson(dataStr, type);
+            } catch (JsonSyntaxException e) {
+                e.printStackTrace();
+                //防止sb后端返回的空数组变成空字符串或者null
+                int headIndex = dataStr.indexOf("\"data\":");
+                int lastIndex = dataStr.length();
+                StringBuilder sb = new StringBuilder(dataStr);
+                sb.replace(headIndex, lastIndex, "\"data\": []}");
+                LogUtil.e("请求 进入异常:" + "String after JsonSyntaxException change:   " + sb.toString());
+                Type type = TypeBuilder
+                        .newInstance(Message.class)
+                        .beginSubType(List.class)
+                        .addTypeParam(Object.class)
+                        .endSubType()
+                        .build();
+                return g.fromJson(sb.toString(), type);
+            } catch (Exception e) {
+                LogUtil.e("guanglog 进入异常：" + "readMessageList error");
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static <T> Message<T> readMessage(String data, Class<T> clazz) {
+        return readMessage(data, ENCRYPT_KEY, clazz);
+    }
+
+    public static <T> Message<T> readMessage(String data, String word, Class<T> clazz) {
+        // Gson g = new Gson();
+        Gson g = new GsonBuilder()
+                // .excludeFieldsWithModifiers()
+                // 支持Map的key为复杂对象的形式
+                // .enableComplexMapKeySerialization()
+                .serializeNulls()
+                // 时间转化为特定格式
+                // .setDateFormat("yyyy-MM-dd HH:mm:ss:SSS")
+                // 会把字段首字母大写,注:对于实体上使用了@SerializedName注解的不会生效.
+                // .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                // 对json结果格式化.
+                .setPrettyPrinting()
+                // 有的字段不是一开始就有的,会随着版本的升级添加进来,那么在进行序列化和返序列化的时候就会根据版本号来选择是否要序列化.
+                //@Since(版本号)能完美地实现这个功能.还的字段可能,随着版本的升级而删除,那么
+                //@Until(版本号)也能实现这个功能,GsonBuilder.setVersion(double)方法需要调用.
+                .setVersion(2.0)
+                .create();
+        String dataStr="";
+        try{
+                JSONObject jsonObject=new JSONObject(data);
+                dataStr=jsonObject.optString("data");
+                JSONObject jsonObject1=new JSONObject(dataStr);
+                dataStr=jsonObject1.optString("nameValuePairs");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        if ((word != null) && (word.length() > 0) && (dataStr != null)) {
+            try {
+//                DesTool des = new DesTool(word);
+//                dataStr = des.decrypt(data);
+                L.e("asd请求结果" + dataStr);
+                Logger.json(dataStr);
+                // 为 Message 类添生成泛型对应的具体类型
+                Type type = TypeBuilder
+                        .newInstance(Message.class)
+                        .addTypeParam(clazz)
+                        .build();
+                return g.fromJson(dataStr, type);
+            } catch (JsonSyntaxException e) {
+                e.printStackTrace();
+                //防止sb后端返回的空数组变成空字符串或者null
+                int headIndex = dataStr.indexOf("\"data\":");
+                int lastIndex = dataStr.length();
+                StringBuilder sb = new StringBuilder(dataStr);
+                sb.replace(headIndex, lastIndex, "\"data\": {}}");
+                LogUtil.e(e.getLocalizedMessage());
+                L.e("x_log guanglog" + "String after JsonSyntaxException change   " + sb.toString());
+                Type type = TypeBuilder
+                        .newInstance(Message.class)
+                        .addTypeParam(clazz)
+                        .build();
+                return g.fromJson(sb.toString(), type);
+            } catch (Exception e) {
+                L.e("x_log guanglog" + "读取报错readMessage error:" + e.getLocalizedMessage());
+                e.printStackTrace();
+                //防止sb后端返回的空数组变成空字符串或者null
+                int headIndex = dataStr.indexOf("\"data\":");
+                int lastIndex = dataStr.length();
+                StringBuilder sb = new StringBuilder(dataStr);
+                sb.replace(headIndex, lastIndex, "\"data\": {}}");
+                LogUtil.e(e.getLocalizedMessage());
+                L.e("x_log guanglog" + "String after JsonSyntaxException change   " + sb.toString());
+                Type type = TypeBuilder
+                        .newInstance(Message.class)
+                        .addTypeParam(clazz)
+                        .build();
+                return g.fromJson(sb.toString(), type);
+            }
+        }
+        return null;
+    }
+
+    public static RequestBody addBody(HashMap<String, Object> requestMap) {
+        RequestBody requestBody=null;
+        try{
+            String reqSend = MyMessageUtils.writeMessage(requestMap, ENCRYPT_KEY);
+            requestBody=RequestBody.create(MediaType.parse("text/plain"), reqSend);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return requestBody;
+    }
+
+    public static String addEncrypt(HashMap<String, Object> requestMap) {
+        return MyMessageUtils.writeMessage(requestMap, ENCRYPT_KEY);
+    }
+
+    public static String writeMessage(String req) throws Exception {
+        DesTool d = new DesTool(ENCRYPT_KEY);
+        String ds = "";
+        try {
+            ds = d.encrypt(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ds;
+    }
+}

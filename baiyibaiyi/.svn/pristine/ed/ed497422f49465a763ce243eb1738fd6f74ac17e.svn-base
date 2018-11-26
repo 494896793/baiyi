@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ikidou:TypeBuilder:1.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ikidou/TypeBuilder/1.0/1ef42799e2b65f866a5789ebab52a49c0c7809e9/TypeBuilder-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ikidou/TypeBuilder/1.0/91699fb13f09caf1a24eae68b43b1fbb115a3a8/TypeBuilder-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

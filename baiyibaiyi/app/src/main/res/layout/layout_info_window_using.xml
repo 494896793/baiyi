@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen_200dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/kuangkuang"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/dimen_2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/yc_39"
+                    android:layout_width="@dimen/dimen_15dp"
+                    android:layout_height="@dimen/dimen_12dp" />
+                <TextView
+                    android:layout_marginLeft="@dimen/dimen_4dp"
+                    android:id="@+id/tvCarNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="170dp"
+                    android:text="粤B00000"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dimen_14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:src="@mipmap/time_icon" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingLeft="@dimen/dimen_4dp"
+            android:paddingBottom="@dimen/dimen_1dp"
+            android:paddingTop="@dimen/dimen_1dp"
+            android:paddingRight="@dimen/dimen_4dp"
+            android:background="@drawable/tx_maincolor_radio"
+            android:id="@+id/llytBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/yc_40" />
+
+            <TextView
+                android:layout_marginLeft="@dimen/dimen_3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返回用车"
+                android:textColor="@color/new_primary"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_marginBottom="@dimen/dimen_5dp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/dimen_9dp"
+        android:id="@+id/tvUsingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_21sp" />
+</LinearLayout>

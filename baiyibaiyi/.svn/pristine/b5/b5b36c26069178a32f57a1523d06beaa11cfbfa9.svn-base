@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--去掉企业和个人账户的选择-->
+            <LinearLayout
+                android:id="@+id/llytUseCarTypeContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <include layout="@layout/layout_use_car_type" />
+
+                <View style="@style/DivideLineStyle" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:background="@drawable/linear_shape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="20dp">
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dimen_30dp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/linear_1"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvRentTypeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收费标准"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+                    <TextView
+                        android:background="@drawable/main_tx_radio"
+                        android:textColor="@color/main_info_color"
+                        android:layout_marginLeft="@dimen/dimen_15dp"
+                        android:text="里程+时长+电度"
+                        android:textSize="@dimen/dimen_12sp"
+                        android:paddingBottom="@dimen/dimen_1dp"
+                        android:paddingTop="@dimen/dimen_1dp"
+                        android:paddingLeft="@dimen/dimen_4dp"
+                        android:paddingRight="@dimen/dimen_4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <com.baogang.bycx.view.FeeUnitMoneyView
+                    android:id="@+id/feeUnitMoneyView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linear_1"
+                    android:layout_marginTop="15dp" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_marginLeft="@dimen/dimen_18dp"
+                android:layout_marginRight="@dimen/dimen_18dp"
+                android:background="@color/view_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_1dp"/>
+
+            <include layout="@layout/layout_deduction_insurance" />
+
+            <LinearLayout
+                android:background="@drawable/linear_shape"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <com.baogang.bycx.view.ReturnCarFeeEstimateView
+                    android:id="@+id/returnCarFeeEstimateView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="17dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:text="以上费用为取车网点到您选择的还车网点的预估费用，实际费用以用车情况为准"
+                    android:textColor="@color/main_info_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginBottom="@dimen/dimen_15dp"
+        android:id="@+id/tvConfirmUseCar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginRight="38dp"
+        android:background="@drawable/selector_primary_btn"
+        android:gravity="center"
+        android:text="确认用车(预约保留15分钟)"
+        android:textColor="@color/main_background"
+        android:textSize="18sp" />
+</LinearLayout>

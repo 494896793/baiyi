@@ -1,0 +1,13 @@
+package www.qisu666.com.utils.weixinpay;
+
+/**
+ * Created by baby on 2016/5/3.
+ */
+public class PayData {
+    public static  String WEIXINBACKURL = "";//
+    public static  String APP_ID = "";//
+    public static  String MCH_ID = "";//
+    public static  String API_KEY = "";//
+    public static  String BODY = "";//
+    public static final String WEIXIN_PAYURL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+}

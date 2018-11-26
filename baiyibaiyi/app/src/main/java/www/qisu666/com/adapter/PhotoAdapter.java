@@ -1,0 +1,204 @@
+package www.qisu666.com.adapter;
+
+import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.content.FileProvider;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import www.qisu666.com.BuildConfig;
+import www.qisu666.com.R;
+import www.qisu666.com.constant.Config;
+import www.qisu666.com.utils.StringUtils;
+import com.bumptech.glide.Glide;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import me.iwf.photopicker.utils.AndroidLifecycleUtils;
+
+/**
+ * Created by donglua on 15/5/31.
+ */
+public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder> {
+    private static final String ADD_BUTTON = "thisIsAddButton";
+    private ArrayList<String> photoPaths = new ArrayList<String>();//图片路径，包括 添加 图片
+    private ArrayList<String> photoPathsSelected = new ArrayList<String>();//图片路径
+    private LayoutInflater inflater;
+
+    private Context mContext;
+    private OnPreviewPhotoListener onPreviewPhotoListener;
+    private OnDeletePhotoListener onDeletePhotoListener;
+
+    private boolean isShowDelete = true;
+
+    public PhotoAdapter(Context mContext, ArrayList<String> photoPaths) {
+        this.photoPathsSelected = photoPaths;
+        this.photoPaths.clear();
+        this.photoPaths.addAll(photoPaths);
+
+//        if (this.photoPaths.size() < Config.MAX_PHOTO) {
+        this.photoPaths.add(ADD_BUTTON);//最后一个为添加图片按钮
+//        }
+        this.mContext = mContext;
+        inflater = LayoutInflater.from(mContext);
+
+    }
+
+    public PhotoAdapter(Context mContext, ArrayList<String> photoPaths, boolean isShowDelete) {
+        this.photoPathsSelected = photoPaths;
+        this.photoPaths.clear();
+        this.photoPaths.addAll(photoPaths);
+
+//        if (this.photoPaths.size() < Config.MAX_PHOTO) {
+        this.photoPaths.add(ADD_BUTTON);//最后一个为添加图片按钮
+//        }
+        this.mContext = mContext;
+        inflater = LayoutInflater.from(mContext);
+        this.isShowDelete = isShowDelete;
+    }
+
+    public void setData(ArrayList<String> photoPaths) {
+        this.photoPathsSelected = photoPaths;
+        this.photoPaths.clear();
+        this.photoPaths.addAll(photoPaths);
+        List<String> tmp = new ArrayList<>();
+        for (int i = 0; i < photoPaths.size(); i++) {
+            String path = photoPaths.get(i);
+            if (!path.startsWith("http")) {
+                tmp.add(path);
+            }
+        }
+
+        if (tmp.size() < Config.MAX_PHOTO) {
+            this.photoPaths.add(ADD_BUTTON);//最后一个为添加图片按钮
+        }
+        notifyDataSetChanged();
+    }
+
+
+    @Override
+    public PhotoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = inflater.inflate(me.iwf.photopicker.R.layout.__picker_item_photo, parent, false);
+        return new PhotoViewHolder(itemView);
+    }
+
+
+    @Override
+    public void onBindViewHolder(final PhotoViewHolder holder, final int position) {
+
+        if (ADD_BUTTON.equals(photoPaths.get(position))) {
+            int imgRes = R.mipmap.gr_45;
+//            if (photoPaths.size() > 1) {
+//                imgRes = R.mipmap.add_photo;
+//            }
+            //最后一个为添加图片按钮
+            Glide.with(mContext)
+                    .load(imgRes)
+                    .centerCrop()
+                    .thumbnail(0.1f)
+                    .into(holder.ivPhoto);
+            holder.vSelected.setVisibility(View.GONE);
+        } else {
+            String path = photoPaths.get(position);
+            if (!StringUtils.isEmpty(path)) {
+                Uri uri;
+                if (path.startsWith("http")) {//网络图片
+                    uri = Uri.parse(path);
+//                holder.vSelected.setVisibility(View.GONE);
+                } else {
+                    File file = new File(path);
+                    //判断是否是AndroidN以及更高的版本
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        uri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID + ".fileProvider", file);
+                    } else {
+                        uri = Uri.fromFile(file);
+                    }
+                }
+
+                if (isShowDelete) {
+                    holder.vSelected.setVisibility(View.VISIBLE);
+                } else {
+                    holder.vSelected.setVisibility(View.GONE);
+                }
+
+                holder.vSelected.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        photoPaths.remove(position);
+                        photoPathsSelected.remove(position);
+                        if (!ADD_BUTTON.equals(photoPaths.get(photoPaths.size() - 1))) {
+                            photoPaths.add(ADD_BUTTON);//最后一个为添加图片按钮
+                        }
+                        notifyDataSetChanged();
+
+                        if (onDeletePhotoListener != null) {
+                            onDeletePhotoListener.onDeletePhoto(photoPathsSelected);
+                        }
+                    }
+                });
+
+                boolean canLoadImage = AndroidLifecycleUtils.canLoadImage(holder.ivPhoto.getContext());
+
+                if (canLoadImage) {
+                    Glide.with(mContext)
+                            .load(uri)
+                            .centerCrop()
+                            .thumbnail(0.1f)
+                            .placeholder(me.iwf.photopicker.R.drawable.__picker_ic_photo_black_48dp)
+                            .error(me.iwf.photopicker.R.drawable.__picker_ic_broken_image_black_48dp)
+                            .into(holder.ivPhoto);
+                }
+            }
+        }
+
+        holder.ivPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != onPreviewPhotoListener) {
+                    onPreviewPhotoListener.onPreviewPhoto(position);
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public int getItemCount() {
+        return photoPaths.size();
+    }
+
+
+    public static class PhotoViewHolder extends RecyclerView.ViewHolder {
+        private ImageView ivPhoto;
+        private ImageView vSelected;
+
+        public PhotoViewHolder(View itemView) {
+            super(itemView);
+            ivPhoto = (ImageView) itemView.findViewById(me.iwf.photopicker.R.id.iv_photo);
+            vSelected = (ImageView) itemView.findViewById(me.iwf.photopicker.R.id.v_selected);
+            vSelected.setImageResource(R.mipmap.pic_delete);
+        }
+    }
+
+    public interface OnPreviewPhotoListener {
+        void onPreviewPhoto(int position);
+    }
+
+    public void setOnPreviewPhotoListener(OnPreviewPhotoListener onPreviewPhotoListener) {
+        this.onPreviewPhotoListener = onPreviewPhotoListener;
+    }
+
+    public interface OnDeletePhotoListener {
+        void onDeletePhoto(ArrayList<String> photoPathsSelected);
+    }
+
+    public void setOnDeletePhotoListener(OnDeletePhotoListener onDeletePhotoListener) {
+        this.onDeletePhotoListener = onDeletePhotoListener;
+    }
+}

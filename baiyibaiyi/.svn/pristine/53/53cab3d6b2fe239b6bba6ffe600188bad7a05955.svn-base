@@ -1,0 +1,12 @@
+package com.baogang.bycx.net;
+
+import java.util.Map;
+
+/**
+ * Created by Administrator on 2016/3/23.
+ * Activity对控制层的回调
+ */
+public interface ResponseCallBack {
+    void onResponse(Map<String, Object> map, String tag);
+    void onError(String tag);
+}

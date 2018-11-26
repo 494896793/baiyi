@@ -1,0 +1,510 @@
+package www.qisu666.com.callback;
+
+import java.io.Serializable;
+
+import www.qisu666.com.request.RequestBaseParams;
+
+/**
+ * Created by wujiancheng on 2017/8/4.
+ */
+
+public class OrderListResp extends RequestBaseParams implements Serializable {
+
+    private String orderId; // 订单ID
+    private String customerId;// 会员ID
+    private Integer parkId;// 停车场ID
+    private String isEvaluate;//此订单是否已评价 0表示没有 1表示有
+    private String carNumber;// 车牌号
+    private String makeOrderTime;// 订单生成时间
+    private String beginTime;// 订单状态
+    private String endTime;// 结束时间
+    private String status;// 订单状态
+    private Integer payMoney; //支付金额
+    private String payStatus; //支付状态
+    private Double orderMoney;//订单花费
+    private String startParkName;//开始网点名称
+    private String endParkName;//结束网点名称
+    private Double spendTime;//订单时长
+    private Double spendMileage;//订单里程
+    private Double spendTimeMoney;//时长花费
+    private Double spendMileageMoney;//里程花费
+    private String carImgUrl;//车辆图片
+    private String seat;//座位数
+    private String brand;//品牌
+    private String color;//颜色
+    private String timeUtil;//时间单位
+    private String mileageUtil;//里程单位
+    private String coupon;//优惠券
+    private EvaluateInfoResp orderEvaluate;//评价
+    private String models;//车辆型号
+    private String isCompanyOrder;//是否是企业订单
+    private String companyId;//企业id
+    private String discountLimit;//": null,
+    private String discountMoney;//折扣优惠
+    private String nightDiscountsMoney;//夜间优惠
+    private String insuranceMoney;//不计免赔
+    private String outTimeTotalMileage;//超时总里程
+    private String outTimeMileageMoney;//超时里程花费
+    private String outTimeTotalMinute;//超时时长
+    private String outTimeTotalMinuteCost;//超时时长花费
+    private String outTimeInsuranceMoney;//套餐外不计免赔价格
+    private String orderCategory;//订单类型
+    private Integer timeDiscount;//  时长折扣率
+    private Integer mileageDiscount;// 里程折扣率
+    private Integer timeDiscountBeforeMoney;//时长花费原价
+    private Integer mileageDiscountBeforeMoney;//里程花费原价
+
+    public String getTransferMoney() {
+        return transferMoney;
+    }
+
+    public void setTransferMoney(String transferMoney) {
+        this.transferMoney = transferMoney;
+    }
+
+    private String packageName;//套餐名称
+    private String packageMoney;//套餐金额
+    private String finishPayMoney;
+    private String parkingFeeId;//true string 停车费ID
+    private String parkingFeeStatus;//true string状态：1.已受理，2.已收取发票，3.审核通过，退款申请添加到余额，4.审核不通过，5.审核通过，6.复核不通过，7.已打款
+    private String parkingFeeStatusName;
+    private String parkDiscountLimit;//折扣网点，折扣率
+    private String parkDiscountMoney;//折扣网点，优惠金额(单位分)
+    private String rentOrderCouponMoney;//短租优惠券减免
+    private String realElectricityMoney; //电度费
+
+    public String getMinExpenditure() {
+        return minExpenditure;
+    }
+
+    public void setMinExpenditure(String minExpenditure) {
+        this.minExpenditure = minExpenditure;
+    }
+
+    private String transferMoney;
+    private String minExpenditure;//最低消费
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public String getRealElectricityMoney() {
+        return realElectricityMoney;
+    }
+
+    public void setRealElectricityMoney(String realElectricityMoney) {
+        this.realElectricityMoney = realElectricityMoney;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getParkId() {
+        return parkId;
+    }
+
+    public void setParkId(Integer parkId) {
+        this.parkId = parkId;
+    }
+
+    public String getIsEvaluate() {
+        return isEvaluate;
+    }
+
+    public void setIsEvaluate(String isEvaluate) {
+        this.isEvaluate = isEvaluate;
+    }
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public String getMakeOrderTime() {
+        return makeOrderTime;
+    }
+
+    public void setMakeOrderTime(String makeOrderTime) {
+        this.makeOrderTime = makeOrderTime;
+    }
+
+    public String getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(String beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getPayMoney() {
+        return payMoney;
+    }
+
+    public void setPayMoney(Integer payMoney) {
+        this.payMoney = payMoney;
+    }
+
+    public String getPayStatus() {
+        return payStatus;
+    }
+
+    public void setPayStatus(String payStatus) {
+        this.payStatus = payStatus;
+    }
+
+    public Double getOrderMoney() {
+        return orderMoney;
+    }
+
+    public void setOrderMoney(Double orderMoney) {
+        this.orderMoney = orderMoney;
+    }
+
+    public String getStartParkName() {
+        return startParkName;
+    }
+
+    public void setStartParkName(String startParkName) {
+        this.startParkName = startParkName;
+    }
+
+    public String getEndParkName() {
+        return endParkName;
+    }
+
+    public void setEndParkName(String endParkName) {
+        this.endParkName = endParkName;
+    }
+
+    public Double getSpendTime() {
+        return spendTime;
+    }
+
+    public void setSpendTime(Double spendTime) {
+        this.spendTime = spendTime;
+    }
+
+    public Double getSpendMileage() {
+        return spendMileage;
+    }
+
+    public void setSpendMileage(Double spendMileage) {
+        this.spendMileage = spendMileage;
+    }
+
+    public Double getSpendTimeMoney() {
+        return spendTimeMoney;
+    }
+
+    public void setSpendTimeMoney(Double spendTimeMoney) {
+        this.spendTimeMoney = spendTimeMoney;
+    }
+
+    public Double getSpendMileageMoney() {
+        return spendMileageMoney;
+    }
+
+    public void setSpendMileageMoney(Double spendMileageMoney) {
+        this.spendMileageMoney = spendMileageMoney;
+    }
+
+    public String getCarImgUrl() {
+        return carImgUrl;
+    }
+
+    public void setCarImgUrl(String carImgUrl) {
+        this.carImgUrl = carImgUrl;
+    }
+
+    public String getSeat() {
+        return seat;
+    }
+
+    public void setSeat(String seat) {
+        this.seat = seat;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getTimeUtil() {
+        return timeUtil;
+    }
+
+    public void setTimeUtil(String timeUtil) {
+        this.timeUtil = timeUtil;
+    }
+
+    public String getMileageUtil() {
+        return mileageUtil;
+    }
+
+    public void setMileageUtil(String mileageUtil) {
+        this.mileageUtil = mileageUtil;
+    }
+
+    public String getCoupon() {
+        return coupon;
+    }
+
+    public void setCoupon(String coupon) {
+        this.coupon = coupon;
+    }
+
+    public String getModels() {
+        return models;
+    }
+
+    public void setModels(String models) {
+        this.models = models;
+    }
+
+    public EvaluateInfoResp getOrderEvaluate() {
+        return orderEvaluate;
+    }
+
+    public void setOrderEvaluate(EvaluateInfoResp orderEvaluate) {
+        this.orderEvaluate = orderEvaluate;
+    }
+
+    public String getIsCompanyOrder() {
+        return isCompanyOrder;
+    }
+
+    public void setIsCompanyOrder(String isCompanyOrder) {
+        this.isCompanyOrder = isCompanyOrder;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getDiscountLimit() {
+        return discountLimit;
+    }
+
+    public void setDiscountLimit(String discountLimit) {
+        this.discountLimit = discountLimit;
+    }
+
+    public String getDiscountMoney() {
+        return discountMoney;
+    }
+
+    public void setDiscountMoney(String discountMoney) {
+        this.discountMoney = discountMoney;
+    }
+
+    public String getNightDiscountsMoney() {
+        return nightDiscountsMoney;
+    }
+
+    public void setNightDiscountsMoney(String nightDiscountsMoney) {
+        this.nightDiscountsMoney = nightDiscountsMoney;
+    }
+
+    public String getInsuranceMoney() {
+        return insuranceMoney;
+    }
+
+    public void setInsuranceMoney(String insuranceMoney) {
+        this.insuranceMoney = insuranceMoney;
+    }
+
+    public String getOutTimeTotalMileage() {
+        return outTimeTotalMileage;
+    }
+
+    public void setOutTimeTotalMileage(String outTimeTotalMileage) {
+        this.outTimeTotalMileage = outTimeTotalMileage;
+    }
+
+    public String getOutTimeMileageMoney() {
+        return outTimeMileageMoney;
+    }
+
+    public void setOutTimeMileageMoney(String outTimeMileageMoney) {
+        this.outTimeMileageMoney = outTimeMileageMoney;
+    }
+
+    public String getOutTimeTotalMinute() {
+        return outTimeTotalMinute;
+    }
+
+    public void setOutTimeTotalMinute(String outTimeTotalMinute) {
+        this.outTimeTotalMinute = outTimeTotalMinute;
+    }
+
+    public String getOutTimeTotalMinuteCost() {
+        return outTimeTotalMinuteCost;
+    }
+
+    public void setOutTimeTotalMinuteCost(String outTimeTotalMinuteCost) {
+        this.outTimeTotalMinuteCost = outTimeTotalMinuteCost;
+    }
+
+    public String getOutTimeInsuranceMoney() {
+        return outTimeInsuranceMoney;
+    }
+
+    public void setOutTimeInsuranceMoney(String outTimeInsuranceMoney) {
+        this.outTimeInsuranceMoney = outTimeInsuranceMoney;
+    }
+
+    public String getOrderCategory() {
+        return orderCategory;
+    }
+
+    public void setOrderCategory(String orderCategory) {
+        this.orderCategory = orderCategory;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public String getPackageMoney() {
+        return packageMoney;
+    }
+
+    public void setPackageMoney(String packageMoney) {
+        this.packageMoney = packageMoney;
+    }
+
+    public String getFinishPayMoney() {
+        return finishPayMoney;
+    }
+
+    public void setFinishPayMoney(String finishPayMoney) {
+        this.finishPayMoney = finishPayMoney;
+    }
+
+    public String getParkingFeeId() {
+        return parkingFeeId;
+    }
+
+    public void setParkingFeeId(String parkingFeeId) {
+        this.parkingFeeId = parkingFeeId;
+    }
+
+    public String getParkingFeeStatus() {
+        return parkingFeeStatus;
+    }
+
+    public void setParkingFeeStatus(String parkingFeeStatus) {
+        this.parkingFeeStatus = parkingFeeStatus;
+    }
+
+    public String getParkingFeeStatusName() {
+        return parkingFeeStatusName;
+    }
+
+    public void setParkingFeeStatusName(String parkingFeeStatusName) {
+        this.parkingFeeStatusName = parkingFeeStatusName;
+    }
+
+    public String getParkDiscountLimit() {
+        return parkDiscountLimit;
+    }
+
+    public void setParkDiscountLimit(String parkDiscountLimit) {
+        this.parkDiscountLimit = parkDiscountLimit;
+    }
+
+    public String getParkDiscountMoney() {
+        return parkDiscountMoney;
+    }
+
+    public void setParkDiscountMoney(String parkDiscountMoney) {
+        this.parkDiscountMoney = parkDiscountMoney;
+    }
+
+    public String getRentOrderCouponMoney() {
+        return rentOrderCouponMoney;
+    }
+
+    public void setRentOrderCouponMoney(String rentOrderCouponMoney) {
+        this.rentOrderCouponMoney = rentOrderCouponMoney;
+    }
+
+    public Integer getTimeDiscount() {
+        return timeDiscount;
+    }
+
+    public void setTimeDiscount(Integer timeDiscount) {
+        this.timeDiscount = timeDiscount;
+    }
+
+    public Integer getMileageDiscount() {
+        return mileageDiscount;
+    }
+
+    public void setMileageDiscount(Integer mileageDiscount) {
+        this.mileageDiscount = mileageDiscount;
+    }
+
+    public Integer getTimeDiscountBeforeMoney() {
+        return timeDiscountBeforeMoney;
+    }
+
+    public void setTimeDiscountBeforeMoney(Integer timeDiscountBeforeMoney) {
+        this.timeDiscountBeforeMoney = timeDiscountBeforeMoney;
+    }
+
+    public Integer getMileageDiscountBeforeMoney() {
+        return mileageDiscountBeforeMoney;
+    }
+
+    public void setMileageDiscountBeforeMoney(Integer mileageDiscountBeforeMoney) {
+        this.mileageDiscountBeforeMoney = mileageDiscountBeforeMoney;
+    }
+}

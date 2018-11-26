@@ -1,0 +1,153 @@
+package com.baogang.bycx.activity;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.RelativeLayout;
+
+import com.baogang.bycx.R;
+import com.baogang.bycx.event.AllorederCloseEvent;
+import com.baogang.bycx.event.MapVisibleEvent;
+import com.baogang.bycx.fragment.AAAFragment;
+import com.baogang.bycx.utils.Logger;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
+/**
+ * 717219917@qq.com 2018/10/15 19:18.
+ */
+public class AllOrderActivity extends BaseActivity {
+
+    private FragmentManager manager=getSupportFragmentManager();
+    private OrderListActivity orderFragment;
+    private AAAFragment aaaFragment;
+    private List<Fragment> fragmentList=new ArrayList<>();
+    private int toMain = 0;//1:后台还车后跳转到订单列表后，按返回键跳到主页
+    @BindView(R.id.car_re)
+    RelativeLayout car_re;
+    @BindView(R.id.elect_re)
+    RelativeLayout elect_re;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void setView() {
+        setContentView(R.layout.activity_allorder_layout);
+    }
+
+    @Override
+    public void initDatas() {
+        toMain = getIntent().getIntExtra("toMain", 0);
+        initFragment();
+        selectFragment(0);
+    }
+
+    @Subscribe
+    public void onEvent(AllorederCloseEvent event){
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @OnClick({R.id.elect_re,R.id.car_re})
+    public void onViewClick(View view) {
+        switch (view.getId()){
+            case R.id.elect_re:
+                selectFragment(1);
+                break;
+            case R.id.car_re:
+                selectFragment(0);
+                break;
+        }
+    }
+
+    private void initFragment(){
+        aaaFragment=new AAAFragment();
+        fragmentList.add(aaaFragment);
+
+        orderFragment=new OrderListActivity();
+        Bundle bundle=new Bundle();
+        bundle.putInt("toMain",toMain);
+        orderFragment.setArguments(bundle);
+        fragmentList.add(orderFragment);
+
+
+        FragmentTransaction transaction=manager.beginTransaction();
+        for(int i=0;i<fragmentList.size();i++){
+            transaction.add(R.id.framelayout,fragmentList.get(i));
+        }
+        transaction.commitAllowingStateLoss();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Logger.i("", "keyCode:" + keyCode);
+        if ((keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0)) {
+            back();
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+
+
+    private void selectFragment(int position){
+        hideAllFragment();
+        FragmentTransaction transaction=manager.beginTransaction();
+        if(fragmentList.get(position)!=null){
+            switch (position){
+                case 0:
+                    transaction.show(aaaFragment);
+                    break;
+                case 1:
+                    transaction.show(orderFragment);
+                    break;
+            }
+        }
+        transaction.commitAllowingStateLoss();
+    }
+
+
+    private void hideAllFragment(){
+        FragmentTransaction transaction=manager.beginTransaction();
+        transaction.hide(aaaFragment);
+        transaction.hide(orderFragment);
+        transaction.commitAllowingStateLoss();
+    }
+
+
+    public void back() {
+        if (toMain == 1) {
+            activityUtil.jumpTo(ControlerActivity.class);
+        }
+        finish();
+    }
+
+    @Override
+    public void onComplete(String result, int type) {
+
+    }
+
+    @Override
+    public void onFailure(String msg, int type) {
+
+    }
+}

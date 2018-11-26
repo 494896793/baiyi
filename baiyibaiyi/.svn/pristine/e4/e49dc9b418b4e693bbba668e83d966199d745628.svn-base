@@ -1,0 +1,69 @@
+// Generated code from Butter Knife. Do not modify!
+package com.baogang.bycx.fragment;
+
+import android.support.annotation.CallSuper;
+import android.support.annotation.UiThread;
+import android.view.View;
+import android.widget.TextView;
+import butterknife.Unbinder;
+import butterknife.internal.DebouncingOnClickListener;
+import butterknife.internal.Utils;
+import com.baogang.bycx.R;
+import com.baogang.bycx.view.NestedListView;
+import com.kyleduo.switchbutton.SwitchButton;
+import java.lang.IllegalStateException;
+import java.lang.Override;
+
+public class UseCarPreOrderLongRentFragment_ViewBinding<T extends UseCarPreOrderLongRentFragment> implements Unbinder {
+  protected T target;
+
+  private View view2131297168;
+
+  private View view2131296746;
+
+  @UiThread
+  public UseCarPreOrderLongRentFragment_ViewBinding(final T target, View source) {
+    this.target = target;
+
+    View view;
+    target.lvLongRent = Utils.findRequiredViewAsType(source, R.id.lvLongRent, "field 'lvLongRent'", NestedListView.class);
+    target.sbCoupon = Utils.findRequiredViewAsType(source, R.id.sbCoupon, "field 'sbCoupon'", SwitchButton.class);
+    target.tvInsuranceDesc = Utils.findRequiredViewAsType(source, R.id.tvInsuranceDesc, "field 'tvInsuranceDesc'", TextView.class);
+    view = Utils.findRequiredView(source, R.id.tvConfirmUseCar, "field 'tvConfirmUseCar' and method 'onClickedView'");
+    target.tvConfirmUseCar = Utils.castView(view, R.id.tvConfirmUseCar, "field 'tvConfirmUseCar'", TextView.class);
+    view2131297168 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onClickedView(p0);
+      }
+    });
+    view = Utils.findRequiredView(source, R.id.llytInsuranceHelp, "method 'onClickedView'");
+    view2131296746 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onClickedView(p0);
+      }
+    });
+  }
+
+  @Override
+  @CallSuper
+  public void unbind() {
+    T target = this.target;
+    if (target == null) throw new IllegalStateException("Bindings already cleared.");
+
+    target.lvLongRent = null;
+    target.sbCoupon = null;
+    target.tvInsuranceDesc = null;
+    target.tvConfirmUseCar = null;
+
+    view2131297168.setOnClickListener(null);
+    view2131297168 = null;
+    view2131296746.setOnClickListener(null);
+    view2131296746 = null;
+
+    this.target = null;
+  }
+}

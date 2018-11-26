@@ -1,0 +1,49 @@
+package www.qisu666.com.request;
+
+public class ChargeRequest extends RequestBaseParams {
+    private String customerId;
+    private String bankType;
+    private String rechargeType;
+    private String rechargeMoney;
+    private String standardId;//充值选择的充值项Id
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getBankType() {
+        return bankType;
+    }
+
+    public void setBankType(String bankType) {
+        this.bankType = bankType;
+    }
+
+    public String getRechargeType() {
+        return rechargeType;
+    }
+
+    public void setRechargeType(String rechargeType) {
+        this.rechargeType = rechargeType;
+    }
+
+    public String getRechargeMoney() {
+        return rechargeMoney;
+    }
+
+    public void setRechargeMoney(String rechargeMoney) {
+        this.rechargeMoney = rechargeMoney;
+    }
+
+    public String getStandardId() {
+        return standardId;
+    }
+
+    public void setStandardId(String standardId) {
+        this.standardId = standardId;
+    }
+}

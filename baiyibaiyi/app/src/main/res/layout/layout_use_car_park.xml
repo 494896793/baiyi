@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_85dp"
+    android:gravity="center"
+    android:background="@drawable/linear_shape"
+    android:layout_marginLeft="@dimen/dimen_10dp"
+    android:layout_marginRight="@dimen/dimen_10dp"
+    android:orientation="horizontal">
+
+
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="@dimen/dimen_16dp"
+                android:layout_height="@dimen/dimen_19dp"
+                android:src="@mipmap/yc_4" />
+            <TextView
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:textStyle="bold"
+                android:id="@+id/tvParkName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网点名称"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimen_18sp" />
+
+            <TextView
+                android:id="@+id/tvDistance"
+                android:textColor="@color/main_info_color"
+                android:textSize="@dimen/dimen_13sp"
+                android:text="--"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvParkNamedDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:text="网点名称详情"
+            android:textColor="@color/main_info_color"
+            android:textSize="@dimen/dimen_14sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llytNavigate"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_48dp"
+            android:layout_height="@dimen/dimen_51dp"
+            android:src="@mipmap/yc_15" />
+
+        <TextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="100M"
+            android:textColor="@color/color_blue_02b2e4"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

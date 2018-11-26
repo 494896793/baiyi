@@ -1,0 +1,89 @@
+package www.qisu666.com.adapter;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import www.qisu666.com.R;
+import www.qisu666.com.utils.StringUtil;
+
+import java.util.List;
+import java.util.Map;
+
+
+//设备详情 适配器
+public class DeviceDetailAdapter extends BaseAdapter {
+    private Context context;
+    private List<Map<String,Object>> list;
+    private boolean isFromStationInfoActivity;
+
+    public DeviceDetailAdapter(Context context, List<Map<String, Object>> list) {
+        this.context = context;
+        this.list = list;
+    }
+
+    public DeviceDetailAdapter(Context context, List<Map<String, Object>> list, boolean isFromStationInfoActivity) {
+        this.context = context;
+        this.list = list;
+        this.isFromStationInfoActivity = isFromStationInfoActivity;
+    }
+
+    public void setList(List<Map<String, Object>> list){
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
+
+    @Override
+    public int getCount() {
+        return list==null?0:list.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return list==null?0:list.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = null;
+        if(convertView == null){
+            if (isFromStationInfoActivity){
+                convertView = LayoutInflater.from(context).inflate(R.layout.item_lv_new_device_detail1, null);
+            }else {
+                convertView = LayoutInflater.from(context).inflate(R.layout.item_lv_new_device_detail, null);
+            }
+            holder = new ViewHolder();
+            holder.tv_start_time = (TextView) convertView.findViewById(R.id.tv_start_time);
+            holder.tv_end_time = (TextView) convertView.findViewById(R.id.tv_end_time);
+            holder.tv_kilowatt_hour_fee = (TextView) convertView.findViewById(R.id.tv_kilowatt_hour_fee);
+//            holder.tv_kilowatt_hour_service_fee = (TextView) convertView.findViewById(R.id.tv_kilowatt_hour_service_fee);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.tv_start_time.setText(StringUtil.formatHour(list.get(position).get("startTime").toString()));
+        holder.tv_end_time.setText(StringUtil.formatHour(list.get(position).get("endTime").toString()));
+        holder.tv_kilowatt_hour_fee.setText(list.get(position).get("chargePrice").toString()+"元/度");
+//        holder.tv_kilowatt_hour_fee.setText(Float.valueOf(list.get(position).get("charge_price").toString())/ ConstantUtil.PAY_TO_DIVIDE+"元/度");
+//        holder.tv_kilowatt_hour_service_fee.setText(Float.valueOf(list.get(position).get("service_price").toString())/ConstantUtil.PAY_TO_DIVIDE+"元/度");
+        return convertView;
+    }
+
+    class ViewHolder{
+        TextView tv_start_time;
+        TextView tv_end_time;
+        TextView tv_kilowatt_hour_fee;
+        TextView tv_kilowatt_hour_service_fee;
+    }
+
+}

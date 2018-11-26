@@ -1,0 +1,247 @@
+package com.baogang.bycx.callback;
+
+
+import java.io.Serializable;
+
+public class SystemConfigResp implements Serializable {
+    private String currentDateTime;
+    private String kfphone;
+    private String carSharingOrderCancelTime;
+    private String customerDepositValue;
+    private ActivityData activity;
+    private String userGuideUrl;
+    private int newMessageNum;
+    private String shareUrl;
+    private String aboutUrl;
+    private String rechargeAgreementUrl;
+    private String userLeasingAgreementUrl;
+    private String parkCostUrl;
+    private String findChargingPileUrl;//我要充电
+    private String isInsuranceUrl;//不计免赔
+    private String isSupportMerchant;//微信是否支持商家打款(0 支持，1不支持)
+    private String redpackageUseRule;//红包规则
+    private String commonQuestion;//常见问题
+    private String userProtocol;//用户协议
+
+    public String getAboutUrl() {
+        return aboutUrl;
+    }
+
+    public void setAboutUrl(String aboutUrl) {
+        this.aboutUrl = aboutUrl;
+    }
+
+    public String getRechargeAgreementUrl() {
+        return rechargeAgreementUrl;
+    }
+
+    public void setRechargeAgreementUrl(String rechargeAgreementUrl) {
+        this.rechargeAgreementUrl = rechargeAgreementUrl;
+    }
+
+    public String getUserLeasingAgreementUrl() {
+        return userLeasingAgreementUrl;
+    }
+
+    public void setUserLeasingAgreementUrl(String userLeasingAgreementUrl) {
+        this.userLeasingAgreementUrl = userLeasingAgreementUrl;
+    }
+
+    public int getNewMessageNum() {
+        return newMessageNum;
+    }
+
+    public void setNewMessageNum(int newMessageNum) {
+        this.newMessageNum = newMessageNum;
+    }
+
+    public String getUserGuideUrl() {
+        return userGuideUrl;
+    }
+
+    public void setUserGuideUrl(String userGuideUrl) {
+        this.userGuideUrl = userGuideUrl;
+    }
+
+    public ActivityData getActivity() {
+        return activity;
+    }
+
+    public void setActivity(ActivityData activity) {
+        this.activity = activity;
+    }
+
+    public String getCustomerDepositValue() {
+        return customerDepositValue;
+    }
+
+    public void setCustomerDepositValue(String customerDepositValue) {
+        this.customerDepositValue = customerDepositValue;
+    }
+
+    public String getCarSharingOrderCancelTime() {
+        return carSharingOrderCancelTime;
+    }
+
+    public void setCarSharingOrderCancelTime(String carSharingOrderCancelTime) {
+        this.carSharingOrderCancelTime = carSharingOrderCancelTime;
+    }
+
+    public String getCurrentDateTime() {
+        return currentDateTime;
+    }
+
+    public void setCurrentDateTime(String currentDateTime) {
+        this.currentDateTime = currentDateTime;
+    }
+
+    public String getKfphone() {
+        return kfphone;
+    }
+
+    public void setKfphone(String kfphone) {
+        this.kfphone = kfphone;
+    }
+
+    public String getShareUrl() {
+        return shareUrl;
+    }
+
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
+    }
+
+    public String getParkCostUrl() {
+        return parkCostUrl;
+    }
+
+    public void setParkCostUrl(String parkCostUrl) {
+        this.parkCostUrl = parkCostUrl;
+    }
+
+    public String getFindChargingPileUrl() {
+        return findChargingPileUrl;
+    }
+
+    public void setFindChargingPileUrl(String findChargingPileUrl) {
+        this.findChargingPileUrl = findChargingPileUrl;
+    }
+
+    public String getIsInsuranceUrl() {
+        return isInsuranceUrl;
+    }
+
+    public void setIsInsuranceUrl(String isInsuranceUrl) {
+        this.isInsuranceUrl = isInsuranceUrl;
+    }
+
+    public String getIsSupportMerchant() {
+        return isSupportMerchant;
+    }
+
+    public void setIsSupportMerchant(String isSupportMerchant) {
+        this.isSupportMerchant = isSupportMerchant;
+    }
+
+    public String getRedpackageUseRule() {
+        return redpackageUseRule;
+    }
+
+    public void setRedpackageUseRule(String redpackageUseRule) {
+        this.redpackageUseRule = redpackageUseRule;
+    }
+
+    public String getCommonQuestion() {
+        return commonQuestion;
+    }
+
+    public void setCommonQuestion(String commonQuestion) {
+        this.commonQuestion = commonQuestion;
+    }
+
+    public String getUserProtocol() {
+        return userProtocol;
+    }
+
+    public void setUserProtocol(String userProtocol) {
+        this.userProtocol = userProtocol;
+    }
+
+    public class ActivityData implements Serializable {
+        private int id;
+        private int status;// 状态
+        private String endTime; // 活动结束日期时间
+        private String imgUrl;// 活动图片URL
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getStartTime() {
+            return startTime;
+        }
+
+        public void setStartTime(String startTime) {
+            this.startTime = startTime;
+        }
+
+        public String getRemark() {
+            return remark;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
+
+        public String getImgUrl() {
+            return imgUrl;
+        }
+
+        public void setImgUrl(String imgUrl) {
+            this.imgUrl = imgUrl;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        public String getEndTime() {
+            return endTime;
+        }
+
+        public void setEndTime(String endTime) {
+            this.endTime = endTime;
+        }
+
+        private String remark; // 备注
+        private String startTime;// 活动生效日期时间
+        private String title;//标题
+        private String url; // 活动的URL
+    }
+
+}
+

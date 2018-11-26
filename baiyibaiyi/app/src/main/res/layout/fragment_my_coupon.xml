@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    android:orientation="vertical">
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCoupon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp" />
+    </com.liaoinstan.springview.widget.SpringView>
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/springViewNoData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/rlytNoCoupon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivCouponTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/no_coupon_bg" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvCouponTip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivCouponTip"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:text="暂无优惠券~"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </com.liaoinstan.springview.widget.SpringView>
+</LinearLayout>
